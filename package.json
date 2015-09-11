@@ -1,0 +1,11 @@
+{
+  "name": "settings-panel",
+  "version": "1.0.0",
+  "description": "A (hopefully) drop in settings panel component",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bryan Ross <bross@stackoverflow.com>",
+  "license": "UNLICENSED",
+  "private": true
+}
