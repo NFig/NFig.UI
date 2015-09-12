@@ -6,7 +6,7 @@ This is the settings panel front end component that we use in the admin section 
 
 ### Dependencies
 
-The settings panel component is build around [ReactJS][4], and packaged/bundled with [WebPack][5]. 
+The settings panel component is built with [ReactJS][4], and packaged/bundled with [WebPack][5]. 
 
 #### TL;DR
 
