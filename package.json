@@ -16,6 +16,7 @@
     "express": "^4.13.3",
     "marked": "^0.3.5",
     "microevent": "^1.0.0",
+    "promise": "^7.0.4",
     "underscore": "^1.8.3",
     "webpack": "^1.12.1"
   }

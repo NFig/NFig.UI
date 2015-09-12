@@ -1,3 +1,5 @@
+var Promise = require('promise');
+
 var ajax = function (opts, callback) {
 
   function setDefault(obj, key, value) {
