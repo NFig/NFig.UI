@@ -144,12 +144,12 @@ export default class SettingsPanel extends React.Component {
     editVisibleSetting(searchText) {
         const visibleSettings = this.getVisibleSettings(searchText);
         if (visibleSettings.length === 1) {
-            location.href = visibleSettings[0].EditPage;
+            location.href = visibleSettings[0].editPage;
         }
     }
 
     goToEditPage(setting) {
-        location.href = setting.EditPage;
+        location.href = setting.editPage;
     }
 
     getVisibleSettings(searchText) {
@@ -211,7 +211,7 @@ export default class SettingsPanel extends React.Component {
 
     editFocusedSetting() {
         const visible = this.getVisibleSettings();
-        location.href = visible[this.state.currentlyFocused].EditPage;
+        location.href = visible[this.state.currentlyFocused].editPage;
     }
 
     quickEditFocusedSetting() {

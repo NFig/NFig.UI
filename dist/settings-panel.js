@@ -268,13 +268,13 @@ var SettingsPanel =
 	        value: function editVisibleSetting(searchText) {
 	            var visibleSettings = this.getVisibleSettings(searchText);
 	            if (visibleSettings.length === 1) {
-	                location.href = visibleSettings[0].EditPage;
+	                location.href = visibleSettings[0].editPage;
 	            }
 	        }
 	    }, {
 	        key: 'goToEditPage',
 	        value: function goToEditPage(setting) {
-	            location.href = setting.EditPage;
+	            location.href = setting.editPage;
 	        }
 	    }, {
 	        key: 'getVisibleSettings',
@@ -350,7 +350,7 @@ var SettingsPanel =
 	        key: 'editFocusedSetting',
 	        value: function editFocusedSetting() {
 	            var visible = this.getVisibleSettings();
-	            location.href = visible[this.state.currentlyFocused].EditPage;
+	            location.href = visible[this.state.currentlyFocused].editPage;
 	        }
 	    }, {
 	        key: 'quickEditFocusedSetting',
