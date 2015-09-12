@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="settings.css" />
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>Sample Settings Panel</h1>
+      <hr />
+      <div id="settings-panel"></script>
+    </div>
+
+    <script src="https://fb.me/react-with-addons-0.13.3.js"></script>
+    <script src="settings-panel.js"></script>
+    <script>
+      window.settingsPanel = React.render(
+          React.createElement(SettingsPanel, { 
+            settingsUrl: '/settings.json',
+            clearUrl: '/clear',
+            setUrl: '/set',
+          }),
+          document.getElementById('settings-panel')
+      );
+    </script>
+  </body>
+</html>

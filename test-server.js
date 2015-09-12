@@ -61,6 +61,7 @@ app.post('/clear', (req, res) => {
   res.json(current);
 });
 
+app.use(express.static('public'));
 app.use(express.static('dist'));
 
 

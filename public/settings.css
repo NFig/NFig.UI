@@ -1,0 +1,53 @@
+.container {
+  width: 1170px;
+  margin: auto;
+}
+
+div.settings-panel div.settings-search {
+  display: flex;
+}
+div.settings-panel div.settings-search input[type=text] {
+  flex-grow: 1;
+}
+div.settings-panel div.setting-groups {
+  margin-top: 5px;
+  border: 1px solid #dddddd;
+}
+div.settings-panel div.setting-groups div.setting-group {
+  border-top: none;
+}
+div.settings-panel div.setting-groups div.setting-group h4 {
+  padding: 5px;
+  margin: 0;
+  border-top: 1px solid #dddddd;
+  background-color: #eeeeee;
+}
+div.settings-panel div.setting-groups div.setting-group div.setting {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  cursor: default;
+  padding: 5px;
+  border-top: 1px solid #dddddd;
+}
+div.settings-panel div.setting-groups div.setting-group div.setting.focused {
+  box-shadow: 0 0 5px #56b0eb;
+}
+
+div.settings-panel div.setting-groups div.setting-group div.setting.overridden {
+  background: #d9edf7;
+}
+
+div.settings-panel div.setting-groups div.setting-group div.setting div.name,
+div.settings-panel div.setting-groups div.setting-group div.setting div.value {
+  width: 50%;
+}
+
+a.reset {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
