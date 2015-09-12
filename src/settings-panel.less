@@ -1,0 +1,49 @@
+@headingBgColor: #eee;
+@borderColor: #ddd;
+
+div.settings-panel {
+
+  div.settings-search {
+    display: flex;
+
+    input[type=text] {
+      flex-grow: 1;
+    }
+  }
+
+  div.setting-groups {
+    margin-top: 5px;
+    border: 1px solid @borderColor;
+
+    div.setting-group {
+      border-top: none;
+
+      h4 {
+        padding: 5px;
+        margin: 0;
+        border-top: 1px solid @borderColor;
+        background-color: @headingBgColor;
+      }
+
+      div.setting {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+        cursor: default;
+
+        padding: 5px;
+        border-top: 1px solid @borderColor;
+
+        &.focused {
+          box-shadow: 0 0 5px #56b0eb;
+        }
+
+        div.name,
+        div.value {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
