@@ -497,7 +497,7 @@ class BoolEditor extends React.Component {
     constructor(props) {
         super(props);
 
-        const boolValue = typeof props.setting.value.toString().toLowerCase()
+        const boolValue = props.setting.value.toString().toLowerCase()
 
         const defaultValue = boolValue === 'true' ? 'False' : 'True';
         this.state = {

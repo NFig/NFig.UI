@@ -746,7 +746,7 @@ var SettingsPanel =
 
 	        _get(Object.getPrototypeOf(BoolEditor.prototype), 'constructor', this).call(this, props);
 
-	        var boolValue = typeof props.setting.value.toString().toLowerCase();
+	        var boolValue = props.setting.value.toString().toLowerCase();
 
 	        var defaultValue = boolValue === 'true' ? 'False' : 'True';
 	        this.state = {
