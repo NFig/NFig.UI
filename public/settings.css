@@ -4,10 +4,11 @@
 }
 
 div.settings-panel div.settings-search {
+  display: -webkit-flex;
   display: flex;
 }
 div.settings-panel div.settings-search input[type=text] {
-  flex-grow: 1;
+  -webkit-flex-grow: 1;
 }
 div.settings-panel div.setting-groups {
   margin-top: 5px;
@@ -23,8 +24,11 @@ div.settings-panel div.setting-groups div.setting-group h4 {
   background-color: #eeeeee;
 }
 div.settings-panel div.setting-groups div.setting-group div.setting {
+  display: -webkit-flex;
   display: flex;
+  -webkit-flex-direction: row;
   flex-direction: row;
+  -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
   align-items: stretch;
   cursor: default;
