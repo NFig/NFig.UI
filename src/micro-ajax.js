@@ -1,10 +1,15 @@
-var Promise = require('promise');
+// nice clean wrapper around fetch
 
-var ajax = function (opts, callback) {
+const enc = encodeURIComponent;
 
-  function setDefault(obj, key, value) {
-    obj[key] = obj[key] || value;
-  }
+function toFormData(data) {
+  return Object.keys(data).map(key =>
+      `${enc(key)}=${enc(data[key])}`
+  ).join('&');
+}
+
+export default function ajax(opts) {
+  const setDefault = (obj, key, val) => obj[key] = obj[key] || val;
 
   if (typeof opts === 'undefined')
     throw 'Error calling ajax(): no url or options specified';
@@ -12,72 +17,52 @@ var ajax = function (opts, callback) {
   if (typeof opts === 'string')
     opts = { url: opts };
 
-  var headers = opts.header || {},
-  data = opts.data,
-  method = opts.method || (data ? 'POST' : 'GET'),
-  callback = callback || opts.callback
-    ;
+  let {url, headers = {}, data, method = (data ? 'POST' : 'GET')} = opts;
 
   if (data && typeof data !== 'string') {
-    data = Object.keys(data).map(function (key) {
-      return encodeURIComponent(key) + '=' + encodeURIComponent(this[key]);
-    }, data).join('&');
+    data = toFormData(data);
+    setDefault(headers, 'Content-Type', 'application/x-www-form-urlencoded');
   }
 
-  var executor = function (resolve, reject) {
+  var fetchOptions = {
+    method,
+    headers,
+    body: data
+  };
 
-    var req = new XMLHttpRequest();
 
-    req.addEventListener('load', function () {
-      // Let's parse any json that comes back
-      var body = req.responseText;
-      if (/^application\/json/.test(req.getResponseHeader('Content-Type'))) {
-        body = JSON.parse(body);
-      }
+  let res;
+  return fetch(url, fetchOptions).then(response => {
+    res = { 
+      status: response.status,
+      response
+    };
 
-      if (/^2/.test(req.status)) {
-        resolve({ status: req.status, body, xhr: req });
-      } else {
-        reject({ status: req.status, body, xhr: req });
-      }
-    });
-
-    if (data) {
-      setDefault(headers, 'X-Requested-With', 'XMLHttpRequest');
-      setDefault(headers, 'Content-Type', 'application/x-www-form-urlencoded');
+    const contentType = response.headers.get('Content-Type');
+    if (/^application\/json/.test(contentType)) {
+      return response.json();
+    } else {
+      return response.text();
     }
-
-    req.open(method, opts.url, true);
-
-    for (var key in headers) {
-      req.setRequestHeader(key, headers[key]);
-    }
-
-    req.send(data);
-  }
-
-  var p = new Promise(executor);
-
-  if (typeof callback === 'function')
-    return p.then(callback);
-
-  return p;
+  }).then(body => {
+    res.body = body;
+    return res;
+  });
 }
 
-var callWithMethod = function (method) {
-  return function (opts, callback) {
+function callWithMethod(method) {
+  return function (opts) {
     opts = typeof opts === 'string' ? { url: opts } : opts;
     opts.method = method;
-    return ajax(opts, callback);
+    return ajax(opts);
   }
-};
+}
 
 ajax.get = callWithMethod('GET');
 ajax.post = callWithMethod('POST');
 ajax.put = callWithMethod('PUT');
-ajax.delete = callWithMethod('DELETE');
+ajax.del = callWithMethod('DELETE');
 ajax.head = callWithMethod('HEAD');
 ajax.patch = callWithMethod('PATCH');
 ajax.options = callWithMethod('OPTIONS');
 
-export default ajax;

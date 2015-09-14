@@ -18,6 +18,8 @@ module.exports = {
     ]
   },
   plugins: [
-    // new webpack.optimize.UglifyJsPlugin({minimize: true, sourceMap: true})
+    new webpack.ProvidePlugin({
+      'fetch': 'imports?self=>global!exports?global.fetch!whatwg-fetch'
+    })
   ]
 };
