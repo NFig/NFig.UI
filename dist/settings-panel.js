@@ -733,7 +733,11 @@ var SettingsPanel =
 
 	            var boolVal = typeof value === 'string' ? value.toLowerCase() === 'true' : !!value;
 
-	            return _react2['default'].createElement('span', { className: 'bool-val-' + boolVal, dangerouslySetInnerHTML: { __html: boolVal ? '&#x2714;' : '&times;' } });
+	            return _react2['default'].createElement(
+	                'span',
+	                { className: 'bool-val-' + boolVal },
+	                _react2['default'].createElement('i', { dangerouslySetInnerHTML: { __html: boolVal ? '&#x2714;' : '&times;' } })
+	            );
 	        }
 	    }]);
 

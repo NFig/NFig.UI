@@ -490,7 +490,7 @@ class BoolValue extends React.Component {
             : !!value;
 
         return (
-            <span className={`bool-val-${boolVal}`} dangerouslySetInnerHTML={{__html: boolVal ? '&#x2714;' : '&times;'}} />
+            <span className={`bool-val-${boolVal}`}><i dangerouslySetInnerHTML={{__html: boolVal ? '&#x2714;' : '&times;'}} /></span>
         );
     }
 }
