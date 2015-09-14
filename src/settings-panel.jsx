@@ -4,6 +4,9 @@ import _ from 'underscore';
 import ajax from './micro-ajax';
 import marked from 'marked';
 import autosize from 'autosize';
+import 'babel/polyfill';
+
+
 
 const SettingsEvents = new MicroEvent();
 
@@ -19,8 +22,8 @@ const containsText = (string, search) => string.toLowerCase().indexOf(search.toL
 
 export default class SettingsPanel extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             settings: [],
             availableDataCenters: [],
@@ -50,7 +53,7 @@ export default class SettingsPanel extends React.Component {
 
         this.subscribeToEvents();
 
-        ajax.get(this.props.settingsUrl, result => {
+        ajax.get(this.props.settingsUrl).then(result => {
             this.setState(result.body, () => {
                 window.onpopstate(null);
             });
