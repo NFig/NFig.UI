@@ -27,7 +27,8 @@ export default function ajax(opts) {
   var fetchOptions = {
     method,
     headers,
-    body: data
+    body: data,
+    credentials: 'same-origin'
   };
 
 

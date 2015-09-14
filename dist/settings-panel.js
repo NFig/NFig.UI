@@ -2743,7 +2743,8 @@ var SettingsPanel =
 	  var fetchOptions = {
 	    method: method,
 	    headers: headers,
-	    body: data
+	    body: data,
+	    credentials: 'same-origin'
 	  };
 
 	  var res = undefined;
