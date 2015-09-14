@@ -3,6 +3,10 @@
   margin: auto;
 }
 
+div.settings-panel {
+  font-family: sans-serif;
+}
+
 div.settings-panel div.settings-search {
   display: -webkit-flex;
   display: flex;
