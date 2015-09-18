@@ -10,26 +10,120 @@ const dataCenters = [
 ];
 
 const defaultSettings = {
-  availableDataCenters: dataCenters,
-  settings: [
-  {
-    isBool: false,
-    name: "Test.TestTextValue",
-    description: "This is a test text value, with some _markdown_ in the decription.\nFor instance, [here's a google link](http://google.com)",
-    value: "This\nis\na\nmultiline\nvalue",
-    overriddenByDataCenter: null
+ "settings": [{
+  "isOverride": false,
+  "isBool": true,
+  "activeValues": [{
+   "dataCenter": "Any",
+   "tier": "Any",
+   "value": "False"
+  }],
+  "defaults": [{
+   "dataCenter": "Any",
+   "tier": "Any",
+   "value": "False"
+  }, {
+   "dataCenter": "Any",
+   "tier": "Dev",
+   "value": "True"
+  }, {
+   "dataCenter": "Any",
+   "tier": "Prod",
+   "value": "True"
+  }],
+  "overrides": [],
+  "current": {
+   "dataCenter": "Any",
+   "tier": "Any",
+   "value": "False"
   },
-  {
-    isBool: true,
-    name: "Test.TestBoolValue",
-    description: "This is a test **bool** value.",
-    value: true,
-    overriddenByDataCenter: null
-  }
-  ]
+  "name": "Bosun.Enabled",
+  "description": "Enables sending metrics to Bosun."
+ }, {
+  "isOverride": false,
+  "isBool": false,
+  "activeValues": [{
+   "dataCenter": "Any",
+   "tier": "Local",
+   "value": "http://192.168.59.103:8070/api/put"
+  }],
+  "defaults": [{
+   "dataCenter": "Any",
+   "tier": "Any",
+   "value": null
+  }, {
+   "dataCenter": "Any",
+   "tier": "Local",
+   "value": "http://192.168.59.103:8070/api/put"
+  }, {
+   "dataCenter": "Colorado",
+   "tier": "Dev",
+   "value": "http://co-devbosun/api/put"
+  }, {
+   "dataCenter": "NewYork",
+   "tier": "Dev",
+   "value": "http://ny-devbosun/api/put"
+  }, {
+   "dataCenter": "Any",
+   "tier": "Prod",
+   "value": "http://bosun/api/put"
+  }],
+  "overrides": [],
+  "current": {
+   "dataCenter": "Any",
+   "tier": "Local",
+   "value": "http://192.168.59.103:8070/api/put"
+  },
+  "name": "Bosun.ApiUrl",
+  "description": "The URL where to send Bosun metrics. Should end in /api/put"
+ }, {
+  "isOverride": false,
+  "isBool": false,
+  "activeValues": [{
+   "dataCenter": "Any",
+   "tier": "Any",
+   "value": "30"
+  }],
+  "defaults": [{
+   "dataCenter": "Any",
+   "tier": "Any",
+   "value": "30"
+  }],
+  "overrides": [],
+  "current": {
+   "dataCenter": "Any",
+   "tier": "Any",
+   "value": "30"
+  },
+  "name": "Bosun.Interval",
+  "description": "The reporting interval (in seconds) for Bosun. **Any change requires an application restart to take effect.**"
+ }, {
+  "isOverride": false,
+  "isBool": false,
+  "activeValues": [{
+   "dataCenter": "Any",
+   "tier": "Any",
+   "value": "10"
+  }],
+  "defaults": [{
+   "dataCenter": "Any",
+   "tier": "Any",
+   "value": "10"
+  }],
+  "overrides": [],
+  "current": {
+   "dataCenter": "Any",
+   "tier": "Any",
+   "value": "10"
+  },
+  "name": "Bosun.AggregateGaugeMinimumEvents",
+  "description": "Determines the default minimum number of events which must be recorded during a reporting interval before an AggregateGauge will report anything. See [BosunReporter docs](https://github.com/bretcope/BosunReporter.NET/blob/master/docs/MetricTypes.md#aggregategauge)."
+ }],
+ "availableDataCenters": ["Any", "Local"]
 };
 
 const currentSettings = JSON.parse(JSON.stringify(defaultSettings)) ;
+
 
 app.use(urlencoded({ extended: false }));
 

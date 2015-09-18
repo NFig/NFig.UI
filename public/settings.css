@@ -1,61 +1,32 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+}
+
 .container {
   width: 1170px;
   margin: auto;
 }
 
-div.settings-panel {
-  font-family: sans-serif;
+body {
+  font-family: "Liberation Sans";
 }
 
-div.settings-panel div.settings-search {
-  display: -webkit-flex;
-  display: flex;
-}
-div.settings-panel div.settings-search input[type=text] {
-  -webkit-flex-grow: 1;
-}
-div.settings-panel div.setting-groups {
-  margin-top: 5px;
-  border: 1px solid #dddddd;
-}
-div.settings-panel div.setting-groups div.setting-group {
-  border-top: none;
-}
-div.settings-panel div.setting-groups div.setting-group h4 {
-  padding: 5px;
-  margin: 0;
-  border-top: 1px solid #dddddd;
-  background-color: #eeeeee;
-}
-div.settings-panel div.setting-groups div.setting-group div.setting {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
-  align-items: stretch;
-  cursor: default;
-  padding: 5px;
-  border-top: 1px solid #dddddd;
-}
-div.settings-panel div.setting-groups div.setting-group div.setting.focused {
-  box-shadow: 0 0 5px #56b0eb;
+
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  z-index: 10000;
 }
 
-div.settings-panel div.setting-groups div.setting-group div.setting.overridden {
-  background: #d9edf7;
+.ReactModal__Content {
+  bottom: auto !important;
 }
 
-div.settings-panel div.setting-groups div.setting-group div.setting div.name,
-div.settings-panel div.setting-groups div.setting-group div.setting div.value {
-  width: 50%;
-}
-
-a.reset {
-  color: blue;
-  text-decoration: underline;
-  cursor: pointer;
+.ReactModal__Content.modal-dialog {
+  border: none;
+  background-color: transparent;
 }
 
 

@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="settings.css" />
-  </head>
-  <body>
+<meta charset="UTF-8">
+<title></title>
 
-    <div class="container">
-      <h1>Sample Settings Panel</h1>
-      <hr />
-      <div id="settings-panel"></script>
-    </div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="settings.css" />
 
-    <script src="https://fb.me/react-with-addons-0.13.3.js"></script>
-    <script src="settings-panel.js"></script>
-    <script>
-      window.settingsPanel = React.render(
-          React.createElement(SettingsPanel, { 
-            settingsUrl: '/settings.json',
+<div class="container">
+    <h1>Sample Settings Panel</h1>
+    <hr />
+    <div id="settings-panel"></script>
+</div>
+
+
+
+<script src="https://fb.me/react-with-addons-0.13.3.js"></script>
+<script src="settings-panel.js"></script>
+<script>
+    window.settingsPanel = SettingsPanel.init(
+        document.getElementById('settings-panel'),
+        { 
+            settingsUrl: 'http://local.clc.stackoverflow.com/admin/settings/json',
             clearUrl: '/clear',
             setUrl: '/set',
-          }),
-          document.getElementById('settings-panel')
-      );
-    </script>
-  </body>
-</html>
+        }
+    );
+</script>
+<!-- vim: set ts=4 sw=4 et: -->

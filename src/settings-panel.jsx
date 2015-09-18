@@ -5,7 +5,7 @@ import ajax from './micro-ajax';
 import marked from 'marked';
 import autosize from 'autosize';
 import 'babel/polyfill';
-
+import Modal from 'react-modal';
 
 
 const SettingsEvents = new MicroEvent();
@@ -39,10 +39,16 @@ export default class SettingsPanel extends React.Component {
         this.updateSearchUrl = _.debounce(this.updateSearchUrl, 500);
     }
 
+    static init(element, props) {
+        Modal.setAppElement(element);
+        Modal.injectCSS();
+        return React.render(<SettingsPanel {...props} />, element);
+    }
+
     cancelEditing(e) {
         e.stopImmediatePropagation();
         e.stopPropagation();
-        SettingsEvents.trigger("cancel-edit");
+        SettingsEvents.trigger('cancel-edit');
     }
 
     componentDidMount() {
@@ -59,14 +65,18 @@ export default class SettingsPanel extends React.Component {
             });
         });
 
-        document.addEventListener('click', this.handleDocumentClick);
-
         document.addEventListener('keydown', e => this.handleKeyDown(e));
 
         window.onpopstate = event => {
             if (location.hash.length > 1) {
-                this.setSearchText(location.hash.substr(1));
+                if (/^#edit:/.test(location.hash)) {
+                    this.setEditingState(this.getSettingByName(location.hash.split(':')[1]));
+                } else {
+                    this.clearEditingState();
+                    this.setSearchText(location.hash.substr(1));
+                }
             } else {
+                this.clearEditingState();
                 this.setSearchText('');
             }
         };
@@ -74,17 +84,17 @@ export default class SettingsPanel extends React.Component {
 
     subscribeToEvents() {
          const handlers = {
-            "begin-edit": setting => this.setEditingState(setting),
-            "cancel-edit": () => this.clearEditingState(),
-            "update-setting": data => this.updateSetting(data),
-            "clear-override": setting => this.clearOverride(setting),
-            "set-focused-index": index => this.setFocusedIndex(index),
+            'begin-edit': setting => this.setEditingState(setting),
+            'cancel-edit': () => this.clearEditingState(),
+            'new-override': data => this.setNewOverride(data),
+            'clear-override': setting => this.clearOverride(setting),
+            'set-focused-index': index => this.setFocusedIndex(index),
         };
 
         _.each(handlers, (handler, event) => SettingsEvents.bind(event, handler));
     }
 
-    updateSetting(data) {
+    setNewOverride(data) {
         if (this.state.currentlyEditing === null)
             return;
 
@@ -106,23 +116,35 @@ export default class SettingsPanel extends React.Component {
     }
 
     setSearchText(value, cb) {
-        this.setState({searchText: value}, cb);
+        this.setState({searchText: value, currentlyFocused: -1}, cb);
     }
 
     getUrlForSearch(value) {
         return '//' + location.host + location.pathname + location.search + (value.length > 0 ? ('#' + value) : '');
     }
 
+    getUrlForEdit(setting) {
+        return '//' + location.host + location.pathname + location.search + (setting ? ('#edit:' + setting.name) : '');
+    }
+
     setEditingState(setting) {
-        this.setState({ currentlyEditing: setting });
-        if (setting.index !== undefined) {
-            this.setFocusedIndex(setting.index);
-        }
+        this.setState({ currentlyEditing: setting }, () => {
+            if (setting.index !== undefined) {
+                this.setFocusedIndex(setting.index);
+            }
+            const editHash = 'edit:' + setting.name;
+            if (location.hash !== '#' + editHash) {
+                history.pushState(null, null, this.getUrlForEdit(setting));
+            }
+        });
     }
 
     clearEditingState() {
         if (this.state.currentlyEditing != null) {
             this.setState({ currentlyEditing: null });
+            if (/^#edit:/.test(location.hash)) {
+                history.pushState(null, null, this.getUrlForEdit(null));
+            }
         }
     }
 
@@ -133,27 +155,21 @@ export default class SettingsPanel extends React.Component {
         };
 
         updateData.settings[index] = {$set: r};
-        updateData.currentlyEditing = {$set: null};
+        // updateData.currentlyEditing = {$set: null};
+        if (this.state.currentlyEditing && this.state.currentlyEditing.name === r.name) {
+            updateData.currentlyEditing = {$set: r};
+        }
         this.setState(React.addons.update(this.state, updateData));
     }
 
-    quickEditVisibleSetting(searchText) {
-        const visibleSettings = this.getVisibleSettings(searchText);
-        if (visibleSettings.length === 1) {
-            SettingsEvents.trigger('begin-edit', visibleSettings[0]);
-        }
-    }
 
     editVisibleSetting(searchText) {
         const visibleSettings = this.getVisibleSettings(searchText);
         if (visibleSettings.length === 1) {
-            location.href = visibleSettings[0].editPage;
+            this.setEditingState(visibleSettings[0]);
         }
     }
 
-    goToEditPage(setting) {
-        location.href = setting.editPage;
-    }
 
     getVisibleSettings(searchText) {
         searchText = searchText || this.state.searchText;
@@ -173,18 +189,6 @@ export default class SettingsPanel extends React.Component {
                 .value();
     }
 
-    handleDocumentClick(e) {
-        // make sure we're not clicking on a div.value
-        let node = e.target;
-        while (node && node != document) {
-            if (node.tagName === 'DIV' && node.className.indexOf('value') !== -1)
-                return; // we are in a div.value, bail
-            node = node.parentNode;
-        }
-
-        SettingsEvents.trigger('cancel-edit');
-    }
-
     componentWillUnmount() {
         this.subscribers.forEach(s => s());
         document.removeEventListener('click', this.handleDocumentClick);
@@ -193,6 +197,10 @@ export default class SettingsPanel extends React.Component {
     getSettingComponent(name) {
         var group = name.replace(/^([^\.]+)\..+$/, '$1');
         return this.refs[group].refs[name];
+    }
+
+    getSettingByName(name) {
+        return _.find(this.state.settings, s => s.name === name);
     }
 
     setFocusedIndex(index) {
@@ -213,13 +221,10 @@ export default class SettingsPanel extends React.Component {
     }
 
     editFocusedSetting() {
-        const visible = this.getVisibleSettings();
-        location.href = visible[this.state.currentlyFocused].editPage;
-    }
-
-    quickEditFocusedSetting() {
-        const visible = this.getVisibleSettings();
-        SettingsEvents.trigger('begin-edit', visible[this.state.currentlyFocused]);
+        const visibleSettings = this.getVisibleSettings(this.state.searchText);
+        const index = this.state.currentlyFocused;
+        if (index > -1 && index < visibleSettings.length)
+            SettingsEvents.trigger('begin-edit', visibleSettings[index]);
     }
 
     handleKeyDown(e) {
@@ -242,8 +247,7 @@ export default class SettingsPanel extends React.Component {
             case Keys.ENTER:
                 if (this.state.currentlyFocused >= 0) {
                     e.preventDefault();
-                    if (e.ctrlKey) this.quickEditFocusedSetting();
-                    else this.editFocusedSetting();
+                    this.editFocusedSetting();
                 }
                 break;
         }
@@ -268,6 +272,7 @@ export default class SettingsPanel extends React.Component {
             />
         ));
 
+
         return (
             <div className="settings-panel">
                 <SettingsSearchBox
@@ -281,12 +286,12 @@ export default class SettingsPanel extends React.Component {
                     }}
 
                     onEdit={e => this.editVisibleSetting(this.state.searchText)}
-                    onQuickEdit={e => this.quickEditVisibleSetting(this.state.searchText)}
                     ref="search"
                 />
                 <div className="setting-groups">
                     {children}
                 </div>
+                {this.state.currentlyEditing ? <EditorModal setting={this.state.currentlyEditing} dataCenters={this.state.availableDataCenters} /> : null}
             </div>
         );
     }
@@ -308,11 +313,7 @@ class SettingsSearchBox extends React.Component {
         switch (e.which) {
             case Keys.ESCAPE: e.target.value = ''; this.props.onChange(e); break;
             case Keys.ENTER:
-                if (e.ctrlKey) {
-                    this.props.onQuickEdit();
-                } else {
-                    this.props.onEdit();
-                }
+                this.props.onEdit();
                 break;
         }
     }
@@ -332,7 +333,7 @@ class SettingsSearchBox extends React.Component {
                 <input
                     {...this.props}
                     type="text"
-                    className={"addon-right " + this.props.className}
+                    className={"addon-right " + (this.props.className || '')}
                     onKeyDown={e => this.handleKeyDown(e)}
                     ref="textbox" />
             </div>
@@ -346,14 +347,11 @@ class SettingsGroup extends React.Component {
         const settings = this.props.settings;
 
         const children = settings.map(setting => {
-            const isEditing = this.props.currentlyEditing === setting;
-
             return (
                 <Setting
                     setting={setting}
                     key={setting.name}
                     dataCenters={this.props.dataCenters}
-                    isEditing={isEditing}
                     ref={setting.name}
                 />
             );
@@ -391,12 +389,19 @@ class Setting extends React.Component {
 
     handleClick(e) {
         e.stopPropagation();
-        SettingsEvents.trigger('set-focused-index', this.props.setting.index);
+        SettingsEvents.trigger('begin-edit', this.props.setting);
+    }
+
+    handleDescriptionClick(e) {
+        if (e.target.tagName === 'A') {
+            e.stopPropagation();
+            e.target.setAttribute('target', '_blank');
+        }
     }
 
     render() {
         const setting = this.props.setting;
-        let className = setting.overriddenByDataCenter ? 'overridden ' : "";
+        let className = setting.activeOverride ? 'overridden ' : "";
         if (setting.isFocused) {
             className += "focused ";
         }
@@ -405,9 +410,9 @@ class Setting extends React.Component {
             <div className={className + "setting" } onClick={e => this.handleClick(e)}>
                 <div className="name">
                     <strong>
-                        <a href={setting.editPage}>{setting.name}</a>
+                        <a>{setting.name}</a>
                     </strong>
-                    <span dangerouslySetInnerHTML={{__html: marked(setting.description)}}></span>
+                    <span onClick={e => this.handleDescriptionClick(e)} dangerouslySetInnerHTML={{__html: marked(setting.description)}} />
                 </div>
 
                 <SettingValue {...this.props} />
@@ -420,19 +425,6 @@ class Setting extends React.Component {
 class SettingValue extends React.Component {
     constructor() {
         super();
-        this.cancelEdit = this.cancelEdit.bind(this);
-    }
-
-    beginEdit(e, setting) {
-        e.stopPropagation();
-        e.nativeEvent.stopImmediatePropagation();
-        SettingsEvents.trigger("begin-edit", setting);
-    }
-
-    cancelEdit(e) {
-        e.stopPropagation();
-        e.nativeEvent.stopImmediatePropagation();
-        SettingsEvents.trigger("cancel-edit");
     }
 
     clearOverride(e, setting) {
@@ -444,36 +436,24 @@ class SettingValue extends React.Component {
     render() {
         const setting = this.props.setting;
 
-        const child = this.props.isEditing
-            ? (setting.isBool
-                ? <BoolEditor {...this.props} dataCenters={this.props.dataCenters} />
-                : <TextEditor {...this.props} dataCenters={this.props.dataCenters} />)
-            : (setting.isBool
-                ? <BoolValue {...this.props} />
-                : <TextValue {...this.props} />);
+        const child = setting.isBool
+            ? <BoolValue {...this.props} />
+            : <TextValue {...this.props} />;
 
         let overrideInfo = null;
-        if (this.props.setting.overriddenByDataCenter) {
+        if (this.props.setting.activeOverride) {
 
-            const dcOverride = this.props.setting.overriddenByDataCenter;
+            const dcOverride = this.props.setting.activeOverride.dataCenter;
 
             overrideInfo = (
                 <p className="overridden">
-                    Overridden by Data Center: <strong>{dcOverride}</strong>&nbsp;-&nbsp;
-                    <a className="reset" onClick={e => this.clearOverride(e, this.props.setting)}>reset</a>
+                    Overridden by Data Center: <strong>{dcOverride}</strong>
                 </p>
             );
         }
 
-        const onClick = this.props.isEditing
-            ? e => e.stopPropagation()
-            : e => this.beginEdit(e, setting);
-
-        const editClass = this.props.isEditing ? "editing" : "editable";
-        const className = 'value ' + editClass;
-
         return (
-            <div className={className} onClick={onClick}>
+            <div className='editable value'>
                 {child}
                 {overrideInfo}
             </div>
@@ -483,176 +463,289 @@ class SettingValue extends React.Component {
 
 class BoolValue extends React.Component {
     render() {
-        const value = this.props.setting.value;
+        const setting = this.props.setting;
+        const value = (setting.activeOverride || setting.defaultValue).value;
 
         const boolVal = typeof value === 'string'
             ? value.toLowerCase() === 'true'
             : !!value;
 
         return (
-            <span className={`bool-val-${boolVal}`}><i dangerouslySetInnerHTML={{__html: boolVal ? '&#x2714;' : '&times;'}} /></span>
-        );
-    }
-}
-
-class BoolEditor extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-        const boolValue = props.setting.value.toString().toLowerCase()
-
-        const defaultValue = boolValue === 'true' ? 'False' : 'True';
-        this.state = {
-            value: defaultValue
-        };
-    }
-
-    handleEnabledChange(e) {
-        const value = e.target.value.toLowerCase() === 'true' ? 'False' : 'True';
-        this.setState({value: value});
-    }
-
-    updateSetting(e) {
-        SettingsEvents.trigger('update-setting', {
-            settingName: this.props.setting.name,
-            value: this.state.value,
-            dataCenter: this.refs.editctrls.state.dataCenter
-        });
-    }
-
-    cancelEditing() {
-        SettingsEvents.trigger('cancel-edit');
-    }
-
-    render() {
-        const setting = this.props.setting;
-
-        return (
-            <div>
-                <BoolValue {...this.props} /><br />
-                <select className="input-sm" value={this.state.value} onChange={e => this.handleEnabledChange(e)}>
-                    <option value="True">Enable</option>
-                    <option value="False">Disable</option>
-                </select>
-                &nbsp;for&nbsp;
-                <EditControls {...this.props} ref="editctrls"
-                    onOk={(e, dataCenter) => this.updateSetting(e, dataCenter)}
-                    onCancel={e => this.cancelEditing()}
-                 />
-            </div>
+            <span className={`bool-val-${boolVal}`}>{
+                boolVal
+                ? <i>&#x2714;</i>
+                : <i>&times;</i>
+            }</span>
         );
     }
 }
 
 class TextValue extends React.Component {
     render() {
+        const setting = this.props.setting;
+        const value = (setting.activeOverride || setting.defaultValue).value;
         return (
-            <pre className="value">{this.props.setting.value}</pre>
+            <pre className="value">{value}</pre>
+        );
+    }
+}
+
+class EditorModal extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            showDetails: false,
+            selectedDataCenter: null,
+            newOverrideValue: (props.setting.activeOverride || props.setting.defaultValue).value
+        };
+    }
+
+    handleClose(e) {
+        SettingsEvents.trigger('cancel-edit');
+    }
+
+    showDetails() { this.setState({showDetails: true}); }
+    hideDetails() { this.setState({showDetails: false}); }
+
+    clearOverride(dc) {
+        // stop editing
+        this.cancelNewOverride();
+        if (this.props.setting.activeOverride) {
+            SettingsEvents.trigger('clear-override', this.props.setting);
+        }
+    }
+
+    selectDataCenter(e) {
+        const selectedDataCenter = e.target ? e.target.value : e;
+        this.setState({selectedDataCenter});
+    }
+
+    handleOverrideChange(e) {
+        this.setState({newOverrideValue: e.target.value});
+    }
+
+    setNewOverride() {
+        SettingsEvents.trigger('new-override', {
+            settingName: this.props.setting.name,
+            dataCenter: this.state.selectedDataCenter,
+            value: this.state.newOverrideValue
+        });
+    }
+
+    cancelNewOverride() {
+        this.setState({selectedDataCenter: null});
+    }
+
+    render() {
+        const {setting, dataCenters} = this.props;
+        const {activeOverride: override, defaultValue: defval} = setting;
+        const {selectedDataCenter} = this.state;
+    
+        return (
+            <Modal isOpen={true} onRequestClose={_ => this.handleClose()} className="editor-modal modal-dialog modal-lg">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <button type="button" className="close" onClick={() => this.handleClose()}>
+                            <span aria-hidden="true">&times;</span>
+                            <span className="sr-only">Close</span>
+                        </button>
+                        <h3 className="modal-title">{setting.name}</h3>
+                        <p dangerouslySetInnerHTML={{__html:marked(setting.description)}} />
+                    </div>
+                    <div className="modal-body">
+                        <div className="values">
+                            {override ? 
+                            <div className="override active">
+                                <h5>Active Override</h5>
+                                <p>Data Center: <strong>{override.dataCenter}</strong></p>
+                                <pre>{override.value}</pre>
+                                <button className="btn btn-xs btn-link" onClick={() => this.selectDataCenter(override.dataCenter)}>Edit</button>
+                                <span>&nbsp;</span>
+                                <button className="btn btn-xs btn-danger" onClick={() => this.clearOverride(override.dataCenter)}>Clear</button>
+                            </div> : null}
+                            <div className="default">
+                                <h5>Default Value</h5>
+                                <p>Data Center: <strong>{defval.dataCenter}</strong></p>
+                                <pre>{defval.value}</pre>
+                            </div>
+                        </div>
+                        <div className="newoverride">
+                            <p>
+                                <span>Set new override for&nbsp;</span>
+                                <DataCenterSelector 
+                                    selectedValue={this.state.selectedDataCenter} 
+                                    onChange={e => this.selectDataCenter(e)} 
+                                    dataCenters={dataCenters}
+                                />
+                            </p>
+                            {selectedDataCenter ?
+                            <div>
+                                <SettingEditor {...this.props} defaultValue={this.state.newOverrideValue} onChange={e => this.handleOverrideChange(e)}/>
+                                <p>
+                                    <button className="btn btn-success btn-small" onClick={() => this.setNewOverride()}>Set Override</button>
+                                    <span>&nbsp;</span>
+                                    <button className="btn btn-danger btn-small" onClick={() => this.cancelNewOverride()}>Cancel</button>
+                                </p>
+                            </div>
+                            : null}
+                        </div>
+                    </div>
+                    <div className="modal-body show-details">
+                        {this.state.showDetails
+                        ? <a className="toggle" onClick={() => this.hideDetails()}>Hide Details</a>
+                        : <a className="toggle" onClick={() => this.showDetails()}>Show Details</a>
+                        }
+                        <div className="details" style={this.state.showDetails ? {} : {display:'none'}}>
+                            <div className="overrides">
+                                <h5>Overrides</h5>
+                                <ValueTable {...this.props} propName="allOverrides" onClear={dc => this.clearOverride(dc)} />
+                            </div>
+                            <div className="defaults">
+                                <h5>Defaults</h5>
+                                <ValueTable {...this.props} propName="allDefaults" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Modal>
+        );
+    }
+}
+
+class DataCenterSelector extends React.Component {
+    render() {
+        const {selectedValue, onChange, dataCenters} = this.props;
+
+        return (
+            <RadioButtonGroup 
+                {...this.props}
+                className="spaced"
+                name="newOverrideValue">
+                {dataCenters.map(dc =>
+                    <RadioButton key={dc} className="btn-default btn-sm" value={dc}>{dc}</RadioButton>
+                )}
+            </RadioButtonGroup>
+        );
+    }
+}
+
+class ValueTable extends React.Component {
+
+    render() {
+        const setting = this.props.setting;
+        const values = setting[this.props.propName];
+        return (
+            <table className="value-list table-striped">
+                <thead>
+                    <tr>
+                        <th>Tier</th>
+                        <th>Data Center</th>
+                        <th>Value</th>
+                        {this.props.onClear ? <th></th> : null}
+                    </tr>
+                </thead>
+                <tbody>
+                    {values.map(v => 
+                        <tr key={`${v.tier}|${v.dataCenter}`}>
+                            <td>{v.tier}</td>
+                            <td>{v.dataCenter}</td>
+                            <td className="value">{v.value}</td>
+                            {this.props.onClear ? 
+                            <td>
+                                <button type="button" 
+                                        className="clear-override" 
+                                        title="Clear this override" 
+                                        onClick={() => this.props.onClear(v.dataCenter)}>
+                                    <span aria-hidden="true">&times;</span>
+                                    <span className="sr-only">Clear</span>
+                                </button>
+                            </td>
+                            : null}
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+        );
+    }
+}
+
+class SettingEditor extends React.Component {
+    render() {
+        return this.props.setting.isBool
+            ? <BoolEditor {...this.props} />
+            : <TextEditor {...this.props} />;
+    }
+}
+
+class BoolEditor extends React.Component {
+    render() {
+        return (
+            <p>
+                <RadioButtonGroup className="btn-group" name="overrideBool" selectedValue={this.props.defaultValue} onChange={this.props.onChange}>
+                    <RadioButton className="btn-default" value="True">True</RadioButton>
+                    <RadioButton className="btn-default" value="False">False</RadioButton>
+                </RadioButtonGroup>
+            </p>
+        );
+    }
+}
+
+class RadioButton extends React.Component {
+    render() {
+        const {value, className, onChange, name, children, active} = this.props;
+        
+        const classNames = (className && className.split(' ')) || [];
+        classNames.push('btn');
+        if (active)
+            classNames.push('active');
+
+        return (
+            <label className={classNames.join(' ')}>
+                <input
+                    type="radio"
+                    value={value}
+                    name={name}
+                    checked={active}
+                    onChange={onChange} />
+                {children}
+            </label>
+        );
+    }
+}
+
+class RadioButtonGroup extends React.Component {
+    render() {
+        const {className, name, selectedValue, onChange, children} = this.props;
+
+        const mapped = React.Children.map(children, child => {
+            const {value} = child.props;
+            return React.cloneElement(child, {name, active: value === selectedValue, onChange});
+        })
+
+        return (
+            <span className={className}>
+                {mapped}
+            </span>
         );
     }
 }
 
 class TextEditor extends React.Component {
-    constructor(props) {
-        super();
-        this.state = {
-            value: props.setting.value
-        };
-    }
-
-    handleChange(e) {
-        this.setState({value:e.target.value});
-    }
-
-    handleKeyDown(e) {
-        e.stopPropagation();
-        e.nativeEvent.stopImmediatePropagation();
-
-        if (e.which == Keys.ESCAPE) {
-            this.cancelEditing();
-            return;
-        }
-
-        if (e.ctrlKey && e.which == Keys.ENTER) {
-            // CONTROL+ENTER saves
-            this.updateSetting(e);
-        }
-    }
-
-    cancelEditing() {
-        SettingsEvents.trigger('cancel-edit');
-    }
-
-    updateSetting(e) {
-        SettingsEvents.trigger('update-setting', {
-            settingName: this.props.setting.name,
-            value: this.state.value,
-            dataCenter: this.refs.editctrls.state.dataCenter
-        });
-    }
-
-    render() {
-        const setting = this.props.setting;
-
-        return (
-
-                <form method="POST" action="/admin/settings/quick-edit">
-                    <input type="hidden" name="settingName" value="Analytics.ClickThroughTimeout" />
-                    <pre className="value">
-                        <AutosizeTextArea
-                            className="quick-editor"
-                            spellCheck={false}
-                            name="value"
-                            defaultValue={setting.value}
-                            style={{height: "1em"}}
-                            onKeyDown={e => this.handleKeyDown(e)}
-                            onChange={e => this.handleChange(e)}
-                        />
-                    </pre>
-                    <EditControls {...this.props} ref="editctrls"
-                        onOk={e => this.updateSetting(e)}
-                        onCancel={e => this.cancelEditing()}
-                    />
-                </form>
-
-        );
-    }
-}
-
-
-class EditControls extends React.Component {
-
-    constructor(props) {
-        super();
-        this.state = {
-            dataCenter: props.setting.overriddenByDataCenter || props.dataCenters[0]
-        }
-    }
-
-    handleDataCenterChange(e) {
-        this.setState({dataCenter: e.target.value});
-    }
-
-    onOk(e) {
-        this.props.onOk(e);
-    }
-
     render() {
         return (
-            <span>
-                DataCenter:&nbsp;
-                <select
-                    name="dataCenter"
-                    className="input-sm"
-                    defaultValue={this.state.dataCenter}
-                    onChange={e => this.handleDataCenterChange(e)}>
-                    {this.props.dataCenters.map(dc => <option key={dc}>{dc}</option>)}
-                </select>
-                &nbsp;
-                <button type="button" className="btn btn-sm btn-primary" onClick={e => this.onOk(e)}>Ok</button>&nbsp;
-                <button type="button" className="btn btn-sm btn-danger cancel" onClick={e => this.props.onCancel(e)}>Cancel</button>
-            </span>
+            <pre className="value">
+                <AutosizeTextArea
+                    {...this.props}
+                    className="quick-editor"
+                    spellCheck={false}
+                    name="value"
+                    value={this.props.value}
+                    style={{height: "1em"}}
+                    onChange={this.props.onChange}
+                />
+            </pre>
+
         );
     }
 }

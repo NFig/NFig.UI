@@ -89,6 +89,10 @@ var SettingsPanel =
 
 	__webpack_require__(9);
 
+	var _reactModal = __webpack_require__(193);
+
+	var _reactModal2 = _interopRequireDefault(_reactModal);
+
 	var SettingsEvents = new _microevent2['default']();
 
 	var Keys = {
@@ -129,7 +133,7 @@ var SettingsPanel =
 	        value: function cancelEditing(e) {
 	            e.stopImmediatePropagation();
 	            e.stopPropagation();
-	            SettingsEvents.trigger("cancel-edit");
+	            SettingsEvents.trigger('cancel-edit');
 	        }
 	    }, {
 	        key: 'componentDidMount',
@@ -146,16 +150,20 @@ var SettingsPanel =
 	                });
 	            });
 
-	            document.addEventListener('click', this.handleDocumentClick);
-
 	            document.addEventListener('keydown', function (e) {
 	                return _this.handleKeyDown(e);
 	            });
 
 	            window.onpopstate = function (event) {
 	                if (location.hash.length > 1) {
-	                    _this.setSearchText(location.hash.substr(1));
+	                    if (/^#edit:/.test(location.hash)) {
+	                        _this.setEditingState(_this.getSettingByName(location.hash.split(':')[1]));
+	                    } else {
+	                        _this.clearEditingState();
+	                        _this.setSearchText(location.hash.substr(1));
+	                    }
 	                } else {
+	                    _this.clearEditingState();
 	                    _this.setSearchText('');
 	                }
 	            };
@@ -166,19 +174,19 @@ var SettingsPanel =
 	            var _this2 = this;
 
 	            var handlers = {
-	                "begin-edit": function beginEdit(setting) {
+	                'begin-edit': function beginEdit(setting) {
 	                    return _this2.setEditingState(setting);
 	                },
-	                "cancel-edit": function cancelEdit() {
+	                'cancel-edit': function cancelEdit() {
 	                    return _this2.clearEditingState();
 	                },
-	                "update-setting": function updateSetting(data) {
-	                    return _this2.updateSetting(data);
+	                'new-override': function newOverride(data) {
+	                    return _this2.setNewOverride(data);
 	                },
-	                "clear-override": function clearOverride(setting) {
+	                'clear-override': function clearOverride(setting) {
 	                    return _this2.clearOverride(setting);
 	                },
-	                "set-focused-index": function setFocusedIndex(index) {
+	                'set-focused-index': function setFocusedIndex(index) {
 	                    return _this2.setFocusedIndex(index);
 	                }
 	            };
@@ -188,8 +196,8 @@ var SettingsPanel =
 	            });
 	        }
 	    }, {
-	        key: 'updateSetting',
-	        value: function updateSetting(data) {
+	        key: 'setNewOverride',
+	        value: function setNewOverride(data) {
 	            var _this3 = this;
 
 	            if (this.state.currentlyEditing === null) return;
@@ -221,7 +229,7 @@ var SettingsPanel =
 	    }, {
 	        key: 'setSearchText',
 	        value: function setSearchText(value, cb) {
-	            this.setState({ searchText: value }, cb);
+	            this.setState({ searchText: value, currentlyFocused: -1 }, cb);
 	        }
 	    }, {
 	        key: 'getUrlForSearch',
@@ -229,18 +237,33 @@ var SettingsPanel =
 	            return '//' + location.host + location.pathname + location.search + (value.length > 0 ? '#' + value : '');
 	        }
 	    }, {
+	        key: 'getUrlForEdit',
+	        value: function getUrlForEdit(setting) {
+	            return '//' + location.host + location.pathname + location.search + (setting ? '#edit:' + setting.name : '');
+	        }
+	    }, {
 	        key: 'setEditingState',
 	        value: function setEditingState(setting) {
-	            this.setState({ currentlyEditing: setting });
-	            if (setting.index !== undefined) {
-	                this.setFocusedIndex(setting.index);
-	            }
+	            var _this5 = this;
+
+	            this.setState({ currentlyEditing: setting }, function () {
+	                if (setting.index !== undefined) {
+	                    _this5.setFocusedIndex(setting.index);
+	                }
+	                var editHash = 'edit:' + setting.name;
+	                if (location.hash !== '#' + editHash) {
+	                    history.pushState(null, null, _this5.getUrlForEdit(setting));
+	                }
+	            });
 	        }
 	    }, {
 	        key: 'clearEditingState',
 	        value: function clearEditingState() {
 	            if (this.state.currentlyEditing != null) {
 	                this.setState({ currentlyEditing: null });
+	                if (/^#edit:/.test(location.hash)) {
+	                    history.pushState(null, null, this.getUrlForEdit(null));
+	                }
 	            }
 	        }
 	    }, {
@@ -254,29 +277,19 @@ var SettingsPanel =
 	            };
 
 	            updateData.settings[index] = { $set: r };
-	            updateData.currentlyEditing = { $set: null };
-	            this.setState(_react2['default'].addons.update(this.state, updateData));
-	        }
-	    }, {
-	        key: 'quickEditVisibleSetting',
-	        value: function quickEditVisibleSetting(searchText) {
-	            var visibleSettings = this.getVisibleSettings(searchText);
-	            if (visibleSettings.length === 1) {
-	                SettingsEvents.trigger('begin-edit', visibleSettings[0]);
+	            // updateData.currentlyEditing = {$set: null};
+	            if (this.state.currentlyEditing && this.state.currentlyEditing.name === r.name) {
+	                updateData.currentlyEditing = { $set: r };
 	            }
+	            this.setState(_react2['default'].addons.update(this.state, updateData));
 	        }
 	    }, {
 	        key: 'editVisibleSetting',
 	        value: function editVisibleSetting(searchText) {
 	            var visibleSettings = this.getVisibleSettings(searchText);
 	            if (visibleSettings.length === 1) {
-	                location.href = visibleSettings[0].editPage;
+	                this.setEditingState(visibleSettings[0]);
 	            }
-	        }
-	    }, {
-	        key: 'goToEditPage',
-	        value: function goToEditPage(setting) {
-	            location.href = setting.editPage;
 	        }
 	    }, {
 	        key: 'getVisibleSettings',
@@ -296,25 +309,13 @@ var SettingsPanel =
 	    }, {
 	        key: 'getVisibleSettingsGroups',
 	        value: function getVisibleSettingsGroups(settings) {
-	            var _this5 = this;
+	            var _this6 = this;
 
 	            return _underscore2['default'].chain(settings).groupBy(function (s) {
-	                return _this5.getGroupName(s);
+	                return _this6.getGroupName(s);
 	            }).map(function (settings, name) {
 	                return { name: name, settings: settings };
 	            }).value();
-	        }
-	    }, {
-	        key: 'handleDocumentClick',
-	        value: function handleDocumentClick(e) {
-	            // make sure we're not clicking on a div.value
-	            var node = e.target;
-	            while (node && node != document) {
-	                if (node.tagName === 'DIV' && node.className.indexOf('value') !== -1) return; // we are in a div.value, bail
-	                node = node.parentNode;
-	            }
-
-	            SettingsEvents.trigger('cancel-edit');
 	        }
 	    }, {
 	        key: 'componentWillUnmount',
@@ -329,6 +330,13 @@ var SettingsPanel =
 	        value: function getSettingComponent(name) {
 	            var group = name.replace(/^([^\.]+)\..+$/, '$1');
 	            return this.refs[group].refs[name];
+	        }
+	    }, {
+	        key: 'getSettingByName',
+	        value: function getSettingByName(name) {
+	            return _underscore2['default'].find(this.state.settings, function (s) {
+	                return s.name === name;
+	            });
 	        }
 	    }, {
 	        key: 'setFocusedIndex',
@@ -351,14 +359,9 @@ var SettingsPanel =
 	    }, {
 	        key: 'editFocusedSetting',
 	        value: function editFocusedSetting() {
-	            var visible = this.getVisibleSettings();
-	            location.href = visible[this.state.currentlyFocused].editPage;
-	        }
-	    }, {
-	        key: 'quickEditFocusedSetting',
-	        value: function quickEditFocusedSetting() {
-	            var visible = this.getVisibleSettings();
-	            SettingsEvents.trigger('begin-edit', visible[this.state.currentlyFocused]);
+	            var visibleSettings = this.getVisibleSettings(this.state.searchText);
+	            var index = this.state.currentlyFocused;
+	            if (index > -1 && index < visibleSettings.length) SettingsEvents.trigger('begin-edit', visibleSettings[index]);
 	        }
 	    }, {
 	        key: 'handleKeyDown',
@@ -382,7 +385,7 @@ var SettingsPanel =
 	                case Keys.ENTER:
 	                    if (this.state.currentlyFocused >= 0) {
 	                        e.preventDefault();
-	                        if (e.ctrlKey) this.quickEditFocusedSetting();else this.editFocusedSetting();
+	                        this.editFocusedSetting();
 	                    }
 	                    break;
 	            }
@@ -390,10 +393,10 @@ var SettingsPanel =
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this6 = this;
+	            var _this7 = this;
 
 	            var settings = _underscore2['default'].each(this.getVisibleSettings(), function (setting, i) {
-	                setting.isFocused = _this6.state.currentlyFocused === i;
+	                setting.isFocused = _this7.state.currentlyFocused === i;
 	                setting.index = i;
 	            });
 
@@ -404,8 +407,8 @@ var SettingsPanel =
 	                    name: group.name,
 	                    settings: group.settings,
 	                    key: "group-" + idx,
-	                    dataCenters: _this6.state.availableDataCenters,
-	                    currentlyEditing: _this6.state.currentlyEditing,
+	                    dataCenters: _this7.state.availableDataCenters,
+	                    currentlyEditing: _this7.state.currentlyEditing,
 	                    ref: group.name
 	                });
 	            });
@@ -420,16 +423,13 @@ var SettingsPanel =
 	                    value: this.state.searchText,
 	                    onChange: function (e) {
 	                        var value = e.target.value;
-	                        _this6.setSearchText(value, function () {
-	                            return _this6.updateSearchUrl(value);
+	                        _this7.setSearchText(value, function () {
+	                            return _this7.updateSearchUrl(value);
 	                        });
 	                    },
 
 	                    onEdit: function (e) {
-	                        return _this6.editVisibleSetting(_this6.state.searchText);
-	                    },
-	                    onQuickEdit: function (e) {
-	                        return _this6.quickEditVisibleSetting(_this6.state.searchText);
+	                        return _this7.editVisibleSetting(_this7.state.searchText);
 	                    },
 	                    ref: 'search'
 	                }),
@@ -437,8 +437,16 @@ var SettingsPanel =
 	                    'div',
 	                    { className: 'setting-groups' },
 	                    children
-	                )
+	                ),
+	                this.state.currentlyEditing ? _react2['default'].createElement(EditorModal, { setting: this.state.currentlyEditing, dataCenters: this.state.availableDataCenters }) : null
 	            );
+	        }
+	    }], [{
+	        key: 'init',
+	        value: function init(element, props) {
+	            _reactModal2['default'].setAppElement(element);
+	            _reactModal2['default'].injectCSS();
+	            return _react2['default'].render(_react2['default'].createElement(SettingsPanel, props), element);
 	        }
 	    }]);
 
@@ -474,11 +482,7 @@ var SettingsPanel =
 	                case Keys.ESCAPE:
 	                    e.target.value = '';this.props.onChange(e);break;
 	                case Keys.ENTER:
-	                    if (e.ctrlKey) {
-	                        this.props.onQuickEdit();
-	                    } else {
-	                        this.props.onEdit();
-	                    }
+	                    this.props.onEdit();
 	                    break;
 	            }
 	        }
@@ -495,7 +499,7 @@ var SettingsPanel =
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this7 = this;
+	            var _this8 = this;
 
 	            return _react2['default'].createElement(
 	                'div',
@@ -503,9 +507,9 @@ var SettingsPanel =
 	                _react2['default'].createElement('span', { className: 'glyphicon glyphicon-search addon addon-left' }),
 	                _react2['default'].createElement('input', _extends({}, this.props, {
 	                    type: 'text',
-	                    className: "addon-right " + this.props.className,
+	                    className: "addon-right " + (this.props.className || ''),
 	                    onKeyDown: function (e) {
-	                        return _this7.handleKeyDown(e);
+	                        return _this8.handleKeyDown(e);
 	                    },
 	                    ref: 'textbox' }))
 	            );
@@ -527,18 +531,15 @@ var SettingsPanel =
 	    _createClass(SettingsGroup, [{
 	        key: 'render',
 	        value: function render() {
-	            var _this8 = this;
+	            var _this9 = this;
 
 	            var settings = this.props.settings;
 
 	            var children = settings.map(function (setting) {
-	                var isEditing = _this8.props.currentlyEditing === setting;
-
 	                return _react2['default'].createElement(Setting, {
 	                    setting: setting,
 	                    key: setting.name,
-	                    dataCenters: _this8.props.dataCenters,
-	                    isEditing: isEditing,
+	                    dataCenters: _this9.props.dataCenters,
 	                    ref: setting.name
 	                });
 	            });
@@ -591,15 +592,23 @@ var SettingsPanel =
 	        key: 'handleClick',
 	        value: function handleClick(e) {
 	            e.stopPropagation();
-	            SettingsEvents.trigger('set-focused-index', this.props.setting.index);
+	            SettingsEvents.trigger('begin-edit', this.props.setting);
+	        }
+	    }, {
+	        key: 'handleDescriptionClick',
+	        value: function handleDescriptionClick(e) {
+	            if (e.target.tagName === 'A') {
+	                e.stopPropagation();
+	                e.target.setAttribute('target', '_blank');
+	            }
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this9 = this;
+	            var _this10 = this;
 
 	            var setting = this.props.setting;
-	            var className = setting.overriddenByDataCenter ? 'overridden ' : "";
+	            var className = setting.activeOverride ? 'overridden ' : "";
 	            if (setting.isFocused) {
 	                className += "focused ";
 	            }
@@ -607,7 +616,7 @@ var SettingsPanel =
 	            return _react2['default'].createElement(
 	                'div',
 	                { className: className + "setting", onClick: function (e) {
-	                        return _this9.handleClick(e);
+	                        return _this10.handleClick(e);
 	                    } },
 	                _react2['default'].createElement(
 	                    'div',
@@ -617,11 +626,13 @@ var SettingsPanel =
 	                        null,
 	                        _react2['default'].createElement(
 	                            'a',
-	                            { href: setting.editPage },
+	                            null,
 	                            setting.name
 	                        )
 	                    ),
-	                    _react2['default'].createElement('span', { dangerouslySetInnerHTML: { __html: (0, _marked2['default'])(setting.description) } })
+	                    _react2['default'].createElement('span', { onClick: function (e) {
+	                            return _this10.handleDescriptionClick(e);
+	                        }, dangerouslySetInnerHTML: { __html: (0, _marked2['default'])(setting.description) } })
 	                ),
 	                _react2['default'].createElement(SettingValue, this.props)
 	            );
@@ -638,24 +649,9 @@ var SettingsPanel =
 	        _classCallCheck(this, SettingValue);
 
 	        _get(Object.getPrototypeOf(SettingValue.prototype), 'constructor', this).call(this);
-	        this.cancelEdit = this.cancelEdit.bind(this);
 	    }
 
 	    _createClass(SettingValue, [{
-	        key: 'beginEdit',
-	        value: function beginEdit(e, setting) {
-	            e.stopPropagation();
-	            e.nativeEvent.stopImmediatePropagation();
-	            SettingsEvents.trigger("begin-edit", setting);
-	        }
-	    }, {
-	        key: 'cancelEdit',
-	        value: function cancelEdit(e) {
-	            e.stopPropagation();
-	            e.nativeEvent.stopImmediatePropagation();
-	            SettingsEvents.trigger("cancel-edit");
-	        }
-	    }, {
 	        key: 'clearOverride',
 	        value: function clearOverride(e, setting) {
 	            e.stopPropagation();
@@ -665,16 +661,14 @@ var SettingsPanel =
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this10 = this;
-
 	            var setting = this.props.setting;
 
-	            var child = this.props.isEditing ? setting.isBool ? _react2['default'].createElement(BoolEditor, _extends({}, this.props, { dataCenters: this.props.dataCenters })) : _react2['default'].createElement(TextEditor, _extends({}, this.props, { dataCenters: this.props.dataCenters })) : setting.isBool ? _react2['default'].createElement(BoolValue, this.props) : _react2['default'].createElement(TextValue, this.props);
+	            var child = setting.isBool ? _react2['default'].createElement(BoolValue, this.props) : _react2['default'].createElement(TextValue, this.props);
 
 	            var overrideInfo = null;
-	            if (this.props.setting.overriddenByDataCenter) {
+	            if (this.props.setting.activeOverride) {
 
-	                var dcOverride = this.props.setting.overriddenByDataCenter;
+	                var dcOverride = this.props.setting.activeOverride.dataCenter;
 
 	                overrideInfo = _react2['default'].createElement(
 	                    'p',
@@ -684,30 +678,13 @@ var SettingsPanel =
 	                        'strong',
 	                        null,
 	                        dcOverride
-	                    ),
-	                    ' - ',
-	                    _react2['default'].createElement(
-	                        'a',
-	                        { className: 'reset', onClick: function (e) {
-	                                return _this10.clearOverride(e, _this10.props.setting);
-	                            } },
-	                        'reset'
 	                    )
 	                );
 	            }
 
-	            var onClick = this.props.isEditing ? function (e) {
-	                return e.stopPropagation();
-	            } : function (e) {
-	                return _this10.beginEdit(e, setting);
-	            };
-
-	            var editClass = this.props.isEditing ? "editing" : "editable";
-	            var className = 'value ' + editClass;
-
 	            return _react2['default'].createElement(
 	                'div',
-	                { className: className, onClick: onClick },
+	                { className: 'editable value' },
 	                child,
 	                overrideInfo
 	            );
@@ -729,14 +706,23 @@ var SettingsPanel =
 	    _createClass(BoolValue, [{
 	        key: 'render',
 	        value: function render() {
-	            var value = this.props.setting.value;
+	            var setting = this.props.setting;
+	            var value = (setting.activeOverride || setting.defaultValue).value;
 
 	            var boolVal = typeof value === 'string' ? value.toLowerCase() === 'true' : !!value;
 
 	            return _react2['default'].createElement(
 	                'span',
 	                { className: 'bool-val-' + boolVal },
-	                _react2['default'].createElement('i', { dangerouslySetInnerHTML: { __html: boolVal ? '&#x2714;' : '&times;' } })
+	                boolVal ? _react2['default'].createElement(
+	                    'i',
+	                    null,
+	                    '✔'
+	                ) : _react2['default'].createElement(
+	                    'i',
+	                    null,
+	                    '×'
+	                )
 	            );
 	        }
 	    }]);
@@ -744,88 +730,8 @@ var SettingsPanel =
 	    return BoolValue;
 	})(_react2['default'].Component);
 
-	var BoolEditor = (function (_React$Component7) {
-	    _inherits(BoolEditor, _React$Component7);
-
-	    function BoolEditor(props) {
-	        _classCallCheck(this, BoolEditor);
-
-	        _get(Object.getPrototypeOf(BoolEditor.prototype), 'constructor', this).call(this, props);
-
-	        var boolValue = props.setting.value.toString().toLowerCase();
-
-	        var defaultValue = boolValue === 'true' ? 'False' : 'True';
-	        this.state = {
-	            value: defaultValue
-	        };
-	    }
-
-	    _createClass(BoolEditor, [{
-	        key: 'handleEnabledChange',
-	        value: function handleEnabledChange(e) {
-	            var value = e.target.value.toLowerCase() === 'true' ? 'False' : 'True';
-	            this.setState({ value: value });
-	        }
-	    }, {
-	        key: 'updateSetting',
-	        value: function updateSetting(e) {
-	            SettingsEvents.trigger('update-setting', {
-	                settingName: this.props.setting.name,
-	                value: this.state.value,
-	                dataCenter: this.refs.editctrls.state.dataCenter
-	            });
-	        }
-	    }, {
-	        key: 'cancelEditing',
-	        value: function cancelEditing() {
-	            SettingsEvents.trigger('cancel-edit');
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this11 = this;
-
-	            var setting = this.props.setting;
-
-	            return _react2['default'].createElement(
-	                'div',
-	                null,
-	                _react2['default'].createElement(BoolValue, this.props),
-	                _react2['default'].createElement('br', null),
-	                _react2['default'].createElement(
-	                    'select',
-	                    { className: 'input-sm', value: this.state.value, onChange: function (e) {
-	                            return _this11.handleEnabledChange(e);
-	                        } },
-	                    _react2['default'].createElement(
-	                        'option',
-	                        { value: 'True' },
-	                        'Enable'
-	                    ),
-	                    _react2['default'].createElement(
-	                        'option',
-	                        { value: 'False' },
-	                        'Disable'
-	                    )
-	                ),
-	                ' for ',
-	                _react2['default'].createElement(EditControls, _extends({}, this.props, { ref: 'editctrls',
-	                    onOk: function (e, dataCenter) {
-	                        return _this11.updateSetting(e, dataCenter);
-	                    },
-	                    onCancel: function (e) {
-	                        return _this11.cancelEditing();
-	                    }
-	                }))
-	            );
-	        }
-	    }]);
-
-	    return BoolEditor;
-	})(_react2['default'].Component);
-
-	var TextValue = (function (_React$Component8) {
-	    _inherits(TextValue, _React$Component8);
+	var TextValue = (function (_React$Component7) {
+	    _inherits(TextValue, _React$Component7);
 
 	    function TextValue() {
 	        _classCallCheck(this, TextValue);
@@ -836,10 +742,12 @@ var SettingsPanel =
 	    _createClass(TextValue, [{
 	        key: 'render',
 	        value: function render() {
+	            var setting = this.props.setting;
+	            var value = (setting.activeOverride || setting.defaultValue).value;
 	            return _react2['default'].createElement(
 	                'pre',
 	                { className: 'value' },
-	                this.props.setting.value
+	                value
 	            );
 	        }
 	    }]);
@@ -847,88 +755,579 @@ var SettingsPanel =
 	    return TextValue;
 	})(_react2['default'].Component);
 
-	var TextEditor = (function (_React$Component9) {
-	    _inherits(TextEditor, _React$Component9);
+	var EditorModal = (function (_React$Component8) {
+	    _inherits(EditorModal, _React$Component8);
 
-	    function TextEditor(props) {
-	        _classCallCheck(this, TextEditor);
+	    function EditorModal(props) {
+	        _classCallCheck(this, EditorModal);
 
-	        _get(Object.getPrototypeOf(TextEditor.prototype), 'constructor', this).call(this);
+	        _get(Object.getPrototypeOf(EditorModal.prototype), 'constructor', this).call(this, props);
 	        this.state = {
-	            value: props.setting.value
+	            showDetails: false,
+	            selectedDataCenter: null,
+	            newOverrideValue: (props.setting.activeOverride || props.setting.defaultValue).value
 	        };
 	    }
 
-	    _createClass(TextEditor, [{
-	        key: 'handleChange',
-	        value: function handleChange(e) {
-	            this.setState({ value: e.target.value });
-	        }
-	    }, {
-	        key: 'handleKeyDown',
-	        value: function handleKeyDown(e) {
-	            e.stopPropagation();
-	            e.nativeEvent.stopImmediatePropagation();
-
-	            if (e.which == Keys.ESCAPE) {
-	                this.cancelEditing();
-	                return;
-	            }
-
-	            if (e.ctrlKey && e.which == Keys.ENTER) {
-	                // CONTROL+ENTER saves
-	                this.updateSetting(e);
-	            }
-	        }
-	    }, {
-	        key: 'cancelEditing',
-	        value: function cancelEditing() {
+	    _createClass(EditorModal, [{
+	        key: 'handleClose',
+	        value: function handleClose(e) {
 	            SettingsEvents.trigger('cancel-edit');
 	        }
 	    }, {
-	        key: 'updateSetting',
-	        value: function updateSetting(e) {
-	            SettingsEvents.trigger('update-setting', {
+	        key: 'showDetails',
+	        value: function showDetails() {
+	            this.setState({ showDetails: true });
+	        }
+	    }, {
+	        key: 'hideDetails',
+	        value: function hideDetails() {
+	            this.setState({ showDetails: false });
+	        }
+	    }, {
+	        key: 'clearOverride',
+	        value: function clearOverride(dc) {
+	            // stop editing
+	            this.cancelNewOverride();
+	            if (this.props.setting.activeOverride) {
+	                SettingsEvents.trigger('clear-override', this.props.setting);
+	            }
+	        }
+	    }, {
+	        key: 'selectDataCenter',
+	        value: function selectDataCenter(e) {
+	            var selectedDataCenter = e.target ? e.target.value : e;
+	            this.setState({ selectedDataCenter: selectedDataCenter });
+	        }
+	    }, {
+	        key: 'handleOverrideChange',
+	        value: function handleOverrideChange(e) {
+	            this.setState({ newOverrideValue: e.target.value });
+	        }
+	    }, {
+	        key: 'setNewOverride',
+	        value: function setNewOverride() {
+	            SettingsEvents.trigger('new-override', {
 	                settingName: this.props.setting.name,
-	                value: this.state.value,
-	                dataCenter: this.refs.editctrls.state.dataCenter
+	                dataCenter: this.state.selectedDataCenter,
+	                value: this.state.newOverrideValue
 	            });
 	        }
 	    }, {
+	        key: 'cancelNewOverride',
+	        value: function cancelNewOverride() {
+	            this.setState({ selectedDataCenter: null });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this11 = this;
+
+	            var _props = this.props;
+	            var setting = _props.setting;
+	            var dataCenters = _props.dataCenters;
+	            var override = setting.activeOverride;
+	            var defval = setting.defaultValue;
+	            var selectedDataCenter = this.state.selectedDataCenter;
+
+	            return _react2['default'].createElement(
+	                _reactModal2['default'],
+	                { isOpen: true, onRequestClose: function (_) {
+	                        return _this11.handleClose();
+	                    }, className: 'editor-modal modal-dialog modal-lg' },
+	                _react2['default'].createElement(
+	                    'div',
+	                    { className: 'modal-content' },
+	                    _react2['default'].createElement(
+	                        'div',
+	                        { className: 'modal-header' },
+	                        _react2['default'].createElement(
+	                            'button',
+	                            { type: 'button', className: 'close', onClick: function () {
+	                                    return _this11.handleClose();
+	                                } },
+	                            _react2['default'].createElement(
+	                                'span',
+	                                { 'aria-hidden': 'true' },
+	                                '×'
+	                            ),
+	                            _react2['default'].createElement(
+	                                'span',
+	                                { className: 'sr-only' },
+	                                'Close'
+	                            )
+	                        ),
+	                        _react2['default'].createElement(
+	                            'h3',
+	                            { className: 'modal-title' },
+	                            setting.name
+	                        ),
+	                        _react2['default'].createElement('p', { dangerouslySetInnerHTML: { __html: (0, _marked2['default'])(setting.description) } })
+	                    ),
+	                    _react2['default'].createElement(
+	                        'div',
+	                        { className: 'modal-body' },
+	                        _react2['default'].createElement(
+	                            'div',
+	                            { className: 'values' },
+	                            override ? _react2['default'].createElement(
+	                                'div',
+	                                { className: 'override active' },
+	                                _react2['default'].createElement(
+	                                    'h5',
+	                                    null,
+	                                    'Active Override'
+	                                ),
+	                                _react2['default'].createElement(
+	                                    'p',
+	                                    null,
+	                                    'Data Center: ',
+	                                    _react2['default'].createElement(
+	                                        'strong',
+	                                        null,
+	                                        override.dataCenter
+	                                    )
+	                                ),
+	                                _react2['default'].createElement(
+	                                    'pre',
+	                                    null,
+	                                    override.value
+	                                ),
+	                                _react2['default'].createElement(
+	                                    'button',
+	                                    { className: 'btn btn-xs btn-link', onClick: function () {
+	                                            return _this11.selectDataCenter(override.dataCenter);
+	                                        } },
+	                                    'Edit'
+	                                ),
+	                                _react2['default'].createElement(
+	                                    'span',
+	                                    null,
+	                                    ' '
+	                                ),
+	                                _react2['default'].createElement(
+	                                    'button',
+	                                    { className: 'btn btn-xs btn-danger', onClick: function () {
+	                                            return _this11.clearOverride(override.dataCenter);
+	                                        } },
+	                                    'Clear'
+	                                )
+	                            ) : null,
+	                            _react2['default'].createElement(
+	                                'div',
+	                                { className: 'default' },
+	                                _react2['default'].createElement(
+	                                    'h5',
+	                                    null,
+	                                    'Default Value'
+	                                ),
+	                                _react2['default'].createElement(
+	                                    'p',
+	                                    null,
+	                                    'Data Center: ',
+	                                    _react2['default'].createElement(
+	                                        'strong',
+	                                        null,
+	                                        defval.dataCenter
+	                                    )
+	                                ),
+	                                _react2['default'].createElement(
+	                                    'pre',
+	                                    null,
+	                                    defval.value
+	                                )
+	                            )
+	                        ),
+	                        _react2['default'].createElement(
+	                            'div',
+	                            { className: 'newoverride' },
+	                            _react2['default'].createElement(
+	                                'p',
+	                                null,
+	                                _react2['default'].createElement(
+	                                    'span',
+	                                    null,
+	                                    'Set new override for '
+	                                ),
+	                                _react2['default'].createElement(DataCenterSelector, {
+	                                    selectedValue: this.state.selectedDataCenter,
+	                                    onChange: function (e) {
+	                                        return _this11.selectDataCenter(e);
+	                                    },
+	                                    dataCenters: dataCenters
+	                                })
+	                            ),
+	                            selectedDataCenter ? _react2['default'].createElement(
+	                                'div',
+	                                null,
+	                                _react2['default'].createElement(SettingEditor, _extends({}, this.props, { defaultValue: this.state.newOverrideValue, onChange: function (e) {
+	                                        return _this11.handleOverrideChange(e);
+	                                    } })),
+	                                _react2['default'].createElement(
+	                                    'p',
+	                                    null,
+	                                    _react2['default'].createElement(
+	                                        'button',
+	                                        { className: 'btn btn-success btn-small', onClick: function () {
+	                                                return _this11.setNewOverride();
+	                                            } },
+	                                        'Set Override'
+	                                    ),
+	                                    _react2['default'].createElement(
+	                                        'span',
+	                                        null,
+	                                        ' '
+	                                    ),
+	                                    _react2['default'].createElement(
+	                                        'button',
+	                                        { className: 'btn btn-danger btn-small', onClick: function () {
+	                                                return _this11.cancelNewOverride();
+	                                            } },
+	                                        'Cancel'
+	                                    )
+	                                )
+	                            ) : null
+	                        )
+	                    ),
+	                    _react2['default'].createElement(
+	                        'div',
+	                        { className: 'modal-body show-details' },
+	                        this.state.showDetails ? _react2['default'].createElement(
+	                            'a',
+	                            { className: 'toggle', onClick: function () {
+	                                    return _this11.hideDetails();
+	                                } },
+	                            'Hide Details'
+	                        ) : _react2['default'].createElement(
+	                            'a',
+	                            { className: 'toggle', onClick: function () {
+	                                    return _this11.showDetails();
+	                                } },
+	                            'Show Details'
+	                        ),
+	                        _react2['default'].createElement(
+	                            'div',
+	                            { className: 'details', style: this.state.showDetails ? {} : { display: 'none' } },
+	                            _react2['default'].createElement(
+	                                'div',
+	                                { className: 'overrides' },
+	                                _react2['default'].createElement(
+	                                    'h5',
+	                                    null,
+	                                    'Overrides'
+	                                ),
+	                                _react2['default'].createElement(ValueTable, _extends({}, this.props, { propName: 'allOverrides', onClear: function (dc) {
+	                                        return _this11.clearOverride(dc);
+	                                    } }))
+	                            ),
+	                            _react2['default'].createElement(
+	                                'div',
+	                                { className: 'defaults' },
+	                                _react2['default'].createElement(
+	                                    'h5',
+	                                    null,
+	                                    'Defaults'
+	                                ),
+	                                _react2['default'].createElement(ValueTable, _extends({}, this.props, { propName: 'allDefaults' }))
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return EditorModal;
+	})(_react2['default'].Component);
+
+	var DataCenterSelector = (function (_React$Component9) {
+	    _inherits(DataCenterSelector, _React$Component9);
+
+	    function DataCenterSelector() {
+	        _classCallCheck(this, DataCenterSelector);
+
+	        _get(Object.getPrototypeOf(DataCenterSelector.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(DataCenterSelector, [{
+	        key: 'render',
+	        value: function render() {
+	            var _props2 = this.props;
+	            var selectedValue = _props2.selectedValue;
+	            var onChange = _props2.onChange;
+	            var dataCenters = _props2.dataCenters;
+
+	            return _react2['default'].createElement(
+	                RadioButtonGroup,
+	                _extends({}, this.props, {
+	                    className: 'spaced',
+	                    name: 'newOverrideValue' }),
+	                dataCenters.map(function (dc) {
+	                    return _react2['default'].createElement(
+	                        RadioButton,
+	                        { key: dc, className: 'btn-default btn-sm', value: dc },
+	                        dc
+	                    );
+	                })
+	            );
+	        }
+	    }]);
+
+	    return DataCenterSelector;
+	})(_react2['default'].Component);
+
+	var ValueTable = (function (_React$Component10) {
+	    _inherits(ValueTable, _React$Component10);
+
+	    function ValueTable() {
+	        _classCallCheck(this, ValueTable);
+
+	        _get(Object.getPrototypeOf(ValueTable.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(ValueTable, [{
 	        key: 'render',
 	        value: function render() {
 	            var _this12 = this;
 
 	            var setting = this.props.setting;
+	            var values = setting[this.props.propName];
+	            return _react2['default'].createElement(
+	                'table',
+	                { className: 'value-list table-striped' },
+	                _react2['default'].createElement(
+	                    'thead',
+	                    null,
+	                    _react2['default'].createElement(
+	                        'tr',
+	                        null,
+	                        _react2['default'].createElement(
+	                            'th',
+	                            null,
+	                            'Tier'
+	                        ),
+	                        _react2['default'].createElement(
+	                            'th',
+	                            null,
+	                            'Data Center'
+	                        ),
+	                        _react2['default'].createElement(
+	                            'th',
+	                            null,
+	                            'Value'
+	                        ),
+	                        this.props.onClear ? _react2['default'].createElement('th', null) : null
+	                    )
+	                ),
+	                _react2['default'].createElement(
+	                    'tbody',
+	                    null,
+	                    values.map(function (v) {
+	                        return _react2['default'].createElement(
+	                            'tr',
+	                            { key: v.tier + '|' + v.dataCenter },
+	                            _react2['default'].createElement(
+	                                'td',
+	                                null,
+	                                v.tier
+	                            ),
+	                            _react2['default'].createElement(
+	                                'td',
+	                                null,
+	                                v.dataCenter
+	                            ),
+	                            _react2['default'].createElement(
+	                                'td',
+	                                { className: 'value' },
+	                                v.value
+	                            ),
+	                            _this12.props.onClear ? _react2['default'].createElement(
+	                                'td',
+	                                null,
+	                                _react2['default'].createElement(
+	                                    'button',
+	                                    { type: 'button',
+	                                        className: 'clear-override',
+	                                        title: 'Clear this override',
+	                                        onClick: function () {
+	                                            return _this12.props.onClear(v.dataCenter);
+	                                        } },
+	                                    _react2['default'].createElement(
+	                                        'span',
+	                                        { 'aria-hidden': 'true' },
+	                                        '×'
+	                                    ),
+	                                    _react2['default'].createElement(
+	                                        'span',
+	                                        { className: 'sr-only' },
+	                                        'Clear'
+	                                    )
+	                                )
+	                            ) : null
+	                        );
+	                    })
+	                )
+	            );
+	        }
+	    }]);
+
+	    return ValueTable;
+	})(_react2['default'].Component);
+
+	var SettingEditor = (function (_React$Component11) {
+	    _inherits(SettingEditor, _React$Component11);
+
+	    function SettingEditor() {
+	        _classCallCheck(this, SettingEditor);
+
+	        _get(Object.getPrototypeOf(SettingEditor.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(SettingEditor, [{
+	        key: 'render',
+	        value: function render() {
+	            return this.props.setting.isBool ? _react2['default'].createElement(BoolEditor, this.props) : _react2['default'].createElement(TextEditor, this.props);
+	        }
+	    }]);
+
+	    return SettingEditor;
+	})(_react2['default'].Component);
+
+	var BoolEditor = (function (_React$Component12) {
+	    _inherits(BoolEditor, _React$Component12);
+
+	    function BoolEditor() {
+	        _classCallCheck(this, BoolEditor);
+
+	        _get(Object.getPrototypeOf(BoolEditor.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(BoolEditor, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2['default'].createElement(
+	                'p',
+	                null,
+	                _react2['default'].createElement(
+	                    RadioButtonGroup,
+	                    { className: 'btn-group', name: 'overrideBool', selectedValue: this.props.defaultValue, onChange: this.props.onChange },
+	                    _react2['default'].createElement(
+	                        RadioButton,
+	                        { className: 'btn-default', value: 'True' },
+	                        'True'
+	                    ),
+	                    _react2['default'].createElement(
+	                        RadioButton,
+	                        { className: 'btn-default', value: 'False' },
+	                        'False'
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return BoolEditor;
+	})(_react2['default'].Component);
+
+	var RadioButton = (function (_React$Component13) {
+	    _inherits(RadioButton, _React$Component13);
+
+	    function RadioButton() {
+	        _classCallCheck(this, RadioButton);
+
+	        _get(Object.getPrototypeOf(RadioButton.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(RadioButton, [{
+	        key: 'render',
+	        value: function render() {
+	            var _props3 = this.props;
+	            var value = _props3.value;
+	            var className = _props3.className;
+	            var onChange = _props3.onChange;
+	            var name = _props3.name;
+	            var children = _props3.children;
+	            var active = _props3.active;
+
+	            var classNames = className && className.split(' ') || [];
+	            classNames.push('btn');
+	            if (active) classNames.push('active');
 
 	            return _react2['default'].createElement(
-	                'form',
-	                { method: 'POST', action: '/admin/settings/quick-edit' },
-	                _react2['default'].createElement('input', { type: 'hidden', name: 'settingName', value: 'Analytics.ClickThroughTimeout' }),
-	                _react2['default'].createElement(
-	                    'pre',
-	                    { className: 'value' },
-	                    _react2['default'].createElement(AutosizeTextArea, {
-	                        className: 'quick-editor',
-	                        spellCheck: false,
-	                        name: 'value',
-	                        defaultValue: setting.value,
-	                        style: { height: "1em" },
-	                        onKeyDown: function (e) {
-	                            return _this12.handleKeyDown(e);
-	                        },
-	                        onChange: function (e) {
-	                            return _this12.handleChange(e);
-	                        }
-	                    })
-	                ),
-	                _react2['default'].createElement(EditControls, _extends({}, this.props, { ref: 'editctrls',
-	                    onOk: function (e) {
-	                        return _this12.updateSetting(e);
-	                    },
-	                    onCancel: function (e) {
-	                        return _this12.cancelEditing();
-	                    }
+	                'label',
+	                { className: classNames.join(' ') },
+	                _react2['default'].createElement('input', {
+	                    type: 'radio',
+	                    value: value,
+	                    name: name,
+	                    checked: active,
+	                    onChange: onChange }),
+	                children
+	            );
+	        }
+	    }]);
+
+	    return RadioButton;
+	})(_react2['default'].Component);
+
+	var RadioButtonGroup = (function (_React$Component14) {
+	    _inherits(RadioButtonGroup, _React$Component14);
+
+	    function RadioButtonGroup() {
+	        _classCallCheck(this, RadioButtonGroup);
+
+	        _get(Object.getPrototypeOf(RadioButtonGroup.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(RadioButtonGroup, [{
+	        key: 'render',
+	        value: function render() {
+	            var _props4 = this.props;
+	            var className = _props4.className;
+	            var name = _props4.name;
+	            var selectedValue = _props4.selectedValue;
+	            var onChange = _props4.onChange;
+	            var children = _props4.children;
+
+	            var mapped = _react2['default'].Children.map(children, function (child) {
+	                var value = child.props.value;
+
+	                return _react2['default'].cloneElement(child, { name: name, active: value === selectedValue, onChange: onChange });
+	            });
+
+	            return _react2['default'].createElement(
+	                'span',
+	                { className: className },
+	                mapped
+	            );
+	        }
+	    }]);
+
+	    return RadioButtonGroup;
+	})(_react2['default'].Component);
+
+	var TextEditor = (function (_React$Component15) {
+	    _inherits(TextEditor, _React$Component15);
+
+	    function TextEditor() {
+	        _classCallCheck(this, TextEditor);
+
+	        _get(Object.getPrototypeOf(TextEditor.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(TextEditor, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2['default'].createElement(
+	                'pre',
+	                { className: 'value' },
+	                _react2['default'].createElement(AutosizeTextArea, _extends({}, this.props, {
+	                    className: 'quick-editor',
+	                    spellCheck: false,
+	                    name: 'value',
+	                    value: this.props.value,
+	                    style: { height: "1em" },
+	                    onChange: this.props.onChange
 	                }))
 	            );
 	        }
@@ -937,79 +1336,8 @@ var SettingsPanel =
 	    return TextEditor;
 	})(_react2['default'].Component);
 
-	var EditControls = (function (_React$Component10) {
-	    _inherits(EditControls, _React$Component10);
-
-	    function EditControls(props) {
-	        _classCallCheck(this, EditControls);
-
-	        _get(Object.getPrototypeOf(EditControls.prototype), 'constructor', this).call(this);
-	        this.state = {
-	            dataCenter: props.setting.overriddenByDataCenter || props.dataCenters[0]
-	        };
-	    }
-
-	    _createClass(EditControls, [{
-	        key: 'handleDataCenterChange',
-	        value: function handleDataCenterChange(e) {
-	            this.setState({ dataCenter: e.target.value });
-	        }
-	    }, {
-	        key: 'onOk',
-	        value: function onOk(e) {
-	            this.props.onOk(e);
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this13 = this;
-
-	            return _react2['default'].createElement(
-	                'span',
-	                null,
-	                'DataCenter: ',
-	                _react2['default'].createElement(
-	                    'select',
-	                    {
-	                        name: 'dataCenter',
-	                        className: 'input-sm',
-	                        defaultValue: this.state.dataCenter,
-	                        onChange: function (e) {
-	                            return _this13.handleDataCenterChange(e);
-	                        } },
-	                    this.props.dataCenters.map(function (dc) {
-	                        return _react2['default'].createElement(
-	                            'option',
-	                            { key: dc },
-	                            dc
-	                        );
-	                    })
-	                ),
-	                ' ',
-	                _react2['default'].createElement(
-	                    'button',
-	                    { type: 'button', className: 'btn btn-sm btn-primary', onClick: function (e) {
-	                            return _this13.onOk(e);
-	                        } },
-	                    'Ok'
-	                ),
-	                ' ',
-	                _react2['default'].createElement(
-	                    'button',
-	                    { type: 'button', className: 'btn btn-sm btn-danger cancel', onClick: function (e) {
-	                            return _this13.props.onCancel(e);
-	                        } },
-	                    'Cancel'
-	                )
-	            );
-	        }
-	    }]);
-
-	    return EditControls;
-	})(_react2['default'].Component);
-
-	var AutosizeTextArea = (function (_React$Component11) {
-	    _inherits(AutosizeTextArea, _React$Component11);
+	var AutosizeTextArea = (function (_React$Component16) {
+	    _inherits(AutosizeTextArea, _React$Component16);
 
 	    function AutosizeTextArea() {
 	        _classCallCheck(this, AutosizeTextArea);
@@ -1033,12 +1361,12 @@ var SettingsPanel =
 	    }, {
 	        key: 'dispatchEvent',
 	        value: function dispatchEvent(TYPE, defer) {
-	            var _this14 = this;
+	            var _this13 = this;
 
 	            var event = document.createEvent('Event');
 	            event.initEvent(TYPE, true, false);
 	            var dispatch = function dispatch() {
-	                return _this14.refs.textarea.getDOMNode().dispatchEvent(event);
+	                return _this13.refs.textarea.getDOMNode().dispatchEvent(event);
 	            };
 	            if (defer) {
 	                // Next tick
@@ -9658,6 +9986,679 @@ var SettingsPanel =
 	    throw new Error('process.chdir is not supported');
 	};
 	process.umask = function() { return 0; };
+
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(194);
+
+
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ExecutionEnvironment = __webpack_require__(195);
+	var ModalPortal = React.createFactory(__webpack_require__(196));
+	var ariaAppHider = __webpack_require__(201);
+	var injectCSS = __webpack_require__(202);
+	var elementClass = __webpack_require__(203);
+
+	var SafeHTMLElement = ExecutionEnvironment.canUseDOM ? window.HTMLElement : {};
+
+	var Modal = module.exports = React.createClass({
+
+	  displayName: 'Modal',
+
+	  statics: {
+	    setAppElement: ariaAppHider.setElement,
+	    injectCSS: injectCSS
+	  },
+
+	  propTypes: {
+	    isOpen: React.PropTypes.bool.isRequired,
+	    onRequestClose: React.PropTypes.func,
+	    appElement: React.PropTypes.instanceOf(SafeHTMLElement),
+	    closeTimeoutMS: React.PropTypes.number,
+	    ariaHideApp: React.PropTypes.bool
+	  },
+
+	  getDefaultProps: function () {
+	    return {
+	      isOpen: false,
+	      ariaHideApp: true,
+	      closeTimeoutMS: 0
+	    };
+	  },
+
+	  componentDidMount: function() {
+	    this.node = document.createElement('div');
+	    this.node.className = 'ReactModalPortal';
+	    document.body.appendChild(this.node);
+	    this.renderPortal(this.props);
+	  },
+
+	  componentWillReceiveProps: function(newProps) {
+	    this.renderPortal(newProps);
+	  },
+
+	  componentWillUnmount: function() {
+	    React.unmountComponentAtNode(this.node);
+	    document.body.removeChild(this.node);
+	  },
+
+	  renderPortal: function(props) {
+	    if (props.isOpen) {
+	      elementClass(document.body).add('ReactModal__Body--open');
+	    } else {
+	      elementClass(document.body).remove('ReactModal__Body--open');
+	    }
+
+	    if (props.ariaHideApp) {
+	      ariaAppHider.toggle(props.isOpen, props.appElement);
+	    }
+	    sanitizeProps(props);
+	    if (this.portal)
+	      this.portal.setProps(props);
+	    else
+	      this.portal = React.render(ModalPortal(props), this.node);
+	  },
+
+	  render: function () {
+	    return null;
+	  }
+	});
+
+	function sanitizeProps(props) {
+	  delete props.ref;
+	}
+
+
+/***/ },
+/* 195 */
+/***/ function(module, exports) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ExecutionEnvironment
+	 */
+
+	/*jslint evil: true */
+
+	"use strict";
+
+	var canUseDOM = !!(
+	  (typeof window !== 'undefined' &&
+	  window.document && window.document.createElement)
+	);
+
+	/**
+	 * Simple, lightweight module assisting with the detection and context of
+	 * Worker. Helps avoid circular dependencies and allows code to reason about
+	 * whether or not they are in a Worker, even if they never include the main
+	 * `ReactWorker` dependency.
+	 */
+	var ExecutionEnvironment = {
+
+	  canUseDOM: canUseDOM,
+
+	  canUseWorkers: typeof Worker !== 'undefined',
+
+	  canUseEventListeners:
+	    canUseDOM && !!(window.addEventListener || window.attachEvent),
+
+	  canUseViewport: canUseDOM && !!window.screen,
+
+	  isInWorker: !canUseDOM // For now, this is true - might change in the future.
+
+	};
+
+	module.exports = ExecutionEnvironment;
+
+
+/***/ },
+/* 196 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var div = React.DOM.div;
+	var focusManager = __webpack_require__(197);
+	var scopeTab = __webpack_require__(199);
+	var cx = __webpack_require__(200);
+
+	// so that our CSS is statically analyzable
+	var CLASS_NAMES = {
+	  overlay: {
+	    base: 'ReactModal__Overlay',
+	    afterOpen: 'ReactModal__Overlay--after-open',
+	    beforeClose: 'ReactModal__Overlay--before-close'
+	  },
+	  content: {
+	    base: 'ReactModal__Content',
+	    afterOpen: 'ReactModal__Content--after-open',
+	    beforeClose: 'ReactModal__Content--before-close'
+	  }
+	};
+
+	var OVERLAY_STYLES = { position: 'fixed', left: 0, right: 0, top: 0, bottom: 0 };
+
+	function stopPropagation(event) {
+	  event.stopPropagation();
+	}
+
+	var ModalPortal = module.exports = React.createClass({
+
+	  displayName: 'ModalPortal',
+
+	  getInitialState: function() {
+	    return {
+	      afterOpen: false,
+	      beforeClose: false
+	    };
+	  },
+
+	  componentDidMount: function() {
+	    // Focus needs to be set when mounting and already open
+	    if (this.props.isOpen) {
+	      this.setFocusAfterRender(true);
+	      this.open();
+	    }
+	  },
+
+	  componentWillReceiveProps: function(newProps) {
+	    // Focus only needs to be set once when the modal is being opened
+	    if (!this.props.isOpen && newProps.isOpen) {
+	      this.setFocusAfterRender(true);
+	      this.open();
+	    } else if (this.props.isOpen && !newProps.isOpen) {
+	      this.close();
+	    }
+	  },
+
+	  componentDidUpdate: function () {
+	    if (this.focusAfterRender) {
+	      this.focusContent();
+	      this.setFocusAfterRender(false);
+	    }
+	  },
+
+	  setFocusAfterRender: function (focus) {
+	    this.focusAfterRender = focus;
+	  },
+
+	  open: function() {
+	    focusManager.setupScopedFocus(this.getDOMNode());
+	    focusManager.markForFocusLater();
+	    this.setState({isOpen: true}, function() {
+	      this.setState({afterOpen: true});
+	    }.bind(this));
+	  },
+
+	  close: function() {
+	    if (!this.ownerHandlesClose())
+	      return;
+	    if (this.props.closeTimeoutMS > 0)
+	      this.closeWithTimeout();
+	    else
+	      this.closeWithoutTimeout();
+	  },
+
+	  focusContent: function() {
+	    this.refs.content.getDOMNode().focus();
+	  },
+
+	  closeWithTimeout: function() {
+	    this.setState({beforeClose: true}, function() {
+	      setTimeout(this.closeWithoutTimeout, this.props.closeTimeoutMS);
+	    }.bind(this));
+	  },
+
+	  closeWithoutTimeout: function() {
+	    this.setState({
+	      afterOpen: false,
+	      beforeClose: false
+	    }, this.afterClose);
+	  },
+
+	  afterClose: function() {
+	    focusManager.returnFocus();
+	    focusManager.teardownScopedFocus();
+	  },
+
+	  handleKeyDown: function(event) {
+	    if (event.keyCode == 9 /*tab*/) scopeTab(this.refs.content.getDOMNode(), event);
+	    if (event.keyCode == 27 /*esc*/) this.requestClose();
+	  },
+
+	  handleOverlayClick: function() {
+	    if (this.ownerHandlesClose())
+	      this.requestClose();
+	    else
+	      this.focusContent();
+	  },
+
+	  requestClose: function() {
+	    if (this.ownerHandlesClose())
+	      this.props.onRequestClose();
+	  },
+
+	  ownerHandlesClose: function() {
+	    return this.props.onRequestClose;
+	  },
+
+	  shouldBeClosed: function() {
+	    return !this.props.isOpen && !this.state.beforeClose;
+	  },
+
+	  buildClassName: function(which) {
+	    var className = CLASS_NAMES[which].base;
+	    if (this.state.afterOpen)
+	      className += ' '+CLASS_NAMES[which].afterOpen;
+	    if (this.state.beforeClose)
+	      className += ' '+CLASS_NAMES[which].beforeClose;
+	    return className;
+	  },
+
+	  render: function() {
+	    return this.shouldBeClosed() ? div() : (
+	      div({
+	        ref: "overlay",
+	        className: cx(this.buildClassName('overlay'), this.props.overlayClassName),
+	        style: OVERLAY_STYLES,
+	        onClick: this.handleOverlayClick
+	      },
+	        div({
+	          ref: "content",
+	          style: this.props.style,
+	          className: cx(this.buildClassName('content'), this.props.className),
+	          tabIndex: "-1",
+	          onClick: stopPropagation,
+	          onKeyDown: this.handleKeyDown
+	        },
+	          this.props.children
+	        )
+	      )
+	    );
+	  }
+	});
+
+
+/***/ },
+/* 197 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var findTabbable = __webpack_require__(198);
+	var modalElement = null;
+	var focusLaterElement = null;
+	var needToFocus = false;
+
+	function handleBlur(event) {
+	  needToFocus = true;
+	}
+
+	function handleFocus(event) {
+	  if (needToFocus) {
+	    needToFocus = false;
+	    if (!modalElement) {
+	      return;
+	    }
+	    // need to see how jQuery shims document.on('focusin') so we don't need the
+	    // setTimeout, firefox doesn't support focusin, if it did, we could focus
+	    // the the element outisde of a setTimeout. Side-effect of this
+	    // implementation is that the document.body gets focus, and then we focus
+	    // our element right after, seems fine.
+	    setTimeout(function() {
+	      if (modalElement.contains(document.activeElement))
+	        return;
+	      var el = (findTabbable(modalElement)[0] || modalElement);
+	      el.focus();
+	    }, 0);
+	  }
+	}
+
+	exports.markForFocusLater = function() {
+	  focusLaterElement = document.activeElement;
+	};
+
+	exports.returnFocus = function() {
+	  try {
+	    focusLaterElement.focus();
+	  }
+	  catch (e) {
+	    console.warn('You tried to return focus to '+focusLaterElement+' but it is not in the DOM anymore');
+	  }
+	  focusLaterElement = null;
+	};
+
+	exports.setupScopedFocus = function(element) {
+	  modalElement = element;
+
+	  if (window.addEventListener) {
+	    window.addEventListener('blur', handleBlur, false);
+	    document.addEventListener('focus', handleFocus, true);
+	  } else {
+	    window.attachEvent('onBlur', handleBlur);
+	    document.attachEvent('onFocus', handleFocus);
+	  }
+	};
+
+	exports.teardownScopedFocus = function() {
+	  modalElement = null;
+
+	  if (window.addEventListener) {
+	    window.removeEventListener('blur', handleBlur);
+	    document.removeEventListener('focus', handleFocus);
+	  } else {
+	    window.detachEvent('onBlur', handleBlur);
+	    document.detachEvent('onFocus', handleFocus);
+	  }
+	};
+
+
+
+
+/***/ },
+/* 198 */
+/***/ function(module, exports) {
+
+	/*!
+	 * Adapted from jQuery UI core
+	 *
+	 * http://jqueryui.com
+	 *
+	 * Copyright 2014 jQuery Foundation and other contributors
+	 * Released under the MIT license.
+	 * http://jquery.org/license
+	 *
+	 * http://api.jqueryui.com/category/ui-core/
+	 */
+
+	function focusable(element, isTabIndexNotNaN) {
+	  var nodeName = element.nodeName.toLowerCase();
+	  return (/input|select|textarea|button|object/.test(nodeName) ?
+	    !element.disabled :
+	    "a" === nodeName ?
+	      element.href || isTabIndexNotNaN :
+	      isTabIndexNotNaN) && visible(element);
+	}
+
+	function hidden(el) {
+	  return (el.offsetWidth <= 0 && el.offsetHeight <= 0) ||
+	    el.style.display === 'none';
+	}
+
+	function visible(element) {
+	  while (element) {
+	    if (element === document.body) break;
+	    if (hidden(element)) return false;
+	    element = element.parentNode;
+	  }
+	  return true;
+	}
+
+	function tabbable(element) {
+	  var tabIndex = element.getAttribute('tabindex');
+	  if (tabIndex === null) tabIndex = undefined;
+	  var isTabIndexNaN = isNaN(tabIndex);
+	  return (isTabIndexNaN || tabIndex >= 0) && focusable(element, !isTabIndexNaN);
+	}
+
+	function findTabbableDescendants(element) {
+	  return [].slice.call(element.querySelectorAll('*'), 0).filter(function(el) {
+	    return tabbable(el);
+	  });
+	}
+
+	module.exports = findTabbableDescendants;
+
+
+
+/***/ },
+/* 199 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var findTabbable = __webpack_require__(198);
+
+	module.exports = function(node, event) {
+	  var tabbable = findTabbable(node);
+	  var finalTabbable = tabbable[event.shiftKey ? 0 : tabbable.length - 1];
+	  var leavingFinalTabbable = (
+	    finalTabbable === document.activeElement ||
+	    // handle immediate shift+tab after opening with mouse
+	    node === document.activeElement
+	  );
+	  if (!leavingFinalTabbable) return;
+	  event.preventDefault();
+	  var target = tabbable[event.shiftKey ? tabbable.length - 1 : 0];
+	  target.focus();
+	};
+
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2015 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+
+	(function () {
+		'use strict';
+
+		function classNames () {
+
+			var classes = '';
+
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+
+				var argType = typeof arg;
+
+				if ('string' === argType || 'number' === argType) {
+					classes += ' ' + arg;
+
+				} else if (Array.isArray(arg)) {
+					classes += ' ' + classNames.apply(null, arg);
+
+				} else if ('object' === argType) {
+					for (var key in arg) {
+						if (arg.hasOwnProperty(key) && arg[key]) {
+							classes += ' ' + key;
+						}
+					}
+				}
+			}
+
+			return classes.substr(1);
+		}
+
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true){
+			// AMD. Register as an anonymous module.
+			!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+
+	}());
+
+
+/***/ },
+/* 201 */
+/***/ function(module, exports) {
+
+	var _element = null;
+
+	function setElement(element) {
+	  _element = element;
+	}
+
+	function hide(appElement) {
+	  validateElement(appElement);
+	  (appElement || _element).setAttribute('aria-hidden', 'true');
+	}
+
+	function show(appElement) {
+	  validateElement(appElement);
+	  (appElement || _element).removeAttribute('aria-hidden');
+	}
+
+	function toggle(shouldHide, appElement) {
+	  if (shouldHide)
+	    hide(appElement);
+	  else
+	    show(appElement);
+	}
+
+	function validateElement(appElement) {
+	  if (!appElement && !_element)
+	    throw new Error('react-modal: You must set an element with `Modal.setAppElement(el)` to make this accessible');
+	}
+
+	function resetForTesting() {
+	  _element = null;
+	}
+
+	exports.toggle = toggle;
+	exports.setElement = setElement;
+	exports.show = show;
+	exports.hide = hide;
+	exports.resetForTesting = resetForTesting;
+
+
+
+/***/ },
+/* 202 */
+/***/ function(module, exports) {
+
+	module.exports = function() {
+	  injectStyle([
+	    '.ReactModal__Overlay {',
+	    '  background-color: rgba(255, 255, 255, 0.75);',
+	    '}',
+	    '.ReactModal__Content {',
+	    '  position: absolute;',
+	    '  top: 40px;',
+	    '  left: 40px;',
+	    '  right: 40px;',
+	    '  bottom: 40px;',
+	    '  border: 1px solid #ccc;',
+	    '  background: #fff;',
+	    '  overflow: auto;',
+	    '  -webkit-overflow-scrolling: touch;',
+	    '  border-radius: 4px;',
+	    '  outline: none;',
+	    '  padding: 20px;',
+	    '}',
+	    '@media (max-width: 768px) {',
+	    '  .ReactModal__Content {',
+	    '    top: 10px;',
+	    '    left: 10px;',
+	    '    right: 10px;',
+	    '    bottom: 10px;',
+	    '    padding: 10px;',
+	    '  }',
+	    '}'
+	  ].join('\n'));
+	};
+
+	function injectStyle(css) {
+	  var style = document.getElementById('rackt-style');
+	  if (!style) {
+	    style = document.createElement('style');
+	    style.setAttribute('id', 'rackt-style');
+	    style.setAttribute("type", "text/css");
+	  }
+
+	  if (style.styleSheet) {
+	    style.styleSheet.cssText = css;
+	    document.body.appendChild(style);
+	  } else {
+	    style.innerHTML = css;
+	    document.head.appendChild(style);
+	  }
+	}
+
+
+
+/***/ },
+/* 203 */
+/***/ function(module, exports) {
+
+	module.exports = function(opts) {
+	  return new ElementClass(opts)
+	}
+
+	function indexOf(arr, prop) {
+	  if (arr.indexOf) return arr.indexOf(prop)
+	  for (var i = 0, len = arr.length; i < len; i++)
+	    if (arr[i] === prop) return i
+	  return -1
+	}
+
+	function ElementClass(opts) {
+	  if (!(this instanceof ElementClass)) return new ElementClass(opts)
+	  var self = this
+	  if (!opts) opts = {}
+
+	  // similar doing instanceof HTMLElement but works in IE8
+	  if (opts.nodeType) opts = {el: opts}
+
+	  this.opts = opts
+	  this.el = opts.el || document.body
+	  if (typeof this.el !== 'object') this.el = document.querySelector(this.el)
+	}
+
+	ElementClass.prototype.add = function(className) {
+	  var el = this.el
+	  if (!el) return
+	  if (el.className === "") return el.className = className
+	  var classes = el.className.split(' ')
+	  if (indexOf(classes, className) > -1) return classes
+	  classes.push(className)
+	  el.className = classes.join(' ')
+	  return classes
+	}
+
+	ElementClass.prototype.remove = function(className) {
+	  var el = this.el
+	  if (!el) return
+	  if (el.className === "") return
+	  var classes = el.className.split(' ')
+	  var idx = indexOf(classes, className)
+	  if (idx > -1) classes.splice(idx, 1)
+	  el.className = classes.join(' ')
+	  return classes
+	}
+
+	ElementClass.prototype.has = function(className) {
+	  var el = this.el
+	  if (!el) return
+	  var classes = el.className.split(' ')
+	  return indexOf(classes, className) > -1
+	}
+
+	ElementClass.prototype.toggle = function(className) {
+	  var el = this.el
+	  if (!el) return
+	  if (this.has(className)) this.remove(className)
+	  else this.add(className)
+	}
 
 
 /***/ }
