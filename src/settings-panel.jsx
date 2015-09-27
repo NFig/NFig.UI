@@ -87,7 +87,7 @@ export default class SettingsPanel extends React.Component {
             'begin-edit': setting => this.setEditingState(setting),
             'cancel-edit': () => this.clearEditingState(),
             'new-override': data => this.setNewOverride(data),
-            'clear-override': setting => this.clearOverride(setting),
+            'clear-override': data => this.clearOverride(data),
             'set-focused-index': index => this.setFocusedIndex(index),
         };
 
@@ -104,10 +104,10 @@ export default class SettingsPanel extends React.Component {
         }).then(response => this.updateSettingState(response.body));
     }
 
-    clearOverride(setting) {
+    clearOverride(data) {
         ajax.post({
             url: this.props.clearUrl,
-            data: { settingName: setting.name }
+            data
         }).then(response => this.updateSettingState(response.body));
     }
 
@@ -143,7 +143,11 @@ export default class SettingsPanel extends React.Component {
         if (this.state.currentlyEditing != null) {
             this.setState({ currentlyEditing: null });
             if (/^#edit:/.test(location.hash)) {
-                history.pushState(null, null, this.getUrlForEdit(null));
+                if (this.state.searchText) {
+                    history.pushState(null, null, this.getUrlForSearch(this.state.searchText));
+                } else {
+                    history.pushState(null, null, this.getUrlForEdit(null));
+                }
             }
         }
     }
@@ -427,11 +431,6 @@ class SettingValue extends React.Component {
         super();
     }
 
-    clearOverride(e, setting) {
-        e.stopPropagation();
-        e.nativeEvent.stopImmediatePropagation();
-        SettingsEvents.trigger('clear-override', setting);
-    }
 
     render() {
         const setting = this.props.setting;
@@ -497,7 +496,7 @@ class EditorModal extends React.Component {
         this.state = {
             showDetails: false,
             selectedDataCenter: null,
-            newOverrideValue: (props.setting.activeOverride || props.setting.defaultValue).value
+            newOverrideValue: null
         };
     }
 
@@ -509,16 +508,21 @@ class EditorModal extends React.Component {
     hideDetails() { this.setState({showDetails: false}); }
 
     clearOverride(dc) {
-        // stop editing
+        const {
+            state: { selectedDataCenter: dataCenter },
+            props: { setting: { name: settingName } }
+        } = this;
         this.cancelNewOverride();
-        if (this.props.setting.activeOverride) {
-            SettingsEvents.trigger('clear-override', this.props.setting);
-        }
+        const data = {settingName:this.props.setting.name, dataCenter:dc};
+        SettingsEvents.trigger('clear-override', data);
     }
 
     selectDataCenter(e) {
         const selectedDataCenter = e.target ? e.target.value : e;
-        this.setState({selectedDataCenter});
+
+        const override = this.props.setting.allOverrides.find(o => o.dataCenter === selectedDataCenter);
+
+        this.setState({selectedDataCenter, newOverrideValue: override && override.value});
     }
 
     handleOverrideChange(e) {
@@ -526,11 +530,14 @@ class EditorModal extends React.Component {
     }
 
     setNewOverride() {
-        SettingsEvents.trigger('new-override', {
-            settingName: this.props.setting.name,
-            dataCenter: this.state.selectedDataCenter,
-            value: this.state.newOverrideValue
-        });
+
+        const {
+            state: { newOverrideValue: value, selectedDataCenter: dataCenter },
+            props: { setting: { name: settingName } }
+        } = this;
+
+        SettingsEvents.trigger('new-override', { settingName, dataCenter, value });
+        this.setState({selectedDataCenter: null});
     }
 
     cancelNewOverride() {
@@ -541,7 +548,7 @@ class EditorModal extends React.Component {
         const {setting, dataCenters} = this.props;
         const {activeOverride: override, defaultValue: defval} = setting;
         const {selectedDataCenter} = this.state;
-    
+
         return (
             <Modal isOpen={true} onRequestClose={_ => this.handleClose()} className="editor-modal modal-dialog modal-lg">
                 <div className="modal-content">
@@ -555,7 +562,7 @@ class EditorModal extends React.Component {
                     </div>
                     <div className="modal-body">
                         <div className="values">
-                            {override ? 
+                            {override ?
                             <div className="override active">
                                 <h5>Active Override</h5>
                                 <p>Data Center: <strong>{override.dataCenter}</strong></p>
@@ -573,15 +580,15 @@ class EditorModal extends React.Component {
                         <div className="newoverride">
                             <p>
                                 <span>Set new override for&nbsp;</span>
-                                <DataCenterSelector 
-                                    selectedValue={this.state.selectedDataCenter} 
-                                    onChange={e => this.selectDataCenter(e)} 
+                                <DataCenterSelector
+                                    selectedValue={this.state.selectedDataCenter}
+                                    onChange={e => this.selectDataCenter(e)}
                                     dataCenters={dataCenters}
                                 />
                             </p>
                             {selectedDataCenter ?
                             <div>
-                                <SettingEditor {...this.props} defaultValue={this.state.newOverrideValue} onChange={e => this.handleOverrideChange(e)}/>
+                                <SettingEditor {...this.props} value={this.state.newOverrideValue} onChange={e => this.handleOverrideChange(e)}/>
                                 <p>
                                     <button className="btn btn-success btn-small" onClick={() => this.setNewOverride()}>Set Override</button>
                                     <span>&nbsp;</span>
@@ -593,8 +600,8 @@ class EditorModal extends React.Component {
                     </div>
                     <div className="modal-body show-details">
                         {this.state.showDetails
-                        ? <a className="toggle" onClick={() => this.hideDetails()}>Hide Details</a>
-                        : <a className="toggle" onClick={() => this.showDetails()}>Show Details</a>
+                        ? <a className="toggle" style={{cursor:"pointer"}} onClick={() => this.hideDetails()}>Hide Details</a>
+                        : <a className="toggle" style={{cursor:"pointer"}} onClick={() => this.showDetails()}>Show Details</a>
                         }
                         <div className="details" style={this.state.showDetails ? {} : {display:'none'}}>
                             <div className="overrides">
@@ -618,7 +625,7 @@ class DataCenterSelector extends React.Component {
         const {selectedValue, onChange, dataCenters} = this.props;
 
         return (
-            <RadioButtonGroup 
+            <RadioButtonGroup
                 {...this.props}
                 className="spaced"
                 name="newOverrideValue">
@@ -633,8 +640,8 @@ class DataCenterSelector extends React.Component {
 class ValueTable extends React.Component {
 
     render() {
-        const setting = this.props.setting;
-        const values = setting[this.props.propName];
+        const {setting, propName, onClear} = this.props;
+        const values = setting[propName];
         return (
             <table className="value-list table-striped">
                 <thead>
@@ -642,21 +649,21 @@ class ValueTable extends React.Component {
                         <th>Tier</th>
                         <th>Data Center</th>
                         <th>Value</th>
-                        {this.props.onClear ? <th></th> : null}
+                        {onClear ? <th></th> : null}
                     </tr>
                 </thead>
                 <tbody>
-                    {values.map(v => 
+                    {values.map(v =>
                         <tr key={`${v.tier}|${v.dataCenter}`}>
                             <td>{v.tier}</td>
                             <td>{v.dataCenter}</td>
                             <td className="value">{v.value}</td>
-                            {this.props.onClear ? 
+                            {onClear ?
                             <td>
-                                <button type="button" 
-                                        className="clear-override" 
-                                        title="Clear this override" 
-                                        onClick={() => this.props.onClear(v.dataCenter)}>
+                                <button type="button"
+                                        className="clear-override"
+                                        title="Clear this override"
+                                        onClick={() => onClear(v.dataCenter)}>
                                     <span aria-hidden="true">&times;</span>
                                     <span className="sr-only">Clear</span>
                                 </button>
@@ -682,7 +689,7 @@ class BoolEditor extends React.Component {
     render() {
         return (
             <p>
-                <RadioButtonGroup className="btn-group" name="overrideBool" selectedValue={this.props.defaultValue} onChange={this.props.onChange}>
+                <RadioButtonGroup className="btn-group" name="overrideBool" selectedValue={this.props.value} onChange={this.props.onChange}>
                     <RadioButton className="btn-default" value="True">True</RadioButton>
                     <RadioButton className="btn-default" value="False">False</RadioButton>
                 </RadioButtonGroup>
@@ -694,7 +701,7 @@ class BoolEditor extends React.Component {
 class RadioButton extends React.Component {
     render() {
         const {value, className, onChange, name, children, active} = this.props;
-        
+
         const classNames = (className && className.split(' ')) || [];
         classNames.push('btn');
         if (active)

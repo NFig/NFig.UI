@@ -3,7 +3,6 @@
 <title></title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="settings.css" />
 
 <div class="container">
     <h1>Sample Settings Panel</h1>
@@ -15,11 +14,12 @@
 
 <script src="https://fb.me/react-with-addons-0.13.3.js"></script>
 <script src="settings-panel.js"></script>
+<link rel="stylesheet" type="text/css" href="settings.css" />
 <script>
     window.settingsPanel = SettingsPanel.init(
         document.getElementById('settings-panel'),
-        { 
-            settingsUrl: 'http://local.clc.stackoverflow.com/admin/settings/json',
+        {
+            settingsUrl: '/settings.json',
             clearUrl: '/clear',
             setUrl: '/set',
         }
