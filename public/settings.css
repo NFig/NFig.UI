@@ -132,33 +132,49 @@ textarea.quick-editor {
   display: block;
 }
 
-/* Fix some things with React Modal */
-
-.ReactModal__Overlay {
+/* Modal Styles */
+.modal {
+  display: block;
   background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.modal .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   z-index: 10000;
 }
 
-.ReactModal__Content {
-  bottom: auto !important;
+.modal-content {
+  top: 80px;
+  margin: auto;
+  z-index: 10001;
+  overflow-y: auto;
 }
 
-.ReactModal__Content.modal-dialog {
+.modal-content.modal-dialog {
   border: none;
   background-color: transparent;
 }
 
 
 @media screen and (max-height: 800px) {
-
-  .ReactModal__Content {
-    top: 0;
+  .modal-content {
+    top: 20px;
   }
-
 }
 
 @media screen and (max-height: 600px) {
-  .ReactModal__Content {
-    bottom: 0px !important;
+  .modal {
+    overflow-y: auto;
+  }
+
+  .modal-dialog { 
+    margin-top: 0;
+  }
+  .modal-content {
+    top: 0;
   }
 }

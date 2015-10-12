@@ -17,16 +17,15 @@ with [WebPack][5].
 ``` html
 <div id="settings-panel"></div>
 
-<script src="https://fb.me/react-with-addons-0.13.3.js"></script>
 <script src="settings-panel.js"></script>
 <script>
-  window.settingsPanel = React.render(
-      React.createElement(SettingsPanel, { 
-        settingsUrl: '/settings.json',
-        setUrl: '/set',
-		clearUrl: '/clear'
-      }),
-      document.getElementById('settings-panel')
+  window.settingsPanel = SettingsPanel.init(
+    document.getElementById('settings-panel'),
+    {
+      settingsUrl: '/settings.json',
+      setUrl: '/set',
+      clearUrl: '/clear'
+    }
   );
 </script>
 ```  
@@ -35,9 +34,6 @@ You'll find the `settings-panel.js` file in the `dist` folder of this repo.
 Also, in there will be an `index.html` file that has some minimal css styles to
 make the settings-panel a bit prettier than default (the settings-panel doesn't
 do any styling on it's own).
-
-**NOTE**: This component requires the version of ReactJS _with addons_. Make
-sure you include the correct one.
 
 ### Running the Test Server / hacking
 
@@ -176,13 +172,12 @@ Component usage:
 
 ``` js
 
-window.settingsPanel = React.render(
-	React.createElement(SettingsPanel, { 
+window.settingsPanel = SettingsPanel.init(
+	document.getElementById('settings-panel'), { 
 		settingsUrl: '@Url.Action("SettingsJson")',
 		setUrl: '@Url.Action("SetSetting")',
 		clearUrl: '@Url.Action("ClearSetting")'
-	}),
-	document.getElementById('settings-panel')
+	}
 );
 
 ```

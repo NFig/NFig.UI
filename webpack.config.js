@@ -9,7 +9,6 @@ module.exports = {
     filename: 'settings-panel.js'
   },
   externals: {
-    react: 'React'
   },
   module: {
     loaders: [

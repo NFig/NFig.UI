@@ -1,12 +1,12 @@
-﻿import React from 'react';
+﻿import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
+import Portal from 'react-portal';
 import MicroEvent from 'microevent';
 import _ from 'underscore';
 import ajax from './micro-ajax';
 import marked from 'marked';
 import autosize from 'autosize';
 import 'babel/polyfill';
-import Modal from 'react-modal';
-
 
 const SettingsEvents = new MicroEvent();
 
@@ -20,7 +20,18 @@ const Keys = {
 
 const containsText = (string, search) => string.toLowerCase().indexOf(search.toLowerCase()) !== -1;
 
-export default class SettingsPanel extends React.Component {
+export default class SettingsPanel extends Component {
+
+    static propTypes = {
+        settingsUrl: PropTypes.string.isRequired,
+        clearUrl: PropTypes.string.isRequired,
+        setUrl: PropTypes.string.isRequired,
+    };
+
+    static init(element, props) {
+        return ReactDOM.render(<SettingsPanel {...props} />, element);
+    }
+
 
     constructor(props) {
         super(props);
@@ -39,11 +50,6 @@ export default class SettingsPanel extends React.Component {
         this.updateSearchUrl = _.debounce(this.updateSearchUrl, 500);
     }
 
-    static init(element, props) {
-        Modal.setAppElement(element);
-        Modal.injectCSS();
-        return React.render(<SettingsPanel {...props} />, element);
-    }
 
     cancelEditing(e) {
         e.stopImmediatePropagation();
@@ -91,7 +97,7 @@ export default class SettingsPanel extends React.Component {
             'set-focused-index': index => this.setFocusedIndex(index),
         };
 
-        _.each(handlers, (handler, event) => SettingsEvents.bind(event, handler));
+        Object.keys(handlers).forEach(event => SettingsEvents.bind(event, handlers[event]));
     }
 
     setNewOverride(data) {
@@ -199,8 +205,8 @@ export default class SettingsPanel extends React.Component {
     }
 
     getSettingComponent(name) {
-        var group = name.replace(/^([^\.]+)\..+$/, '$1');
-        return this.refs[group].refs[name];
+        const groupName = name.replace(/^([^\.]+)\..+$/, '$1');
+        return this.refs[groupName].refs[name];
     }
 
     getSettingByName(name) {
@@ -265,18 +271,6 @@ export default class SettingsPanel extends React.Component {
 
         const settingsGroups = this.getVisibleSettingsGroups(settings);
 
-        const children = settingsGroups.map((group, idx) => (
-            <SettingsGroup
-                name={group.name}
-                settings={group.settings}
-                key={"group-" + idx}
-                dataCenters={this.state.availableDataCenters}
-                currentlyEditing={this.state.currentlyEditing}
-                ref={group.name}
-            />
-        ));
-
-
         return (
             <div className="settings-panel">
                 <SettingsSearchBox
@@ -293,7 +287,16 @@ export default class SettingsPanel extends React.Component {
                     ref="search"
                 />
                 <div className="setting-groups">
-                    {children}
+                    {settingsGroups.map((group, idx) => (
+                        <SettingsGroup
+                            name={group.name}
+                            settings={group.settings}
+                            key={"group-" + idx}
+                            dataCenters={this.state.availableDataCenters}
+                            currentlyEditing={this.state.currentlyEditing}
+                            ref={group.name}
+                        />
+                    ))}
                 </div>
                 {this.state.currentlyEditing ? <EditorModal setting={this.state.currentlyEditing} dataCenters={this.state.availableDataCenters} /> : null}
             </div>
@@ -301,13 +304,8 @@ export default class SettingsPanel extends React.Component {
     }
 }
 
-SettingsPanel.propTypes = {
-  settingsUrl: React.PropTypes.string.isRequired,
-  clearUrl: React.PropTypes.string.isRequired,
-  setUrl: React.PropTypes.string.isRequired,
-};
 
-class SettingsSearchBox extends React.Component {
+class SettingsSearchBox extends Component {
 
     componentDidMount() {
         this.focus();
@@ -323,11 +321,11 @@ class SettingsSearchBox extends React.Component {
     }
 
     focus() {
-        React.findDOMNode(this.refs.textbox).focus();
+        this.refs.textbox.focus();
     }
 
     blur() {
-        React.findDOMNode(this.refs.textbox).blur();
+        this.refs.textbox.blur();
     }
 
     render() {
@@ -345,17 +343,17 @@ class SettingsSearchBox extends React.Component {
     }
 }
 
-class SettingsGroup extends React.Component {
-
+// cannot be stateless as it's ref'ed
+class SettingsGroup extends Component {
     render() {
-        const settings = this.props.settings;
+        const { settings, dataCenters, name } = this.props;
 
         const children = settings.map(setting => {
             return (
                 <Setting
                     setting={setting}
                     key={setting.name}
-                    dataCenters={this.props.dataCenters}
+                    dataCenters={dataCenters}
                     ref={setting.name}
                 />
             );
@@ -363,19 +361,17 @@ class SettingsGroup extends React.Component {
 
         return (
             <div className="setting-group">
-                <h4>{this.props.name}</h4>
+                <h4>{name}</h4>
                 {children}
             </div>
         );
     }
 }
 
-
-
-class Setting extends React.Component {
+class Setting extends Component {
 
     scrollIntoView() {
-        const node = React.findDOMNode(this);
+        const node = ReactDOM.findDOMNode(this);
 
         // check if contained by window
         const rect = node.getBoundingClientRect();
@@ -426,70 +422,76 @@ class Setting extends React.Component {
 }
 
 
-class SettingValue extends React.Component {
-    constructor() {
-        super();
+const SettingValue = props => {
+    const setting = props.setting;
+
+    const child = setting.isBool
+        ? <BoolValue {...props} />
+        : <TextValue {...props} />;
+
+    let overrideInfo = null;
+    if (props.setting.activeOverride) {
+
+        const dcOverride = props.setting.activeOverride.dataCenter;
+
+        overrideInfo = (
+            <p className="overridden">
+                Overridden by Data Center: <strong>{dcOverride}</strong>
+            </p>
+        );
     }
 
+    return (
+        <div className='editable value'>
+            {child}
+            {overrideInfo}
+        </div>
+    );
+}
 
+const BoolValue = props => {
+    const setting = props.setting;
+    const value = (setting.activeOverride || setting.defaultValue).value;
+
+    const boolVal = typeof value === 'string'
+        ? value.toLowerCase() === 'true'
+        : !!value;
+
+    return (
+        <span className={`bool-val-${boolVal}`}>{
+            boolVal
+            ? <i>&#x2714;</i>
+            : <i>&times;</i>
+        }</span>
+    );
+};
+
+const TextValue = props => {
+    const { setting: { activeOverride, defaultValue } } = props;
+    const value = (activeOverride || defaultValue).value;
+    return (<pre className="value">{value}</pre>);
+};
+
+class Modal extends Component {
+
+    onOverlayClick(e) {
+        const { onRequestClose } = this.props;
+        onRequestClose && onRequestClose();
+    }
+
+    // <div className="modal-overlay" onClick={e => this.onOverlayClick(e)} />
     render() {
-        const setting = this.props.setting;
-
-        const child = setting.isBool
-            ? <BoolValue {...this.props} />
-            : <TextValue {...this.props} />;
-
-        let overrideInfo = null;
-        if (this.props.setting.activeOverride) {
-
-            const dcOverride = this.props.setting.activeOverride.dataCenter;
-
-            overrideInfo = (
-                <p className="overridden">
-                    Overridden by Data Center: <strong>{dcOverride}</strong>
-                </p>
-            );
-        }
-
         return (
-            <div className='editable value'>
-                {child}
-                {overrideInfo}
+            <div style={{display:'block'}} className={'modal ' + this.props.className} onClick={e => this.onOverlayClick(e)}>
+                <div className="modal-dialog modal-lg" onClick={e => e.stopPropagation()}>
+                    <div className="modal-content">{this.props.children}</div>
+                </div>
             </div>
         );
     }
 }
 
-class BoolValue extends React.Component {
-    render() {
-        const setting = this.props.setting;
-        const value = (setting.activeOverride || setting.defaultValue).value;
-
-        const boolVal = typeof value === 'string'
-            ? value.toLowerCase() === 'true'
-            : !!value;
-
-        return (
-            <span className={`bool-val-${boolVal}`}>{
-                boolVal
-                ? <i>&#x2714;</i>
-                : <i>&times;</i>
-            }</span>
-        );
-    }
-}
-
-class TextValue extends React.Component {
-    render() {
-        const setting = this.props.setting;
-        const value = (setting.activeOverride || setting.defaultValue).value;
-        return (
-            <pre className="value">{value}</pre>
-        );
-    }
-}
-
-class EditorModal extends React.Component {
+class EditorModal extends Component {
 
     constructor(props) {
         super(props);
@@ -550,8 +552,8 @@ class EditorModal extends React.Component {
         const {selectedDataCenter} = this.state;
 
         return (
-            <Modal isOpen={true} onRequestClose={_ => this.handleClose()} className="editor-modal modal-dialog modal-lg">
-                <div className="modal-content">
+            <Portal isOpened={true} >
+                <Modal  className="editor-modal" onRequestClose={_ => this.handleClose()}>
                     <div className="modal-header">
                         <button type="button" className="close" onClick={() => this.handleClose()}>
                             <span aria-hidden="true">&times;</span>
@@ -614,13 +616,13 @@ class EditorModal extends React.Component {
                             </div>
                         </div>
                     </div>
-                </div>
-            </Modal>
+                </Modal>
+            </Portal>
         );
     }
 }
 
-class DataCenterSelector extends React.Component {
+class DataCenterSelector extends Component {
     render() {
         const {selectedValue, onChange, dataCenters} = this.props;
 
@@ -637,7 +639,7 @@ class DataCenterSelector extends React.Component {
     }
 }
 
-class ValueTable extends React.Component {
+class ValueTable extends Component {
 
     render() {
         const {setting, propName, onClear} = this.props;
@@ -677,7 +679,7 @@ class ValueTable extends React.Component {
     }
 }
 
-class SettingEditor extends React.Component {
+class SettingEditor extends Component {
     render() {
         return this.props.setting.isBool
             ? <BoolEditor {...this.props} />
@@ -685,7 +687,7 @@ class SettingEditor extends React.Component {
     }
 }
 
-class BoolEditor extends React.Component {
+class BoolEditor extends Component {
     render() {
         return (
             <p>
@@ -698,7 +700,7 @@ class BoolEditor extends React.Component {
     }
 }
 
-class RadioButton extends React.Component {
+class RadioButton extends Component {
     render() {
         const {value, className, onChange, name, children, active} = this.props;
 
@@ -721,7 +723,7 @@ class RadioButton extends React.Component {
     }
 }
 
-class RadioButtonGroup extends React.Component {
+class RadioButtonGroup extends Component {
     render() {
         const {className, name, selectedValue, onChange, children} = this.props;
 
@@ -738,30 +740,26 @@ class RadioButtonGroup extends React.Component {
     }
 }
 
-class TextEditor extends React.Component {
-    render() {
-        return (
-            <pre className="value">
-                <AutosizeTextArea
-                    {...this.props}
-                    className="quick-editor"
-                    spellCheck={false}
-                    name="value"
-                    value={this.props.value}
-                    style={{height: "1em"}}
-                    onChange={this.props.onChange}
-                />
-            </pre>
+const TextEditor = props => (
+    <pre className="value">
+        <AutosizeTextArea
+            {...props}
+            className="quick-editor"
+            spellCheck={false}
+            name="value"
+            style={{height: "1em"}}
+        />
+    </pre>
+);
 
-        );
-    }
-}
+class AutosizeTextArea extends Component {
 
-
-class AutosizeTextArea extends React.Component {
+    static defaultProps = {
+        rows: 1
+    };
 
     componentDidMount() {
-        const textarea = React.findDOMNode(this.refs.textarea);
+        const textarea = this.refs.textarea;
         autosize(textarea);
         textarea.focus();
         textarea.select();
@@ -774,7 +772,7 @@ class AutosizeTextArea extends React.Component {
     dispatchEvent(TYPE, defer) {
         const event = document.createEvent('Event');
         event.initEvent(TYPE, true, false);
-        const dispatch = () => this.refs.textarea.getDOMNode().dispatchEvent(event);
+        const dispatch = () => this.refs.textarea.dispatchEvent(event);
         if (defer) {
             // Next tick
             setTimeout(dispatch);
@@ -792,8 +790,5 @@ class AutosizeTextArea extends React.Component {
     }
 }
 
-AutosizeTextArea.defaultProps = {
-    rows: 1
-};
 
 // vim: sw=4 ts=4 et
