@@ -1,6 +1,7 @@
 ﻿import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Portal from 'react-portal';
+import reactUpdate from 'react-addons-update';
 import MicroEvent from 'microevent';
 import _ from 'underscore';
 import ajax from './micro-ajax';
@@ -97,7 +98,7 @@ export default class SettingsPanel extends Component {
             'set-focused-index': index => this.setFocusedIndex(index),
         };
 
-        Object.keys(handlers).forEach(event => SettingsEvents.bind(event, handlers[event]));
+        _.each(handlers, (handler, event) => SettingsEvents.bind(event, handler));
     }
 
     setNewOverride(data) {
@@ -169,7 +170,7 @@ export default class SettingsPanel extends Component {
         if (this.state.currentlyEditing && this.state.currentlyEditing.name === r.name) {
             updateData.currentlyEditing = {$set: r};
         }
-        this.setState(React.addons.update(this.state, updateData));
+        this.setState(reactUpdate(this.state, updateData));
     }
 
 
