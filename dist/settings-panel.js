@@ -640,10 +640,10 @@ var SettingsPanel =
 	            )
 	        );
 	    } else if (setting.allOverrides.length > 0) {
-	        var children = setting.allOverrides.map(function (o) {
+	        var children = setting.allOverrides.map(function (o, i) {
 	            return _react2['default'].createElement(
 	                'strong',
-	                null,
+	                { key: i },
 	                o.tier + '-' + o.dataCenter
 	            );
 	        });

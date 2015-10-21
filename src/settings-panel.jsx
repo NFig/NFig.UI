@@ -447,7 +447,7 @@ const SettingValue = props => {
             </p>
         );
     } else if (setting.allOverrides.length > 0) {
-        const children = setting.allOverrides.map(o => <strong>{`${o.tier}-${o.dataCenter}`}</strong>);
+        const children = setting.allOverrides.map((o, i) => <strong key={i}>{`${o.tier}-${o.dataCenter}`}</strong>);
         overrideInfo = (
             <p className="overridden">
                 Has overrides for&nbsp;
