@@ -110,6 +110,14 @@ var SettingsPanel =
 	    return string.toLowerCase().indexOf(search.toLowerCase()) !== -1;
 	};
 
+	// String.join helper for elements / dom nodes
+	function intersperse(arr, sep) {
+	    if (!arr) return [];
+	    return arr.slice(1).reduce(function (xs, x, i) {
+	        return xs.concat([sep, x]);
+	    }, [arr[0]]);
+	}
+
 	var SettingsPanel = (function (_Component) {
 	    _inherits(SettingsPanel, _Component);
 
@@ -617,7 +625,7 @@ var SettingsPanel =
 	    var child = setting.isBool ? _react2['default'].createElement(BoolValue, props) : _react2['default'].createElement(TextValue, props);
 
 	    var overrideInfo = null;
-	    if (props.setting.activeOverride) {
+	    if (setting.activeOverride) {
 
 	        var dcOverride = props.setting.activeOverride.dataCenter;
 
@@ -630,6 +638,20 @@ var SettingsPanel =
 	                null,
 	                dcOverride
 	            )
+	        );
+	    } else if (setting.allOverrides.length > 0) {
+	        var children = setting.allOverrides.map(function (o) {
+	            return _react2['default'].createElement(
+	                'strong',
+	                null,
+	                o.tier + '-' + o.dataCenter
+	            );
+	        });
+	        overrideInfo = _react2['default'].createElement(
+	            'p',
+	            { className: 'overridden' },
+	            'Has overrides for ',
+	            intersperse(children, ", ")
 	        );
 	    }
 
@@ -724,8 +746,12 @@ var SettingsPanel =
 	        _classCallCheck(this, EditorModal);
 
 	        _Component6.call(this, props);
+	        var _props$setting2 = props.setting;
+	        var allOverrides = _props$setting2.allOverrides;
+	        var activeOverride = _props$setting2.activeOverride;
+
 	        this.state = {
-	            showDetails: false,
+	            showDetails: allOverrides && allOverrides.length && !activeOverride,
 	            selectedDataCenter: null,
 	            newOverrideValue: null
 	        };
