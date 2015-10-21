@@ -1,4 +1,4 @@
-﻿import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Portal from 'react-portal';
 import reactUpdate from 'react-addons-update';
@@ -20,6 +20,12 @@ const Keys = {
 
 
 const containsText = (string, search) => string.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+
+// String.join helper for elements / dom nodes
+function intersperse(arr, sep) {
+    if (!arr) return [];
+    return arr.slice(1).reduce((xs, x, i) => xs.concat([sep,x]), [arr[0]]);
+}
 
 export default class SettingsPanel extends Component {
 
@@ -424,20 +430,28 @@ class Setting extends Component {
 
 
 const SettingValue = props => {
-    const setting = props.setting;
+    const { setting } = props;
 
     const child = setting.isBool
         ? <BoolValue {...props} />
         : <TextValue {...props} />;
 
     let overrideInfo = null;
-    if (props.setting.activeOverride) {
+    if (setting.activeOverride) {
 
         const dcOverride = props.setting.activeOverride.dataCenter;
 
         overrideInfo = (
             <p className="overridden">
                 Overridden by Data Center: <strong>{dcOverride}</strong>
+            </p>
+        );
+    } else if (setting.allOverrides.length > 0) {
+        const children = setting.allOverrides.map(o => <strong>{`${o.tier}-${o.dataCenter}`}</strong>);
+        overrideInfo = (
+            <p className="overridden">
+                Has overrides for&nbsp;
+                {intersperse(children, ", ")}
             </p>
         );
     }
@@ -496,8 +510,9 @@ class EditorModal extends Component {
 
     constructor(props) {
         super(props);
+        const { setting: { allOverrides, activeOverride } } = props;
         this.state = {
-            showDetails: false,
+            showDetails: allOverrides && allOverrides.length && !activeOverride,
             selectedDataCenter: null,
             newOverrideValue: null
         };
