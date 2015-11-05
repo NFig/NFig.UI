@@ -266,7 +266,7 @@ export default class SettingsPanel extends Component {
                 this.setFocusedIndex(this.state.currentlyFocused + 1);
                 break;
             case Keys.ENTER:
-                if (this.state.currentlyFocused >= 0) {
+                if (!this.state.currentlyEditing && this.state.currentlyFocused >= 0) {
                     e.preventDefault();
                     this.editFocusedSetting();
                 }
@@ -324,4 +324,4 @@ export default class SettingsPanel extends Component {
     }
 }
 
-
+// vim: sw=4 ts=4 et

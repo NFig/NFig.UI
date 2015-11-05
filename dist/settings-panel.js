@@ -152,6 +152,8 @@ var SettingsPanel =
 	        this.updateSearchUrl = _underscore2['default'].debounce(this.updateSearchUrl, 500);
 	    }
 
+	    // vim: sw=4 ts=4 et
+
 	    SettingsPanel.prototype.cancelEditing = function cancelEditing(e) {
 	        e.stopImmediatePropagation();
 	        e.stopPropagation();
@@ -391,7 +393,7 @@ var SettingsPanel =
 	                this.setFocusedIndex(this.state.currentlyFocused + 1);
 	                break;
 	            case _keys2['default'].ENTER:
-	                if (this.state.currentlyFocused >= 0) {
+	                if (!this.state.currentlyEditing && this.state.currentlyFocused >= 0) {
 	                    e.preventDefault();
 	                    this.editFocusedSetting();
 	                }
@@ -21759,10 +21761,6 @@ var SettingsPanel =
 	var _marked = __webpack_require__(167);
 
 	var _marked2 = _interopRequireDefault(_marked);
-
-	var _keys = __webpack_require__(160);
-
-	var _keys2 = _interopRequireDefault(_keys);
 
 	var _AutosizeTextArea = __webpack_require__(171);
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Portal from 'react-portal';
 import marked from 'marked';
-import Keys from './keys';
 import AutosizeTextArea from './AutosizeTextArea';
 
 class Modal extends Component {
