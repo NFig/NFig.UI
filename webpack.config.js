@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var LessPluginCleanCSS = require('less-plugin-clean-css');
 
 module.exports = {
   entry: './src/SettingsPanel.js',
@@ -21,5 +22,10 @@ module.exports = {
     new webpack.ProvidePlugin({
       fetch: 'imports?self=>global!exports?global.fetch!whatwg-fetch'
     })
-  ]
+  ],
+  lessLoader: {
+    lessPlugins: [
+      new LessPluginCleanCSS({advanced: true})
+    ]
+  }
 };
