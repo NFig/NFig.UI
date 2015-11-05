@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 
 module.exports = {
-  entry: './src/settings-panel.jsx',
+  entry: './src/SettingsPanel.js',
   output: {
     libraryTarget: 'var',
     library: 'SettingsPanel',
@@ -12,13 +12,14 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.less$/, loader: 'style!raw!less' },
-      { test: /\.jsx?$/, exclude: /(node_modules|bower_components)/, loader: 'babel' }
+      { test: /\.less$/, loader: 'style!css!less' },
+      { test: /\.png$/, loader: 'url-loader?mimetype=image/png' },
+      { test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: 'babel' }
     ]
   },
   plugins: [
     new webpack.ProvidePlugin({
-      'fetch': 'imports?self=>global!exports?global.fetch!whatwg-fetch'
+      fetch: 'imports?self=>global!exports?global.fetch!whatwg-fetch'
     })
   ]
 };
