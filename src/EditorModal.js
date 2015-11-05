@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Portal from 'react-portal';
 import marked from 'marked';
 import Keys from './keys';
+import AutosizeTextArea from './AutosizeTextArea';
 
 class Modal extends Component {
 
@@ -55,11 +56,20 @@ export default class EditorModal extends Component {
 
         const override = this.props.setting.allOverrides.find(o => o.dataCenter === selectedDataCenter);
 
-        this.setState({selectedDataCenter, newOverrideValue: override && override.value});
+        this.setState({selectedDataCenter, newOverrideValue: override && override.value || ''});
     }
 
     handleOverrideChange(e) {
         this.setState({newOverrideValue: e.target.value});
+    }
+
+    canSetOverride() {
+        if (!this.state.selectedDataCenter)
+            return false;
+
+        const { setting: { isBool } } = this.props;
+
+        return !isBool || !!this.state.newOverrideValue;
     }
 
     setNewOverride() {
@@ -122,11 +132,12 @@ export default class EditorModal extends Component {
                             {selectedDataCenter ?
                             <div>
                                 <SettingEditor {...this.props} value={this.state.newOverrideValue} onChange={e => this.handleOverrideChange(e)}/>
+                                {this.canSetOverride() ?
                                 <p>
                                     <button className="set-override" onClick={() => this.setNewOverride()}>Set Override</button>
                                     <span>&nbsp;</span>
                                     <button className="cancel-override" onClick={() => this.cancelNewOverride()}>Cancel</button>
-                                </p>
+                                </p> : null}
                             </div>
                             : null}
                         </div>
@@ -283,3 +294,4 @@ const TextEditor = props => (
     </pre>
 );
 
+// vim: sw=4 ts=4 et

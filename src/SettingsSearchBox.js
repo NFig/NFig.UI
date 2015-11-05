@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Keys from './keys';
 
 import searchIcon from './search.png';
 
