@@ -109,9 +109,9 @@ export default class EditorModal extends Component {
                                 <h5>Active Override</h5>
                                 <p>Data Center: <strong>{override.dataCenter}</strong></p>
                                 <pre className="setting-value">{override.value}</pre>
-                                <a className="edit-override" onClick={() => this.selectDataCenter(override.dataCenter)}>Edit</a>
+                                <button className="edit-override" onClick={() => this.selectDataCenter(override.dataCenter)}>Edit</button>
                                 <span>&nbsp;</span>
-                                <a className="clear-override" onClick={() => this.clearOverride(override.dataCenter)}>Clear</a>
+                                <button className="clear-override" onClick={() => this.clearOverride(override.dataCenter)}>Clear</button>
                             </div> : null}
                             <div className="default">
                                 <h5>Default Value</h5>
@@ -168,14 +168,14 @@ class DataCenterSelector extends Component {
         const {selectedValue, onChange, dataCenters} = this.props;
 
         return (
-            <RadioButtonGroup
+            <ButtonGroup
                 {...this.props}
                 className="spaced"
                 name="newOverrideValue">
                 {dataCenters.map(dc =>
                     <RadioButton key={dc} value={dc}>{dc}</RadioButton>
                 )}
-            </RadioButtonGroup>
+            </ButtonGroup>
         );
     }
 }
@@ -232,10 +232,10 @@ class BoolEditor extends Component {
     render() {
         return (
             <p>
-                <RadioButtonGroup name="overrideBool" selectedValue={this.props.value} onChange={this.props.onChange}>
+                <ButtonGroup name="overrideBool" selectedValue={this.props.value} onChange={this.props.onChange}>
                     <RadioButton value="True">True</RadioButton>
                     <RadioButton value="False">False</RadioButton>
-                </RadioButtonGroup>
+                </ButtonGroup>
             </p>
         );
     }
@@ -251,20 +251,14 @@ class RadioButton extends Component {
             classNames.push('active');
 
         return (
-            <label className={classNames.join(' ')}>
-                <input
-                    type="radio"
-                    value={value}
-                    name={name}
-                    checked={active}
-                    onChange={onChange} />
+            <button className={classNames.join(' ')} value={value} onClick={onChange}>
                 {children}
-            </label>
+            </button>
         );
     }
 }
 
-class RadioButtonGroup extends Component {
+class ButtonGroup extends Component {
     render() {
         const {name, selectedValue, onChange, children} = this.props;
 

@@ -65,19 +65,25 @@ export default class SettingsPanel extends Component {
 
     componentDidMount() {
 
-        if (!this.props.settingsUrl || typeof this.props.settingsUrl !== 'string')
+        const { settingsUrl, className, customStyleSheet } = this.props;
+
+        if (!settingsUrl || typeof settingsUrl !== 'string')
             throw 'Must must set the prop "settingsUrl" of this component!';
 
         // Only include stylesheet if no custom class name was specified
-        if (!this.props.className) {
+        if (!className) {
             require('./styles.less');
+        }
+
+        if (customStyleSheet) {
+            this.loadCustomStyleSheet(this.props.customStyleSheet);
         }
 
 
         this.events = new MicroEvent();
         this.subscribeToEvents();
 
-        ajax.get(this.props.settingsUrl).then(result => {
+        ajax.get(settingsUrl).then(result => {
             this.setState(result.body, () => {
                 window.onpopstate(null);
             });
@@ -98,6 +104,32 @@ export default class SettingsPanel extends Component {
                 this.setSearchText('');
             }
         };
+    }
+
+    loadCustomStyleSheet(url) {
+        // Is this a .less sheet?
+        const link = document.createElement('link');
+        link.href = url;
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        const isLess = /\.less$/.test(url);
+        const less = window.less;
+        if (isLess) {
+            if (!less) {
+                console.error && console.error(`LessJS not loaded, can't load less stylesheet ${url}`);
+                return;
+            }
+
+            link.rel = 'stylesheet/less';
+        }
+
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(link);
+
+        if (isLess) {
+            less.sheets.push(link);
+            less.refresh();
+        }
     }
 
     subscribeToEvents() {

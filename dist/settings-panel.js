@@ -163,17 +163,26 @@ var SettingsPanel =
 	    SettingsPanel.prototype.componentDidMount = function componentDidMount() {
 	        var _this = this;
 
-	        if (!this.props.settingsUrl || typeof this.props.settingsUrl !== 'string') throw 'Must must set the prop "settingsUrl" of this component!';
+	        var _props = this.props;
+	        var settingsUrl = _props.settingsUrl;
+	        var className = _props.className;
+	        var customStyleSheet = _props.customStyleSheet;
+
+	        if (!settingsUrl || typeof settingsUrl !== 'string') throw 'Must must set the prop "settingsUrl" of this component!';
 
 	        // Only include stylesheet if no custom class name was specified
-	        if (!this.props.className) {
+	        if (!className) {
 	            __webpack_require__(371);
+	        }
+
+	        if (customStyleSheet) {
+	            this.loadCustomStyleSheet(this.props.customStyleSheet);
 	        }
 
 	        this.events = new _microevent2['default']();
 	        this.subscribeToEvents();
 
-	        _microAjax2['default'].get(this.props.settingsUrl).then(function (result) {
+	        _microAjax2['default'].get(settingsUrl).then(function (result) {
 	            _this.setState(result.body, function () {
 	                window.onpopstate(null);
 	            });
@@ -196,6 +205,32 @@ var SettingsPanel =
 	                _this.setSearchText('');
 	            }
 	        };
+	    };
+
+	    SettingsPanel.prototype.loadCustomStyleSheet = function loadCustomStyleSheet(url) {
+	        // Is this a .less sheet?
+	        var link = document.createElement('link');
+	        link.href = url;
+	        link.rel = 'stylesheet';
+	        link.type = 'text/css';
+	        var isLess = /\.less$/.test(url);
+	        var less = window.less;
+	        if (isLess) {
+	            if (!less) {
+	                console.error && console.error('LessJS not loaded, can\'t load less stylesheet ' + url);
+	                return;
+	            }
+
+	            link.rel = 'stylesheet/less';
+	        }
+
+	        var head = document.getElementsByTagName('head')[0];
+	        head.appendChild(link);
+
+	        if (isLess) {
+	            less.sheets.push(link);
+	            less.refresh();
+	        }
 	    };
 
 	    SettingsPanel.prototype.subscribeToEvents = function subscribeToEvents() {
@@ -21955,7 +21990,7 @@ var SettingsPanel =
 	                                override.value
 	                            ),
 	                            _react2['default'].createElement(
-	                                'a',
+	                                'button',
 	                                { className: 'edit-override', onClick: function () {
 	                                        return _this2.selectDataCenter(override.dataCenter);
 	                                    } },
@@ -21967,7 +22002,7 @@ var SettingsPanel =
 	                                ' '
 	                            ),
 	                            _react2['default'].createElement(
-	                                'a',
+	                                'button',
 	                                { className: 'clear-override', onClick: function () {
 	                                        return _this2.clearOverride(override.dataCenter);
 	                                    } },
@@ -22118,7 +22153,7 @@ var SettingsPanel =
 	        var dataCenters = _props2.dataCenters;
 
 	        return _react2['default'].createElement(
-	            RadioButtonGroup,
+	            ButtonGroup,
 	            _extends({}, this.props, {
 	                className: 'spaced',
 	                name: 'newOverrideValue' }),
@@ -22262,7 +22297,7 @@ var SettingsPanel =
 	            'p',
 	            null,
 	            _react2['default'].createElement(
-	                RadioButtonGroup,
+	                ButtonGroup,
 	                { name: 'overrideBool', selectedValue: this.props.value, onChange: this.props.onChange },
 	                _react2['default'].createElement(
 	                    RadioButton,
@@ -22304,14 +22339,8 @@ var SettingsPanel =
 	        if (active) classNames.push('active');
 
 	        return _react2['default'].createElement(
-	            'label',
-	            { className: classNames.join(' ') },
-	            _react2['default'].createElement('input', {
-	                type: 'radio',
-	                value: value,
-	                name: name,
-	                checked: active,
-	                onChange: onChange }),
+	            'button',
+	            { className: classNames.join(' '), value: value, onClick: onChange },
 	            children
 	        );
 	    };
@@ -22319,16 +22348,16 @@ var SettingsPanel =
 	    return RadioButton;
 	})(_react.Component);
 
-	var RadioButtonGroup = (function (_Component8) {
-	    _inherits(RadioButtonGroup, _Component8);
+	var ButtonGroup = (function (_Component8) {
+	    _inherits(ButtonGroup, _Component8);
 
-	    function RadioButtonGroup() {
-	        _classCallCheck(this, RadioButtonGroup);
+	    function ButtonGroup() {
+	        _classCallCheck(this, ButtonGroup);
 
 	        _Component8.apply(this, arguments);
 	    }
 
-	    RadioButtonGroup.prototype.render = function render() {
+	    ButtonGroup.prototype.render = function render() {
 	        var _props5 = this.props;
 	        var name = _props5.name;
 	        var selectedValue = _props5.selectedValue;
@@ -22348,7 +22377,7 @@ var SettingsPanel =
 	        );
 	    };
 
-	    return RadioButtonGroup;
+	    return ButtonGroup;
 	})(_react.Component);
 
 	var TextEditor = function TextEditor(props) {
