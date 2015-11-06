@@ -1,15 +1,19 @@
 @setting-border-color: #ddd;
 
+.link() {
+    cursor: pointer;
+    color: #337ab7;
+    text-decoration: none;
+
+    &:hover {
+        color: #23527c;
+        text-decoration: underline;
+    }
+}
+
 .settings-panel, .settings-panel-editor-modal {
     a {
-        cursor: pointer;
-        color: #337ab7;
-        text-decoration: none;
-
-        &:hover {
-            color: #23527c;
-            text-decoration: underline;
-        }
+        .link();
     }
 }
 
@@ -381,6 +385,18 @@
                 }
 
                 .edit-override {
+                    .link();
+
+                    padding: 1px 5px;
+                    font-size: 12px;
+                    line-height: 1.5;
+                    border-radius: 3px;
+
+                    border-color: transparent;
+                    background-color: transparent;
+                    -webkit-box-shadow: none;
+                    box-shadow: none;
+
                     cursor: pointer;
                     padding: 1px 5px;
                     font-size: 12px;
