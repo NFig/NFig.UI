@@ -18,7 +18,7 @@
 }
 
 .settings-panel {
-    * { 
+    * {
         box-sizing: border-box;
     }
 
@@ -111,6 +111,9 @@
                 display: block;
                 font-size: 14px;
             }
+            .desc {
+                font-size: 11px;
+            }
 
             p {
                 margin: 0;
@@ -152,28 +155,6 @@
                 -webkit-font-smoothing: antialiased;
             }
 
-            span.bool-val-true {
-                i {
-                    display: none;
-                }
-
-                &::after {
-                    color: #3c763d;
-                    content: "\e013";
-                }
-            }
-
-            span.bool-val-false {
-                i {
-                    display: none;
-                }
-
-                &::after {
-                    color: #a94442;
-                    content: "\e014";
-                }
-            }
-
             pre {
                 margin: 0;
                 padding: 0;
@@ -183,10 +164,14 @@
                 overflow: initial;
             }
 
-            &.editable:hover {
-                pre {
-                    text-decoration: underline;
-                    color: #23527c;
+            &.editable {
+
+                font-size: 12px;
+                &:hover {
+                    pre {
+                        text-decoration: underline;
+                        color: #23527c;
+                    }
                 }
             }
         }
@@ -351,6 +336,10 @@
                 border: 1px solid #ccc;
                 border-radius: 4px;
             }
+
+            .raw {
+                font-size: 11px;
+            }
         }
 
         .values, .newoverride {
@@ -373,7 +362,7 @@
                 color: inherit;
             }
 
-            p { 
+            p {
                 font-size: 11px;
             }
 
@@ -504,6 +493,42 @@
                 background-color: #d9534f;
                 border-color: #d43f3a;
             }
+
+            .table-selector {
+                margin-bottom: 10px;
+                width: 100%;
+
+                .selector-item {
+                    cursor: pointer;
+                    height: 23px;
+                    border: 1px solid transparent;
+                    height: 23px;
+
+                    .status {
+                        height: 23px;
+                        width: 30px;
+                    }
+
+                    &.active {
+                        @bg: #d9edf7; background-color: @bg;
+                        border-color: darken(@bg, 10%);
+                    }
+
+                    th { text-align: right; }
+
+                    td, th {
+                        padding: 1px 3px;
+
+                        p {
+                            margin: 0;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: #d9edf7;
+                    }
+                }
+            }
         }
 
         .show-details {
@@ -602,7 +627,7 @@
 
             margin: 0 2px;
 
-            
+
             input[type=radio] {
                 position: absolute;
                 clip: rect(0,0,0,0);
@@ -626,7 +651,7 @@
 }
 
 @media screen and (max-width: 991px) {
-    
+
     .settings-panel-editor-modal .settings-panel-editor-dialog {
         width: 600px;
         margin-left: auto;

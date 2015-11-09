@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import SettingValue from './SettingValue';
-import marked from 'marked';
+import { render } from './marked-renderer';
+
+import SettingDescription from './SettingDescription';
 
 export default class Setting extends Component {
 
@@ -27,13 +29,6 @@ export default class Setting extends Component {
         this.props.events.trigger('begin-edit', this.props.setting);
     }
 
-    handleDescriptionClick(e) {
-        if (e.target.tagName === 'A') {
-            e.stopPropagation();
-            e.target.setAttribute('target', '_blank');
-        }
-    }
-
     render() {
         const setting = this.props.setting;
 
@@ -42,7 +37,7 @@ export default class Setting extends Component {
         if (setting.allOverrides.length > 0)
           className += 'overrides ';
 
-        if (setting.isFocused) 
+        if (setting.isFocused)
           className += 'focused ';
 
 
@@ -53,7 +48,7 @@ export default class Setting extends Component {
                     <strong>
                         <a>{setting.name}</a>
                     </strong>
-                    <span onClick={e => this.handleDescriptionClick(e)} dangerouslySetInnerHTML={{__html: marked(setting.description)}} />
+                    <SettingDescription setting={setting} />
                 </div>
 
                 <SettingValue {...this.props} />
@@ -61,5 +56,3 @@ export default class Setting extends Component {
         );
     }
 }
-
-

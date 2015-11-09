@@ -1,11 +1,11 @@
 import React from 'react';
-
+import { render } from './marked-renderer';
 
 import imgTrue from './setting-true.png';
 import imgFalse from './setting-false.png';
 
 // String.join helper for elements / dom nodes
-const intersperse = (arr, sep) => 
+const intersperse = (arr, sep) =>
   arr && arr.slice(1).reduce((xs, x, i) => xs.concat([sep,x]), [arr[0]]) || [];
 
 
@@ -14,7 +14,9 @@ const SettingValue = props => {
 
     const child = setting.isBool
         ? <BoolValue {...props} />
-        : <TextValue {...props} />;
+        : setting.isEnum
+            ? <EnumValue {...props} />
+            : <TextValue {...props} />;
 
     let overrideInfo = null;
     if (setting.activeOverride) {
@@ -40,6 +42,19 @@ const SettingValue = props => {
         <div className='editable value'>
             {child}
             {overrideInfo}
+        </div>
+    );
+};
+
+const EnumValue = props => {
+    const { setting: { activeOverride, defaultValue, enumNames } } = props;
+    const value = (activeOverride || defaultValue).value;
+    const name = enumNames[value].name;
+    const description = enumNames[value].description;
+    return (
+        <div>
+            <strong>{name}</strong>
+            {description ? <span dangerouslySetInnerHTML={{__html: render(description)}} /> : null}
         </div>
     );
 };

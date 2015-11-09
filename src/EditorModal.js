@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Portal from 'react-portal';
-import marked from 'marked';
+import { render } from './marked-renderer';
 import AutosizeTextArea from './AutosizeTextArea';
+
+import checkImg from './setting-true.png';
 
 class Modal extends Component {
 
@@ -59,16 +61,17 @@ export default class EditorModal extends Component {
     }
 
     handleOverrideChange(e) {
-        this.setState({newOverrideValue: e.target.value});
+        const val = e.target ? e.target.value : e;
+        this.setState({newOverrideValue: val});
     }
 
     canSetOverride() {
         if (!this.state.selectedDataCenter)
             return false;
 
-        const { setting: { isBool } } = this.props;
+        const { setting: { isBool, isEnum } } = this.props;
 
-        return !isBool || !!this.state.newOverrideValue;
+        return (!isBool && !isEnum) || !!this.state.newOverrideValue;
     }
 
     setNewOverride() {
@@ -88,8 +91,10 @@ export default class EditorModal extends Component {
 
     render() {
         const {setting, dataCenters} = this.props;
-        const {activeOverride: override, defaultValue: defval} = setting;
+        const {activeOverride: override, defaultValue: defval, isEnum} = setting;
         const {selectedDataCenter} = this.state;
+        const enumNames = setting.enumNames || {};
+
 
         return (
             <Portal isOpened={true} >
@@ -100,7 +105,7 @@ export default class EditorModal extends Component {
                             <span className="sr-only">Close</span>
                         </button>
                         <h3>{setting.name}</h3>
-                        <p dangerouslySetInnerHTML={{__html:marked(setting.description)}} />
+                        <p dangerouslySetInnerHTML={{__html:render(setting.description)}} />
                     </div>
                     <div className={`${this.props.className}-body`}>
                         <div className="values">
@@ -108,7 +113,7 @@ export default class EditorModal extends Component {
                             <div className="override active">
                                 <h5>Active Override</h5>
                                 <p>Data Center: <strong>{override.dataCenter}</strong></p>
-                                <pre className="setting-value">{override.value}</pre>
+                                <ValueDisplay value={override.value} isEnum={setting.isEnum} enumName={enumNames[override.value]} />
                                 <button className="edit-override" onClick={() => this.selectDataCenter(override.dataCenter)}>Edit</button>
                                 <span>&nbsp;</span>
                                 <button className="clear-override" onClick={() => this.clearOverride(override.dataCenter)}>Clear</button>
@@ -116,7 +121,7 @@ export default class EditorModal extends Component {
                             <div className="default">
                                 <h5>Default Value</h5>
                                 <p>Data Center: <strong>{defval.dataCenter}</strong></p>
-                                <pre className="setting-value">{defval.value}</pre>
+                                <ValueDisplay value={defval.value} isEnum={setting.isEnum} enumName={enumNames[defval.value]} />
                             </div>
                         </div>
                         <div className="newoverride">
@@ -162,6 +167,32 @@ export default class EditorModal extends Component {
         );
     }
 }
+
+const ValueDisplay = props => {
+    const { value, isEnum, enumName } = props;
+
+    if (isEnum) {
+
+        const desc = enumName.description
+            ? <div dangerouslySetInnerHTML={{__html: render(enumName.description)}} />
+            : null;
+
+        return (
+            <div>
+                <div className="setting-value">
+                    <strong>{enumName.name}</strong>
+                    {desc}
+                </div>
+                <div className="raw">
+                    Raw Value:
+                    <pre className="setting-value">{value}</pre>
+                </div>
+            </div>
+        );
+    }
+
+    return (<pre className="setting-value">{value}</pre>)
+};
 
 class DataCenterSelector extends Component {
     render() {
@@ -220,13 +251,14 @@ class ValueTable extends Component {
     }
 }
 
-class SettingEditor extends Component {
-    render() {
-        return this.props.setting.isBool
-            ? <BoolEditor {...this.props} />
-            : <TextEditor {...this.props} />;
-    }
-}
+const SettingEditor = props => {
+        const { setting } = props;
+        return setting.isBool
+            ? <BoolEditor {...props} />
+            : setting.isEnum
+                ? <EnumEditor {...props} />
+                : <TextEditor {...props} />;
+};
 
 class BoolEditor extends Component {
     render() {
@@ -286,5 +318,57 @@ const TextEditor = props => (
         />
     </pre>
 );
+
+class EnumEditor extends Component {
+    render() {
+        const { setting: {enumNames}, value, onChange } = this.props;
+        return (
+            <TableSelector selectedValue={value} onChange={onChange}>
+                {Object.keys(enumNames).map(key =>
+                    <TableSelectorItem
+                        key={key}
+                        value={key}
+                        name={enumNames[key].name}
+                        description={enumNames[key].description}
+                    />
+                )}
+            </TableSelector>
+        );
+    }
+}
+
+class TableSelector extends Component {
+    render() {
+        const { selectedValue, onChange, children } = this.props;
+        const mapped = React.Children.map(children, child =>
+            React.cloneElement(child, { active: child.props.value === selectedValue, onChange, ...child.props })
+        );
+
+        return (
+            <table className="table-selector">
+                <tbody>
+                    {mapped}
+                </tbody>
+            </table>
+        );
+    }
+}
+
+class TableSelectorItem extends Component {
+
+    render() {
+        const { onChange, name, value, description, active } = this.props;
+        return (
+            <tr className={`${active ? 'active' : ''} selector-item`} onClick={e => onChange(value)}>
+                <td className="status">{active ?
+                    <img src={checkImg} alt="selected" />
+                    : null
+                }</td>
+                <th>{name}</th>
+                <td>{description && <span dangerouslySetInnerHTML={{__html:render(description)}} />}</td>
+            </tr>
+        )
+    }
+}
 
 // vim: sw=4 ts=4 et
