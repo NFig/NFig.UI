@@ -3,6 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import reactUpdate from 'react-addons-update';
 
 
 /**
@@ -24,7 +25,6 @@ import MicroEvent from 'microevent';
 import _ from 'underscore';
 import Keys from './keys'
 import 'babel/polyfill';
-import reactUpdate from 'react-addons-update';
 
 const containsText = (string, search) => string.toLowerCase().indexOf(search.toLowerCase()) !== -1;
 
@@ -84,6 +84,14 @@ export default class SettingsPanel extends Component {
         this.subscribeToEvents();
 
         ajax.get(settingsUrl).then(result => {
+
+            if (result.status != 200) {
+                this.setState({
+                    error: result.body || "There was an error loading settings"
+                });
+                return;
+            }
+
             this.setState(result.body, () => {
                 window.onpopstate(null);
             });
@@ -139,6 +147,7 @@ export default class SettingsPanel extends Component {
             'new-override': data => this.setNewOverride(data),
             'clear-override': data => this.clearOverride(data),
             'set-focused-index': index => this.setFocusedIndex(index),
+            'clear-error': () => this.setState({error:null})
         };
 
         _.each(handlers, (handler, event) => this.events.bind(event, handler));
@@ -151,14 +160,24 @@ export default class SettingsPanel extends Component {
         ajax.post({
             url: this.props.setUrl,
             data
-        }).then(response => this.updateSettingState(response.body));
+        }).then(response => {
+            if (response.status != 200)
+                this.setState({error: response.body || 'There was an error setting the new override.'});
+            else
+                this.updateSettingState(response.body)      
+        });
     }
 
     clearOverride(data) {
         ajax.post({
             url: this.props.clearUrl,
             data
-        }).then(response => this.updateSettingState(response.body));
+        }).then(response => { 
+            if (response.status != 200)
+                this.setState({error: response.body || 'There was an error clearing the override.'});
+            else
+                this.updateSettingState(response.body) 
+        });
     }
 
     updateSearchUrl(value) {
@@ -190,14 +209,13 @@ export default class SettingsPanel extends Component {
     }
 
     clearEditingState() {
-        if (this.state.currentlyEditing != null) {
-            this.setState({ currentlyEditing: null });
-            if (/^#edit:/.test(location.hash)) {
-                if (this.state.searchText) {
-                    history.pushState(null, null, this.getUrlForSearch(this.state.searchText));
-                } else {
-                    history.pushState(null, null, this.getUrlForEdit(null));
-                }
+        this.setState({ currentlyEditing: null, error: null });
+
+        if (/^#edit:/.test(location.hash)) {
+            if (this.state.searchText) {
+                history.pushState(null, null, this.getUrlForSearch(this.state.searchText));
+            } else {
+                history.pushState(null, null, this.getUrlForEdit(null));
             }
         }
     }
@@ -213,6 +231,10 @@ export default class SettingsPanel extends Component {
         if (this.state.currentlyEditing && this.state.currentlyEditing.name === r.name) {
             updateData.currentlyEditing = {$set: r};
         }
+
+        // clear error
+        updateData.error = { $set: null };
+
         this.setState(reactUpdate(this.state, updateData));
     }
 
@@ -307,6 +329,8 @@ export default class SettingsPanel extends Component {
     }
 
     render() {
+
+
         const settings = _.each(this.getVisibleSettings(), (setting, i) => {
                             setting.isFocused = (this.state.currentlyFocused === i);
                             setting.index = i;
@@ -330,6 +354,9 @@ export default class SettingsPanel extends Component {
                     ref="search"
                 />
                 <div className="setting-groups">
+                    {this.state.error && !this.state.currentlyEditing ? 
+                        <div className={`${this.props.className || 'settings-panel'}-error`}>{this.state.error}</div>
+                    : null}
                     {settingsGroups.map((group, idx) => (
                         <SettingsGroup
                             name={group.name}
@@ -348,6 +375,7 @@ export default class SettingsPanel extends Component {
                         setting={this.state.currentlyEditing} 
                         dataCenters={this.state.availableDataCenters} 
                         events={this.events}
+                        error={this.state.error}
                     /> 
                         : null
                 }

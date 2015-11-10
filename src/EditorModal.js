@@ -47,7 +47,7 @@ export default class EditorModal extends Component {
             state: { selectedDataCenter: dataCenter },
             props: { setting: { name: settingName } }
         } = this;
-        this.cancelNewOverride();
+
         const data = {settingName:this.props.setting.name, dataCenter:dc};
         this.props.events.trigger('clear-override', data);
     }
@@ -65,14 +65,6 @@ export default class EditorModal extends Component {
         this.setState({newOverrideValue: val});
     }
 
-    canSetOverride() {
-        if (!this.state.selectedDataCenter)
-            return false;
-
-        const { setting: { isBool, isEnum } } = this.props;
-
-        return (!isBool && !isEnum) || !!this.state.newOverrideValue;
-    }
 
     setNewOverride() {
 
@@ -81,25 +73,33 @@ export default class EditorModal extends Component {
             props: { setting: { name: settingName } }
         } = this;
 
+        // this.cancelNewOverride();
         this.props.events.trigger('new-override', { settingName, dataCenter, value });
-        this.setState({selectedDataCenter: null});
     }
 
     cancelNewOverride() {
         this.setState({selectedDataCenter: null});
+        this.props.events.trigger('clear-error');
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (!newProps.error) {
+            this.setState({selectedDataCenter: null, newOverrideValue: null});
+        }
     }
 
     render() {
-        const {setting, dataCenters} = this.props;
-        const {activeOverride: override, defaultValue: defval, isEnum} = setting;
+        const {setting, dataCenters, className, error} = this.props;
+        const {activeOverride: override, defaultValue: defval, isEnum, allowsOverrides} = setting;
         const {selectedDataCenter} = this.state;
         const enumNames = setting.enumNames || {};
 
+        const SettingEditor = EditorFor(setting);
 
         return (
             <Portal isOpened={true} >
-                <Modal  className={this.props.className} onRequestClose={_ => this.handleClose()}>
-                    <div className={`${this.props.className}-header`}>
+                <Modal  className={className} onRequestClose={_ => this.handleClose()}>
+                    <div className={`${className}-header`}>
                         <button type="button" className="close" onClick={() => this.handleClose()}>
                             <span aria-hidden="true">&times;</span>
                             <span className="sr-only">Close</span>
@@ -107,7 +107,7 @@ export default class EditorModal extends Component {
                         <h3>{setting.name}</h3>
                         <p dangerouslySetInnerHTML={{__html:render(setting.description)}} />
                     </div>
-                    <div className={`${this.props.className}-body`}>
+                    <div className={`${className}-body`}>
                         <div className="values">
                             {override ?
                             <div className="override active">
@@ -131,22 +131,28 @@ export default class EditorModal extends Component {
                                     selectedValue={this.state.selectedDataCenter}
                                     onChange={e => this.selectDataCenter(e)}
                                     dataCenters={dataCenters}
+                                    allowsOverrides={allowsOverrides}
                                 />
                             </p>
                             {selectedDataCenter ?
                             <div>
+                                {setting.requiresRestart ?
+                                    <p className="requires-restart">Changes will not take effect until application is restarted.</p>
+                                : null}
                                 <SettingEditor {...this.props} value={this.state.newOverrideValue} onChange={e => this.handleOverrideChange(e)}/>
-                                {this.canSetOverride() ?
                                 <p>
                                     <button className="set-override" onClick={() => this.setNewOverride()}>Set Override</button>
                                     <span>&nbsp;</span>
                                     <button className="cancel-override" onClick={() => this.cancelNewOverride()}>Cancel</button>
-                                </p> : null}
+                                </p>
                             </div>
                             : null}
                         </div>
+                        {error ?
+                            <p className={`${className}-error`}>{error}</p>
+                        : null}
                     </div>
-                    <div className={`${this.props.className}-body show-details`}>
+                    <div className={`${className}-body show-details`}>
                         {this.state.showDetails
                         ? <a className="toggle" style={{cursor:"pointer"}} onClick={() => this.hideDetails()}>Hide Details</a>
                         : <a className="toggle" style={{cursor:"pointer"}} onClick={() => this.showDetails()}>Show Details</a>
@@ -180,12 +186,8 @@ const ValueDisplay = props => {
         return (
             <div>
                 <div className="setting-value">
-                    <strong>{enumName.name}</strong>
+                    <strong>{`${enumName.name} (${value})`}</strong>
                     {desc}
-                </div>
-                <div className="raw">
-                    Raw Value:
-                    <pre className="setting-value">{value}</pre>
                 </div>
             </div>
         );
@@ -196,7 +198,7 @@ const ValueDisplay = props => {
 
 class DataCenterSelector extends Component {
     render() {
-        const {selectedValue, onChange, dataCenters} = this.props;
+        const {selectedValue, onChange, dataCenters, allowsOverrides} = this.props;
 
         return (
             <ButtonGroup
@@ -204,7 +206,7 @@ class DataCenterSelector extends Component {
                 className="spaced"
                 name="newOverrideValue">
                 {dataCenters.map(dc =>
-                    <RadioButton key={dc} value={dc}>{dc}</RadioButton>
+                    <RadioButton key={dc} value={dc} disabled={!allowsOverrides[dc]}>{dc}</RadioButton>
                 )}
             </ButtonGroup>
         );
@@ -251,14 +253,14 @@ class ValueTable extends Component {
     }
 }
 
-const SettingEditor = props => {
-        const { setting } = props;
-        return setting.isBool
-            ? <BoolEditor {...props} />
-            : setting.isEnum
-                ? <EnumEditor {...props} />
-                : <TextEditor {...props} />;
-};
+function EditorFor(setting) {
+    if (setting.isEnum)
+        return EnumEditor;
+
+    return {
+        'System.Boolean': BoolEditor
+    }[setting.typeName] || TextEditor;
+}
 
 class BoolEditor extends Component {
     render() {
@@ -275,15 +277,19 @@ class BoolEditor extends Component {
 
 class RadioButton extends Component {
     render() {
-        const {value, className, onChange, name, children, active} = this.props;
+        const {value, className, onChange, name, children, active, disabled} = this.props;
 
         const classNames = (className && className.split(' ')) || [];
         classNames.push('label-button');
         if (active)
             classNames.push('active');
 
+        let title = null;
+        if (disabled)
+            title = "Overrides not allowed for this data center and tier";
+
         return (
-            <button className={classNames.join(' ')} value={value} onClick={onChange}>
+            <button className={classNames.join(' ')} value={value} onClick={onChange} disabled={disabled} title={title}>
                 {children}
             </button>
         );
@@ -323,21 +329,21 @@ class EnumEditor extends Component {
     render() {
         const { setting: {enumNames}, value, onChange } = this.props;
         return (
-            <TableSelector selectedValue={value} onChange={onChange}>
+            <EnumSelector selectedValue={value} onChange={onChange}>
                 {Object.keys(enumNames).map(key =>
-                    <TableSelectorItem
+                    <EnumSelectorItem
                         key={key}
                         value={key}
                         name={enumNames[key].name}
                         description={enumNames[key].description}
                     />
                 )}
-            </TableSelector>
+            </EnumSelector>
         );
     }
 }
 
-class TableSelector extends Component {
+class EnumSelector extends Component {
     render() {
         const { selectedValue, onChange, children } = this.props;
         const mapped = React.Children.map(children, child =>
@@ -345,7 +351,7 @@ class TableSelector extends Component {
         );
 
         return (
-            <table className="table-selector">
+            <table className="enum-selector">
                 <tbody>
                     {mapped}
                 </tbody>
@@ -354,7 +360,7 @@ class TableSelector extends Component {
     }
 }
 
-class TableSelectorItem extends Component {
+class EnumSelectorItem extends Component {
 
     render() {
         const { onChange, name, value, description, active } = this.props;
@@ -364,7 +370,7 @@ class TableSelectorItem extends Component {
                     <img src={checkImg} alt="selected" />
                     : null
                 }</td>
-                <th>{name}</th>
+                <th>{`${name} (${value})`}</th>
                 <td>{description && <span dangerouslySetInnerHTML={{__html:render(description)}} />}</td>
             </tr>
         )

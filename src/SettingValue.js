@@ -5,18 +5,21 @@ import imgTrue from './setting-true.png';
 import imgFalse from './setting-false.png';
 
 // String.join helper for elements / dom nodes
-const intersperse = (arr, sep) =>
-  arr && arr.slice(1).reduce((xs, x, i) => xs.concat([sep,x]), [arr[0]]) || [];
+function intersperse (arr, sep) {
+  return arr && arr.slice(1).reduce((xs, x, i) => xs.concat([sep,x]), [arr[0]]) || [];
+}
 
+function ValueFor(setting) {
+  if (setting.isEnum)
+    return EnumValue;
+
+  return {
+    'System.Boolean': BoolValue
+  }[setting.typeName] || TextValue;
+}
 
 const SettingValue = props => {
     const { setting } = props;
-
-    const child = setting.isBool
-        ? <BoolValue {...props} />
-        : setting.isEnum
-            ? <EnumValue {...props} />
-            : <TextValue {...props} />;
 
     let overrideInfo = null;
     if (setting.activeOverride) {
@@ -38,9 +41,10 @@ const SettingValue = props => {
         );
     }
 
+    const Value = ValueFor(setting);
     return (
         <div className='editable value'>
-            {child}
+          <Value {...props} />
             {overrideInfo}
         </div>
     );
@@ -53,7 +57,7 @@ const EnumValue = props => {
     const description = enumNames[value].description;
     return (
         <div>
-            <strong>{name}</strong>
+            <strong>{`${name} (${value})`}</strong>
             {description ? <span dangerouslySetInnerHTML={{__html: render(description)}} /> : null}
         </div>
     );
