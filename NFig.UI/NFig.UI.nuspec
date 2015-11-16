@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Bryan Ross</authors>
+    <owners>Bryan Ross, Bret Copelan</owners>
+    <licenseUrl>https://github.com/NFig/NFig.UI/blob/master/LICENSE.MIT</licenseUrl>
+    <projectUrl>https://github.com/NFig/NFig.UI</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>Config Settings Tier</tags>
+    <dependencies>
+      <dependency id="Jil" version="2.12.1" />
+      <dependency id="NFig" version="1.0.1-unstable28" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\settings-panel\dist\settings-panel.js" target="content\scripts" />
+  </files>
+</package>
