@@ -24,7 +24,7 @@ namespace NFig.UI
         public SettingsJsonModel(
             TTier tier,
             TDataCenter dataCenter,
-            IEnumerable<SettingInfo<TTier, TDataCenter>> infos,
+            SettingInfo<TTier, TDataCenter>[] infos,
             IList<TDataCenter> availableDataCenters)
         {
             Settings = infos.OrderBy(i => i.Name)
@@ -60,6 +60,10 @@ namespace NFig.UI
 
             public int Compare(SettingValue<TTier, TDataCenter> x, SettingValue<TTier, TDataCenter> y)
             {
+                if (EqualityComparer<TTier>.Default.Equals(x.Tier, y.Tier) &&
+                    EqualityComparer<TDataCenter>.Default.Equals(x.DataCenter, y.DataCenter))
+                    return 0;
+
                 if (EqualityComparer<TTier>.Default.Equals(x.Tier, _currentTier)
                     && EqualityComparer<TTier>.Default.Equals(y.Tier, _currentTier))
                     return -1;

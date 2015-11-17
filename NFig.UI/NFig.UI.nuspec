@@ -5,7 +5,7 @@
     <version>$version$</version>
     <title>$title$</title>
     <authors>Bryan Ross</authors>
-    <owners>Bryan Ross, Bret Copelan</owners>
+    <owners>Bryan Ross, Bret Copeland</owners>
     <licenseUrl>https://github.com/NFig/NFig.UI/blob/master/LICENSE.MIT</licenseUrl>
     <projectUrl>https://github.com/NFig/NFig.UI</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

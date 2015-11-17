@@ -128,9 +128,9 @@ var SettingsPanel =
 	    _createClass(SettingsPanel, null, [{
 	        key: 'propTypes',
 	        value: {
-	            settingsUrl: _react.PropTypes.string.isRequired,
-	            clearUrl: _react.PropTypes.string.isRequired,
-	            setUrl: _react.PropTypes.string.isRequired
+	            settingsUrl: _react.PropTypes.string,
+	            clearUrl: _react.PropTypes.string,
+	            setUrl: _react.PropTypes.string
 	        },
 	        enumerable: true
 	    }]);
@@ -165,18 +165,32 @@ var SettingsPanel =
 
 	        var _props = this.props;
 	        var settingsUrl = _props.settingsUrl;
+	        var setUrl = _props.setUrl;
+	        var clearUrl = _props.clearUrl;
 	        var className = _props.className;
 	        var customStyleSheet = _props.customStyleSheet;
 
-	        if (!settingsUrl || typeof settingsUrl !== 'string') throw 'Must must set the prop "settingsUrl" of this component!';
-
-	        // Only include stylesheet if no custom class name was specified
 	        if (!className) {
 	            __webpack_require__(374);
 	        }
 
 	        if (customStyleSheet) {
 	            this.loadCustomStyleSheet(this.props.customStyleSheet);
+	        }
+
+	        if (!settingsUrl || typeof settingsUrl !== 'string') {
+	            this.setState({
+	                error: 'Must set the "settingsUrl" property of this component. ' + 'Use the second parameter to SettingsPanel.init() to specify properties.'
+	            });
+	            return;
+	        }
+
+	        // check other properties now
+	        if (!setUrl || !clearUrl) {
+	            this.setState({
+	                error: 'Must set both the "setUrl" and "clearUrl" properties of this component. ' + 'Use the second parameter to SettingsPanel.init() to specify properties.'
+	            });
+	            return;
 	        }
 
 	        this.events = new _microevent2['default']();
@@ -480,14 +494,14 @@ var SettingsPanel =
 	                },
 	                ref: 'search'
 	            }),
-	            _react2['default'].createElement(
+	            this.state.error && !this.state.currentlyEditing ? _react2['default'].createElement(
+	                'div',
+	                { className: (this.props.className || 'settings-panel') + '-error' },
+	                this.state.error
+	            ) : null,
+	            settingsGroups.length ? _react2['default'].createElement(
 	                'div',
 	                { className: 'setting-groups' },
-	                this.state.error && !this.state.currentlyEditing ? _react2['default'].createElement(
-	                    'div',
-	                    { className: (this.props.className || 'settings-panel') + '-error' },
-	                    this.state.error
-	                ) : null,
 	                settingsGroups.map(function (group, idx) {
 	                    return _react2['default'].createElement(_SettingsGroup2['default'], {
 	                        name: group.name,
@@ -499,7 +513,7 @@ var SettingsPanel =
 	                        events: _this7.events
 	                    });
 	                })
-	            ),
+	            ) : null,
 	            this.state.currentlyEditing ? _react2['default'].createElement(_EditorModal2['default'], {
 	                className: (this.props.className || 'settings-panel') + '-editor',
 	                setting: this.state.currentlyEditing,

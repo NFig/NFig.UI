@@ -31,9 +31,9 @@ const containsText = (string, search) => string.toLowerCase().indexOf(search.toL
 export default class SettingsPanel extends Component {
 
     static propTypes = {
-        settingsUrl: PropTypes.string.isRequired,
-        clearUrl: PropTypes.string.isRequired,
-        setUrl: PropTypes.string.isRequired,
+        settingsUrl: PropTypes.string,
+        clearUrl: PropTypes.string,
+        setUrl: PropTypes.string
     };
 
     static init(element, props) {
@@ -65,18 +65,32 @@ export default class SettingsPanel extends Component {
 
     componentDidMount() {
 
-        const { settingsUrl, className, customStyleSheet } = this.props;
+        const { settingsUrl, setUrl, clearUrl, className, customStyleSheet } = this.props;
 
-        if (!settingsUrl || typeof settingsUrl !== 'string')
-            throw 'Must must set the prop "settingsUrl" of this component!';
-
-        // Only include stylesheet if no custom class name was specified
         if (!className) {
             require('./styles.less');
         }
 
         if (customStyleSheet) {
             this.loadCustomStyleSheet(this.props.customStyleSheet);
+        }
+
+
+        if (!settingsUrl || typeof settingsUrl !== 'string') { 
+            this.setState({
+                error: 'Must set the "settingsUrl" property of this component. ' +
+                       'Use the second parameter to SettingsPanel.init() to specify properties.'
+            });
+            return;
+        }
+
+        // check other properties now
+        if (!setUrl || !clearUrl) {
+            this.setState({
+                error: 'Must set both the "setUrl" and "clearUrl" properties of this component. ' +
+                       'Use the second parameter to SettingsPanel.init() to specify properties.'
+            });
+            return;
         }
 
 
@@ -353,10 +367,10 @@ export default class SettingsPanel extends Component {
                     onEdit={e => this.editVisibleSetting(this.state.searchText)}
                     ref="search"
                 />
-                <div className="setting-groups">
-                    {this.state.error && !this.state.currentlyEditing ? 
-                        <div className={`${this.props.className || 'settings-panel'}-error`}>{this.state.error}</div>
-                    : null}
+                {this.state.error && !this.state.currentlyEditing ? 
+                    <div className={`${this.props.className || 'settings-panel'}-error`}>{this.state.error}</div>
+                : null}
+                <div className="setting-groups" display-if={settingsGroups.length}>
                     {settingsGroups.map((group, idx) => (
                         <SettingsGroup
                             name={group.name}
