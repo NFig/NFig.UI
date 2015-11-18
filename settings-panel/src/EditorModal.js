@@ -27,9 +27,7 @@ export default class EditorModal extends Component {
 
     constructor(props) {
         super(props);
-        const { setting: { allOverrides, activeOverride } } = props;
         this.state = {
-            showDetails: allOverrides && allOverrides.length && !activeOverride,
             selectedDataCenter: null,
             newOverrideValue: null
         };
@@ -42,11 +40,30 @@ export default class EditorModal extends Component {
     showDetails() { this.setState({showDetails: true}); }
     hideDetails() { this.setState({showDetails: false}); }
 
+    shouldShowDetails(props) {
+        const { setting: { allOverrides, activeOverride } } = props;
+
+        if (!allOverrides || allOverrides.length == 0) 
+            return false;
+
+        if (allOverrides.length > 1) 
+            return true;
+
+        if (!activeOverride)
+            return true;
+
+        // single override, and an active, it's probably the active one
+        return false;
+    }
+
     clearOverride(dc) {
         const {
-            state: { selectedDataCenter: dataCenter },
+            state: { selectedDataCenter: dataCenter, showDetails },
             props: { setting: { name: settingName } }
         } = this;
+
+        if (showDetails === false) 
+            this.setState({showDetails: null});
 
         const data = {settingName:this.props.setting.name, dataCenter:dc};
         this.props.events.trigger('clear-override', data);
@@ -69,11 +86,13 @@ export default class EditorModal extends Component {
     setNewOverride() {
 
         const {
-            state: { newOverrideValue: value, selectedDataCenter: dataCenter },
+            state: { newOverrideValue: value, selectedDataCenter: dataCenter, showDetails },
             props: { setting: { name: settingName } }
         } = this;
 
-        // this.cancelNewOverride();
+        if (showDetails === false) 
+            this.setState({showDetails: null});
+        
         this.props.events.trigger('new-override', { settingName, dataCenter, value });
     }
 
@@ -93,8 +112,13 @@ export default class EditorModal extends Component {
         const {activeOverride: override, defaultValue: defval, isEnum, allowsOverrides} = setting;
         const {selectedDataCenter} = this.state;
         const enumNames = setting.enumNames || {};
-
         const SettingEditor = EditorFor(setting);
+
+        let {showDetails} = this.state;
+
+        if (showDetails === undefined || showDetails === null)
+            showDetails = this.shouldShowDetails(this.props);
+
 
         return (
             <Portal isOpened={true} >
@@ -136,9 +160,7 @@ export default class EditorModal extends Component {
                             </p>
                             {selectedDataCenter ?
                             <div>
-                                {setting.requiresRestart ?
-                                    <p className="requires-restart">Changes will not take effect until application is restarted.</p>
-                                : null}
+                                <p display-if={setting.requiresRestart} className="requires-restart">Changes will not take effect until application is restarted.</p>
                                 <SettingEditor {...this.props} value={this.state.newOverrideValue} onChange={e => this.handleOverrideChange(e)}/>
                                 <p>
                                     <button className="set-override" onClick={() => this.setNewOverride()}>Set Override</button>
@@ -153,11 +175,9 @@ export default class EditorModal extends Component {
                         : null}
                     </div>
                     <div className={`${className}-body show-details`}>
-                        {this.state.showDetails
-                        ? <a className="toggle" style={{cursor:"pointer"}} onClick={() => this.hideDetails()}>Hide Details</a>
-                        : <a className="toggle" style={{cursor:"pointer"}} onClick={() => this.showDetails()}>Show Details</a>
-                        }
-                        <div className="details" style={this.state.showDetails ? {} : {display:'none'}}>
+                        <a display-if={!showDetails} className="toggle" style={{cursor:"pointer"}} onClick={() => this.showDetails()}>Show Details</a>
+                        <a display-if={showDetails} className="toggle" style={{cursor:"pointer"}} onClick={() => this.hideDetails()}>Hide Details</a>
+                        <div display-if={showDetails} className="details">
                             <div className="overrides">
                                 <h5>Overrides</h5>
                                 <ValueTable {...this.props} propName="allOverrides" onClear={dc => this.clearOverride(dc)} />
