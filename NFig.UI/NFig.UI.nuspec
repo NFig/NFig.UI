@@ -15,10 +15,10 @@
     <tags>Config Settings Tier</tags>
     <dependencies>
       <dependency id="Jil" version="2.12.1" />
-      <dependency id="NFig" version="1.0.1-unstable28" />
+      <dependency id="NFig" version="2.0.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\settings-panel\dist\settings-panel.js" target="content\scripts" />
+    <file src="..\settings-panel\dist\settings-panel.js" target="content\Scripts" />
   </files>
 </package>

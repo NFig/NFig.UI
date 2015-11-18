@@ -35,8 +35,8 @@
       <HintPath>packages\Jil.2.12.1\lib\net45\Jil.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NFig, Version=1.0.0.28, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NFig.1.0.1-unstable28\lib\net45\NFig.dll</HintPath>
+    <Reference Include="NFig, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NFig.2.0.0\lib\net45\NFig.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sigil, Version=4.5.0.0, Culture=neutral, PublicKeyToken=2d06c3494341c8ab, processorArchitecture=MSIL">
@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="NFigStoreExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingJsonValue.cs" />
     <Compile Include="SettingsJsonModel.cs" />
   </ItemGroup>
   <ItemGroup>
