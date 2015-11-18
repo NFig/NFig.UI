@@ -58,7 +58,7 @@ const EnumValue = props => {
     return (
         <div>
             <strong>{`${name} (${value})`}</strong>
-            {description ? <span dangerouslySetInnerHTML={{__html: render(description)}} /> : null}
+            <span render-if={description} dangerouslySetInnerHTML={{__html: render(description)}} />
         </div>
     );
 };

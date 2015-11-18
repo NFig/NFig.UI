@@ -367,9 +367,8 @@ export default class SettingsPanel extends Component {
                     onEdit={e => this.editVisibleSetting(this.state.searchText)}
                     ref="search"
                 />
-                {this.state.error && !this.state.currentlyEditing ? 
-                    <div className={`${this.props.className || 'settings-panel'}-error`}>{this.state.error}</div>
-                : null}
+                <div display-if={this.state.error && !this.state.currentlyEditing} 
+                     className={`${this.props.className || 'settings-panel'}-error`}>{this.state.error}</div>
                 <div className="setting-groups" display-if={settingsGroups.length}>
                     {settingsGroups.map((group, idx) => (
                         <SettingsGroup
@@ -383,16 +382,14 @@ export default class SettingsPanel extends Component {
                         />
                     ))}
                 </div>
-                {this.state.currentlyEditing 
-                    ?  <EditorModal 
-                        className={`${this.props.className || 'settings-panel'}-editor`}
-                        setting={this.state.currentlyEditing} 
-                        dataCenters={this.state.availableDataCenters} 
-                        events={this.events}
-                        error={this.state.error}
-                    /> 
-                        : null
-                }
+                <EditorModal 
+                    display-if={this.state.currentlyEditing}
+                    className={`${this.props.className || 'settings-panel'}-editor`}
+                    setting={this.state.currentlyEditing} 
+                    dataCenters={this.state.availableDataCenters} 
+                    events={this.events}
+                    error={this.state.error}
+                /> 
             </div>
         );
     }

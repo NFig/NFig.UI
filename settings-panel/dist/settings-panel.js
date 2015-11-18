@@ -496,7 +496,8 @@ var SettingsPanel =
 	            }),
 	            this.state.error && !this.state.currentlyEditing ? _react2['default'].createElement(
 	                'div',
-	                { className: (this.props.className || 'settings-panel') + '-error' },
+	                {
+	                    className: (this.props.className || 'settings-panel') + '-error' },
 	                this.state.error
 	            ) : null,
 	            settingsGroups.length ? _react2['default'].createElement(
@@ -20612,7 +20613,7 @@ var SettingsPanel =
 	            null,
 	            name + ' (' + value + ')'
 	        ),
-	        description ? _react2['default'].createElement('span', { dangerouslySetInnerHTML: { __html: _markedRenderer.render(description) } }) : null
+	        _react2['default'].createElement('span', { 'render-if': description, dangerouslySetInnerHTML: { __html: _markedRenderer.render(description) } })
 	    );
 	};
 
