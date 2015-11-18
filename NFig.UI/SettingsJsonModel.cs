@@ -21,6 +21,9 @@ namespace NFig.UI
         public IList<TDataCenter> AvailableDataCenters { get; private set; }
 
 
+        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification ="Used only for Jil serialization ")]
+        SettingsJsonModel() { }
+
         public SettingsJsonModel(
             TTier tier,
             TDataCenter dataCenter,
