@@ -1,6 +1,6 @@
 # Settings Panel Component
 
-This is the settings panel front end component that we use in the admin section of Stack Exchange's Ad Server, backed by [NFig][2] and [NFig.Redis][3]. 
+This is the settings panel front end component that we use in the admin section of Stack Overflow's Ad Server, backed by [NFig][2] and [NFig.Redis][3]. 
 
 ## Usage
 
