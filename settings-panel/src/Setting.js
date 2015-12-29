@@ -5,6 +5,13 @@ import { render } from './marked-renderer';
 
 import SettingDescription from './SettingDescription';
 
+
+const matches = Element.prototype.matches 
+    ? (element, selector) => element.matches(selector)
+    : (element, selector) => element.matchesSelector(selector);
+    
+
+
 export default class Setting extends Component {
 
     scrollIntoView() {
@@ -26,7 +33,12 @@ export default class Setting extends Component {
 
     handleClick(e) {
         e.stopPropagation();
-        this.props.events.trigger('begin-edit', this.props.setting);
+
+        const { target } = e;
+
+        if (!matches(target, 'span.desc a')) {
+            this.props.onSettingClick(this.props.setting);
+        }
     }
 
     render() {

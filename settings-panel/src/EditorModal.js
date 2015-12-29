@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Portal from 'react-portal';
 import { render } from './marked-renderer';
 import AutosizeTextArea from './AutosizeTextArea';
@@ -25,6 +25,13 @@ class Modal extends Component {
 
 export default class EditorModal extends Component {
 
+    static propTypes = {
+        onClose: PropTypes.func.isRequired,
+        onSetOverride: PropTypes.func.isRequired,
+        onClearOverride: PropTypes.func.isRequired,
+        onClearError: PropTypes.func.isRequired
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -33,8 +40,8 @@ export default class EditorModal extends Component {
         };
     }
 
-    handleClose(e) {
-        this.props.events.trigger('cancel-edit');
+    handleClose() {
+        this.props.onClose();
     }
 
     showDetails() { this.setState({showDetails: true}); }
@@ -66,7 +73,7 @@ export default class EditorModal extends Component {
             this.setState({showDetails: null});
 
         const data = {settingName:this.props.setting.name, dataCenter:dc};
-        this.props.events.trigger('clear-override', data);
+        this.props.onClearOverride(data);
     }
 
     selectDataCenter(e) {
@@ -93,12 +100,12 @@ export default class EditorModal extends Component {
         if (showDetails === false) 
             this.setState({showDetails: null});
         
-        this.props.events.trigger('new-override', { settingName, dataCenter, value });
+        this.props.onSetOverride({ settingName, dataCenter, value });
     }
 
     cancelNewOverride() {
         this.setState({selectedDataCenter: null});
-        this.props.events.trigger('clear-error');
+        this.props.onClearError();
     }
 
     componentWillReceiveProps(newProps) {

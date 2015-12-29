@@ -16,24 +16,23 @@ import EditorModal from './EditorModal';
 /**
  * Included libs
  */
-import ajax from './micro-ajax';
+import request from 'superagent';
 
 /**
  * Other libs
  */
-import MicroEvent from 'microevent';
 import _ from 'underscore';
 import Keys from './keys'
-import 'babel/polyfill';
 
 const containsText = (string, search) => string.toLowerCase().indexOf(search.toLowerCase()) !== -1;
 
-export default class SettingsPanel extends Component {
+class SettingsPanel extends Component {
 
     static propTypes = {
         settingsUrl: PropTypes.string,
-        clearUrl: PropTypes.string,
-        setUrl: PropTypes.string
+        settings: PropTypes.array,
+        setUrl: PropTypes.string.isRequired,
+        clearUrl: PropTypes.string.isRequired
     };
 
     static init(element, props) {
@@ -43,9 +42,12 @@ export default class SettingsPanel extends Component {
 
     constructor(props) {
         super(props);
+
+        const { settings, availableDataCenters } = props;
+
         this.state = {
-            settings: [],
-            availableDataCenters: [],
+            settings: settings || [],
+            availableDataCenters: availableDataCenters || [],
 
             currentlyEditing: null,
             currentlyFocused: -1, // Index into visible settings, set before rendering, reset when search text changes
@@ -60,12 +62,19 @@ export default class SettingsPanel extends Component {
     cancelEditing(e) {
         e.stopImmediatePropagation();
         e.stopPropagation();
-        this.events.trigger('cancel-edit');
+        this.clearEditingState();
     }
 
     componentDidMount() {
 
-        const { settingsUrl, setUrl, clearUrl, className, customStyleSheet } = this.props;
+        const { 
+            settingsUrl, 
+            settings,
+            setUrl, 
+            clearUrl, 
+            className, 
+            customStyleSheet 
+        } = this.props;
 
         if (!className) {
             require('./styles.less');
@@ -76,9 +85,9 @@ export default class SettingsPanel extends Component {
         }
 
 
-        if (!settingsUrl || typeof settingsUrl !== 'string') { 
+        if (!(settingsUrl || settings)) {
             this.setState({
-                error: 'Must set the "settingsUrl" property of this component. ' +
+                error: 'Must set the either the "settings" or "settingsUrl" property of this component. ' +
                        'Use the second parameter to SettingsPanel.init() to specify properties.'
             });
             return;
@@ -94,22 +103,22 @@ export default class SettingsPanel extends Component {
         }
 
 
-        this.events = new MicroEvent();
-        this.subscribeToEvents();
 
-        ajax.get(settingsUrl).then(result => {
+        if (settingsUrl) {
+            request.get(settingsUrl).end((err, result) => {
 
-            if (result.status != 200) {
-                this.setState({
-                    error: result.body || "There was an error loading settings"
+                if (err || !res.ok) {
+                    this.setState({
+                        error: result.body || err || "There was an error loading settings"
+                    });
+                    return;
+                }
+
+                this.setState(result.body, () => {
+                    window.onpopstate(null);
                 });
-                return;
-            }
-
-            this.setState(result.body, () => {
-                window.onpopstate(null);
             });
-        });
+        }
 
         document.addEventListener('keydown', e => this.handleKeyDown(e));
 
@@ -126,6 +135,10 @@ export default class SettingsPanel extends Component {
                 this.setSearchText('');
             }
         };
+
+        if (!settingsUrl) {
+            window.onpopstate(null);
+        }
     }
 
     loadCustomStyleSheet(url) {
@@ -154,44 +167,44 @@ export default class SettingsPanel extends Component {
         }
     }
 
-    subscribeToEvents() {
-         const handlers = {
-            'begin-edit': setting => this.setEditingState(setting),
-            'cancel-edit': () => this.clearEditingState(),
-            'new-override': data => this.setNewOverride(data),
-            'clear-override': data => this.clearOverride(data),
-            'set-focused-index': index => this.setFocusedIndex(index),
-            'clear-error': () => this.setState({error:null})
-        };
+    /* subscribeToEvents() {
+         // const handlers = {
+            // 'begin-edit': setting => this.setEditingState(setting),
+            // 'cancel-edit': () => this.clearEditingState(),
+            // 'new-override': data => this.setNewOverride(data),
+            // 'clear-override': data => this.clearOverride(data),
+            // 'set-focused-index': index => this.setFocusedIndex(index),
+            // 'clear-error': () => this.setState({error:null})
+        // };
 
-        _.each(handlers, (handler, event) => this.events.bind(event, handler));
-    }
+        // _.each(handlers, (handler, event) => this.events.bind(event, handler));
+    } */
 
     setNewOverride(data) {
         if (this.state.currentlyEditing === null)
             return;
 
-        ajax.post({
-            url: this.props.setUrl,
-            data
-        }).then(response => {
-            if (response.status != 200)
-                this.setState({error: response.body || 'There was an error setting the new override.'});
-            else
-                this.updateSettingState(response.body)      
-        });
+        request.post(this.props.setUrl)
+            .send(data)
+            .type('form')
+            .end((err, res) => {
+                if (err || !res.ok)
+                    this.setState({error: res.body || err || 'There was an error setting the new override.'});
+                else
+                    this.updateSettingState(res.body);
+            });
     }
 
     clearOverride(data) {
-        ajax.post({
-            url: this.props.clearUrl,
-            data
-        }).then(response => { 
-            if (response.status != 200)
-                this.setState({error: response.body || 'There was an error clearing the override.'});
-            else
-                this.updateSettingState(response.body) 
-        });
+        request.post(this.props.clearUrl)
+            .type('form')
+            .send(data)
+            .end((err, response) => {
+                if (err || !response.ok)
+                    this.setState({error: response.body || err || 'There was an error clearing the override.'});
+                else
+                    this.updateSettingState(response.body) 
+            });
     }
 
     updateSearchUrl(value) {
@@ -301,8 +314,12 @@ export default class SettingsPanel extends Component {
 
             if (index >= 0) {
                 this.refs.search.blur();
-                const component = this.getSettingComponent(visible[index].name);
-                component.scrollIntoView();
+                const name = visible[index].name;
+                const component = this.getSettingComponent(name);
+                if (!component)
+                    console.error(`Setting ${name} not found!`);
+                else
+                    component.scrollIntoView();
             } else {
                 this.refs.search.focus();
             }
@@ -313,7 +330,7 @@ export default class SettingsPanel extends Component {
         const visibleSettings = this.getVisibleSettings(this.state.searchText);
         const index = this.state.currentlyFocused;
         if (index > -1 && index < visibleSettings.length)
-            this.events.trigger('begin-edit', visibleSettings[index]);
+            this.setEditingState(visibleSettings[index]);
     }
 
     handleKeyDown(e) {
@@ -352,47 +369,65 @@ export default class SettingsPanel extends Component {
 
         const settingsGroups = this.getVisibleSettingsGroups(settings);
 
+        const {
+            searchText,
+            error,
+            currentlyFocused,
+            currentlyEditing,
+            availableDataCenters
+        } = this.state;
+
+        const {
+            className
+        } = this.props;
+
         return (
-            <div className={this.props.className || 'settings-panel'}>
+            <div className={className || 'settings-panel'}>
                 <SettingsSearchBox
                     placeholder="Filter"
                     aria-describedby="sizing-addon3"
                     tabIndex="0"
-                    value={this.state.searchText}
+                    value={searchText}
                     onChange={e => {
                         const value = e.target.value;
                         this.setSearchText(value, () => this.updateSearchUrl(value));
                     }}
 
-                    onEdit={e => this.editVisibleSetting(this.state.searchText)}
+                    onEdit={e => this.editVisibleSetting(searchText)}
                     ref="search"
                 />
-                <div display-if={this.state.error && !this.state.currentlyEditing} 
-                     className={`${this.props.className || 'settings-panel'}-error`}>{this.state.error}</div>
+                <div display-if={error && !currentlyEditing} 
+                     className={`${className || 'settings-panel'}-error`}>{error}</div>
                 <div className="setting-groups" display-if={settingsGroups.length}>
                     {settingsGroups.map((group, idx) => (
                         <SettingsGroup
                             name={group.name}
                             settings={group.settings}
                             key={"group-" + idx}
-                            dataCenters={this.state.availableDataCenters}
-                            currentlyEditing={this.state.currentlyEditing}
+                            dataCenters={availableDataCenters}
+                            currentlyEditing={currentlyEditing}
                             ref={group.name}
-                            events={this.events}
+                            onSettingClick={setting => this.setEditingState(setting)}
                         />
                     ))}
                 </div>
                 <EditorModal 
-                    display-if={this.state.currentlyEditing}
-                    className={`${this.props.className || 'settings-panel'}-editor`}
-                    setting={this.state.currentlyEditing} 
-                    dataCenters={this.state.availableDataCenters} 
-                    events={this.events}
-                    error={this.state.error}
+                    display-if={currentlyEditing}
+                    className={`${className || 'settings-panel'}-editor`}
+                    setting={currentlyEditing} 
+                    dataCenters={availableDataCenters} 
+                    error={error}
+                    onSetOverride={override => this.setNewOverride(override)}
+                    onClearOverride={override => this.clearOverride(override)}
+                    onClose={() => this.clearEditingState()}
+                    onClearError={() => this.setState({error:null})}
                 /> 
             </div>
         );
     }
 }
+
+// Thanks babel
+module.exports = SettingsPanel;
 
 // vim: sw=4 ts=4 et
