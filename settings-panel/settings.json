@@ -1,0 +1,80 @@
+{
+  "settings": [
+    {
+      "requiresRestart": false,
+      "isEnum": false,
+      "allowsOverrides": {
+        "Any": true,
+        "Local": true
+      },
+      "allDefaults": [
+        {
+          "isOverride": false,
+          "hasTier": false,
+          "hasDataCenter": false,
+          "allowsOverrides": true,
+          "isDefault": true,
+          "tier": "Any",
+          "dataCenter": "Any",
+          "value": "True",
+          "name": "Group1.BoolVal"
+        }
+      ],
+      "allOverrides": [],
+      "defaultValue": {
+        "isOverride": false,
+        "hasTier": false,
+        "hasDataCenter": false,
+        "allowsOverrides": true,
+        "isDefault": true,
+        "tier": "Any",
+        "dataCenter": "Any",
+        "value": "True",
+        "name": "Group1.BoolVal"
+      },
+      "typeName": "System.Boolean",
+      "description": "A boolean value",
+      "name": "Group1.BoolVal"
+    },
+    {
+      "requiresRestart": false,
+      "isEnum": false,
+      "allowsOverrides": {
+        "Any": true,
+        "Local": true
+      },
+      "allDefaults": [
+        {
+          "isOverride": false,
+          "hasTier": false,
+          "hasDataCenter": false,
+          "allowsOverrides": true,
+          "isDefault": true,
+          "tier": "Any",
+          "dataCenter": "Any",
+          "value": "Hello there",
+          "name": "Group2.StringVal"
+        }
+      ],
+      "allOverrides": [],
+      "defaultValue": {
+        "isOverride": false,
+        "hasTier": false,
+        "hasDataCenter": false,
+        "allowsOverrides": true,
+        "isDefault": true,
+        "tier": "Any",
+        "dataCenter": "Any",
+        "value": "Hello there",
+        "name": "Group2.StringVal"
+      },
+      "typeName": "System.String",
+      "description": "A string value. [Markdown](https://github.com/chjj/marked) is supported! **Yay!!!**",
+      "name": "Group2.StringVal"
+    }
+  ],
+  "availableDataCenters": [
+    "Any",
+    "Local"
+  ]
+}
