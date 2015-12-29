@@ -1,7 +1,11 @@
-var webpack = require('webpack');
-var LessPluginCleanCSS = require('less-plugin-clean-css');
+import webpack from 'webpack';
+import LessPluginCleanCSS from 'less-plugin-clean-css';
 
-module.exports = {
+import { readFileSync } from 'fs';
+
+const babelOpts = JSON.parse(readFileSync(`${__dirname}/.babelrc`));
+
+export default {
   entry: './src/SettingsPanel.js',
   output: {
     libraryTarget: 'var',
@@ -15,7 +19,12 @@ module.exports = {
     loaders: [
       { test: /\.less$/, loader: 'style!css!less' },
       { test: /\.png$/, loader: 'url-loader?mimetype=image/png' },
-      { test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: 'babel' }
+      { 
+        test: /\.js$/, 
+        exclude: /node_modules/, 
+        loader: 'babel',
+        query: babelOpts
+      }
     ]
   },
   plugins: [
