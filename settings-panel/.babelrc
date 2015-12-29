@@ -1,5 +1,4 @@
 {
-  "loose": "all",
-  "stage": 0,
-  "plugins": ["jsx-display-if"]
+  "plugins": ["transform-runtime", "jsx-display-if"],
+  "presets": ["es2015", "stage-0", "react"]
 }
