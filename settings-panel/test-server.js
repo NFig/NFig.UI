@@ -1,9 +1,14 @@
 import express from 'express';
 import { urlencoded } from 'body-parser';
+import { readFileSync } from 'fs';
+
 
 const debug = require('debug')('test-server');
 
 const app = express();
+
+app.set('views', './views');
+app.set('view engine', 'jade');
 
 const config = {
   dataCenter: "Local",
@@ -15,42 +20,7 @@ const dataCenters = [
   "Local"
 ];
 
-const settingsData = {
- "settings": [{
-  "name": "Test.BoolValue",
-  "description": "A boolean value. Can be true or false",
-  "isBool": true,
-  "allDefaults": [{
-   "dataCenter": "Any",
-   "tier": "Any",
-   "value": "False"
-  }],
-  "allOverrides": [],
-  "activeOverride": null,
-  "defaultValue": {
-   "dataCenter": "Any",
-   "tier": "Any",
-   "value": "False"
-  }
- }, {
-  "name": "Test.TextValue",
-  "description": "A text value. Free-form text input",
-  "isBool": false,
-  "allDefaults": [{
-   "dataCenter": "Any",
-   "tier": "Any",
-   "value": "Hello, world"
-  }],
-  "allOverrides": [],
-  "activeOverride": null,
-  "defaultValue": {
-   "dataCenter": "Any",
-   "tier": "Any",
-   "value": "Hello, world"
-  },
- }],
- "availableDataCenters": ["Any", "Local"]
-};
+const settingsData = JSON.parse(readFileSync(`${__dirname}/settings.json`, 'utf8'));
 
 const setActiveOverride = setting => {
   // 'Any' is the fallback
@@ -66,6 +36,7 @@ const setActiveOverride = setting => {
 
 app.use(urlencoded({ extended: false }));
 
+app.get('/', (req, res) => res.render('index', settingsData));
 
 app.get('/settings.json', (req, res) => {
   res.json(settingsData);
