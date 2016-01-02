@@ -2,128 +2,148 @@ var SettingsPanel =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
+/******/
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-
+/******/
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			exports: {},
 /******/ 			id: moduleId,
 /******/ 			loaded: false
 /******/ 		};
-
+/******/
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-
-
+/******/
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-
+/******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-
+/******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
+/******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
-	var _getPrototypeOf = __webpack_require__(1);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(13);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(14);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _createClass2 = __webpack_require__(40);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _inherits2 = __webpack_require__(43);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(50);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(207);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _reactAddonsUpdate = __webpack_require__(208);
-
-	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
-
-	var _SettingsSearchBox = __webpack_require__(210);
-
-	var _SettingsSearchBox2 = _interopRequireDefault(_SettingsSearchBox);
-
-	var _SettingsGroup = __webpack_require__(218);
-
-	var _SettingsGroup2 = _interopRequireDefault(_SettingsGroup);
-
-	var _EditorModal = __webpack_require__(227);
-
-	var _EditorModal2 = _interopRequireDefault(_EditorModal);
-
-	var _superagent = __webpack_require__(235);
-
-	var _superagent2 = _interopRequireDefault(_superagent);
-
-	var _underscore = __webpack_require__(238);
-
-	var _underscore2 = _interopRequireDefault(_underscore);
-
-	var _keys = __webpack_require__(216);
-
-	var _keys2 = _interopRequireDefault(_keys);
-
+	
+	var _SettingsPanel = __webpack_require__(/*! ./components/SettingsPanel.js */ 1);
+	
+	var _SettingsPanel2 = _interopRequireDefault(_SettingsPanel);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	module.exports = _SettingsPanel2.default;
 
+/***/ },
+/* 1 */
+/*!*****************************************!*\
+  !*** ./src/components/SettingsPanel.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ 2);
+	
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+	
+	var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ 14);
+	
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+	
+	var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ 15);
+	
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+	
+	var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ 41);
+	
+	var _createClass3 = _interopRequireDefault(_createClass2);
+	
+	var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ 44);
+	
+	var _inherits3 = _interopRequireDefault(_inherits2);
+	
+	var _react = __webpack_require__(/*! react */ 51);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 208);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 209);
+	
+	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
+	
+	var _SettingsSearchBox = __webpack_require__(/*! ./SettingsSearchBox */ 211);
+	
+	var _SettingsSearchBox2 = _interopRequireDefault(_SettingsSearchBox);
+	
+	var _SettingsGroup = __webpack_require__(/*! ./SettingsGroup */ 218);
+	
+	var _SettingsGroup2 = _interopRequireDefault(_SettingsGroup);
+	
+	var _Editor = __webpack_require__(/*! ./Editor */ 228);
+	
+	var _Editor2 = _interopRequireDefault(_Editor);
+	
+	var _superagent = __webpack_require__(/*! superagent */ 238);
+	
+	var _superagent2 = _interopRequireDefault(_superagent);
+	
+	var _keys = __webpack_require__(/*! ../keys */ 217);
+	
+	var _keys2 = _interopRequireDefault(_keys);
+	
+	var _underscore = __webpack_require__(/*! underscore */ 241);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	/**
 	 * Other libs
 	 */
-
+	
 	/**
 	 * Components
 	 */
-
+	
 	var containsText = function containsText(string, search) {
 	    return string.toLowerCase().indexOf(search.toLowerCase()) !== -1;
 	};
-
+	
 	/**
 	 * Included libs
 	 */
 	/**
 	 * Bring in React and ReactDOM
 	 */
-
+	
 	var SettingsPanel = (function (_Component) {
 	    (0, _inherits3.default)(SettingsPanel, _Component);
 	    (0, _createClass3.default)(SettingsPanel, null, [{
@@ -132,29 +152,29 @@ var SettingsPanel =
 	            return _reactDom2.default.render(_react2.default.createElement(SettingsPanel, props), element);
 	        }
 	    }]);
-
+	
 	    function SettingsPanel(props) {
 	        (0, _classCallCheck3.default)(this, SettingsPanel);
-
+	
 	        var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(SettingsPanel).call(this, props));
-
+	
 	        var settings = props.settings;
 	        var availableDataCenters = props.availableDataCenters;
-
+	
 	        _this.state = {
 	            settings: settings || [],
 	            availableDataCenters: availableDataCenters || [],
-
+	
 	            currentlyEditing: null,
 	            currentlyFocused: -1, // Index into visible settings, set before rendering, reset when search text changes
 	            searchText: ''
 	        };
-
+	
 	        // Debounce the URL updater
 	        _this.updateSearchUrl = _underscore2.default.debounce(_this.updateSearchUrl, 500);
 	        return _this;
 	    }
-
+	
 	    (0, _createClass3.default)(SettingsPanel, [{
 	        key: 'cancelEditing',
 	        value: function cancelEditing(e) {
@@ -166,7 +186,7 @@ var SettingsPanel =
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            var _this2 = this;
-
+	
 	            var _props = this.props;
 	            var settingsUrl = _props.settingsUrl;
 	            var settings = _props.settings;
@@ -174,22 +194,22 @@ var SettingsPanel =
 	            var clearUrl = _props.clearUrl;
 	            var className = _props.className;
 	            var customStyleSheet = _props.customStyleSheet;
-
+	
 	            if (!className) {
-	                __webpack_require__(239);
+	                __webpack_require__(/*! ../assets/styles.less */ 242);
 	            }
-
+	
 	            if (customStyleSheet) {
 	                this.loadCustomStyleSheet(this.props.customStyleSheet);
 	            }
-
+	
 	            if (!(settingsUrl || settings)) {
 	                this.setState({
 	                    error: 'Must set the either the "settings" or "settingsUrl" property of this component. ' + 'Use the second parameter to SettingsPanel.init() to specify properties.'
 	                });
 	                return;
 	            }
-
+	
 	            // check other properties now
 	            if (!setUrl || !clearUrl) {
 	                this.setState({
@@ -197,27 +217,27 @@ var SettingsPanel =
 	                });
 	                return;
 	            }
-
+	
 	            if (settingsUrl) {
 	                _superagent2.default.get(settingsUrl).end(function (err, result) {
-
+	
 	                    if (err || !res.ok) {
 	                        _this2.setState({
 	                            error: result.body || err || "There was an error loading settings"
 	                        });
 	                        return;
 	                    }
-
+	
 	                    _this2.setState(result.body, function () {
 	                        window.onpopstate(null);
 	                    });
 	                });
 	            }
-
+	
 	            document.addEventListener('keydown', function (e) {
 	                return _this2.handleKeyDown(e);
 	            });
-
+	
 	            window.onpopstate = function (event) {
 	                if (location.hash.length > 1) {
 	                    if (/^#edit:/.test(location.hash)) {
@@ -231,7 +251,7 @@ var SettingsPanel =
 	                    _this2.setSearchText('');
 	                }
 	            };
-
+	
 	            if (!settingsUrl) {
 	                window.onpopstate(null);
 	            }
@@ -251,19 +271,19 @@ var SettingsPanel =
 	                    console.error && console.error('LessJS not loaded, can\'t load less stylesheet ' + url);
 	                    return;
 	                }
-
+	
 	                link.rel = 'stylesheet/less';
 	            }
-
+	
 	            var head = document.getElementsByTagName('head')[0];
 	            head.appendChild(link);
-
+	
 	            if (isLess) {
 	                less.sheets.push(link);
 	                less.refresh();
 	            }
 	        }
-
+	
 	        /* subscribeToEvents() {
 	             // const handlers = {
 	                // 'begin-edit': setting => this.setEditingState(setting),
@@ -275,14 +295,14 @@ var SettingsPanel =
 	            // };
 	             // _.each(handlers, (handler, event) => this.events.bind(event, handler));
 	        } */
-
+	
 	    }, {
 	        key: 'setNewOverride',
 	        value: function setNewOverride(data) {
 	            var _this3 = this;
-
+	
 	            if (this.state.currentlyEditing === null) return;
-
+	
 	            _superagent2.default.post(this.props.setUrl).send(data).type('form').end(function (err, res) {
 	                if (err || !res.ok) _this3.setState({ error: res.body || err || 'There was an error setting the new override.' });else _this3.updateSettingState(res.body);
 	            });
@@ -291,7 +311,7 @@ var SettingsPanel =
 	        key: 'clearOverride',
 	        value: function clearOverride(data) {
 	            var _this4 = this;
-
+	
 	            _superagent2.default.post(this.props.clearUrl).type('form').send(data).end(function (err, response) {
 	                if (err || !response.ok) _this4.setState({ error: response.body || err || 'There was an error clearing the override.' });else _this4.updateSettingState(response.body);
 	            });
@@ -320,7 +340,7 @@ var SettingsPanel =
 	        key: 'setEditingState',
 	        value: function setEditingState(setting) {
 	            var _this5 = this;
-
+	
 	            this.setState({ currentlyEditing: setting }, function () {
 	                if (setting.index !== undefined) {
 	                    _this5.setFocusedIndex(setting.index);
@@ -335,7 +355,7 @@ var SettingsPanel =
 	        key: 'clearEditingState',
 	        value: function clearEditingState() {
 	            this.setState({ currentlyEditing: null, error: null });
-
+	
 	            if (/^#edit:/.test(location.hash)) {
 	                if (this.state.searchText) {
 	                    history.pushState(null, null, this.getUrlForSearch(this.state.searchText));
@@ -353,16 +373,16 @@ var SettingsPanel =
 	            var updateData = {
 	                settings: {}
 	            };
-
+	
 	            updateData.settings[index] = { $set: r };
 	            // updateData.currentlyEditing = {$set: null};
 	            if (this.state.currentlyEditing && this.state.currentlyEditing.name === r.name) {
 	                updateData.currentlyEditing = { $set: r };
 	            }
-
+	
 	            // clear error
 	            updateData.error = { $set: null };
-
+	
 	            this.setState((0, _reactAddonsUpdate2.default)(this.state, updateData));
 	        }
 	    }, {
@@ -392,7 +412,7 @@ var SettingsPanel =
 	        key: 'getVisibleSettingsGroups',
 	        value: function getVisibleSettingsGroups(settings) {
 	            var _this6 = this;
-
+	
 	            return _underscore2.default.chain(settings).groupBy(function (s) {
 	                return _this6.getGroupName(s);
 	            }).map(function (settings, name) {
@@ -420,12 +440,12 @@ var SettingsPanel =
 	    }, {
 	        key: 'setFocusedIndex',
 	        value: function setFocusedIndex(index) {
-
+	
 	            var visible = this.getVisibleSettings();
-
+	
 	            if (index >= -1 && index < visible.length) {
 	                this.setState({ currentlyFocused: index });
-
+	
 	                if (index >= 0) {
 	                    this.refs.search.blur();
 	                    var name = visible[index].name;
@@ -474,14 +494,14 @@ var SettingsPanel =
 	        key: 'render',
 	        value: function render() {
 	            var _this7 = this;
-
+	
 	            var settings = _underscore2.default.each(this.getVisibleSettings(), function (setting, i) {
 	                setting.isFocused = _this7.state.currentlyFocused === i;
 	                setting.index = i;
 	            });
-
+	
 	            var settingsGroups = this.getVisibleSettingsGroups(settings);
-
+	
 	            var _state = this.state;
 	            var searchText = _state.searchText;
 	            var error = _state.error;
@@ -489,7 +509,7 @@ var SettingsPanel =
 	            var currentlyEditing = _state.currentlyEditing;
 	            var availableDataCenters = _state.availableDataCenters;
 	            var className = this.props.className;
-
+	
 	            return _react2.default.createElement(
 	                'div',
 	                { className: className || 'settings-panel' },
@@ -504,7 +524,7 @@ var SettingsPanel =
 	                            return _this7.updateSearchUrl(value);
 	                        });
 	                    },
-
+	
 	                    onEdit: function onEdit(e) {
 	                        return _this7.editVisibleSetting(searchText);
 	                    },
@@ -533,7 +553,7 @@ var SettingsPanel =
 	                        });
 	                    })
 	                ) : null,
-	                currentlyEditing ? _react2.default.createElement(_EditorModal2.default, {
+	                currentlyEditing ? _react2.default.createElement(_Editor2.default, {
 	                    className: (className || 'settings-panel') + '-editor',
 	                    setting: currentlyEditing,
 	                    dataCenters: availableDataCenters,
@@ -556,9 +576,9 @@ var SettingsPanel =
 	    }]);
 	    return SettingsPanel;
 	})(_react.Component);
-
+	
 	// Thanks babel
-
+	
 	SettingsPanel.propTypes = {
 	    settingsUrl: _react.PropTypes.string,
 	    settings: _react.PropTypes.array,
@@ -566,47 +586,62 @@ var SettingsPanel =
 	    clearUrl: _react.PropTypes.string.isRequired
 	};
 	module.exports = SettingsPanel;
-
+	
 	// vim: sw=4 ts=4 et
 
 /***/ },
-/* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(2), __esModule: true };
-
-/***/ },
 /* 2 */
+/*!************************************************************!*\
+  !*** ./~/babel-runtime/core-js/object/get-prototype-of.js ***!
+  \************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(3);
-	module.exports = __webpack_require__(9).Object.getPrototypeOf;
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/object/get-prototype-of */ 3), __esModule: true };
 
 /***/ },
 /* 3 */
+/*!*********************************************************!*\
+  !*** ./~/core-js/library/fn/object/get-prototype-of.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(/*! ../../modules/es6.object.get-prototype-of */ 4);
+	module.exports = __webpack_require__(/*! ../../modules/$.core */ 10).Object.getPrototypeOf;
+
+/***/ },
+/* 4 */
+/*!******************************************************************!*\
+  !*** ./~/core-js/library/modules/es6.object.get-prototype-of.js ***!
+  \******************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.9 Object.getPrototypeOf(O)
-	var toObject = __webpack_require__(4);
-
-	__webpack_require__(6)('getPrototypeOf', function($getPrototypeOf){
+	var toObject = __webpack_require__(/*! ./$.to-object */ 5);
+	
+	__webpack_require__(/*! ./$.object-sap */ 7)('getPrototypeOf', function($getPrototypeOf){
 	  return function getPrototypeOf(it){
 	    return $getPrototypeOf(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 4 */
+/* 5 */
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/$.to-object.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(5);
+	var defined = __webpack_require__(/*! ./$.defined */ 6);
 	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
 /***/ },
-/* 5 */
+/* 6 */
+/*!************************************************!*\
+  !*** ./~/core-js/library/modules/$.defined.js ***!
+  \************************************************/
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -616,13 +651,16 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 6 */
+/* 7 */
+/*!***************************************************!*\
+  !*** ./~/core-js/library/modules/$.object-sap.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(7)
-	  , core    = __webpack_require__(9)
-	  , fails   = __webpack_require__(12);
+	var $export = __webpack_require__(/*! ./$.export */ 8)
+	  , core    = __webpack_require__(/*! ./$.core */ 10)
+	  , fails   = __webpack_require__(/*! ./$.fails */ 13);
 	module.exports = function(KEY, exec){
 	  var fn  = (core.Object || {})[KEY] || Object[KEY]
 	    , exp = {};
@@ -631,14 +669,17 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 7 */
+/* 8 */
+/*!***********************************************!*\
+  !*** ./~/core-js/library/modules/$.export.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(8)
-	  , core      = __webpack_require__(9)
-	  , ctx       = __webpack_require__(10)
+	var global    = __webpack_require__(/*! ./$.global */ 9)
+	  , core      = __webpack_require__(/*! ./$.core */ 10)
+	  , ctx       = __webpack_require__(/*! ./$.ctx */ 11)
 	  , PROTOTYPE = 'prototype';
-
+	
 	var $export = function(type, name, source){
 	  var IS_FORCED = type & $export.F
 	    , IS_GLOBAL = type & $export.G
@@ -682,7 +723,10 @@ var SettingsPanel =
 	module.exports = $export;
 
 /***/ },
-/* 8 */
+/* 9 */
+/*!***********************************************!*\
+  !*** ./~/core-js/library/modules/$.global.js ***!
+  \***********************************************/
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -691,18 +735,24 @@ var SettingsPanel =
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 9 */
+/* 10 */
+/*!*********************************************!*\
+  !*** ./~/core-js/library/modules/$.core.js ***!
+  \*********************************************/
 /***/ function(module, exports) {
 
 	var core = module.exports = {version: '1.2.6'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
-/* 10 */
+/* 11 */
+/*!********************************************!*\
+  !*** ./~/core-js/library/modules/$.ctx.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(11);
+	var aFunction = __webpack_require__(/*! ./$.a-function */ 12);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -723,7 +773,10 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 11 */
+/* 12 */
+/*!***************************************************!*\
+  !*** ./~/core-js/library/modules/$.a-function.js ***!
+  \***************************************************/
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -732,7 +785,10 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 12 */
+/* 13 */
+/*!**********************************************!*\
+  !*** ./~/core-js/library/modules/$.fails.js ***!
+  \**********************************************/
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -744,93 +800,111 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 13 */
+/* 14 */
+/*!***************************************************!*\
+  !*** ./~/babel-runtime/helpers/classCallCheck.js ***!
+  \***************************************************/
 /***/ function(module, exports) {
 
 	"use strict";
-
+	
 	exports.default = function (instance, Constructor) {
 	  if (!(instance instanceof Constructor)) {
 	    throw new TypeError("Cannot call a class as a function");
 	  }
 	};
-
-	exports.__esModule = true;
-
-/***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _typeof2 = __webpack_require__(15);
-
-	var _typeof3 = _interopRequireDefault(_typeof2);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = function (self, call) {
-	  if (!self) {
-	    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-	  }
-
-	  return call && ((typeof call === "undefined" ? "undefined" : (0, _typeof3.default)(call)) === "object" || typeof call === "function") ? call : self;
-	};
-
+	
 	exports.__esModule = true;
 
 /***/ },
 /* 15 */
+/*!**************************************************************!*\
+  !*** ./~/babel-runtime/helpers/possibleConstructorReturn.js ***!
+  \**************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-
-	var _Symbol = __webpack_require__(16)["default"];
-
-	exports["default"] = function (obj) {
-	  return obj && obj.constructor === _Symbol ? "symbol" : typeof obj;
+	
+	var _typeof2 = __webpack_require__(/*! babel-runtime/helpers/typeof */ 16);
+	
+	var _typeof3 = _interopRequireDefault(_typeof2);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = function (self, call) {
+	  if (!self) {
+	    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	  }
+	
+	  return call && ((typeof call === "undefined" ? "undefined" : (0, _typeof3.default)(call)) === "object" || typeof call === "function") ? call : self;
 	};
-
+	
 	exports.__esModule = true;
 
 /***/ },
 /* 16 */
+/*!*******************************************!*\
+  !*** ./~/babel-runtime/helpers/typeof.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(17), __esModule: true };
+	"use strict";
+	
+	var _Symbol = __webpack_require__(/*! babel-runtime/core-js/symbol */ 17)["default"];
+	
+	exports["default"] = function (obj) {
+	  return obj && obj.constructor === _Symbol ? "symbol" : typeof obj;
+	};
+	
+	exports.__esModule = true;
 
 /***/ },
 /* 17 */
+/*!*******************************************!*\
+  !*** ./~/babel-runtime/core-js/symbol.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(18);
-	__webpack_require__(39);
-	module.exports = __webpack_require__(9).Symbol;
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/symbol */ 18), __esModule: true };
 
 /***/ },
 /* 18 */
+/*!**********************************************!*\
+  !*** ./~/core-js/library/fn/symbol/index.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(/*! ../../modules/es6.symbol */ 19);
+	__webpack_require__(/*! ../../modules/es6.object.to-string */ 40);
+	module.exports = __webpack_require__(/*! ../../modules/$.core */ 10).Symbol;
+
+/***/ },
+/* 19 */
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/es6.symbol.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// ECMAScript 6 symbols shim
-	var $              = __webpack_require__(19)
-	  , global         = __webpack_require__(8)
-	  , has            = __webpack_require__(20)
-	  , DESCRIPTORS    = __webpack_require__(21)
-	  , $export        = __webpack_require__(7)
-	  , redefine       = __webpack_require__(22)
-	  , $fails         = __webpack_require__(12)
-	  , shared         = __webpack_require__(25)
-	  , setToStringTag = __webpack_require__(26)
-	  , uid            = __webpack_require__(28)
-	  , wks            = __webpack_require__(27)
-	  , keyOf          = __webpack_require__(29)
-	  , $names         = __webpack_require__(33)
-	  , enumKeys       = __webpack_require__(34)
-	  , isArray        = __webpack_require__(35)
-	  , anObject       = __webpack_require__(36)
-	  , toIObject      = __webpack_require__(30)
-	  , createDesc     = __webpack_require__(24)
+	var $              = __webpack_require__(/*! ./$ */ 20)
+	  , global         = __webpack_require__(/*! ./$.global */ 9)
+	  , has            = __webpack_require__(/*! ./$.has */ 21)
+	  , DESCRIPTORS    = __webpack_require__(/*! ./$.descriptors */ 22)
+	  , $export        = __webpack_require__(/*! ./$.export */ 8)
+	  , redefine       = __webpack_require__(/*! ./$.redefine */ 23)
+	  , $fails         = __webpack_require__(/*! ./$.fails */ 13)
+	  , shared         = __webpack_require__(/*! ./$.shared */ 26)
+	  , setToStringTag = __webpack_require__(/*! ./$.set-to-string-tag */ 27)
+	  , uid            = __webpack_require__(/*! ./$.uid */ 29)
+	  , wks            = __webpack_require__(/*! ./$.wks */ 28)
+	  , keyOf          = __webpack_require__(/*! ./$.keyof */ 30)
+	  , $names         = __webpack_require__(/*! ./$.get-names */ 34)
+	  , enumKeys       = __webpack_require__(/*! ./$.enum-keys */ 35)
+	  , isArray        = __webpack_require__(/*! ./$.is-array */ 36)
+	  , anObject       = __webpack_require__(/*! ./$.an-object */ 37)
+	  , toIObject      = __webpack_require__(/*! ./$.to-iobject */ 31)
+	  , createDesc     = __webpack_require__(/*! ./$.property-desc */ 25)
 	  , getDesc        = $.getDesc
 	  , setDesc        = $.setDesc
 	  , _create        = $.create
@@ -845,7 +919,7 @@ var SettingsPanel =
 	  , AllSymbols     = shared('symbols')
 	  , useNative      = typeof $Symbol == 'function'
 	  , ObjectProto    = Object.prototype;
-
+	
 	// fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
 	var setSymbolDesc = DESCRIPTORS && $fails(function(){
 	  return _create(setDesc({}, 'a', {
@@ -857,7 +931,7 @@ var SettingsPanel =
 	  setDesc(it, key, D);
 	  if(protoDesc && it !== ObjectProto)setDesc(ObjectProto, key, protoDesc);
 	} : setDesc;
-
+	
 	var wrap = function(tag){
 	  var sym = AllSymbols[tag] = _create($Symbol.prototype);
 	  sym._k = tag;
@@ -870,11 +944,11 @@ var SettingsPanel =
 	  });
 	  return sym;
 	};
-
+	
 	var isSymbol = function(it){
 	  return typeof it == 'symbol';
 	};
-
+	
 	var $defineProperty = function defineProperty(it, key, D){
 	  if(D && has(AllSymbols, key)){
 	    if(!D.enumerable){
@@ -947,7 +1021,7 @@ var SettingsPanel =
 	  // V8 throws on boxed symbols
 	  return _stringify([S]) != '[null]' || _stringify({a: S}) != '{}' || _stringify(Object(S)) != '{}';
 	});
-
+	
 	// 19.4.1.1 Symbol([description])
 	if(!useNative){
 	  $Symbol = function Symbol(){
@@ -957,11 +1031,11 @@ var SettingsPanel =
 	  redefine($Symbol.prototype, 'toString', function toString(){
 	    return this._k;
 	  });
-
+	
 	  isSymbol = function(it){
 	    return it instanceof $Symbol;
 	  };
-
+	
 	  $.create     = $create;
 	  $.isEnum     = $propertyIsEnumerable;
 	  $.getDesc    = $getOwnPropertyDescriptor;
@@ -969,12 +1043,12 @@ var SettingsPanel =
 	  $.setDescs   = $defineProperties;
 	  $.getNames   = $names.get = $getOwnPropertyNames;
 	  $.getSymbols = $getOwnPropertySymbols;
-
-	  if(DESCRIPTORS && !__webpack_require__(38)){
+	
+	  if(DESCRIPTORS && !__webpack_require__(/*! ./$.library */ 39)){
 	    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
 	  }
 	}
-
+	
 	var symbolStatics = {
 	  // 19.4.2.1 Symbol.for(key)
 	  'for': function(key){
@@ -1007,13 +1081,13 @@ var SettingsPanel =
 	  var sym = wks(it);
 	  symbolStatics[it] = useNative ? sym : wrap(sym);
 	});
-
+	
 	setter = true;
-
+	
 	$export($export.G + $export.W, {Symbol: $Symbol});
-
+	
 	$export($export.S, 'Symbol', symbolStatics);
-
+	
 	$export($export.S + $export.F * !useNative, 'Object', {
 	  // 19.1.2.2 Object.create(O [, Properties])
 	  create: $create,
@@ -1028,10 +1102,10 @@ var SettingsPanel =
 	  // 19.1.2.8 Object.getOwnPropertySymbols(O)
 	  getOwnPropertySymbols: $getOwnPropertySymbols
 	});
-
+	
 	// 24.3.2 JSON.stringify(value [, replacer [, space]])
 	$JSON && $export($export.S + $export.F * (!useNative || buggyJSON), 'JSON', {stringify: $stringify});
-
+	
 	// 19.4.3.5 Symbol.prototype[@@toStringTag]
 	setToStringTag($Symbol, 'Symbol');
 	// 20.2.1.9 Math[@@toStringTag]
@@ -1040,7 +1114,10 @@ var SettingsPanel =
 	setToStringTag(global.JSON, 'JSON', true);
 
 /***/ },
-/* 19 */
+/* 20 */
+/*!****************************************!*\
+  !*** ./~/core-js/library/modules/$.js ***!
+  \****************************************/
 /***/ function(module, exports) {
 
 	var $Object = Object;
@@ -1058,7 +1135,10 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 20 */
+/* 21 */
+/*!********************************************!*\
+  !*** ./~/core-js/library/modules/$.has.js ***!
+  \********************************************/
 /***/ function(module, exports) {
 
 	var hasOwnProperty = {}.hasOwnProperty;
@@ -1067,27 +1147,36 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 21 */
+/* 22 */
+/*!****************************************************!*\
+  !*** ./~/core-js/library/modules/$.descriptors.js ***!
+  \****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// Thank's IE8 for his funny defineProperty
-	module.exports = !__webpack_require__(12)(function(){
+	module.exports = !__webpack_require__(/*! ./$.fails */ 13)(function(){
 	  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
 	});
 
 /***/ },
-/* 22 */
+/* 23 */
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/$.redefine.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(23);
+	module.exports = __webpack_require__(/*! ./$.hide */ 24);
 
 /***/ },
-/* 23 */
+/* 24 */
+/*!*********************************************!*\
+  !*** ./~/core-js/library/modules/$.hide.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var $          = __webpack_require__(19)
-	  , createDesc = __webpack_require__(24);
-	module.exports = __webpack_require__(21) ? function(object, key, value){
+	var $          = __webpack_require__(/*! ./$ */ 20)
+	  , createDesc = __webpack_require__(/*! ./$.property-desc */ 25);
+	module.exports = __webpack_require__(/*! ./$.descriptors */ 22) ? function(object, key, value){
 	  return $.setDesc(object, key, createDesc(1, value));
 	} : function(object, key, value){
 	  object[key] = value;
@@ -1095,7 +1184,10 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 24 */
+/* 25 */
+/*!******************************************************!*\
+  !*** ./~/core-js/library/modules/$.property-desc.js ***!
+  \******************************************************/
 /***/ function(module, exports) {
 
 	module.exports = function(bitmap, value){
@@ -1108,10 +1200,13 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 25 */
+/* 26 */
+/*!***********************************************!*\
+  !*** ./~/core-js/library/modules/$.shared.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var global = __webpack_require__(8)
+	var global = __webpack_require__(/*! ./$.global */ 9)
 	  , SHARED = '__core-js_shared__'
 	  , store  = global[SHARED] || (global[SHARED] = {});
 	module.exports = function(key){
@@ -1119,31 +1214,40 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 26 */
+/* 27 */
+/*!**********************************************************!*\
+  !*** ./~/core-js/library/modules/$.set-to-string-tag.js ***!
+  \**********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var def = __webpack_require__(19).setDesc
-	  , has = __webpack_require__(20)
-	  , TAG = __webpack_require__(27)('toStringTag');
-
+	var def = __webpack_require__(/*! ./$ */ 20).setDesc
+	  , has = __webpack_require__(/*! ./$.has */ 21)
+	  , TAG = __webpack_require__(/*! ./$.wks */ 28)('toStringTag');
+	
 	module.exports = function(it, tag, stat){
 	  if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
 	};
 
 /***/ },
-/* 27 */
+/* 28 */
+/*!********************************************!*\
+  !*** ./~/core-js/library/modules/$.wks.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var store  = __webpack_require__(25)('wks')
-	  , uid    = __webpack_require__(28)
-	  , Symbol = __webpack_require__(8).Symbol;
+	var store  = __webpack_require__(/*! ./$.shared */ 26)('wks')
+	  , uid    = __webpack_require__(/*! ./$.uid */ 29)
+	  , Symbol = __webpack_require__(/*! ./$.global */ 9).Symbol;
 	module.exports = function(name){
 	  return store[name] || (store[name] =
 	    Symbol && Symbol[name] || (Symbol || uid)('Symbol.' + name));
 	};
 
 /***/ },
-/* 28 */
+/* 29 */
+/*!********************************************!*\
+  !*** ./~/core-js/library/modules/$.uid.js ***!
+  \********************************************/
 /***/ function(module, exports) {
 
 	var id = 0
@@ -1153,11 +1257,14 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 29 */
+/* 30 */
+/*!**********************************************!*\
+  !*** ./~/core-js/library/modules/$.keyof.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var $         = __webpack_require__(19)
-	  , toIObject = __webpack_require__(30);
+	var $         = __webpack_require__(/*! ./$ */ 20)
+	  , toIObject = __webpack_require__(/*! ./$.to-iobject */ 31);
 	module.exports = function(object, el){
 	  var O      = toIObject(object)
 	    , keys   = $.getKeys(O)
@@ -1168,48 +1275,60 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 30 */
+/* 31 */
+/*!***************************************************!*\
+  !*** ./~/core-js/library/modules/$.to-iobject.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// to indexed object, toObject with fallback for non-array-like ES3 strings
-	var IObject = __webpack_require__(31)
-	  , defined = __webpack_require__(5);
+	var IObject = __webpack_require__(/*! ./$.iobject */ 32)
+	  , defined = __webpack_require__(/*! ./$.defined */ 6);
 	module.exports = function(it){
 	  return IObject(defined(it));
 	};
 
 /***/ },
-/* 31 */
+/* 32 */
+/*!************************************************!*\
+  !*** ./~/core-js/library/modules/$.iobject.js ***!
+  \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// fallback for non-array-like ES3 and non-enumerable old V8 strings
-	var cof = __webpack_require__(32);
+	var cof = __webpack_require__(/*! ./$.cof */ 33);
 	module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
 	  return cof(it) == 'String' ? it.split('') : Object(it);
 	};
 
 /***/ },
-/* 32 */
+/* 33 */
+/*!********************************************!*\
+  !*** ./~/core-js/library/modules/$.cof.js ***!
+  \********************************************/
 /***/ function(module, exports) {
 
 	var toString = {}.toString;
-
+	
 	module.exports = function(it){
 	  return toString.call(it).slice(8, -1);
 	};
 
 /***/ },
-/* 33 */
+/* 34 */
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/$.get-names.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-	var toIObject = __webpack_require__(30)
-	  , getNames  = __webpack_require__(19).getNames
+	var toIObject = __webpack_require__(/*! ./$.to-iobject */ 31)
+	  , getNames  = __webpack_require__(/*! ./$ */ 20).getNames
 	  , toString  = {}.toString;
-
+	
 	var windowNames = typeof window == 'object' && Object.getOwnPropertyNames
 	  ? Object.getOwnPropertyNames(window) : [];
-
+	
 	var getWindowNames = function(it){
 	  try {
 	    return getNames(it);
@@ -1217,18 +1336,21 @@ var SettingsPanel =
 	    return windowNames.slice();
 	  }
 	};
-
+	
 	module.exports.get = function getOwnPropertyNames(it){
 	  if(windowNames && toString.call(it) == '[object Window]')return getWindowNames(it);
 	  return getNames(toIObject(it));
 	};
 
 /***/ },
-/* 34 */
+/* 35 */
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/$.enum-keys.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// all enumerable object keys, includes symbols
-	var $ = __webpack_require__(19);
+	var $ = __webpack_require__(/*! ./$ */ 20);
 	module.exports = function(it){
 	  var keys       = $.getKeys(it)
 	    , getSymbols = $.getSymbols;
@@ -1243,27 +1365,36 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 35 */
+/* 36 */
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/$.is-array.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.2.2 IsArray(argument)
-	var cof = __webpack_require__(32);
+	var cof = __webpack_require__(/*! ./$.cof */ 33);
 	module.exports = Array.isArray || function(arg){
 	  return cof(arg) == 'Array';
 	};
 
 /***/ },
-/* 36 */
+/* 37 */
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/$.an-object.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(37);
+	var isObject = __webpack_require__(/*! ./$.is-object */ 38);
 	module.exports = function(it){
 	  if(!isObject(it))throw TypeError(it + ' is not an object!');
 	  return it;
 	};
 
 /***/ },
-/* 37 */
+/* 38 */
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/$.is-object.js ***!
+  \**************************************************/
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -1271,29 +1402,38 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 38 */
+/* 39 */
+/*!************************************************!*\
+  !*** ./~/core-js/library/modules/$.library.js ***!
+  \************************************************/
 /***/ function(module, exports) {
 
 	module.exports = true;
 
 /***/ },
-/* 39 */
+/* 40 */
+/*!***********************************************************!*\
+  !*** ./~/core-js/library/modules/es6.object.to-string.js ***!
+  \***********************************************************/
 /***/ function(module, exports) {
 
-	
+
 
 /***/ },
-/* 40 */
+/* 41 */
+/*!************************************************!*\
+  !*** ./~/babel-runtime/helpers/createClass.js ***!
+  \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-
-	var _defineProperty = __webpack_require__(41);
-
+	
+	var _defineProperty = __webpack_require__(/*! babel-runtime/core-js/object/define-property */ 42);
+	
 	var _defineProperty2 = _interopRequireDefault(_defineProperty);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	exports.default = (function () {
 	  function defineProperties(target, props) {
 	    for (var i = 0; i < props.length; i++) {
@@ -1304,46 +1444,55 @@ var SettingsPanel =
 	      (0, _defineProperty2.default)(target, descriptor.key, descriptor);
 	    }
 	  }
-
+	
 	  return function (Constructor, protoProps, staticProps) {
 	    if (protoProps) defineProperties(Constructor.prototype, protoProps);
 	    if (staticProps) defineProperties(Constructor, staticProps);
 	    return Constructor;
 	  };
 	})();
-
+	
 	exports.__esModule = true;
 
 /***/ },
-/* 41 */
+/* 42 */
+/*!***********************************************************!*\
+  !*** ./~/babel-runtime/core-js/object/define-property.js ***!
+  \***********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(42), __esModule: true };
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/object/define-property */ 43), __esModule: true };
 
 /***/ },
-/* 42 */
+/* 43 */
+/*!********************************************************!*\
+  !*** ./~/core-js/library/fn/object/define-property.js ***!
+  \********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(19);
+	var $ = __webpack_require__(/*! ../../modules/$ */ 20);
 	module.exports = function defineProperty(it, key, desc){
 	  return $.setDesc(it, key, desc);
 	};
 
 /***/ },
-/* 43 */
+/* 44 */
+/*!*********************************************!*\
+  !*** ./~/babel-runtime/helpers/inherits.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-
-	var _Object$create = __webpack_require__(44)["default"];
-
-	var _Object$setPrototypeOf = __webpack_require__(46)["default"];
-
+	
+	var _Object$create = __webpack_require__(/*! babel-runtime/core-js/object/create */ 45)["default"];
+	
+	var _Object$setPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/set-prototype-of */ 47)["default"];
+	
 	exports["default"] = function (subClass, superClass) {
 	  if (typeof superClass !== "function" && superClass !== null) {
 	    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
 	  }
-
+	
 	  subClass.prototype = _Object$create(superClass && superClass.prototype, {
 	    constructor: {
 	      value: subClass,
@@ -1354,54 +1503,72 @@ var SettingsPanel =
 	  });
 	  if (superClass) _Object$setPrototypeOf ? _Object$setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 	};
-
+	
 	exports.__esModule = true;
 
 /***/ },
-/* 44 */
+/* 45 */
+/*!**************************************************!*\
+  !*** ./~/babel-runtime/core-js/object/create.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(45), __esModule: true };
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/object/create */ 46), __esModule: true };
 
 /***/ },
-/* 45 */
+/* 46 */
+/*!***********************************************!*\
+  !*** ./~/core-js/library/fn/object/create.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(19);
+	var $ = __webpack_require__(/*! ../../modules/$ */ 20);
 	module.exports = function create(P, D){
 	  return $.create(P, D);
 	};
 
 /***/ },
-/* 46 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(47), __esModule: true };
-
-/***/ },
 /* 47 */
+/*!************************************************************!*\
+  !*** ./~/babel-runtime/core-js/object/set-prototype-of.js ***!
+  \************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(48);
-	module.exports = __webpack_require__(9).Object.setPrototypeOf;
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/object/set-prototype-of */ 48), __esModule: true };
 
 /***/ },
 /* 48 */
+/*!*********************************************************!*\
+  !*** ./~/core-js/library/fn/object/set-prototype-of.js ***!
+  \*********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	// 19.1.3.19 Object.setPrototypeOf(O, proto)
-	var $export = __webpack_require__(7);
-	$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(49).set});
+	__webpack_require__(/*! ../../modules/es6.object.set-prototype-of */ 49);
+	module.exports = __webpack_require__(/*! ../../modules/$.core */ 10).Object.setPrototypeOf;
 
 /***/ },
 /* 49 */
+/*!******************************************************************!*\
+  !*** ./~/core-js/library/modules/es6.object.set-prototype-of.js ***!
+  \******************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// 19.1.3.19 Object.setPrototypeOf(O, proto)
+	var $export = __webpack_require__(/*! ./$.export */ 8);
+	$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(/*! ./$.set-proto */ 50).set});
+
+/***/ },
+/* 50 */
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/$.set-proto.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// Works with __proto__ only. Old v8 can't work with null proto objects.
 	/* eslint-disable no-proto */
-	var getDesc  = __webpack_require__(19).getDesc
-	  , isObject = __webpack_require__(37)
-	  , anObject = __webpack_require__(36);
+	var getDesc  = __webpack_require__(/*! ./$ */ 20).getDesc
+	  , isObject = __webpack_require__(/*! ./$.is-object */ 38)
+	  , anObject = __webpack_require__(/*! ./$.an-object */ 37);
 	var check = function(O, proto){
 	  anObject(O);
 	  if(!isObject(proto) && proto !== null)throw TypeError(proto + ": can't set as prototype!");
@@ -1410,7 +1577,7 @@ var SettingsPanel =
 	  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
 	    function(test, buggy, set){
 	      try {
-	        set = __webpack_require__(10)(Function.call, getDesc(Object.prototype, '__proto__').set, 2);
+	        set = __webpack_require__(/*! ./$.ctx */ 11)(Function.call, getDesc(Object.prototype, '__proto__').set, 2);
 	        set(test, []);
 	        buggy = !(test instanceof Array);
 	      } catch(e){ buggy = true; }
@@ -1425,16 +1592,22 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 50 */
+/* 51 */
+/*!**************************!*\
+  !*** ./~/react/react.js ***!
+  \**************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
-	module.exports = __webpack_require__(51);
+	
+	module.exports = __webpack_require__(/*! ./lib/React */ 52);
 
 
 /***/ },
-/* 51 */
+/* 52 */
+/*!******************************!*\
+  !*** ./~/react/lib/React.js ***!
+  \******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1447,39 +1620,42 @@ var SettingsPanel =
 	 *
 	 * @providesModule React
 	 */
-
+	
 	'use strict';
-
-	var ReactDOM = __webpack_require__(52);
-	var ReactDOMServer = __webpack_require__(197);
-	var ReactIsomorphic = __webpack_require__(201);
-
-	var assign = __webpack_require__(88);
-	var deprecated = __webpack_require__(206);
-
+	
+	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 53);
+	var ReactDOMServer = __webpack_require__(/*! ./ReactDOMServer */ 198);
+	var ReactIsomorphic = __webpack_require__(/*! ./ReactIsomorphic */ 202);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var deprecated = __webpack_require__(/*! ./deprecated */ 207);
+	
 	// `version` will be added here by ReactIsomorphic.
 	var React = {};
-
+	
 	assign(React, ReactIsomorphic);
-
+	
 	assign(React, {
 	  // ReactDOM
 	  findDOMNode: deprecated('findDOMNode', 'ReactDOM', 'react-dom', ReactDOM, ReactDOM.findDOMNode),
 	  render: deprecated('render', 'ReactDOM', 'react-dom', ReactDOM, ReactDOM.render),
 	  unmountComponentAtNode: deprecated('unmountComponentAtNode', 'ReactDOM', 'react-dom', ReactDOM, ReactDOM.unmountComponentAtNode),
-
+	
 	  // ReactDOMServer
 	  renderToString: deprecated('renderToString', 'ReactDOMServer', 'react-dom/server', ReactDOMServer, ReactDOMServer.renderToString),
 	  renderToStaticMarkup: deprecated('renderToStaticMarkup', 'ReactDOMServer', 'react-dom/server', ReactDOMServer, ReactDOMServer.renderToStaticMarkup)
 	});
-
+	
 	React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOM;
 	React.__SECRET_DOM_SERVER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOMServer;
-
+	
 	module.exports = React;
 
 /***/ },
-/* 52 */
+/* 53 */
+/*!*********************************!*\
+  !*** ./~/react/lib/ReactDOM.js ***!
+  \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1492,40 +1668,40 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactDOM
 	 */
-
+	
 	/* globals __REACT_DEVTOOLS_GLOBAL_HOOK__*/
-
+	
 	'use strict';
-
-	var ReactCurrentOwner = __webpack_require__(54);
-	var ReactDOMTextComponent = __webpack_require__(55);
-	var ReactDefaultInjection = __webpack_require__(120);
-	var ReactInstanceHandles = __webpack_require__(94);
-	var ReactMount = __webpack_require__(77);
-	var ReactPerf = __webpack_require__(67);
-	var ReactReconciler = __webpack_require__(99);
-	var ReactUpdates = __webpack_require__(103);
-	var ReactVersion = __webpack_require__(195);
-
-	var findDOMNode = __webpack_require__(140);
-	var renderSubtreeIntoContainer = __webpack_require__(196);
-	var warning = __webpack_require__(74);
-
+	
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 55);
+	var ReactDOMTextComponent = __webpack_require__(/*! ./ReactDOMTextComponent */ 56);
+	var ReactDefaultInjection = __webpack_require__(/*! ./ReactDefaultInjection */ 121);
+	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 95);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 68);
+	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 100);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 104);
+	var ReactVersion = __webpack_require__(/*! ./ReactVersion */ 196);
+	
+	var findDOMNode = __webpack_require__(/*! ./findDOMNode */ 141);
+	var renderSubtreeIntoContainer = __webpack_require__(/*! ./renderSubtreeIntoContainer */ 197);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	ReactDefaultInjection.inject();
-
+	
 	var render = ReactPerf.measure('React', 'render', ReactMount.render);
-
+	
 	var React = {
 	  findDOMNode: findDOMNode,
 	  render: render,
 	  unmountComponentAtNode: ReactMount.unmountComponentAtNode,
 	  version: ReactVersion,
-
+	
 	  /* eslint-disable camelcase */
 	  unstable_batchedUpdates: ReactUpdates.batchedUpdates,
 	  unstable_renderSubtreeIntoContainer: renderSubtreeIntoContainer
 	};
-
+	
 	// Inject the runtime into a devtools global hook regardless of browser.
 	// Allows for debugging when the hook is injected on the page.
 	/* eslint-enable camelcase */
@@ -1538,11 +1714,11 @@ var SettingsPanel =
 	    TextComponent: ReactDOMTextComponent
 	  });
 	}
-
+	
 	if (process.env.NODE_ENV !== 'production') {
-	  var ExecutionEnvironment = __webpack_require__(58);
+	  var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 59);
 	  if (ExecutionEnvironment.canUseDOM && window.top === window.self) {
-
+	
 	    // First check if devtools is not installed
 	    if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined') {
 	      // If we're in Chrome or Firefox, provide a download link if not installed.
@@ -1550,20 +1726,20 @@ var SettingsPanel =
 	        console.debug('Download the React DevTools for a better development experience: ' + 'https://fb.me/react-devtools');
 	      }
 	    }
-
+	
 	    // If we're in IE8, check to see if we are in compatibility mode and provide
 	    // information on preventing compatibility mode
 	    var ieCompatibilityMode = document.documentMode && document.documentMode < 8;
-
+	
 	    process.env.NODE_ENV !== 'production' ? warning(!ieCompatibilityMode, 'Internet Explorer is running in compatibility mode; please add the ' + 'following tag to your HTML to prevent this from happening: ' + '<meta http-equiv="X-UA-Compatible" content="IE=edge" />') : undefined;
-
+	
 	    var expectedFeatures = [
 	    // shims
 	    Array.isArray, Array.prototype.every, Array.prototype.forEach, Array.prototype.indexOf, Array.prototype.map, Date.now, Function.prototype.bind, Object.keys, String.prototype.split, String.prototype.trim,
-
+	
 	    // shams
 	    Object.create, Object.freeze];
-
+	
 	    for (var i = 0; i < expectedFeatures.length; i++) {
 	      if (!expectedFeatures[i]) {
 	        console.error('One or more ES5 shim/shams expected by React are not available: ' + 'https://fb.me/react-warning-polyfills');
@@ -1572,22 +1748,25 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	module.exports = React;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 53 */
+/* 54 */
+/*!******************************!*\
+  !*** ./~/process/browser.js ***!
+  \******************************/
 /***/ function(module, exports) {
 
 	// shim for using process in browser
-
+	
 	var process = module.exports = {};
 	var queue = [];
 	var draining = false;
 	var currentQueue;
 	var queueIndex = -1;
-
+	
 	function cleanUpNextTick() {
 	    draining = false;
 	    if (currentQueue.length) {
@@ -1599,14 +1778,14 @@ var SettingsPanel =
 	        drainQueue();
 	    }
 	}
-
+	
 	function drainQueue() {
 	    if (draining) {
 	        return;
 	    }
 	    var timeout = setTimeout(cleanUpNextTick);
 	    draining = true;
-
+	
 	    var len = queue.length;
 	    while(len) {
 	        currentQueue = queue;
@@ -1623,7 +1802,7 @@ var SettingsPanel =
 	    draining = false;
 	    clearTimeout(timeout);
 	}
-
+	
 	process.nextTick = function (fun) {
 	    var args = new Array(arguments.length - 1);
 	    if (arguments.length > 1) {
@@ -1636,7 +1815,7 @@ var SettingsPanel =
 	        setTimeout(drainQueue, 0);
 	    }
 	};
-
+	
 	// v8 likes predictible objects
 	function Item(fun, array) {
 	    this.fun = fun;
@@ -1651,9 +1830,9 @@ var SettingsPanel =
 	process.argv = [];
 	process.version = ''; // empty string to avoid regexp issues
 	process.versions = {};
-
+	
 	function noop() {}
-
+	
 	process.on = noop;
 	process.addListener = noop;
 	process.once = noop;
@@ -1661,11 +1840,11 @@ var SettingsPanel =
 	process.removeListener = noop;
 	process.removeAllListeners = noop;
 	process.emit = noop;
-
+	
 	process.binding = function (name) {
 	    throw new Error('process.binding is not supported');
 	};
-
+	
 	process.cwd = function () { return '/' };
 	process.chdir = function (dir) {
 	    throw new Error('process.chdir is not supported');
@@ -1674,7 +1853,10 @@ var SettingsPanel =
 
 
 /***/ },
-/* 54 */
+/* 55 */
+/*!******************************************!*\
+  !*** ./~/react/lib/ReactCurrentOwner.js ***!
+  \******************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -1687,9 +1869,9 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactCurrentOwner
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * Keeps track of the current owner.
 	 *
@@ -1697,19 +1879,22 @@ var SettingsPanel =
 	 * currently being constructed.
 	 */
 	var ReactCurrentOwner = {
-
+	
 	  /**
 	   * @internal
 	   * @type {ReactComponent}
 	   */
 	  current: null
-
+	
 	};
-
+	
 	module.exports = ReactCurrentOwner;
 
 /***/ },
-/* 55 */
+/* 56 */
+/*!**********************************************!*\
+  !*** ./~/react/lib/ReactDOMTextComponent.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1723,19 +1908,19 @@ var SettingsPanel =
 	 * @providesModule ReactDOMTextComponent
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var DOMChildrenOperations = __webpack_require__(56);
-	var DOMPropertyOperations = __webpack_require__(71);
-	var ReactComponentBrowserEnvironment = __webpack_require__(75);
-	var ReactMount = __webpack_require__(77);
-
-	var assign = __webpack_require__(88);
-	var escapeTextContentForBrowser = __webpack_require__(70);
-	var setTextContent = __webpack_require__(69);
-	var validateDOMNesting = __webpack_require__(119);
-
+	
+	var DOMChildrenOperations = __webpack_require__(/*! ./DOMChildrenOperations */ 57);
+	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 72);
+	var ReactComponentBrowserEnvironment = __webpack_require__(/*! ./ReactComponentBrowserEnvironment */ 76);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var escapeTextContentForBrowser = __webpack_require__(/*! ./escapeTextContentForBrowser */ 71);
+	var setTextContent = __webpack_require__(/*! ./setTextContent */ 70);
+	var validateDOMNesting = __webpack_require__(/*! ./validateDOMNesting */ 120);
+	
 	/**
 	 * Text nodes violate a couple assumptions that React makes about components:
 	 *
@@ -1754,9 +1939,9 @@ var SettingsPanel =
 	var ReactDOMTextComponent = function (props) {
 	  // This constructor and its argument is currently used by mocks.
 	};
-
+	
 	assign(ReactDOMTextComponent.prototype, {
-
+	
 	  /**
 	   * @param {ReactText} text
 	   * @internal
@@ -1765,12 +1950,12 @@ var SettingsPanel =
 	    // TODO: This is really a ReactText (ReactNode), not a ReactElement
 	    this._currentElement = text;
 	    this._stringText = '' + text;
-
+	
 	    // Properties
 	    this._rootNodeID = null;
 	    this._mountIndex = 0;
 	  },
-
+	
 	  /**
 	   * Creates the markup for this text node. This node is not intended to have
 	   * any features besides containing text content.
@@ -1786,7 +1971,7 @@ var SettingsPanel =
 	        validateDOMNesting('span', null, context[validateDOMNesting.ancestorInfoContextKey]);
 	      }
 	    }
-
+	
 	    this._rootNodeID = rootID;
 	    if (transaction.useCreateElement) {
 	      var ownerDocument = context[ReactMount.ownerDocumentContextKey];
@@ -1798,18 +1983,18 @@ var SettingsPanel =
 	      return el;
 	    } else {
 	      var escapedText = escapeTextContentForBrowser(this._stringText);
-
+	
 	      if (transaction.renderToStaticMarkup) {
 	        // Normally we'd wrap this in a `span` for the reasons stated above, but
 	        // since this is a situation where React won't take over (static pages),
 	        // we can simply return the text as it is.
 	        return escapedText;
 	      }
-
+	
 	      return '<span ' + DOMPropertyOperations.createMarkupForID(rootID) + '>' + escapedText + '</span>';
 	    }
 	  },
-
+	
 	  /**
 	   * Updates this component by updating the text content.
 	   *
@@ -1831,18 +2016,21 @@ var SettingsPanel =
 	      }
 	    }
 	  },
-
+	
 	  unmountComponent: function () {
 	    ReactComponentBrowserEnvironment.unmountIDFromEnvironment(this._rootNodeID);
 	  }
-
+	
 	});
-
+	
 	module.exports = ReactDOMTextComponent;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 56 */
+/* 57 */
+/*!**********************************************!*\
+  !*** ./~/react/lib/DOMChildrenOperations.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1856,17 +2044,17 @@ var SettingsPanel =
 	 * @providesModule DOMChildrenOperations
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var Danger = __webpack_require__(57);
-	var ReactMultiChildUpdateTypes = __webpack_require__(65);
-	var ReactPerf = __webpack_require__(67);
-
-	var setInnerHTML = __webpack_require__(68);
-	var setTextContent = __webpack_require__(69);
-	var invariant = __webpack_require__(62);
-
+	
+	var Danger = __webpack_require__(/*! ./Danger */ 58);
+	var ReactMultiChildUpdateTypes = __webpack_require__(/*! ./ReactMultiChildUpdateTypes */ 66);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 68);
+	
+	var setInnerHTML = __webpack_require__(/*! ./setInnerHTML */ 69);
+	var setTextContent = __webpack_require__(/*! ./setTextContent */ 70);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	/**
 	 * Inserts `childNode` as a child of `parentNode` at the `index`.
 	 *
@@ -1880,23 +2068,23 @@ var SettingsPanel =
 	  // rely exclusively on `insertBefore(node, null)` instead of also using
 	  // `appendChild(node)`. However, using `undefined` is not allowed by all
 	  // browsers so we must replace it with `null`.
-
+	
 	  // fix render order error in safari
 	  // IE8 will throw error when index out of list size.
 	  var beforeChild = index >= parentNode.childNodes.length ? null : parentNode.childNodes.item(index);
-
+	
 	  parentNode.insertBefore(childNode, beforeChild);
 	}
-
+	
 	/**
 	 * Operations for updating with DOM children.
 	 */
 	var DOMChildrenOperations = {
-
+	
 	  dangerouslyReplaceNodeWithMarkup: Danger.dangerouslyReplaceNodeWithMarkup,
-
+	
 	  updateTextContent: setTextContent,
-
+	
 	  /**
 	   * Updates a component's children by processing a series of updates. The
 	   * update configurations are each expected to have a `parentNode` property.
@@ -1911,25 +2099,25 @@ var SettingsPanel =
 	    var initialChildren = null;
 	    // List of children that will be moved or removed.
 	    var updatedChildren = null;
-
+	
 	    for (var i = 0; i < updates.length; i++) {
 	      update = updates[i];
 	      if (update.type === ReactMultiChildUpdateTypes.MOVE_EXISTING || update.type === ReactMultiChildUpdateTypes.REMOVE_NODE) {
 	        var updatedIndex = update.fromIndex;
 	        var updatedChild = update.parentNode.childNodes[updatedIndex];
 	        var parentID = update.parentID;
-
+	
 	        !updatedChild ? process.env.NODE_ENV !== 'production' ? invariant(false, 'processUpdates(): Unable to find child %s of element. This ' + 'probably means the DOM was unexpectedly mutated (e.g., by the ' + 'browser), usually due to forgetting a <tbody> when using tables, ' + 'nesting tags like <form>, <p>, or <a>, or using non-SVG elements ' + 'in an <svg> parent. Try inspecting the child nodes of the element ' + 'with React ID `%s`.', updatedIndex, parentID) : invariant(false) : undefined;
-
+	
 	        initialChildren = initialChildren || {};
 	        initialChildren[parentID] = initialChildren[parentID] || [];
 	        initialChildren[parentID][updatedIndex] = updatedChild;
-
+	
 	        updatedChildren = updatedChildren || [];
 	        updatedChildren.push(updatedChild);
 	      }
 	    }
-
+	
 	    var renderedMarkup;
 	    // markupList is either a list of markup or just a list of elements
 	    if (markupList.length && typeof markupList[0] === 'string') {
@@ -1937,14 +2125,14 @@ var SettingsPanel =
 	    } else {
 	      renderedMarkup = markupList;
 	    }
-
+	
 	    // Remove updated children first so that `toIndex` is consistent.
 	    if (updatedChildren) {
 	      for (var j = 0; j < updatedChildren.length; j++) {
 	        updatedChildren[j].parentNode.removeChild(updatedChildren[j]);
 	      }
 	    }
-
+	
 	    for (var k = 0; k < updates.length; k++) {
 	      update = updates[k];
 	      switch (update.type) {
@@ -1966,18 +2154,21 @@ var SettingsPanel =
 	      }
 	    }
 	  }
-
+	
 	};
-
+	
 	ReactPerf.measureMethods(DOMChildrenOperations, 'DOMChildrenOperations', {
 	  updateTextContent: 'updateTextContent'
 	});
-
+	
 	module.exports = DOMChildrenOperations;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 57 */
+/* 58 */
+/*!*******************************!*\
+  !*** ./~/react/lib/Danger.js ***!
+  \*******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1991,19 +2182,19 @@ var SettingsPanel =
 	 * @providesModule Danger
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var ExecutionEnvironment = __webpack_require__(58);
-
-	var createNodesFromMarkup = __webpack_require__(59);
-	var emptyFunction = __webpack_require__(64);
-	var getMarkupWrap = __webpack_require__(63);
-	var invariant = __webpack_require__(62);
-
+	
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 59);
+	
+	var createNodesFromMarkup = __webpack_require__(/*! fbjs/lib/createNodesFromMarkup */ 60);
+	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 65);
+	var getMarkupWrap = __webpack_require__(/*! fbjs/lib/getMarkupWrap */ 64);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	var OPEN_TAG_NAME_EXP = /^(<[^ \/>]+)/;
 	var RESULT_INDEX_ATTR = 'data-danger-index';
-
+	
 	/**
 	 * Extracts the `nodeName` from a string of markup.
 	 *
@@ -2018,9 +2209,9 @@ var SettingsPanel =
 	function getNodeName(markup) {
 	  return markup.substring(1, markup.indexOf(' '));
 	}
-
+	
 	var Danger = {
-
+	
 	  /**
 	   * Renders markup into an array of nodes. The markup is expected to render
 	   * into a list of root nodes. Also, the length of `resultList` and
@@ -2049,7 +2240,7 @@ var SettingsPanel =
 	        continue;
 	      }
 	      var markupListByNodeName = markupByNodeName[nodeName];
-
+	
 	      // This for-in loop skips the holes of the sparse array. The order of
 	      // iteration should follow the order of assignment, which happens to match
 	      // numerical index order, but we don't rely on that.
@@ -2057,7 +2248,7 @@ var SettingsPanel =
 	      for (resultIndex in markupListByNodeName) {
 	        if (markupListByNodeName.hasOwnProperty(resultIndex)) {
 	          var markup = markupListByNodeName[resultIndex];
-
+	
 	          // Push the requested markup with an additional RESULT_INDEX_ATTR
 	          // attribute.  If the markup does not start with a < character, it
 	          // will be discarded below (with an appropriate console.error).
@@ -2066,22 +2257,22 @@ var SettingsPanel =
 	          '$1 ' + RESULT_INDEX_ATTR + '="' + resultIndex + '" ');
 	        }
 	      }
-
+	
 	      // Render each group of markup with similar wrapping `nodeName`.
 	      var renderNodes = createNodesFromMarkup(markupListByNodeName.join(''), emptyFunction // Do nothing special with <script> tags.
 	      );
-
+	
 	      for (var j = 0; j < renderNodes.length; ++j) {
 	        var renderNode = renderNodes[j];
 	        if (renderNode.hasAttribute && renderNode.hasAttribute(RESULT_INDEX_ATTR)) {
-
+	
 	          resultIndex = +renderNode.getAttribute(RESULT_INDEX_ATTR);
 	          renderNode.removeAttribute(RESULT_INDEX_ATTR);
-
+	
 	          !!resultList.hasOwnProperty(resultIndex) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Danger: Assigning to an already-occupied result index.') : invariant(false) : undefined;
-
+	
 	          resultList[resultIndex] = renderNode;
-
+	
 	          // This should match resultList.length and markupList.length when
 	          // we're done.
 	          resultListAssignmentCount += 1;
@@ -2090,16 +2281,16 @@ var SettingsPanel =
 	        }
 	      }
 	    }
-
+	
 	    // Although resultList was populated out of order, it should now be a dense
 	    // array.
 	    !(resultListAssignmentCount === resultList.length) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Danger: Did not assign to every index of resultList.') : invariant(false) : undefined;
-
+	
 	    !(resultList.length === markupList.length) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Danger: Expected markup to render %s nodes, but rendered %s.', markupList.length, resultList.length) : invariant(false) : undefined;
-
+	
 	    return resultList;
 	  },
-
+	
 	  /**
 	   * Replaces a node with a string of markup at its current position within its
 	   * parent. The markup must render into a single root node.
@@ -2112,7 +2303,7 @@ var SettingsPanel =
 	    !ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? invariant(false, 'dangerouslyReplaceNodeWithMarkup(...): Cannot render markup in a ' + 'worker thread. Make sure `window` and `document` are available ' + 'globally before requiring React when unit testing or use ' + 'ReactDOMServer.renderToString() for server rendering.') : invariant(false) : undefined;
 	    !markup ? process.env.NODE_ENV !== 'production' ? invariant(false, 'dangerouslyReplaceNodeWithMarkup(...): Missing markup.') : invariant(false) : undefined;
 	    !(oldChild.tagName.toLowerCase() !== 'html') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'dangerouslyReplaceNodeWithMarkup(...): Cannot replace markup of the ' + '<html> node. This is because browser quirks make this unreliable ' + 'and/or slow. If you want to render to the root you must use ' + 'server rendering. See ReactDOMServer.renderToString().') : invariant(false) : undefined;
-
+	
 	    var newChild;
 	    if (typeof markup === 'string') {
 	      newChild = createNodesFromMarkup(markup, emptyFunction)[0];
@@ -2121,14 +2312,17 @@ var SettingsPanel =
 	    }
 	    oldChild.parentNode.replaceChild(newChild, oldChild);
 	  }
-
+	
 	};
-
+	
 	module.exports = Danger;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 58 */
+/* 59 */
+/*!********************************************!*\
+  !*** ./~/fbjs/lib/ExecutionEnvironment.js ***!
+  \********************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -2141,11 +2335,11 @@ var SettingsPanel =
 	 *
 	 * @providesModule ExecutionEnvironment
 	 */
-
+	
 	'use strict';
-
+	
 	var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-
+	
 	/**
 	 * Simple, lightweight module assisting with the detection and context of
 	 * Worker. Helps avoid circular dependencies and allows code to reason about
@@ -2153,23 +2347,26 @@ var SettingsPanel =
 	 * `ReactWorker` dependency.
 	 */
 	var ExecutionEnvironment = {
-
+	
 	  canUseDOM: canUseDOM,
-
+	
 	  canUseWorkers: typeof Worker !== 'undefined',
-
+	
 	  canUseEventListeners: canUseDOM && !!(window.addEventListener || window.attachEvent),
-
+	
 	  canUseViewport: canUseDOM && !!window.screen,
-
+	
 	  isInWorker: !canUseDOM // For now, this is true - might change in the future.
-
+	
 	};
-
+	
 	module.exports = ExecutionEnvironment;
 
 /***/ },
-/* 59 */
+/* 60 */
+/*!*********************************************!*\
+  !*** ./~/fbjs/lib/createNodesFromMarkup.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -2183,27 +2380,27 @@ var SettingsPanel =
 	 * @providesModule createNodesFromMarkup
 	 * @typechecks
 	 */
-
+	
 	/*eslint-disable fb-www/unsafe-html*/
-
+	
 	'use strict';
-
-	var ExecutionEnvironment = __webpack_require__(58);
-
-	var createArrayFromMixed = __webpack_require__(60);
-	var getMarkupWrap = __webpack_require__(63);
-	var invariant = __webpack_require__(62);
-
+	
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 59);
+	
+	var createArrayFromMixed = __webpack_require__(/*! ./createArrayFromMixed */ 61);
+	var getMarkupWrap = __webpack_require__(/*! ./getMarkupWrap */ 64);
+	var invariant = __webpack_require__(/*! ./invariant */ 63);
+	
 	/**
 	 * Dummy container used to render all markup.
 	 */
 	var dummyNode = ExecutionEnvironment.canUseDOM ? document.createElement('div') : null;
-
+	
 	/**
 	 * Pattern used by `getNodeName`.
 	 */
 	var nodeNamePattern = /^\s*<(\w+)/;
-
+	
 	/**
 	 * Extracts the `nodeName` of the first element in a string of markup.
 	 *
@@ -2214,7 +2411,7 @@ var SettingsPanel =
 	  var nodeNameMatch = markup.match(nodeNamePattern);
 	  return nodeNameMatch && nodeNameMatch[1].toLowerCase();
 	}
-
+	
 	/**
 	 * Creates an array containing the nodes rendered from the supplied markup. The
 	 * optionally supplied `handleScript` function will be invoked once for each
@@ -2229,11 +2426,11 @@ var SettingsPanel =
 	  var node = dummyNode;
 	  !!!dummyNode ? process.env.NODE_ENV !== 'production' ? invariant(false, 'createNodesFromMarkup dummy not initialized') : invariant(false) : undefined;
 	  var nodeName = getNodeName(markup);
-
+	
 	  var wrap = nodeName && getMarkupWrap(nodeName);
 	  if (wrap) {
 	    node.innerHTML = wrap[1] + markup + wrap[2];
-
+	
 	    var wrapDepth = wrap[0];
 	    while (wrapDepth--) {
 	      node = node.lastChild;
@@ -2241,25 +2438,28 @@ var SettingsPanel =
 	  } else {
 	    node.innerHTML = markup;
 	  }
-
+	
 	  var scripts = node.getElementsByTagName('script');
 	  if (scripts.length) {
 	    !handleScript ? process.env.NODE_ENV !== 'production' ? invariant(false, 'createNodesFromMarkup(...): Unexpected <script> element rendered.') : invariant(false) : undefined;
 	    createArrayFromMixed(scripts).forEach(handleScript);
 	  }
-
+	
 	  var nodes = createArrayFromMixed(node.childNodes);
 	  while (node.lastChild) {
 	    node.removeChild(node.lastChild);
 	  }
 	  return nodes;
 	}
-
+	
 	module.exports = createNodesFromMarkup;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 60 */
+/* 61 */
+/*!********************************************!*\
+  !*** ./~/fbjs/lib/createArrayFromMixed.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -2273,11 +2473,11 @@ var SettingsPanel =
 	 * @providesModule createArrayFromMixed
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
-	var toArray = __webpack_require__(61);
-
+	
+	var toArray = __webpack_require__(/*! ./toArray */ 62);
+	
 	/**
 	 * Perform a heuristic test to determine if an object is "array-like".
 	 *
@@ -2314,7 +2514,7 @@ var SettingsPanel =
 	    'item' in obj)
 	  );
 	}
-
+	
 	/**
 	 * Ensure that the argument is an array by wrapping it in an array if it is not.
 	 * Creates a copy of the argument if it is already an array.
@@ -2345,11 +2545,14 @@ var SettingsPanel =
 	    return toArray(obj);
 	  }
 	}
-
+	
 	module.exports = createArrayFromMixed;
 
 /***/ },
-/* 61 */
+/* 62 */
+/*!*******************************!*\
+  !*** ./~/fbjs/lib/toArray.js ***!
+  \*******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -2363,11 +2566,11 @@ var SettingsPanel =
 	 * @providesModule toArray
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
-	var invariant = __webpack_require__(62);
-
+	
+	var invariant = __webpack_require__(/*! ./invariant */ 63);
+	
 	/**
 	 * Convert array-like objects to arrays.
 	 *
@@ -2379,15 +2582,15 @@ var SettingsPanel =
 	 */
 	function toArray(obj) {
 	  var length = obj.length;
-
+	
 	  // Some browse builtin objects can report typeof 'function' (e.g. NodeList in
 	  // old versions of Safari).
 	  !(!Array.isArray(obj) && (typeof obj === 'object' || typeof obj === 'function')) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'toArray: Array-like object expected') : invariant(false) : undefined;
-
+	
 	  !(typeof length === 'number') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'toArray: Object needs a length property') : invariant(false) : undefined;
-
+	
 	  !(length === 0 || length - 1 in obj) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'toArray: Object should have keys for indices') : invariant(false) : undefined;
-
+	
 	  // Old IE doesn't give collections access to hasOwnProperty. Assume inputs
 	  // without method will throw during the slice call and skip straight to the
 	  // fallback.
@@ -2398,7 +2601,7 @@ var SettingsPanel =
 	      // IE < 9 does not support Array#slice on collections objects
 	    }
 	  }
-
+	
 	  // Fall back to copying key by key. This assumes all keys have a value,
 	  // so will not preserve sparsely populated inputs.
 	  var ret = Array(length);
@@ -2407,12 +2610,15 @@ var SettingsPanel =
 	  }
 	  return ret;
 	}
-
+	
 	module.exports = toArray;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 62 */
+/* 63 */
+/*!*********************************!*\
+  !*** ./~/fbjs/lib/invariant.js ***!
+  \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -2425,9 +2631,9 @@ var SettingsPanel =
 	 *
 	 * @providesModule invariant
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * Use invariant() to assert state which your program assumes to be true.
 	 *
@@ -2438,14 +2644,14 @@ var SettingsPanel =
 	 * The invariant message will be stripped in production, but the invariant
 	 * will remain to ensure logic does not differ in production.
 	 */
-
+	
 	function invariant(condition, format, a, b, c, d, e, f) {
 	  if (process.env.NODE_ENV !== 'production') {
 	    if (format === undefined) {
 	      throw new Error('invariant requires an error message argument');
 	    }
 	  }
-
+	
 	  if (!condition) {
 	    var error;
 	    if (format === undefined) {
@@ -2458,17 +2664,20 @@ var SettingsPanel =
 	      }));
 	      error.name = 'Invariant Violation';
 	    }
-
+	
 	    error.framesToPop = 1; // we don't care about invariant's own frame
 	    throw error;
 	  }
 	}
-
+	
 	module.exports = invariant;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 63 */
+/* 64 */
+/*!*************************************!*\
+  !*** ./~/fbjs/lib/getMarkupWrap.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -2481,57 +2690,57 @@ var SettingsPanel =
 	 *
 	 * @providesModule getMarkupWrap
 	 */
-
+	
 	/*eslint-disable fb-www/unsafe-html */
-
+	
 	'use strict';
-
-	var ExecutionEnvironment = __webpack_require__(58);
-
-	var invariant = __webpack_require__(62);
-
+	
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 59);
+	
+	var invariant = __webpack_require__(/*! ./invariant */ 63);
+	
 	/**
 	 * Dummy container used to detect which wraps are necessary.
 	 */
 	var dummyNode = ExecutionEnvironment.canUseDOM ? document.createElement('div') : null;
-
+	
 	/**
 	 * Some browsers cannot use `innerHTML` to render certain elements standalone,
 	 * so we wrap them, render the wrapped nodes, then extract the desired node.
 	 *
 	 * In IE8, certain elements cannot render alone, so wrap all elements ('*').
 	 */
-
+	
 	var shouldWrap = {};
-
+	
 	var selectWrap = [1, '<select multiple="true">', '</select>'];
 	var tableWrap = [1, '<table>', '</table>'];
 	var trWrap = [3, '<table><tbody><tr>', '</tr></tbody></table>'];
-
+	
 	var svgWrap = [1, '<svg xmlns="http://www.w3.org/2000/svg">', '</svg>'];
-
+	
 	var markupWrap = {
 	  '*': [1, '?<div>', '</div>'],
-
+	
 	  'area': [1, '<map>', '</map>'],
 	  'col': [2, '<table><tbody></tbody><colgroup>', '</colgroup></table>'],
 	  'legend': [1, '<fieldset>', '</fieldset>'],
 	  'param': [1, '<object>', '</object>'],
 	  'tr': [2, '<table><tbody>', '</tbody></table>'],
-
+	
 	  'optgroup': selectWrap,
 	  'option': selectWrap,
-
+	
 	  'caption': tableWrap,
 	  'colgroup': tableWrap,
 	  'tbody': tableWrap,
 	  'tfoot': tableWrap,
 	  'thead': tableWrap,
-
+	
 	  'td': trWrap,
 	  'th': trWrap
 	};
-
+	
 	// Initialize the SVG elements since we know they'll always need to be wrapped
 	// consistently. If they are created inside a <div> they will be initialized in
 	// the wrong namespace (and will not display).
@@ -2540,7 +2749,7 @@ var SettingsPanel =
 	  markupWrap[nodeName] = svgWrap;
 	  shouldWrap[nodeName] = true;
 	});
-
+	
 	/**
 	 * Gets the markup wrap configuration for the supplied `nodeName`.
 	 *
@@ -2564,12 +2773,15 @@ var SettingsPanel =
 	  }
 	  return shouldWrap[nodeName] ? markupWrap[nodeName] : null;
 	}
-
+	
 	module.exports = getMarkupWrap;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 64 */
+/* 65 */
+/*!*************************************!*\
+  !*** ./~/fbjs/lib/emptyFunction.js ***!
+  \*************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -2582,22 +2794,22 @@ var SettingsPanel =
 	 *
 	 * @providesModule emptyFunction
 	 */
-
+	
 	"use strict";
-
+	
 	function makeEmptyFunction(arg) {
 	  return function () {
 	    return arg;
 	  };
 	}
-
+	
 	/**
 	 * This function accepts and discards inputs; it has no side effects. This is
 	 * primarily useful idiomatically for overridable function endpoints which
 	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
 	 */
 	function emptyFunction() {}
-
+	
 	emptyFunction.thatReturns = makeEmptyFunction;
 	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
 	emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
@@ -2608,11 +2820,14 @@ var SettingsPanel =
 	emptyFunction.thatReturnsArgument = function (arg) {
 	  return arg;
 	};
-
+	
 	module.exports = emptyFunction;
 
 /***/ },
-/* 65 */
+/* 66 */
+/*!***************************************************!*\
+  !*** ./~/react/lib/ReactMultiChildUpdateTypes.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -2625,11 +2840,11 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactMultiChildUpdateTypes
 	 */
-
+	
 	'use strict';
-
-	var keyMirror = __webpack_require__(66);
-
+	
+	var keyMirror = __webpack_require__(/*! fbjs/lib/keyMirror */ 67);
+	
 	/**
 	 * When a component's children are updated, a series of update configuration
 	 * objects are created in order to batch and serialize the required changes.
@@ -2645,11 +2860,14 @@ var SettingsPanel =
 	  SET_MARKUP: null,
 	  TEXT_CONTENT: null
 	});
-
+	
 	module.exports = ReactMultiChildUpdateTypes;
 
 /***/ },
-/* 66 */
+/* 67 */
+/*!*********************************!*\
+  !*** ./~/fbjs/lib/keyMirror.js ***!
+  \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -2663,11 +2881,11 @@ var SettingsPanel =
 	 * @providesModule keyMirror
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var invariant = __webpack_require__(62);
-
+	
+	var invariant = __webpack_require__(/*! ./invariant */ 63);
+	
 	/**
 	 * Constructs an enumeration with keys equal to their value.
 	 *
@@ -2698,12 +2916,15 @@ var SettingsPanel =
 	  }
 	  return ret;
 	};
-
+	
 	module.exports = keyMirror;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 67 */
+/* 68 */
+/*!**********************************!*\
+  !*** ./~/react/lib/ReactPerf.js ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -2717,9 +2938,9 @@ var SettingsPanel =
 	 * @providesModule ReactPerf
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * ReactPerf is a general AOP system designed to measure performance. This
 	 * module only has the hooks: see ReactDefaultPerf for the analysis tool.
@@ -2730,13 +2951,13 @@ var SettingsPanel =
 	   * accidental logging and perf loss.
 	   */
 	  enableMeasure: false,
-
+	
 	  /**
 	   * Holds onto the measure function in use. By default, don't measure
 	   * anything, but we'll override this if we inject a measure function.
 	   */
 	  storedMeasure: _noMeasure,
-
+	
 	  /**
 	   * @param {object} object
 	   * @param {string} objectName
@@ -2752,7 +2973,7 @@ var SettingsPanel =
 	      }
 	    }
 	  },
-
+	
 	  /**
 	   * Use this to wrap methods you want to measure. Zero overhead in production.
 	   *
@@ -2778,7 +2999,7 @@ var SettingsPanel =
 	    }
 	    return func;
 	  },
-
+	
 	  injection: {
 	    /**
 	     * @param {function} measure
@@ -2788,7 +3009,7 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	/**
 	 * Simply passes through the measured function, without measuring it.
 	 *
@@ -2800,12 +3021,15 @@ var SettingsPanel =
 	function _noMeasure(objName, fnName, func) {
 	  return func;
 	}
-
+	
 	module.exports = ReactPerf;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 68 */
+/* 69 */
+/*!*************************************!*\
+  !*** ./~/react/lib/setInnerHTML.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -2818,16 +3042,16 @@ var SettingsPanel =
 	 *
 	 * @providesModule setInnerHTML
 	 */
-
+	
 	/* globals MSApp */
-
+	
 	'use strict';
-
-	var ExecutionEnvironment = __webpack_require__(58);
-
+	
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 59);
+	
 	var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 	var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
-
+	
 	/**
 	 * Set the innerHTML property of a node, ensuring that whitespace is preserved
 	 * even in IE8.
@@ -2839,7 +3063,7 @@ var SettingsPanel =
 	var setInnerHTML = function (node, html) {
 	  node.innerHTML = html;
 	};
-
+	
 	// Win8 apps: Allow all html to be inserted
 	if (typeof MSApp !== 'undefined' && MSApp.execUnsafeLocalFunction) {
 	  setInnerHTML = function (node, html) {
@@ -2848,13 +3072,13 @@ var SettingsPanel =
 	    });
 	  };
 	}
-
+	
 	if (ExecutionEnvironment.canUseDOM) {
 	  // IE8: When updating a just created node with innerHTML only leading
 	  // whitespace is removed. When updating an existing node with innerHTML
 	  // whitespace in root TextNodes is also collapsed.
 	  // @see quirksmode.org/bugreports/archives/2004/11/innerhtml_and_t.html
-
+	
 	  // Feature detection; only IE8 is known to behave improperly like this.
 	  var testElement = document.createElement('div');
 	  testElement.innerHTML = ' ';
@@ -2868,7 +3092,7 @@ var SettingsPanel =
 	      if (node.parentNode) {
 	        node.parentNode.replaceChild(node, node);
 	      }
-
+	
 	      // We also implement a workaround for non-visible tags disappearing into
 	      // thin air on IE8, this only happens if there is no visible text
 	      // in-front of the non-visible tags. Piggyback on the whitespace fix
@@ -2881,7 +3105,7 @@ var SettingsPanel =
 	        // the actual Unicode character (by Babel, for example).
 	        // https://github.com/mishoo/UglifyJS2/blob/v2.4.20/lib/parse.js#L216
 	        node.innerHTML = String.fromCharCode(0xFEFF) + html;
-
+	
 	        // deleteData leaves an empty `TextNode` which offsets the index of all
 	        // children. Definitely want to avoid this.
 	        var textNode = node.firstChild;
@@ -2896,11 +3120,14 @@ var SettingsPanel =
 	    };
 	  }
 	}
-
+	
 	module.exports = setInnerHTML;
 
 /***/ },
-/* 69 */
+/* 70 */
+/*!***************************************!*\
+  !*** ./~/react/lib/setTextContent.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -2913,13 +3140,13 @@ var SettingsPanel =
 	 *
 	 * @providesModule setTextContent
 	 */
-
+	
 	'use strict';
-
-	var ExecutionEnvironment = __webpack_require__(58);
-	var escapeTextContentForBrowser = __webpack_require__(70);
-	var setInnerHTML = __webpack_require__(68);
-
+	
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 59);
+	var escapeTextContentForBrowser = __webpack_require__(/*! ./escapeTextContentForBrowser */ 71);
+	var setInnerHTML = __webpack_require__(/*! ./setInnerHTML */ 69);
+	
 	/**
 	 * Set the textContent property of a node, ensuring that whitespace is preserved
 	 * even in IE8. innerText is a poor substitute for textContent and, among many
@@ -2933,7 +3160,7 @@ var SettingsPanel =
 	var setTextContent = function (node, text) {
 	  node.textContent = text;
 	};
-
+	
 	if (ExecutionEnvironment.canUseDOM) {
 	  if (!('textContent' in document.documentElement)) {
 	    setTextContent = function (node, text) {
@@ -2941,11 +3168,14 @@ var SettingsPanel =
 	    };
 	  }
 	}
-
+	
 	module.exports = setTextContent;
 
 /***/ },
-/* 70 */
+/* 71 */
+/*!****************************************************!*\
+  !*** ./~/react/lib/escapeTextContentForBrowser.js ***!
+  \****************************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -2958,9 +3188,9 @@ var SettingsPanel =
 	 *
 	 * @providesModule escapeTextContentForBrowser
 	 */
-
+	
 	'use strict';
-
+	
 	var ESCAPE_LOOKUP = {
 	  '&': '&amp;',
 	  '>': '&gt;',
@@ -2968,13 +3198,13 @@ var SettingsPanel =
 	  '"': '&quot;',
 	  '\'': '&#x27;'
 	};
-
+	
 	var ESCAPE_REGEX = /[&><"']/g;
-
+	
 	function escaper(match) {
 	  return ESCAPE_LOOKUP[match];
 	}
-
+	
 	/**
 	 * Escapes text to prevent scripting attacks.
 	 *
@@ -2984,11 +3214,14 @@ var SettingsPanel =
 	function escapeTextContentForBrowser(text) {
 	  return ('' + text).replace(ESCAPE_REGEX, escaper);
 	}
-
+	
 	module.exports = escapeTextContentForBrowser;
 
 /***/ },
-/* 71 */
+/* 72 */
+/*!**********************************************!*\
+  !*** ./~/react/lib/DOMPropertyOperations.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -3002,20 +3235,20 @@ var SettingsPanel =
 	 * @providesModule DOMPropertyOperations
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var DOMProperty = __webpack_require__(72);
-	var ReactPerf = __webpack_require__(67);
-
-	var quoteAttributeValueForBrowser = __webpack_require__(73);
-	var warning = __webpack_require__(74);
-
+	
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 73);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 68);
+	
+	var quoteAttributeValueForBrowser = __webpack_require__(/*! ./quoteAttributeValueForBrowser */ 74);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	// Simplified subset
 	var VALID_ATTRIBUTE_NAME_REGEX = /^[a-zA-Z_][\w\.\-]*$/;
 	var illegalAttributeNameCache = {};
 	var validatedAttributeNameCache = {};
-
+	
 	function isAttributeNameSafe(attributeName) {
 	  if (validatedAttributeNameCache.hasOwnProperty(attributeName)) {
 	    return true;
@@ -3031,11 +3264,11 @@ var SettingsPanel =
 	  process.env.NODE_ENV !== 'production' ? warning(false, 'Invalid attribute name: `%s`', attributeName) : undefined;
 	  return false;
 	}
-
+	
 	function shouldIgnoreValue(propertyInfo, value) {
 	  return value == null || propertyInfo.hasBooleanValue && !value || propertyInfo.hasNumericValue && isNaN(value) || propertyInfo.hasPositiveNumericValue && value < 1 || propertyInfo.hasOverloadedBooleanValue && value === false;
 	}
-
+	
 	if (process.env.NODE_ENV !== 'production') {
 	  var reactProps = {
 	    children: true,
@@ -3044,29 +3277,29 @@ var SettingsPanel =
 	    ref: true
 	  };
 	  var warnedProperties = {};
-
+	
 	  var warnUnknownProperty = function (name) {
 	    if (reactProps.hasOwnProperty(name) && reactProps[name] || warnedProperties.hasOwnProperty(name) && warnedProperties[name]) {
 	      return;
 	    }
-
+	
 	    warnedProperties[name] = true;
 	    var lowerCasedName = name.toLowerCase();
-
+	
 	    // data-* attributes should be lowercase; suggest the lowercase version
 	    var standardName = DOMProperty.isCustomAttribute(lowerCasedName) ? lowerCasedName : DOMProperty.getPossibleStandardName.hasOwnProperty(lowerCasedName) ? DOMProperty.getPossibleStandardName[lowerCasedName] : null;
-
+	
 	    // For now, only warn when we have a suggested correction. This prevents
 	    // logging too much when using transferPropsTo.
 	    process.env.NODE_ENV !== 'production' ? warning(standardName == null, 'Unknown DOM property %s. Did you mean %s?', name, standardName) : undefined;
 	  };
 	}
-
+	
 	/**
 	 * Operations for dealing with DOM properties.
 	 */
 	var DOMPropertyOperations = {
-
+	
 	  /**
 	   * Creates markup for the ID property.
 	   *
@@ -3076,11 +3309,11 @@ var SettingsPanel =
 	  createMarkupForID: function (id) {
 	    return DOMProperty.ID_ATTRIBUTE_NAME + '=' + quoteAttributeValueForBrowser(id);
 	  },
-
+	
 	  setAttributeForID: function (node, id) {
 	    node.setAttribute(DOMProperty.ID_ATTRIBUTE_NAME, id);
 	  },
-
+	
 	  /**
 	   * Creates markup for a property.
 	   *
@@ -3109,7 +3342,7 @@ var SettingsPanel =
 	    }
 	    return null;
 	  },
-
+	
 	  /**
 	   * Creates markup for a custom property.
 	   *
@@ -3123,7 +3356,7 @@ var SettingsPanel =
 	    }
 	    return name + '=' + quoteAttributeValueForBrowser(value);
 	  },
-
+	
 	  /**
 	   * Sets the value for a property on a node.
 	   *
@@ -3167,7 +3400,7 @@ var SettingsPanel =
 	      warnUnknownProperty(name);
 	    }
 	  },
-
+	
 	  setValueForAttribute: function (node, name, value) {
 	    if (!isAttributeNameSafe(name)) {
 	      return;
@@ -3178,7 +3411,7 @@ var SettingsPanel =
 	      node.setAttribute(name, '' + value);
 	    }
 	  },
-
+	
 	  /**
 	   * Deletes the value for a property on a node.
 	   *
@@ -3206,20 +3439,23 @@ var SettingsPanel =
 	      warnUnknownProperty(name);
 	    }
 	  }
-
+	
 	};
-
+	
 	ReactPerf.measureMethods(DOMPropertyOperations, 'DOMPropertyOperations', {
 	  setValueForProperty: 'setValueForProperty',
 	  setValueForAttribute: 'setValueForAttribute',
 	  deleteValueForProperty: 'deleteValueForProperty'
 	});
-
+	
 	module.exports = DOMPropertyOperations;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 72 */
+/* 73 */
+/*!************************************!*\
+  !*** ./~/react/lib/DOMProperty.js ***!
+  \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -3233,15 +3469,15 @@ var SettingsPanel =
 	 * @providesModule DOMProperty
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var invariant = __webpack_require__(62);
-
+	
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	function checkMask(value, bitmask) {
 	  return (value & bitmask) === bitmask;
 	}
-
+	
 	var DOMPropertyInjection = {
 	  /**
 	   * Mapping from normalized, camelcased property names to a configuration that
@@ -3254,7 +3490,7 @@ var SettingsPanel =
 	  HAS_NUMERIC_VALUE: 0x10,
 	  HAS_POSITIVE_NUMERIC_VALUE: 0x20 | 0x10,
 	  HAS_OVERLOADED_BOOLEAN_VALUE: 0x40,
-
+	
 	  /**
 	   * Inject some specialized knowledge about the DOM. This takes a config object
 	   * with the following properties:
@@ -3290,23 +3526,23 @@ var SettingsPanel =
 	    var DOMAttributeNames = domPropertyConfig.DOMAttributeNames || {};
 	    var DOMPropertyNames = domPropertyConfig.DOMPropertyNames || {};
 	    var DOMMutationMethods = domPropertyConfig.DOMMutationMethods || {};
-
+	
 	    if (domPropertyConfig.isCustomAttribute) {
 	      DOMProperty._isCustomAttributeFunctions.push(domPropertyConfig.isCustomAttribute);
 	    }
-
+	
 	    for (var propName in Properties) {
 	      !!DOMProperty.properties.hasOwnProperty(propName) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'injectDOMPropertyConfig(...): You\'re trying to inject DOM property ' + '\'%s\' which has already been injected. You may be accidentally ' + 'injecting the same DOM property config twice, or you may be ' + 'injecting two configs that have conflicting property names.', propName) : invariant(false) : undefined;
-
+	
 	      var lowerCased = propName.toLowerCase();
 	      var propConfig = Properties[propName];
-
+	
 	      var propertyInfo = {
 	        attributeName: lowerCased,
 	        attributeNamespace: null,
 	        propertyName: propName,
 	        mutationMethod: null,
-
+	
 	        mustUseAttribute: checkMask(propConfig, Injection.MUST_USE_ATTRIBUTE),
 	        mustUseProperty: checkMask(propConfig, Injection.MUST_USE_PROPERTY),
 	        hasSideEffects: checkMask(propConfig, Injection.HAS_SIDE_EFFECTS),
@@ -3315,15 +3551,15 @@ var SettingsPanel =
 	        hasPositiveNumericValue: checkMask(propConfig, Injection.HAS_POSITIVE_NUMERIC_VALUE),
 	        hasOverloadedBooleanValue: checkMask(propConfig, Injection.HAS_OVERLOADED_BOOLEAN_VALUE)
 	      };
-
+	
 	      !(!propertyInfo.mustUseAttribute || !propertyInfo.mustUseProperty) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'DOMProperty: Cannot require using both attribute and property: %s', propName) : invariant(false) : undefined;
 	      !(propertyInfo.mustUseProperty || !propertyInfo.hasSideEffects) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'DOMProperty: Properties that have side effects must use property: %s', propName) : invariant(false) : undefined;
 	      !(propertyInfo.hasBooleanValue + propertyInfo.hasNumericValue + propertyInfo.hasOverloadedBooleanValue <= 1) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'DOMProperty: Value can be one of boolean, overloaded boolean, or ' + 'numeric value, but not a combination: %s', propName) : invariant(false) : undefined;
-
+	
 	      if (process.env.NODE_ENV !== 'production') {
 	        DOMProperty.getPossibleStandardName[lowerCased] = propName;
 	      }
-
+	
 	      if (DOMAttributeNames.hasOwnProperty(propName)) {
 	        var attributeName = DOMAttributeNames[propName];
 	        propertyInfo.attributeName = attributeName;
@@ -3331,25 +3567,25 @@ var SettingsPanel =
 	          DOMProperty.getPossibleStandardName[attributeName] = propName;
 	        }
 	      }
-
+	
 	      if (DOMAttributeNamespaces.hasOwnProperty(propName)) {
 	        propertyInfo.attributeNamespace = DOMAttributeNamespaces[propName];
 	      }
-
+	
 	      if (DOMPropertyNames.hasOwnProperty(propName)) {
 	        propertyInfo.propertyName = DOMPropertyNames[propName];
 	      }
-
+	
 	      if (DOMMutationMethods.hasOwnProperty(propName)) {
 	        propertyInfo.mutationMethod = DOMMutationMethods[propName];
 	      }
-
+	
 	      DOMProperty.properties[propName] = propertyInfo;
 	    }
 	  }
 	};
 	var defaultValueCache = {};
-
+	
 	/**
 	 * DOMProperty exports lookup objects that can be used like functions:
 	 *
@@ -3364,9 +3600,9 @@ var SettingsPanel =
 	 * @see http://jsperf.com/key-missing
 	 */
 	var DOMProperty = {
-
+	
 	  ID_ATTRIBUTE_NAME: 'data-reactid',
-
+	
 	  /**
 	   * Map from property "standard name" to an object with info about how to set
 	   * the property in the DOM. Each object contains:
@@ -3404,19 +3640,19 @@ var SettingsPanel =
 	   *   strictly equal to true; present with a value otherwise.
 	   */
 	  properties: {},
-
+	
 	  /**
 	   * Mapping from lowercase property names to the properly cased version, used
 	   * to warn in the case of missing properties. Available only in __DEV__.
 	   * @type {Object}
 	   */
 	  getPossibleStandardName: process.env.NODE_ENV !== 'production' ? {} : null,
-
+	
 	  /**
 	   * All of the isCustomAttribute() functions that have been injected.
 	   */
 	  _isCustomAttributeFunctions: [],
-
+	
 	  /**
 	   * Checks whether a property name is a custom attribute.
 	   * @method
@@ -3430,7 +3666,7 @@ var SettingsPanel =
 	    }
 	    return false;
 	  },
-
+	
 	  /**
 	   * Returns the default property value for a DOM property (i.e., not an
 	   * attribute). Most default values are '' or false, but not all. Worse yet,
@@ -3451,15 +3687,18 @@ var SettingsPanel =
 	    }
 	    return nodeDefaults[prop];
 	  },
-
+	
 	  injection: DOMPropertyInjection
 	};
-
+	
 	module.exports = DOMProperty;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 73 */
+/* 74 */
+/*!******************************************************!*\
+  !*** ./~/react/lib/quoteAttributeValueForBrowser.js ***!
+  \******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -3472,11 +3711,11 @@ var SettingsPanel =
 	 *
 	 * @providesModule quoteAttributeValueForBrowser
 	 */
-
+	
 	'use strict';
-
-	var escapeTextContentForBrowser = __webpack_require__(70);
-
+	
+	var escapeTextContentForBrowser = __webpack_require__(/*! ./escapeTextContentForBrowser */ 71);
+	
 	/**
 	 * Escapes attribute value to prevent scripting attacks.
 	 *
@@ -3486,11 +3725,14 @@ var SettingsPanel =
 	function quoteAttributeValueForBrowser(value) {
 	  return '"' + escapeTextContentForBrowser(value) + '"';
 	}
-
+	
 	module.exports = quoteAttributeValueForBrowser;
 
 /***/ },
-/* 74 */
+/* 75 */
+/*!*******************************!*\
+  !*** ./~/fbjs/lib/warning.js ***!
+  \*******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -3503,34 +3745,34 @@ var SettingsPanel =
 	 *
 	 * @providesModule warning
 	 */
-
+	
 	'use strict';
-
-	var emptyFunction = __webpack_require__(64);
-
+	
+	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 65);
+	
 	/**
 	 * Similar to invariant but only logs a warning if the condition is not met.
 	 * This can be used to log issues in development environments in critical
 	 * paths. Removing the logging code for production environments will keep the
 	 * same logic and follow the same code paths.
 	 */
-
+	
 	var warning = emptyFunction;
-
+	
 	if (process.env.NODE_ENV !== 'production') {
 	  warning = function (condition, format) {
 	    for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
 	      args[_key - 2] = arguments[_key];
 	    }
-
+	
 	    if (format === undefined) {
 	      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
 	    }
-
+	
 	    if (format.indexOf('Failed Composite propType: ') === 0) {
 	      return; // Ignore CompositeComponent proptype check.
 	    }
-
+	
 	    if (!condition) {
 	      var argIndex = 0;
 	      var message = 'Warning: ' + format.replace(/%s/g, function () {
@@ -3548,12 +3790,15 @@ var SettingsPanel =
 	    }
 	  };
 	}
-
+	
 	module.exports = warning;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 75 */
+/* 76 */
+/*!*********************************************************!*\
+  !*** ./~/react/lib/ReactComponentBrowserEnvironment.js ***!
+  \*********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -3566,23 +3811,23 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactComponentBrowserEnvironment
 	 */
-
+	
 	'use strict';
-
-	var ReactDOMIDOperations = __webpack_require__(76);
-	var ReactMount = __webpack_require__(77);
-
+	
+	var ReactDOMIDOperations = __webpack_require__(/*! ./ReactDOMIDOperations */ 77);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	
 	/**
 	 * Abstracts away all functionality of the reconciler that requires knowledge of
 	 * the browser context. TODO: These callers should be refactored to avoid the
 	 * need for this injection.
 	 */
 	var ReactComponentBrowserEnvironment = {
-
+	
 	  processChildrenUpdates: ReactDOMIDOperations.dangerouslyProcessChildrenUpdates,
-
+	
 	  replaceNodeWithMarkupByID: ReactDOMIDOperations.dangerouslyReplaceNodeWithMarkupByID,
-
+	
 	  /**
 	   * If a particular environment requires that some resources be cleaned up,
 	   * specify this in the injected Mixin. In the DOM, we would likely want to
@@ -3593,13 +3838,16 @@ var SettingsPanel =
 	  unmountIDFromEnvironment: function (rootNodeID) {
 	    ReactMount.purgeID(rootNodeID);
 	  }
-
+	
 	};
-
+	
 	module.exports = ReactComponentBrowserEnvironment;
 
 /***/ },
-/* 76 */
+/* 77 */
+/*!*********************************************!*\
+  !*** ./~/react/lib/ReactDOMIDOperations.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -3613,16 +3861,16 @@ var SettingsPanel =
 	 * @providesModule ReactDOMIDOperations
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var DOMChildrenOperations = __webpack_require__(56);
-	var DOMPropertyOperations = __webpack_require__(71);
-	var ReactMount = __webpack_require__(77);
-	var ReactPerf = __webpack_require__(67);
-
-	var invariant = __webpack_require__(62);
-
+	
+	var DOMChildrenOperations = __webpack_require__(/*! ./DOMChildrenOperations */ 57);
+	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 72);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 68);
+	
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	/**
 	 * Errors for properties that should not be updated with `updatePropertyByID()`.
 	 *
@@ -3633,12 +3881,12 @@ var SettingsPanel =
 	  dangerouslySetInnerHTML: '`dangerouslySetInnerHTML` must be set using `updateInnerHTMLByID()`.',
 	  style: '`style` must be set using `updateStylesByID()`.'
 	};
-
+	
 	/**
 	 * Operations used to process updates to DOM nodes.
 	 */
 	var ReactDOMIDOperations = {
-
+	
 	  /**
 	   * Updates a DOM node with new property values. This should only be used to
 	   * update DOM properties in `DOMProperty`.
@@ -3651,7 +3899,7 @@ var SettingsPanel =
 	  updatePropertyByID: function (id, name, value) {
 	    var node = ReactMount.getNode(id);
 	    !!INVALID_PROPERTY_ERRORS.hasOwnProperty(name) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'updatePropertyByID(...): %s', INVALID_PROPERTY_ERRORS[name]) : invariant(false) : undefined;
-
+	
 	    // If we're updating to null or undefined, we should remove the property
 	    // from the DOM node instead of inadvertantly setting to a string. This
 	    // brings us in line with the same behavior we have on initial render.
@@ -3661,7 +3909,7 @@ var SettingsPanel =
 	      DOMPropertyOperations.deleteValueForProperty(node, name);
 	    }
 	  },
-
+	
 	  /**
 	   * Replaces a DOM node that exists in the document with markup.
 	   *
@@ -3674,7 +3922,7 @@ var SettingsPanel =
 	    var node = ReactMount.getNode(id);
 	    DOMChildrenOperations.dangerouslyReplaceNodeWithMarkup(node, markup);
 	  },
-
+	
 	  /**
 	   * Updates a component's children by processing a series of updates.
 	   *
@@ -3689,17 +3937,20 @@ var SettingsPanel =
 	    DOMChildrenOperations.processUpdates(updates, markup);
 	  }
 	};
-
+	
 	ReactPerf.measureMethods(ReactDOMIDOperations, 'ReactDOMIDOperations', {
 	  dangerouslyReplaceNodeWithMarkupByID: 'dangerouslyReplaceNodeWithMarkupByID',
 	  dangerouslyProcessChildrenUpdates: 'dangerouslyProcessChildrenUpdates'
 	});
-
+	
 	module.exports = ReactDOMIDOperations;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 77 */
+/* 78 */
+/*!***********************************!*\
+  !*** ./~/react/lib/ReactMount.js ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -3712,56 +3963,56 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactMount
 	 */
-
+	
 	'use strict';
-
-	var DOMProperty = __webpack_require__(72);
-	var ReactBrowserEventEmitter = __webpack_require__(78);
-	var ReactCurrentOwner = __webpack_require__(54);
-	var ReactDOMFeatureFlags = __webpack_require__(90);
-	var ReactElement = __webpack_require__(91);
-	var ReactEmptyComponentRegistry = __webpack_require__(93);
-	var ReactInstanceHandles = __webpack_require__(94);
-	var ReactInstanceMap = __webpack_require__(96);
-	var ReactMarkupChecksum = __webpack_require__(97);
-	var ReactPerf = __webpack_require__(67);
-	var ReactReconciler = __webpack_require__(99);
-	var ReactUpdateQueue = __webpack_require__(102);
-	var ReactUpdates = __webpack_require__(103);
-
-	var assign = __webpack_require__(88);
-	var emptyObject = __webpack_require__(107);
-	var containsNode = __webpack_require__(108);
-	var instantiateReactComponent = __webpack_require__(111);
-	var invariant = __webpack_require__(62);
-	var setInnerHTML = __webpack_require__(68);
-	var shouldUpdateReactComponent = __webpack_require__(116);
-	var validateDOMNesting = __webpack_require__(119);
-	var warning = __webpack_require__(74);
-
+	
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 73);
+	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 79);
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 55);
+	var ReactDOMFeatureFlags = __webpack_require__(/*! ./ReactDOMFeatureFlags */ 91);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 92);
+	var ReactEmptyComponentRegistry = __webpack_require__(/*! ./ReactEmptyComponentRegistry */ 94);
+	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 95);
+	var ReactInstanceMap = __webpack_require__(/*! ./ReactInstanceMap */ 97);
+	var ReactMarkupChecksum = __webpack_require__(/*! ./ReactMarkupChecksum */ 98);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 68);
+	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 100);
+	var ReactUpdateQueue = __webpack_require__(/*! ./ReactUpdateQueue */ 103);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 104);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var emptyObject = __webpack_require__(/*! fbjs/lib/emptyObject */ 108);
+	var containsNode = __webpack_require__(/*! fbjs/lib/containsNode */ 109);
+	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 112);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var setInnerHTML = __webpack_require__(/*! ./setInnerHTML */ 69);
+	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 117);
+	var validateDOMNesting = __webpack_require__(/*! ./validateDOMNesting */ 120);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
 	var nodeCache = {};
-
+	
 	var ELEMENT_NODE_TYPE = 1;
 	var DOC_NODE_TYPE = 9;
 	var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
-
+	
 	var ownerDocumentContextKey = '__ReactMount_ownerDocument$' + Math.random().toString(36).slice(2);
-
+	
 	/** Mapping from reactRootID to React component instance. */
 	var instancesByReactRootID = {};
-
+	
 	/** Mapping from reactRootID to `container` nodes. */
 	var containersByReactRootID = {};
-
+	
 	if (process.env.NODE_ENV !== 'production') {
 	  /** __DEV__-only mapping from reactRootID to root elements. */
 	  var rootElementsByReactRootID = {};
 	}
-
+	
 	// Used to store breadth-first search state in findComponentRoot.
 	var findComponentRootReusableArray = [];
-
+	
 	/**
 	 * Finds the index of the first character
 	 * that's not common between the two given strings.
@@ -3777,7 +4028,7 @@ var SettingsPanel =
 	  }
 	  return string1.length === string2.length ? -1 : minLen;
 	}
-
+	
 	/**
 	 * @param {DOMElement|DOMDocument} container DOM element that may contain
 	 * a React component
@@ -3787,14 +4038,14 @@ var SettingsPanel =
 	  if (!container) {
 	    return null;
 	  }
-
+	
 	  if (container.nodeType === DOC_NODE_TYPE) {
 	    return container.documentElement;
 	  } else {
 	    return container.firstChild;
 	  }
 	}
-
+	
 	/**
 	 * @param {DOMElement} container DOM element that may contain a React component.
 	 * @return {?string} A "reactRoot" ID, if a React component is rendered.
@@ -3803,7 +4054,7 @@ var SettingsPanel =
 	  var rootElement = getReactRootElementInContainer(container);
 	  return rootElement && ReactMount.getID(rootElement);
 	}
-
+	
 	/**
 	 * Accessing node[ATTR_NAME] or calling getAttribute(ATTR_NAME) on a form
 	 * element can return its control whose name or ID equals ATTR_NAME. All
@@ -3821,24 +4072,24 @@ var SettingsPanel =
 	      var cached = nodeCache[id];
 	      if (cached !== node) {
 	        !!isValid(cached, id) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactMount: Two valid but unequal nodes with the same `%s`: %s', ATTR_NAME, id) : invariant(false) : undefined;
-
+	
 	        nodeCache[id] = node;
 	      }
 	    } else {
 	      nodeCache[id] = node;
 	    }
 	  }
-
+	
 	  return id;
 	}
-
+	
 	function internalGetID(node) {
 	  // If node is something like a window, document, or text node, none of
 	  // which support attributes or a .getAttribute method, gracefully return
 	  // the empty string, as if the attribute were missing.
 	  return node && node.getAttribute && node.getAttribute(ATTR_NAME) || '';
 	}
-
+	
 	/**
 	 * Sets the React-specific ID of the given node.
 	 *
@@ -3853,7 +4104,7 @@ var SettingsPanel =
 	  node.setAttribute(ATTR_NAME, id);
 	  nodeCache[id] = node;
 	}
-
+	
 	/**
 	 * Finds the node with the supplied React-generated DOM ID.
 	 *
@@ -3867,7 +4118,7 @@ var SettingsPanel =
 	  }
 	  return nodeCache[id];
 	}
-
+	
 	/**
 	 * Finds the node with the supplied public React instance.
 	 *
@@ -3885,7 +4136,7 @@ var SettingsPanel =
 	  }
 	  return nodeCache[id];
 	}
-
+	
 	/**
 	 * A node is "valid" if it is contained by a currently mounted container.
 	 *
@@ -3899,16 +4150,16 @@ var SettingsPanel =
 	function isValid(node, id) {
 	  if (node) {
 	    !(internalGetID(node) === id) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactMount: Unexpected modification of `%s`', ATTR_NAME) : invariant(false) : undefined;
-
+	
 	    var container = ReactMount.findReactContainerForID(id);
 	    if (container && containsNode(container, node)) {
 	      return true;
 	    }
 	  }
-
+	
 	  return false;
 	}
-
+	
 	/**
 	 * Causes the cache to forget about one React-specific ID.
 	 *
@@ -3917,7 +4168,7 @@ var SettingsPanel =
 	function purgeID(id) {
 	  delete nodeCache[id];
 	}
-
+	
 	var deepestNodeSoFar = null;
 	function findDeepestCachedAncestorImpl(ancestorID) {
 	  var ancestor = nodeCache[ancestorID];
@@ -3929,19 +4180,19 @@ var SettingsPanel =
 	    return false;
 	  }
 	}
-
+	
 	/**
 	 * Return the deepest cached node whose ID is a prefix of `targetID`.
 	 */
 	function findDeepestCachedAncestor(targetID) {
 	  deepestNodeSoFar = null;
 	  ReactInstanceHandles.traverseAncestors(targetID, findDeepestCachedAncestorImpl);
-
+	
 	  var foundNode = deepestNodeSoFar;
 	  deepestNodeSoFar = null;
 	  return foundNode;
 	}
-
+	
 	/**
 	 * Mounts this component and inserts it into the DOM.
 	 *
@@ -3971,7 +4222,7 @@ var SettingsPanel =
 	  componentInstance._renderedComponent._topLevelWrapper = componentInstance;
 	  ReactMount._mountImageIntoNode(markup, container, shouldReuseMarkup, transaction);
 	}
-
+	
 	/**
 	 * Batched mount.
 	 *
@@ -3986,7 +4237,7 @@ var SettingsPanel =
 	  transaction.perform(mountComponentIntoNode, null, componentInstance, rootID, container, transaction, shouldReuseMarkup, context);
 	  ReactUpdates.ReactReconcileTransaction.release(transaction);
 	}
-
+	
 	/**
 	 * Unmounts a component and removes it from the DOM.
 	 *
@@ -3998,17 +4249,17 @@ var SettingsPanel =
 	 */
 	function unmountComponentFromNode(instance, container) {
 	  ReactReconciler.unmountComponent(instance);
-
+	
 	  if (container.nodeType === DOC_NODE_TYPE) {
 	    container = container.documentElement;
 	  }
-
+	
 	  // http://jsperf.com/emptying-a-node
 	  while (container.lastChild) {
 	    container.removeChild(container.lastChild);
 	  }
 	}
-
+	
 	/**
 	 * True if the supplied DOM node has a direct React-rendered child that is
 	 * not a React root element. Useful for warning in `render`,
@@ -4023,7 +4274,7 @@ var SettingsPanel =
 	  var reactRootID = getReactRootID(node);
 	  return reactRootID ? reactRootID !== ReactInstanceHandles.getReactRootIDFromNodeID(reactRootID) : false;
 	}
-
+	
 	/**
 	 * Returns the first (deepest) ancestor of a node which is rendered by this copy
 	 * of React.
@@ -4041,7 +4292,7 @@ var SettingsPanel =
 	      continue;
 	    }
 	    var reactRootID = ReactInstanceHandles.getReactRootIDFromNodeID(nodeID);
-
+	
 	    // If containersByReactRootID contains the container we find by crawling up
 	    // the tree, we know that this instance of React rendered the node.
 	    // nb. isValid's strategy (with containsNode) does not work because render
@@ -4057,14 +4308,14 @@ var SettingsPanel =
 	        return null;
 	      }
 	    } while (lastID !== reactRootID);
-
+	
 	    if (current === containersByReactRootID[reactRootID]) {
 	      return node;
 	    }
 	  }
 	  return null;
 	}
-
+	
 	/**
 	 * Temporary (?) hack so that we can store all top-level pending updates on
 	 * composites instead of having to worry about different types of components
@@ -4079,7 +4330,7 @@ var SettingsPanel =
 	  // this.props is actually a ReactElement
 	  return this.props;
 	};
-
+	
 	/**
 	 * Mounting is the process of initializing a React component by creating its
 	 * representative DOM elements and inserting them into a supplied `container`.
@@ -4099,12 +4350,12 @@ var SettingsPanel =
 	 * Inside of `container`, the first element rendered is the "reactRoot".
 	 */
 	var ReactMount = {
-
+	
 	  TopLevelWrapper: TopLevelWrapper,
-
+	
 	  /** Exposed for debugging purposes **/
 	  _instancesByReactRootID: instancesByReactRootID,
-
+	
 	  /**
 	   * This is a hook provided to support rendering React components while
 	   * ensuring that the apparent scroll position of its `container` does not
@@ -4116,7 +4367,7 @@ var SettingsPanel =
 	  scrollMonitor: function (container, renderCallback) {
 	    renderCallback();
 	  },
-
+	
 	  /**
 	   * Take a component that's already mounted into the DOM and replace its props
 	   * @param {ReactComponent} prevComponent component instance already in the DOM
@@ -4131,15 +4382,15 @@ var SettingsPanel =
 	        ReactUpdateQueue.enqueueCallbackInternal(prevComponent, callback);
 	      }
 	    });
-
+	
 	    if (process.env.NODE_ENV !== 'production') {
 	      // Record the root element in case it later gets transplanted.
 	      rootElementsByReactRootID[getReactRootID(container)] = getReactRootElementInContainer(container);
 	    }
-
+	
 	    return prevComponent;
 	  },
-
+	
 	  /**
 	   * Register a component into the instance map and starts scroll value
 	   * monitoring
@@ -4149,14 +4400,14 @@ var SettingsPanel =
 	   */
 	  _registerComponent: function (nextComponent, container) {
 	    !(container && (container.nodeType === ELEMENT_NODE_TYPE || container.nodeType === DOC_NODE_TYPE || container.nodeType === DOCUMENT_FRAGMENT_NODE_TYPE)) ? process.env.NODE_ENV !== 'production' ? invariant(false, '_registerComponent(...): Target container is not a DOM element.') : invariant(false) : undefined;
-
+	
 	    ReactBrowserEventEmitter.ensureScrollValueMonitoring();
-
+	
 	    var reactRootID = ReactMount.registerContainer(container);
 	    instancesByReactRootID[reactRootID] = nextComponent;
 	    return reactRootID;
 	  },
-
+	
 	  /**
 	   * Render a new component into the DOM.
 	   * @param {ReactElement} nextElement element to render
@@ -4169,24 +4420,24 @@ var SettingsPanel =
 	    // _renderValidatedComponent) assume that calls to render aren't nested;
 	    // verify that that's the case.
 	    process.env.NODE_ENV !== 'production' ? warning(ReactCurrentOwner.current == null, '_renderNewRootComponent(): Render methods should be a pure function ' + 'of props and state; triggering nested component updates from ' + 'render is not allowed. If necessary, trigger nested updates in ' + 'componentDidUpdate. Check the render method of %s.', ReactCurrentOwner.current && ReactCurrentOwner.current.getName() || 'ReactCompositeComponent') : undefined;
-
+	
 	    var componentInstance = instantiateReactComponent(nextElement, null);
 	    var reactRootID = ReactMount._registerComponent(componentInstance, container);
-
+	
 	    // The initial render is synchronous but any updates that happen during
 	    // rendering, in componentWillMount or componentDidMount, will be batched
 	    // according to the current batching strategy.
-
+	
 	    ReactUpdates.batchedUpdates(batchedMountComponentIntoNode, componentInstance, reactRootID, container, shouldReuseMarkup, context);
-
+	
 	    if (process.env.NODE_ENV !== 'production') {
 	      // Record the root element in case it later gets transplanted.
 	      rootElementsByReactRootID[reactRootID] = getReactRootElementInContainer(container);
 	    }
-
+	
 	    return componentInstance;
 	  },
-
+	
 	  /**
 	   * Renders a React component into the DOM in the supplied `container`.
 	   *
@@ -4204,18 +4455,18 @@ var SettingsPanel =
 	    !(parentComponent != null && parentComponent._reactInternalInstance != null) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'parentComponent must be a valid React Component') : invariant(false) : undefined;
 	    return ReactMount._renderSubtreeIntoContainer(parentComponent, nextElement, container, callback);
 	  },
-
+	
 	  _renderSubtreeIntoContainer: function (parentComponent, nextElement, container, callback) {
 	    !ReactElement.isValidElement(nextElement) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactDOM.render(): Invalid component element.%s', typeof nextElement === 'string' ? ' Instead of passing an element string, make sure to instantiate ' + 'it by passing it to React.createElement.' : typeof nextElement === 'function' ? ' Instead of passing a component class, make sure to instantiate ' + 'it by passing it to React.createElement.' :
 	    // Check if it quacks like an element
 	    nextElement != null && nextElement.props !== undefined ? ' This may be caused by unintentionally loading two independent ' + 'copies of React.' : '') : invariant(false) : undefined;
-
+	
 	    process.env.NODE_ENV !== 'production' ? warning(!container || !container.tagName || container.tagName.toUpperCase() !== 'BODY', 'render(): Rendering components directly into document.body is ' + 'discouraged, since its children are often manipulated by third-party ' + 'scripts and browser extensions. This may lead to subtle ' + 'reconciliation issues. Try rendering into a container element created ' + 'for your app.') : undefined;
-
+	
 	    var nextWrappedElement = new ReactElement(TopLevelWrapper, null, null, null, null, null, nextElement);
-
+	
 	    var prevComponent = instancesByReactRootID[getReactRootID(container)];
-
+	
 	    if (prevComponent) {
 	      var prevWrappedElement = prevComponent._currentElement;
 	      var prevElement = prevWrappedElement.props;
@@ -4230,14 +4481,14 @@ var SettingsPanel =
 	        ReactMount.unmountComponentAtNode(container);
 	      }
 	    }
-
+	
 	    var reactRootElement = getReactRootElementInContainer(container);
 	    var containerHasReactMarkup = reactRootElement && !!internalGetID(reactRootElement);
 	    var containerHasNonRootReactChild = hasNonRootReactChild(container);
-
+	
 	    if (process.env.NODE_ENV !== 'production') {
 	      process.env.NODE_ENV !== 'production' ? warning(!containerHasNonRootReactChild, 'render(...): Replacing React-rendered children with a new root ' + 'component. If you intended to update the children of this node, ' + 'you should instead have the existing children update their state ' + 'and render the new components instead of calling ReactDOM.render.') : undefined;
-
+	
 	      if (!containerHasReactMarkup || reactRootElement.nextSibling) {
 	        var rootElementSibling = reactRootElement;
 	        while (rootElementSibling) {
@@ -4249,7 +4500,7 @@ var SettingsPanel =
 	        }
 	      }
 	    }
-
+	
 	    var shouldReuseMarkup = containerHasReactMarkup && !prevComponent && !containerHasNonRootReactChild;
 	    var component = ReactMount._renderNewRootComponent(nextWrappedElement, container, shouldReuseMarkup, parentComponent != null ? parentComponent._reactInternalInstance._processChildContext(parentComponent._reactInternalInstance._context) : emptyObject)._renderedComponent.getPublicInstance();
 	    if (callback) {
@@ -4257,7 +4508,7 @@ var SettingsPanel =
 	    }
 	    return component;
 	  },
-
+	
 	  /**
 	   * Renders a React component into the DOM in the supplied `container`.
 	   *
@@ -4273,7 +4524,7 @@ var SettingsPanel =
 	  render: function (nextElement, container, callback) {
 	    return ReactMount._renderSubtreeIntoContainer(null, nextElement, container, callback);
 	  },
-
+	
 	  /**
 	   * Registers a container node into which React components will be rendered.
 	   * This also creates the "reactRoot" ID that will be assigned to the element
@@ -4295,7 +4546,7 @@ var SettingsPanel =
 	    containersByReactRootID[reactRootID] = container;
 	    return reactRootID;
 	  },
-
+	
 	  /**
 	   * Unmounts and destroys the React component rendered in the `container`.
 	   *
@@ -4309,24 +4560,24 @@ var SettingsPanel =
 	    // verify that that's the case. (Strictly speaking, unmounting won't cause a
 	    // render but we still don't expect to be in a render call here.)
 	    process.env.NODE_ENV !== 'production' ? warning(ReactCurrentOwner.current == null, 'unmountComponentAtNode(): Render methods should be a pure function ' + 'of props and state; triggering nested component updates from render ' + 'is not allowed. If necessary, trigger nested updates in ' + 'componentDidUpdate. Check the render method of %s.', ReactCurrentOwner.current && ReactCurrentOwner.current.getName() || 'ReactCompositeComponent') : undefined;
-
+	
 	    !(container && (container.nodeType === ELEMENT_NODE_TYPE || container.nodeType === DOC_NODE_TYPE || container.nodeType === DOCUMENT_FRAGMENT_NODE_TYPE)) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'unmountComponentAtNode(...): Target container is not a DOM element.') : invariant(false) : undefined;
-
+	
 	    var reactRootID = getReactRootID(container);
 	    var component = instancesByReactRootID[reactRootID];
 	    if (!component) {
 	      // Check if the node being unmounted was rendered by React, but isn't a
 	      // root node.
 	      var containerHasNonRootReactChild = hasNonRootReactChild(container);
-
+	
 	      // Check if the container itself is a React root node.
 	      var containerID = internalGetID(container);
 	      var isContainerReactRoot = containerID && containerID === ReactInstanceHandles.getReactRootIDFromNodeID(containerID);
-
+	
 	      if (process.env.NODE_ENV !== 'production') {
 	        process.env.NODE_ENV !== 'production' ? warning(!containerHasNonRootReactChild, 'unmountComponentAtNode(): The node you\'re attempting to unmount ' + 'was rendered by React and is not a top-level container. %s', isContainerReactRoot ? 'You may have accidentally passed in a React root node instead ' + 'of its container.' : 'Instead, have the parent component update its state and ' + 'rerender in order to remove this component.') : undefined;
 	      }
-
+	
 	      return false;
 	    }
 	    ReactUpdates.batchedUpdates(unmountComponentFromNode, component, container);
@@ -4337,7 +4588,7 @@ var SettingsPanel =
 	    }
 	    return true;
 	  },
-
+	
 	  /**
 	   * Finds the container DOM element that contains React component to which the
 	   * supplied DOM `id` belongs.
@@ -4348,7 +4599,7 @@ var SettingsPanel =
 	  findReactContainerForID: function (id) {
 	    var reactRootID = ReactInstanceHandles.getReactRootIDFromNodeID(id);
 	    var container = containersByReactRootID[reactRootID];
-
+	
 	    if (process.env.NODE_ENV !== 'production') {
 	      var rootElement = rootElementsByReactRootID[reactRootID];
 	      if (rootElement && rootElement.parentNode !== container) {
@@ -4368,10 +4619,10 @@ var SettingsPanel =
 	        }
 	      }
 	    }
-
+	
 	    return container;
 	  },
-
+	
 	  /**
 	   * Finds an element rendered by React with the supplied ID.
 	   *
@@ -4382,7 +4633,7 @@ var SettingsPanel =
 	    var reactRoot = ReactMount.findReactContainerForID(id);
 	    return ReactMount.findComponentRoot(reactRoot, id);
 	  },
-
+	
 	  /**
 	   * Traverses up the ancestors of the supplied node to find a node that is a
 	   * DOM representation of a React component rendered by this copy of React.
@@ -4394,7 +4645,7 @@ var SettingsPanel =
 	  getFirstReactDOM: function (node) {
 	    return findFirstReactDOMImpl(node);
 	  },
-
+	
 	  /**
 	   * Finds a node with the supplied `targetID` inside of the supplied
 	   * `ancestorNode`.  Exploits the ID naming scheme to perform the search
@@ -4408,21 +4659,21 @@ var SettingsPanel =
 	  findComponentRoot: function (ancestorNode, targetID) {
 	    var firstChildren = findComponentRootReusableArray;
 	    var childIndex = 0;
-
+	
 	    var deepestAncestor = findDeepestCachedAncestor(targetID) || ancestorNode;
-
+	
 	    if (process.env.NODE_ENV !== 'production') {
 	      // This will throw on the next line; give an early warning
 	      process.env.NODE_ENV !== 'production' ? warning(deepestAncestor != null, 'React can\'t find the root component node for data-reactid value ' + '`%s`. If you\'re seeing this message, it probably means that ' + 'you\'ve loaded two copies of React on the page. At this time, only ' + 'a single copy of React can be loaded at a time.', targetID) : undefined;
 	    }
-
+	
 	    firstChildren[0] = deepestAncestor.firstChild;
 	    firstChildren.length = 1;
-
+	
 	    while (childIndex < firstChildren.length) {
 	      var child = firstChildren[childIndex++];
 	      var targetChild;
-
+	
 	      while (child) {
 	        var childID = ReactMount.getID(child);
 	        if (childID) {
@@ -4430,7 +4681,7 @@ var SettingsPanel =
 	          // through its siblings to ensure they're cached so that we don't have
 	          // to revisit this node again. Otherwise, we make n^2 calls to getID
 	          // when visiting the many children of a single node in order.
-
+	
 	          if (targetID === childID) {
 	            targetChild = child;
 	          } else if (ReactInstanceHandles.isAncestorIDOf(childID, targetID)) {
@@ -4449,28 +4700,28 @@ var SettingsPanel =
 	          // branch, but not before examining the other siblings.
 	          firstChildren.push(child.firstChild);
 	        }
-
+	
 	        child = child.nextSibling;
 	      }
-
+	
 	      if (targetChild) {
 	        // Emptying firstChildren/findComponentRootReusableArray is
 	        // not necessary for correctness, but it helps the GC reclaim
 	        // any nodes that were left at the end of the search.
 	        firstChildren.length = 0;
-
+	
 	        return targetChild;
 	      }
 	    }
-
+	
 	    firstChildren.length = 0;
-
+	
 	     true ? process.env.NODE_ENV !== 'production' ? invariant(false, 'findComponentRoot(..., %s): Unable to find element. This probably ' + 'means the DOM was unexpectedly mutated (e.g., by the browser), ' + 'usually due to forgetting a <tbody> when using tables, nesting tags ' + 'like <form>, <p>, or <a>, or using non-SVG elements in an <svg> ' + 'parent. ' + 'Try inspecting the child nodes of the element with React ID `%s`.', targetID, ReactMount.getID(ancestorNode)) : invariant(false) : undefined;
 	  },
-
+	
 	  _mountImageIntoNode: function (markup, container, shouldReuseMarkup, transaction) {
 	    !(container && (container.nodeType === ELEMENT_NODE_TYPE || container.nodeType === DOC_NODE_TYPE || container.nodeType === DOCUMENT_FRAGMENT_NODE_TYPE)) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'mountComponentIntoNode(...): Target container is not valid.') : invariant(false) : undefined;
-
+	
 	    if (shouldReuseMarkup) {
 	      var rootElement = getReactRootElementInContainer(container);
 	      if (ReactMarkupChecksum.canReuseMarkup(markup, rootElement)) {
@@ -4478,10 +4729,10 @@ var SettingsPanel =
 	      } else {
 	        var checksum = rootElement.getAttribute(ReactMarkupChecksum.CHECKSUM_ATTR_NAME);
 	        rootElement.removeAttribute(ReactMarkupChecksum.CHECKSUM_ATTR_NAME);
-
+	
 	        var rootMarkup = rootElement.outerHTML;
 	        rootElement.setAttribute(ReactMarkupChecksum.CHECKSUM_ATTR_NAME, checksum);
-
+	
 	        var normalizedMarkup = markup;
 	        if (process.env.NODE_ENV !== 'production') {
 	          // because rootMarkup is retrieved from the DOM, various normalizations
@@ -4501,20 +4752,20 @@ var SettingsPanel =
 	            document.body.removeChild(normalizer);
 	          }
 	        }
-
+	
 	        var diffIndex = firstDifferenceIndex(normalizedMarkup, rootMarkup);
 	        var difference = ' (client) ' + normalizedMarkup.substring(diffIndex - 20, diffIndex + 20) + '\n (server) ' + rootMarkup.substring(diffIndex - 20, diffIndex + 20);
-
+	
 	        !(container.nodeType !== DOC_NODE_TYPE) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'You\'re trying to render a component to the document using ' + 'server rendering but the checksum was invalid. This usually ' + 'means you rendered a different component type or props on ' + 'the client from the one on the server, or your render() ' + 'methods are impure. React cannot handle this case due to ' + 'cross-browser quirks by rendering at the document root. You ' + 'should look for environment dependent code in your components ' + 'and ensure the props are the same client and server side:\n%s', difference) : invariant(false) : undefined;
-
+	
 	        if (process.env.NODE_ENV !== 'production') {
 	          process.env.NODE_ENV !== 'production' ? warning(false, 'React attempted to reuse markup in a container but the ' + 'checksum was invalid. This generally means that you are ' + 'using server rendering and the markup generated on the ' + 'server was not what the client was expecting. React injected ' + 'new markup to compensate which works but you have lost many ' + 'of the benefits of server rendering. Instead, figure out ' + 'why the markup being generated is different on the client ' + 'or server:\n%s', difference) : undefined;
 	        }
 	      }
 	    }
-
+	
 	    !(container.nodeType !== DOC_NODE_TYPE) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'You\'re trying to render a component to the document but ' + 'you didn\'t use server rendering. We can\'t do this ' + 'without using server rendering due to cross-browser quirks. ' + 'See ReactDOMServer.renderToString() for server rendering.') : invariant(false) : undefined;
-
+	
 	    if (transaction.useCreateElement) {
 	      while (container.lastChild) {
 	        container.removeChild(container.lastChild);
@@ -4524,38 +4775,41 @@ var SettingsPanel =
 	      setInnerHTML(container, markup);
 	    }
 	  },
-
+	
 	  ownerDocumentContextKey: ownerDocumentContextKey,
-
+	
 	  /**
 	   * React ID utilities.
 	   */
-
+	
 	  getReactRootID: getReactRootID,
-
+	
 	  getID: getID,
-
+	
 	  setID: setID,
-
+	
 	  getNode: getNode,
-
+	
 	  getNodeFromInstance: getNodeFromInstance,
-
+	
 	  isValid: isValid,
-
+	
 	  purgeID: purgeID
 	};
-
+	
 	ReactPerf.measureMethods(ReactMount, 'ReactMount', {
 	  _renderNewRootComponent: '_renderNewRootComponent',
 	  _mountImageIntoNode: '_mountImageIntoNode'
 	});
-
+	
 	module.exports = ReactMount;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 78 */
+/* 79 */
+/*!*************************************************!*\
+  !*** ./~/react/lib/ReactBrowserEventEmitter.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -4569,19 +4823,19 @@ var SettingsPanel =
 	 * @providesModule ReactBrowserEventEmitter
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var EventConstants = __webpack_require__(79);
-	var EventPluginHub = __webpack_require__(80);
-	var EventPluginRegistry = __webpack_require__(81);
-	var ReactEventEmitterMixin = __webpack_require__(86);
-	var ReactPerf = __webpack_require__(67);
-	var ViewportMetrics = __webpack_require__(87);
-
-	var assign = __webpack_require__(88);
-	var isEventSupported = __webpack_require__(89);
-
+	
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 80);
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 81);
+	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 82);
+	var ReactEventEmitterMixin = __webpack_require__(/*! ./ReactEventEmitterMixin */ 87);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 68);
+	var ViewportMetrics = __webpack_require__(/*! ./ViewportMetrics */ 88);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 90);
+	
 	/**
 	 * Summary of `ReactBrowserEventEmitter` event handling:
 	 *
@@ -4636,11 +4890,11 @@ var SettingsPanel =
 	 *                   .
 	 *    React Core     .  General Purpose Event Plugin System
 	 */
-
+	
 	var alreadyListeningTo = {};
 	var isMonitoringScrollValue = false;
 	var reactTopListenersCounter = 0;
-
+	
 	// For events like 'submit' which don't consistently bubble (which we trap at a
 	// lower node than `document`), binding at `document` would cause duplicate
 	// events so we don't include them here
@@ -4706,12 +4960,12 @@ var SettingsPanel =
 	  topWaiting: 'waiting',
 	  topWheel: 'wheel'
 	};
-
+	
 	/**
 	 * To ensure no conflicts with other potential React instances on the page
 	 */
 	var topListenersIDKey = '_reactListenersID' + String(Math.random()).slice(2);
-
+	
 	function getListeningForDocument(mountAt) {
 	  // In IE8, `mountAt` is a host object and doesn't have `hasOwnProperty`
 	  // directly.
@@ -4721,7 +4975,7 @@ var SettingsPanel =
 	  }
 	  return alreadyListeningTo[mountAt[topListenersIDKey]];
 	}
-
+	
 	/**
 	 * `ReactBrowserEventEmitter` is used to attach top-level event listeners. For
 	 * example:
@@ -4733,12 +4987,12 @@ var SettingsPanel =
 	 * @internal
 	 */
 	var ReactBrowserEventEmitter = assign({}, ReactEventEmitterMixin, {
-
+	
 	  /**
 	   * Injectable event backend
 	   */
 	  ReactEventListener: null,
-
+	
 	  injection: {
 	    /**
 	     * @param {object} ReactEventListener
@@ -4748,7 +5002,7 @@ var SettingsPanel =
 	      ReactBrowserEventEmitter.ReactEventListener = ReactEventListener;
 	    }
 	  },
-
+	
 	  /**
 	   * Sets whether or not any created callbacks should be enabled.
 	   *
@@ -4759,14 +5013,14 @@ var SettingsPanel =
 	      ReactBrowserEventEmitter.ReactEventListener.setEnabled(enabled);
 	    }
 	  },
-
+	
 	  /**
 	   * @return {boolean} True if callbacks are enabled.
 	   */
 	  isEnabled: function () {
 	    return !!(ReactBrowserEventEmitter.ReactEventListener && ReactBrowserEventEmitter.ReactEventListener.isEnabled());
 	  },
-
+	
 	  /**
 	   * We listen for bubbled touch events on the document object.
 	   *
@@ -4792,7 +5046,7 @@ var SettingsPanel =
 	    var mountAt = contentDocumentHandle;
 	    var isListening = getListeningForDocument(mountAt);
 	    var dependencies = EventPluginRegistry.registrationNameDependencies[registrationName];
-
+	
 	    var topLevelTypes = EventConstants.topLevelTypes;
 	    for (var i = 0; i < dependencies.length; i++) {
 	      var dependency = dependencies[i];
@@ -4808,14 +5062,14 @@ var SettingsPanel =
 	            ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(topLevelTypes.topWheel, 'DOMMouseScroll', mountAt);
 	          }
 	        } else if (dependency === topLevelTypes.topScroll) {
-
+	
 	          if (isEventSupported('scroll', true)) {
 	            ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent(topLevelTypes.topScroll, 'scroll', mountAt);
 	          } else {
 	            ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(topLevelTypes.topScroll, 'scroll', ReactBrowserEventEmitter.ReactEventListener.WINDOW_HANDLE);
 	          }
 	        } else if (dependency === topLevelTypes.topFocus || dependency === topLevelTypes.topBlur) {
-
+	
 	          if (isEventSupported('focus', true)) {
 	            ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent(topLevelTypes.topFocus, 'focus', mountAt);
 	            ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent(topLevelTypes.topBlur, 'blur', mountAt);
@@ -4825,27 +5079,27 @@ var SettingsPanel =
 	            ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(topLevelTypes.topFocus, 'focusin', mountAt);
 	            ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(topLevelTypes.topBlur, 'focusout', mountAt);
 	          }
-
+	
 	          // to make sure blur and focus event listeners are only attached once
 	          isListening[topLevelTypes.topBlur] = true;
 	          isListening[topLevelTypes.topFocus] = true;
 	        } else if (topEventMapping.hasOwnProperty(dependency)) {
 	          ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(dependency, topEventMapping[dependency], mountAt);
 	        }
-
+	
 	        isListening[dependency] = true;
 	      }
 	    }
 	  },
-
+	
 	  trapBubbledEvent: function (topLevelType, handlerBaseName, handle) {
 	    return ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(topLevelType, handlerBaseName, handle);
 	  },
-
+	
 	  trapCapturedEvent: function (topLevelType, handlerBaseName, handle) {
 	    return ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent(topLevelType, handlerBaseName, handle);
 	  },
-
+	
 	  /**
 	   * Listens to window scroll and resize events. We cache scroll values so that
 	   * application code can access them without triggering reflows.
@@ -4861,30 +5115,33 @@ var SettingsPanel =
 	      isMonitoringScrollValue = true;
 	    }
 	  },
-
+	
 	  eventNameDispatchConfigs: EventPluginHub.eventNameDispatchConfigs,
-
+	
 	  registrationNameModules: EventPluginHub.registrationNameModules,
-
+	
 	  putListener: EventPluginHub.putListener,
-
+	
 	  getListener: EventPluginHub.getListener,
-
+	
 	  deleteListener: EventPluginHub.deleteListener,
-
+	
 	  deleteAllListeners: EventPluginHub.deleteAllListeners
-
+	
 	});
-
+	
 	ReactPerf.measureMethods(ReactBrowserEventEmitter, 'ReactBrowserEventEmitter', {
 	  putListener: 'putListener',
 	  deleteListener: 'deleteListener'
 	});
-
+	
 	module.exports = ReactBrowserEventEmitter;
 
 /***/ },
-/* 79 */
+/* 80 */
+/*!***************************************!*\
+  !*** ./~/react/lib/EventConstants.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -4897,13 +5154,13 @@ var SettingsPanel =
 	 *
 	 * @providesModule EventConstants
 	 */
-
+	
 	'use strict';
-
-	var keyMirror = __webpack_require__(66);
-
+	
+	var keyMirror = __webpack_require__(/*! fbjs/lib/keyMirror */ 67);
+	
 	var PropagationPhases = keyMirror({ bubbled: null, captured: null });
-
+	
 	/**
 	 * Types of raw signals from the browser caught at the top level.
 	 */
@@ -4972,16 +5229,19 @@ var SettingsPanel =
 	  topWaiting: null,
 	  topWheel: null
 	});
-
+	
 	var EventConstants = {
 	  topLevelTypes: topLevelTypes,
 	  PropagationPhases: PropagationPhases
 	};
-
+	
 	module.exports = EventConstants;
 
 /***/ },
-/* 80 */
+/* 81 */
+/*!***************************************!*\
+  !*** ./~/react/lib/EventPluginHub.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -4994,29 +5254,29 @@ var SettingsPanel =
 	 *
 	 * @providesModule EventPluginHub
 	 */
-
+	
 	'use strict';
-
-	var EventPluginRegistry = __webpack_require__(81);
-	var EventPluginUtils = __webpack_require__(82);
-	var ReactErrorUtils = __webpack_require__(83);
-
-	var accumulateInto = __webpack_require__(84);
-	var forEachAccumulated = __webpack_require__(85);
-	var invariant = __webpack_require__(62);
-	var warning = __webpack_require__(74);
-
+	
+	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 82);
+	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 83);
+	var ReactErrorUtils = __webpack_require__(/*! ./ReactErrorUtils */ 84);
+	
+	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 85);
+	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 86);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	/**
 	 * Internal store for event listeners
 	 */
 	var listenerBank = {};
-
+	
 	/**
 	 * Internal queue of events that have accumulated their dispatches and are
 	 * waiting to have their dispatches executed.
 	 */
 	var eventQueue = null;
-
+	
 	/**
 	 * Dispatches an event and releases it back into the pool, unless persistent.
 	 *
@@ -5027,7 +5287,7 @@ var SettingsPanel =
 	var executeDispatchesAndRelease = function (event, simulated) {
 	  if (event) {
 	    EventPluginUtils.executeDispatchesInOrder(event, simulated);
-
+	
 	    if (!event.isPersistent()) {
 	      event.constructor.release(event);
 	    }
@@ -5039,18 +5299,18 @@ var SettingsPanel =
 	var executeDispatchesAndReleaseTopLevel = function (e) {
 	  return executeDispatchesAndRelease(e, false);
 	};
-
+	
 	/**
 	 * - `InstanceHandle`: [required] Module that performs logical traversals of DOM
 	 *   hierarchy given ids of the logical DOM elements involved.
 	 */
 	var InstanceHandle = null;
-
+	
 	function validateInstanceHandle() {
 	  var valid = InstanceHandle && InstanceHandle.traverseTwoPhase && InstanceHandle.traverseEnterLeave;
 	  process.env.NODE_ENV !== 'production' ? warning(valid, 'InstanceHandle not injected before use!') : undefined;
 	}
-
+	
 	/**
 	 * This is a unified interface for event plugins to be installed and configured.
 	 *
@@ -5074,18 +5334,18 @@ var SettingsPanel =
 	 * @public
 	 */
 	var EventPluginHub = {
-
+	
 	  /**
 	   * Methods for injecting dependencies.
 	   */
 	  injection: {
-
+	
 	    /**
 	     * @param {object} InjectedMount
 	     * @public
 	     */
 	    injectMount: EventPluginUtils.injection.injectMount,
-
+	
 	    /**
 	     * @param {object} InjectedInstanceHandle
 	     * @public
@@ -5096,31 +5356,31 @@ var SettingsPanel =
 	        validateInstanceHandle();
 	      }
 	    },
-
+	
 	    getInstanceHandle: function () {
 	      if (process.env.NODE_ENV !== 'production') {
 	        validateInstanceHandle();
 	      }
 	      return InstanceHandle;
 	    },
-
+	
 	    /**
 	     * @param {array} InjectedEventPluginOrder
 	     * @public
 	     */
 	    injectEventPluginOrder: EventPluginRegistry.injectEventPluginOrder,
-
+	
 	    /**
 	     * @param {object} injectedNamesToPlugins Map from names to plugin modules.
 	     */
 	    injectEventPluginsByName: EventPluginRegistry.injectEventPluginsByName
-
+	
 	  },
-
+	
 	  eventNameDispatchConfigs: EventPluginRegistry.eventNameDispatchConfigs,
-
+	
 	  registrationNameModules: EventPluginRegistry.registrationNameModules,
-
+	
 	  /**
 	   * Stores `listener` at `listenerBank[registrationName][id]`. Is idempotent.
 	   *
@@ -5130,16 +5390,16 @@ var SettingsPanel =
 	   */
 	  putListener: function (id, registrationName, listener) {
 	    !(typeof listener === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected %s listener to be a function, instead got type %s', registrationName, typeof listener) : invariant(false) : undefined;
-
+	
 	    var bankForRegistrationName = listenerBank[registrationName] || (listenerBank[registrationName] = {});
 	    bankForRegistrationName[id] = listener;
-
+	
 	    var PluginModule = EventPluginRegistry.registrationNameModules[registrationName];
 	    if (PluginModule && PluginModule.didPutListener) {
 	      PluginModule.didPutListener(id, registrationName, listener);
 	    }
 	  },
-
+	
 	  /**
 	   * @param {string} id ID of the DOM element.
 	   * @param {string} registrationName Name of listener (e.g. `onClick`).
@@ -5149,7 +5409,7 @@ var SettingsPanel =
 	    var bankForRegistrationName = listenerBank[registrationName];
 	    return bankForRegistrationName && bankForRegistrationName[id];
 	  },
-
+	
 	  /**
 	   * Deletes a listener from the registration bank.
 	   *
@@ -5161,14 +5421,14 @@ var SettingsPanel =
 	    if (PluginModule && PluginModule.willDeleteListener) {
 	      PluginModule.willDeleteListener(id, registrationName);
 	    }
-
+	
 	    var bankForRegistrationName = listenerBank[registrationName];
 	    // TODO: This should never be null -- when is it?
 	    if (bankForRegistrationName) {
 	      delete bankForRegistrationName[id];
 	    }
 	  },
-
+	
 	  /**
 	   * Deletes all listeners for the DOM element with the supplied ID.
 	   *
@@ -5179,16 +5439,16 @@ var SettingsPanel =
 	      if (!listenerBank[registrationName][id]) {
 	        continue;
 	      }
-
+	
 	      var PluginModule = EventPluginRegistry.registrationNameModules[registrationName];
 	      if (PluginModule && PluginModule.willDeleteListener) {
 	        PluginModule.willDeleteListener(id, registrationName);
 	      }
-
+	
 	      delete listenerBank[registrationName][id];
 	    }
 	  },
-
+	
 	  /**
 	   * Allows registered plugins an opportunity to extract events from top-level
 	   * native browser events.
@@ -5215,7 +5475,7 @@ var SettingsPanel =
 	    }
 	    return events;
 	  },
-
+	
 	  /**
 	   * Enqueues a synthetic event that should be dispatched when
 	   * `processEventQueue` is invoked.
@@ -5228,7 +5488,7 @@ var SettingsPanel =
 	      eventQueue = accumulateInto(eventQueue, events);
 	    }
 	  },
-
+	
 	  /**
 	   * Dispatches all synthetic events on the event queue.
 	   *
@@ -5248,25 +5508,28 @@ var SettingsPanel =
 	    // This would be a good time to rethrow if any of the event handlers threw.
 	    ReactErrorUtils.rethrowCaughtError();
 	  },
-
+	
 	  /**
 	   * These are needed for tests only. Do not use!
 	   */
 	  __purge: function () {
 	    listenerBank = {};
 	  },
-
+	
 	  __getListenerBank: function () {
 	    return listenerBank;
 	  }
-
+	
 	};
-
+	
 	module.exports = EventPluginHub;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 81 */
+/* 82 */
+/*!********************************************!*\
+  !*** ./~/react/lib/EventPluginRegistry.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -5280,21 +5543,21 @@ var SettingsPanel =
 	 * @providesModule EventPluginRegistry
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var invariant = __webpack_require__(62);
-
+	
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	/**
 	 * Injectable ordering of event plugins.
 	 */
 	var EventPluginOrder = null;
-
+	
 	/**
 	 * Injectable mapping from names to event plugin modules.
 	 */
 	var namesToPlugins = {};
-
+	
 	/**
 	 * Recomputes the plugin list using the injected plugins and plugin ordering.
 	 *
@@ -5320,7 +5583,7 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	/**
 	 * Publishes an event so that it can be dispatched by the supplied plugin.
 	 *
@@ -5332,7 +5595,7 @@ var SettingsPanel =
 	function publishEventForPlugin(dispatchConfig, PluginModule, eventName) {
 	  !!EventPluginRegistry.eventNameDispatchConfigs.hasOwnProperty(eventName) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'EventPluginHub: More than one plugin attempted to publish the same ' + 'event name, `%s`.', eventName) : invariant(false) : undefined;
 	  EventPluginRegistry.eventNameDispatchConfigs[eventName] = dispatchConfig;
-
+	
 	  var phasedRegistrationNames = dispatchConfig.phasedRegistrationNames;
 	  if (phasedRegistrationNames) {
 	    for (var phaseName in phasedRegistrationNames) {
@@ -5348,7 +5611,7 @@ var SettingsPanel =
 	  }
 	  return false;
 	}
-
+	
 	/**
 	 * Publishes a registration name that is used to identify dispatched events and
 	 * can be used with `EventPluginHub.putListener` to register listeners.
@@ -5362,34 +5625,34 @@ var SettingsPanel =
 	  EventPluginRegistry.registrationNameModules[registrationName] = PluginModule;
 	  EventPluginRegistry.registrationNameDependencies[registrationName] = PluginModule.eventTypes[eventName].dependencies;
 	}
-
+	
 	/**
 	 * Registers plugins so that they can extract and dispatch events.
 	 *
 	 * @see {EventPluginHub}
 	 */
 	var EventPluginRegistry = {
-
+	
 	  /**
 	   * Ordered list of injected plugins.
 	   */
 	  plugins: [],
-
+	
 	  /**
 	   * Mapping from event name to dispatch config
 	   */
 	  eventNameDispatchConfigs: {},
-
+	
 	  /**
 	   * Mapping from registration name to plugin module
 	   */
 	  registrationNameModules: {},
-
+	
 	  /**
 	   * Mapping from registration name to event name
 	   */
 	  registrationNameDependencies: {},
-
+	
 	  /**
 	   * Injects an ordering of plugins (by plugin name). This allows the ordering
 	   * to be decoupled from injection of the actual plugins so that ordering is
@@ -5405,7 +5668,7 @@ var SettingsPanel =
 	    EventPluginOrder = Array.prototype.slice.call(InjectedEventPluginOrder);
 	    recomputePluginOrdering();
 	  },
-
+	
 	  /**
 	   * Injects plugins to be used by `EventPluginHub`. The plugin names must be
 	   * in the ordering injected by `injectEventPluginOrder`.
@@ -5433,7 +5696,7 @@ var SettingsPanel =
 	      recomputePluginOrdering();
 	    }
 	  },
-
+	
 	  /**
 	   * Looks up the plugin for the supplied event.
 	   *
@@ -5457,7 +5720,7 @@ var SettingsPanel =
 	    }
 	    return null;
 	  },
-
+	
 	  /**
 	   * Exposed for unit testing.
 	   * @private
@@ -5470,14 +5733,14 @@ var SettingsPanel =
 	      }
 	    }
 	    EventPluginRegistry.plugins.length = 0;
-
+	
 	    var eventNameDispatchConfigs = EventPluginRegistry.eventNameDispatchConfigs;
 	    for (var eventName in eventNameDispatchConfigs) {
 	      if (eventNameDispatchConfigs.hasOwnProperty(eventName)) {
 	        delete eventNameDispatchConfigs[eventName];
 	      }
 	    }
-
+	
 	    var registrationNameModules = EventPluginRegistry.registrationNameModules;
 	    for (var registrationName in registrationNameModules) {
 	      if (registrationNameModules.hasOwnProperty(registrationName)) {
@@ -5485,14 +5748,17 @@ var SettingsPanel =
 	      }
 	    }
 	  }
-
+	
 	};
-
+	
 	module.exports = EventPluginRegistry;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 82 */
+/* 83 */
+/*!*****************************************!*\
+  !*** ./~/react/lib/EventPluginUtils.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -5505,19 +5771,19 @@ var SettingsPanel =
 	 *
 	 * @providesModule EventPluginUtils
 	 */
-
+	
 	'use strict';
-
-	var EventConstants = __webpack_require__(79);
-	var ReactErrorUtils = __webpack_require__(83);
-
-	var invariant = __webpack_require__(62);
-	var warning = __webpack_require__(74);
-
+	
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 80);
+	var ReactErrorUtils = __webpack_require__(/*! ./ReactErrorUtils */ 84);
+	
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	/**
 	 * Injected dependencies:
 	 */
-
+	
 	/**
 	 * - `Mount`: [required] Module that can convert between React dom IDs and
 	 *   actual node references.
@@ -5531,35 +5797,35 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	var topLevelTypes = EventConstants.topLevelTypes;
-
+	
 	function isEndish(topLevelType) {
 	  return topLevelType === topLevelTypes.topMouseUp || topLevelType === topLevelTypes.topTouchEnd || topLevelType === topLevelTypes.topTouchCancel;
 	}
-
+	
 	function isMoveish(topLevelType) {
 	  return topLevelType === topLevelTypes.topMouseMove || topLevelType === topLevelTypes.topTouchMove;
 	}
 	function isStartish(topLevelType) {
 	  return topLevelType === topLevelTypes.topMouseDown || topLevelType === topLevelTypes.topTouchStart;
 	}
-
+	
 	var validateEventDispatches;
 	if (process.env.NODE_ENV !== 'production') {
 	  validateEventDispatches = function (event) {
 	    var dispatchListeners = event._dispatchListeners;
 	    var dispatchIDs = event._dispatchIDs;
-
+	
 	    var listenersIsArr = Array.isArray(dispatchListeners);
 	    var idsIsArr = Array.isArray(dispatchIDs);
 	    var IDsLen = idsIsArr ? dispatchIDs.length : dispatchIDs ? 1 : 0;
 	    var listenersLen = listenersIsArr ? dispatchListeners.length : dispatchListeners ? 1 : 0;
-
+	
 	    process.env.NODE_ENV !== 'production' ? warning(idsIsArr === listenersIsArr && IDsLen === listenersLen, 'EventPluginUtils: Invalid `event`.') : undefined;
 	  };
 	}
-
+	
 	/**
 	 * Dispatch the event to the listener.
 	 * @param {SyntheticEvent} event SyntheticEvent to handle
@@ -5577,7 +5843,7 @@ var SettingsPanel =
 	  }
 	  event.currentTarget = null;
 	}
-
+	
 	/**
 	 * Standard/simple iteration through an event's collected dispatches.
 	 */
@@ -5601,7 +5867,7 @@ var SettingsPanel =
 	  event._dispatchListeners = null;
 	  event._dispatchIDs = null;
 	}
-
+	
 	/**
 	 * Standard/simple iteration through an event's collected dispatches, but stops
 	 * at the first dispatch execution returning true, and returns that id.
@@ -5632,7 +5898,7 @@ var SettingsPanel =
 	  }
 	  return null;
 	}
-
+	
 	/**
 	 * @see executeDispatchesInOrderStopAtTrueImpl
 	 */
@@ -5642,7 +5908,7 @@ var SettingsPanel =
 	  event._dispatchListeners = null;
 	  return ret;
 	}
-
+	
 	/**
 	 * Execution of a "direct" dispatch - there must be at most one dispatch
 	 * accumulated on the event or it is considered an error. It doesn't really make
@@ -5664,7 +5930,7 @@ var SettingsPanel =
 	  event._dispatchIDs = null;
 	  return res;
 	}
-
+	
 	/**
 	 * @param {SyntheticEvent} event
 	 * @return {boolean} True iff number of dispatches accumulated is greater than 0.
@@ -5672,7 +5938,7 @@ var SettingsPanel =
 	function hasDispatches(event) {
 	  return !!event._dispatchListeners;
 	}
-
+	
 	/**
 	 * General utilities that are useful in creating custom Event Plugins.
 	 */
@@ -5680,27 +5946,30 @@ var SettingsPanel =
 	  isEndish: isEndish,
 	  isMoveish: isMoveish,
 	  isStartish: isStartish,
-
+	
 	  executeDirectDispatch: executeDirectDispatch,
 	  executeDispatchesInOrder: executeDispatchesInOrder,
 	  executeDispatchesInOrderStopAtTrue: executeDispatchesInOrderStopAtTrue,
 	  hasDispatches: hasDispatches,
-
+	
 	  getNode: function (id) {
 	    return injection.Mount.getNode(id);
 	  },
 	  getID: function (node) {
 	    return injection.Mount.getID(node);
 	  },
-
+	
 	  injection: injection
 	};
-
+	
 	module.exports = EventPluginUtils;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 83 */
+/* 84 */
+/*!****************************************!*\
+  !*** ./~/react/lib/ReactErrorUtils.js ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -5714,11 +5983,11 @@ var SettingsPanel =
 	 * @providesModule ReactErrorUtils
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
+	
 	var caughtError = null;
-
+	
 	/**
 	 * Call a function while guarding against errors that happens within it.
 	 *
@@ -5737,16 +6006,16 @@ var SettingsPanel =
 	    return undefined;
 	  }
 	}
-
+	
 	var ReactErrorUtils = {
 	  invokeGuardedCallback: invokeGuardedCallback,
-
+	
 	  /**
 	   * Invoked by ReactTestUtils.Simulate so that any errors thrown by the event
 	   * handler are sure to be rethrown by rethrowCaughtError.
 	   */
 	  invokeGuardedCallbackWithCatch: invokeGuardedCallback,
-
+	
 	  /**
 	   * During execution of guarded functions we will capture the first error which
 	   * we will rethrow to be handled by the top level error handler.
@@ -5759,7 +6028,7 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	if (process.env.NODE_ENV !== 'production') {
 	  /**
 	   * To help development we can get better devtools integration by simulating a
@@ -5778,12 +6047,15 @@ var SettingsPanel =
 	    };
 	  }
 	}
-
+	
 	module.exports = ReactErrorUtils;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 84 */
+/* 85 */
+/*!***************************************!*\
+  !*** ./~/react/lib/accumulateInto.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -5796,11 +6068,11 @@ var SettingsPanel =
 	 *
 	 * @providesModule accumulateInto
 	 */
-
+	
 	'use strict';
-
-	var invariant = __webpack_require__(62);
-
+	
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	/**
 	 *
 	 * Accumulates items that must not be null or undefined into the first one. This
@@ -5814,41 +6086,44 @@ var SettingsPanel =
 	 *
 	 * @return {*|array<*>} An accumulation of items.
 	 */
-
+	
 	function accumulateInto(current, next) {
 	  !(next != null) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'accumulateInto(...): Accumulated items must not be null or undefined.') : invariant(false) : undefined;
 	  if (current == null) {
 	    return next;
 	  }
-
+	
 	  // Both are not empty. Warning: Never call x.concat(y) when you are not
 	  // certain that x is an Array (x could be a string with concat method).
 	  var currentIsArray = Array.isArray(current);
 	  var nextIsArray = Array.isArray(next);
-
+	
 	  if (currentIsArray && nextIsArray) {
 	    current.push.apply(current, next);
 	    return current;
 	  }
-
+	
 	  if (currentIsArray) {
 	    current.push(next);
 	    return current;
 	  }
-
+	
 	  if (nextIsArray) {
 	    // A bit too dangerous to mutate `next`.
 	    return [current].concat(next);
 	  }
-
+	
 	  return [current, next];
 	}
-
+	
 	module.exports = accumulateInto;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 85 */
+/* 86 */
+/*!*******************************************!*\
+  !*** ./~/react/lib/forEachAccumulated.js ***!
+  \*******************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -5861,9 +6136,9 @@ var SettingsPanel =
 	 *
 	 * @providesModule forEachAccumulated
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * @param {array} arr an "accumulation" of items which is either an Array or
 	 * a single item. Useful when paired with the `accumulate` module. This is a
@@ -5878,11 +6153,14 @@ var SettingsPanel =
 	    cb.call(scope, arr);
 	  }
 	};
-
+	
 	module.exports = forEachAccumulated;
 
 /***/ },
-/* 86 */
+/* 87 */
+/*!***********************************************!*\
+  !*** ./~/react/lib/ReactEventEmitterMixin.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -5895,18 +6173,18 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactEventEmitterMixin
 	 */
-
+	
 	'use strict';
-
-	var EventPluginHub = __webpack_require__(80);
-
+	
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 81);
+	
 	function runEventQueueInBatch(events) {
 	  EventPluginHub.enqueueEvents(events);
 	  EventPluginHub.processEventQueue(false);
 	}
-
+	
 	var ReactEventEmitterMixin = {
-
+	
 	  /**
 	   * Streams a fired top-level event to `EventPluginHub` where plugins have the
 	   * opportunity to create `ReactEvent`s to be dispatched.
@@ -5921,11 +6199,14 @@ var SettingsPanel =
 	    runEventQueueInBatch(events);
 	  }
 	};
-
+	
 	module.exports = ReactEventEmitterMixin;
 
 /***/ },
-/* 87 */
+/* 88 */
+/*!****************************************!*\
+  !*** ./~/react/lib/ViewportMetrics.js ***!
+  \****************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -5938,26 +6219,29 @@ var SettingsPanel =
 	 *
 	 * @providesModule ViewportMetrics
 	 */
-
+	
 	'use strict';
-
+	
 	var ViewportMetrics = {
-
+	
 	  currentScrollLeft: 0,
-
+	
 	  currentScrollTop: 0,
-
+	
 	  refreshScrollValues: function (scrollPosition) {
 	    ViewportMetrics.currentScrollLeft = scrollPosition.x;
 	    ViewportMetrics.currentScrollTop = scrollPosition.y;
 	  }
-
+	
 	};
-
+	
 	module.exports = ViewportMetrics;
 
 /***/ },
-/* 88 */
+/* 89 */
+/*!**************************************!*\
+  !*** ./~/react/lib/Object.assign.js ***!
+  \**************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -5970,46 +6254,49 @@ var SettingsPanel =
 	 *
 	 * @providesModule Object.assign
 	 */
-
+	
 	// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.assign
-
+	
 	'use strict';
-
+	
 	function assign(target, sources) {
 	  if (target == null) {
 	    throw new TypeError('Object.assign target cannot be null or undefined');
 	  }
-
+	
 	  var to = Object(target);
 	  var hasOwnProperty = Object.prototype.hasOwnProperty;
-
+	
 	  for (var nextIndex = 1; nextIndex < arguments.length; nextIndex++) {
 	    var nextSource = arguments[nextIndex];
 	    if (nextSource == null) {
 	      continue;
 	    }
-
+	
 	    var from = Object(nextSource);
-
+	
 	    // We don't currently support accessors nor proxies. Therefore this
 	    // copy cannot throw. If we ever supported this then we must handle
 	    // exceptions and side-effects. We don't support symbols so they won't
 	    // be transferred.
-
+	
 	    for (var key in from) {
 	      if (hasOwnProperty.call(from, key)) {
 	        to[key] = from[key];
 	      }
 	    }
 	  }
-
+	
 	  return to;
 	}
-
+	
 	module.exports = assign;
 
 /***/ },
-/* 89 */
+/* 90 */
+/*!*****************************************!*\
+  !*** ./~/react/lib/isEventSupported.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6022,11 +6309,11 @@ var SettingsPanel =
 	 *
 	 * @providesModule isEventSupported
 	 */
-
+	
 	'use strict';
-
-	var ExecutionEnvironment = __webpack_require__(58);
-
+	
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 59);
+	
 	var useHasFeature;
 	if (ExecutionEnvironment.canUseDOM) {
 	  useHasFeature = document.implementation && document.implementation.hasFeature &&
@@ -6034,7 +6321,7 @@ var SettingsPanel =
 	  // @see http://dom.spec.whatwg.org/#dom-domimplementation-hasfeature
 	  document.implementation.hasFeature('', '') !== true;
 	}
-
+	
 	/**
 	 * Checks if an event is supported in the current execution environment.
 	 *
@@ -6053,28 +6340,31 @@ var SettingsPanel =
 	  if (!ExecutionEnvironment.canUseDOM || capture && !('addEventListener' in document)) {
 	    return false;
 	  }
-
+	
 	  var eventName = 'on' + eventNameSuffix;
 	  var isSupported = (eventName in document);
-
+	
 	  if (!isSupported) {
 	    var element = document.createElement('div');
 	    element.setAttribute(eventName, 'return;');
 	    isSupported = typeof element[eventName] === 'function';
 	  }
-
+	
 	  if (!isSupported && useHasFeature && eventNameSuffix === 'wheel') {
 	    // This is the only way to test support for the `wheel` event in IE9+.
 	    isSupported = document.implementation.hasFeature('Events.wheel', '3.0');
 	  }
-
+	
 	  return isSupported;
 	}
-
+	
 	module.exports = isEventSupported;
 
 /***/ },
-/* 90 */
+/* 91 */
+/*!*********************************************!*\
+  !*** ./~/react/lib/ReactDOMFeatureFlags.js ***!
+  \*********************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -6087,17 +6377,20 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactDOMFeatureFlags
 	 */
-
+	
 	'use strict';
-
+	
 	var ReactDOMFeatureFlags = {
 	  useCreateElement: false
 	};
-
+	
 	module.exports = ReactDOMFeatureFlags;
 
 /***/ },
-/* 91 */
+/* 92 */
+/*!*************************************!*\
+  !*** ./~/react/lib/ReactElement.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6110,25 +6403,25 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactElement
 	 */
-
+	
 	'use strict';
-
-	var ReactCurrentOwner = __webpack_require__(54);
-
-	var assign = __webpack_require__(88);
-	var canDefineProperty = __webpack_require__(92);
-
+	
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 55);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var canDefineProperty = __webpack_require__(/*! ./canDefineProperty */ 93);
+	
 	// The Symbol used to tag the ReactElement type. If there is no native Symbol
 	// nor polyfill, then a plain number is used for performance.
 	var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol['for']('react.element') || 0xeac7;
-
+	
 	var RESERVED_PROPS = {
 	  key: true,
 	  ref: true,
 	  __self: true,
 	  __source: true
 	};
-
+	
 	/**
 	 * Base constructor for all React elements. This is only used to make this
 	 * work with a dynamic instanceof check. Nothing should live on this prototype.
@@ -6151,24 +6444,24 @@ var SettingsPanel =
 	  var element = {
 	    // This tag allow us to uniquely identify this as a React Element
 	    $$typeof: REACT_ELEMENT_TYPE,
-
+	
 	    // Built-in properties that belong on the element
 	    type: type,
 	    key: key,
 	    ref: ref,
 	    props: props,
-
+	
 	    // Record the component responsible for creating this element.
 	    _owner: owner
 	  };
-
+	
 	  if (process.env.NODE_ENV !== 'production') {
 	    // The validation flag is currently mutative. We put it on
 	    // an external backing store so that we can freeze the whole object.
 	    // This can be replaced with a WeakMap once they are implemented in
 	    // commonly used development environments.
 	    element._store = {};
-
+	
 	    // To make comparing ReactElements easier for testing purposes, we make
 	    // the validation flag non-enumerable (where possible, which should
 	    // include every environment we run tests in), so the test framework
@@ -6203,21 +6496,21 @@ var SettingsPanel =
 	    Object.freeze(element.props);
 	    Object.freeze(element);
 	  }
-
+	
 	  return element;
 	};
-
+	
 	ReactElement.createElement = function (type, config, children) {
 	  var propName;
-
+	
 	  // Reserved names are extracted
 	  var props = {};
-
+	
 	  var key = null;
 	  var ref = null;
 	  var self = null;
 	  var source = null;
-
+	
 	  if (config != null) {
 	    ref = config.ref === undefined ? null : config.ref;
 	    key = config.key === undefined ? null : '' + config.key;
@@ -6230,7 +6523,7 @@ var SettingsPanel =
 	      }
 	    }
 	  }
-
+	
 	  // Children can be more than one argument, and those are transferred onto
 	  // the newly allocated props object.
 	  var childrenLength = arguments.length - 2;
@@ -6243,7 +6536,7 @@ var SettingsPanel =
 	    }
 	    props.children = childArray;
 	  }
-
+	
 	  // Resolve default props
 	  if (type && type.defaultProps) {
 	    var defaultProps = type.defaultProps;
@@ -6253,10 +6546,10 @@ var SettingsPanel =
 	      }
 	    }
 	  }
-
+	
 	  return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
 	};
-
+	
 	ReactElement.createFactory = function (type) {
 	  var factory = ReactElement.createElement.bind(null, type);
 	  // Expose the type on the factory and the prototype so that it can be
@@ -6267,30 +6560,30 @@ var SettingsPanel =
 	  factory.type = type;
 	  return factory;
 	};
-
+	
 	ReactElement.cloneAndReplaceKey = function (oldElement, newKey) {
 	  var newElement = ReactElement(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);
-
+	
 	  return newElement;
 	};
-
+	
 	ReactElement.cloneAndReplaceProps = function (oldElement, newProps) {
 	  var newElement = ReactElement(oldElement.type, oldElement.key, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, newProps);
-
+	
 	  if (process.env.NODE_ENV !== 'production') {
 	    // If the key on the original is valid, then the clone is valid
 	    newElement._store.validated = oldElement._store.validated;
 	  }
-
+	
 	  return newElement;
 	};
-
+	
 	ReactElement.cloneElement = function (element, config, children) {
 	  var propName;
-
+	
 	  // Original props are copied
 	  var props = assign({}, element.props);
-
+	
 	  // Reserved names are extracted
 	  var key = element.key;
 	  var ref = element.ref;
@@ -6300,10 +6593,10 @@ var SettingsPanel =
 	  // transpiler, and the original source is probably a better indicator of the
 	  // true owner.
 	  var source = element._source;
-
+	
 	  // Owner will be preserved, unless ref is overridden
 	  var owner = element._owner;
-
+	
 	  if (config != null) {
 	    if (config.ref !== undefined) {
 	      // Silently steal the ref from the parent.
@@ -6320,7 +6613,7 @@ var SettingsPanel =
 	      }
 	    }
 	  }
-
+	
 	  // Children can be more than one argument, and those are transferred onto
 	  // the newly allocated props object.
 	  var childrenLength = arguments.length - 2;
@@ -6333,10 +6626,10 @@ var SettingsPanel =
 	    }
 	    props.children = childArray;
 	  }
-
+	
 	  return ReactElement(element.type, key, ref, self, source, owner, props);
 	};
-
+	
 	/**
 	 * @param {?object} object
 	 * @return {boolean} True if `object` is a valid component.
@@ -6345,12 +6638,15 @@ var SettingsPanel =
 	ReactElement.isValidElement = function (object) {
 	  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
 	};
-
+	
 	module.exports = ReactElement;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 92 */
+/* 93 */
+/*!******************************************!*\
+  !*** ./~/react/lib/canDefineProperty.js ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6363,9 +6659,9 @@ var SettingsPanel =
 	 *
 	 * @providesModule canDefineProperty
 	 */
-
+	
 	'use strict';
-
+	
 	var canDefineProperty = false;
 	if (process.env.NODE_ENV !== 'production') {
 	  try {
@@ -6375,12 +6671,15 @@ var SettingsPanel =
 	    // IE will fail on defineProperty
 	  }
 	}
-
+	
 	module.exports = canDefineProperty;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 93 */
+/* 94 */
+/*!****************************************************!*\
+  !*** ./~/react/lib/ReactEmptyComponentRegistry.js ***!
+  \****************************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -6393,13 +6692,13 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactEmptyComponentRegistry
 	 */
-
+	
 	'use strict';
-
+	
 	// This registry keeps track of the React IDs of the components that rendered to
 	// `null` (in reality a placeholder such as `noscript`)
 	var nullComponentIDsRegistry = {};
-
+	
 	/**
 	 * @param {string} id Component's `_rootNodeID`.
 	 * @return {boolean} True if the component is rendered to null.
@@ -6407,7 +6706,7 @@ var SettingsPanel =
 	function isNullComponentID(id) {
 	  return !!nullComponentIDsRegistry[id];
 	}
-
+	
 	/**
 	 * Mark the component as having rendered to null.
 	 * @param {string} id Component's `_rootNodeID`.
@@ -6415,7 +6714,7 @@ var SettingsPanel =
 	function registerNullComponentID(id) {
 	  nullComponentIDsRegistry[id] = true;
 	}
-
+	
 	/**
 	 * Unmark the component as having rendered to null: it renders to something now.
 	 * @param {string} id Component's `_rootNodeID`.
@@ -6423,17 +6722,20 @@ var SettingsPanel =
 	function deregisterNullComponentID(id) {
 	  delete nullComponentIDsRegistry[id];
 	}
-
+	
 	var ReactEmptyComponentRegistry = {
 	  isNullComponentID: isNullComponentID,
 	  registerNullComponentID: registerNullComponentID,
 	  deregisterNullComponentID: deregisterNullComponentID
 	};
-
+	
 	module.exports = ReactEmptyComponentRegistry;
 
 /***/ },
-/* 94 */
+/* 95 */
+/*!*********************************************!*\
+  !*** ./~/react/lib/ReactInstanceHandles.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6447,21 +6749,21 @@ var SettingsPanel =
 	 * @providesModule ReactInstanceHandles
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var ReactRootIndex = __webpack_require__(95);
-
-	var invariant = __webpack_require__(62);
-
+	
+	var ReactRootIndex = __webpack_require__(/*! ./ReactRootIndex */ 96);
+	
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	var SEPARATOR = '.';
 	var SEPARATOR_LENGTH = SEPARATOR.length;
-
+	
 	/**
 	 * Maximum depth of traversals before we consider the possibility of a bad ID.
 	 */
 	var MAX_TREE_DEPTH = 10000;
-
+	
 	/**
 	 * Creates a DOM ID prefix to use when mounting React components.
 	 *
@@ -6472,7 +6774,7 @@ var SettingsPanel =
 	function getReactRootIDString(index) {
 	  return SEPARATOR + index.toString(36);
 	}
-
+	
 	/**
 	 * Checks if a character in the supplied ID is a separator or the end.
 	 *
@@ -6484,7 +6786,7 @@ var SettingsPanel =
 	function isBoundary(id, index) {
 	  return id.charAt(index) === SEPARATOR || index === id.length;
 	}
-
+	
 	/**
 	 * Checks if the supplied string is a valid React DOM ID.
 	 *
@@ -6495,7 +6797,7 @@ var SettingsPanel =
 	function isValidID(id) {
 	  return id === '' || id.charAt(0) === SEPARATOR && id.charAt(id.length - 1) !== SEPARATOR;
 	}
-
+	
 	/**
 	 * Checks if the first ID is an ancestor of or equal to the second ID.
 	 *
@@ -6507,7 +6809,7 @@ var SettingsPanel =
 	function isAncestorIDOf(ancestorID, descendantID) {
 	  return descendantID.indexOf(ancestorID) === 0 && isBoundary(descendantID, ancestorID.length);
 	}
-
+	
 	/**
 	 * Gets the parent ID of the supplied React DOM ID, `id`.
 	 *
@@ -6518,7 +6820,7 @@ var SettingsPanel =
 	function getParentID(id) {
 	  return id ? id.substr(0, id.lastIndexOf(SEPARATOR)) : '';
 	}
-
+	
 	/**
 	 * Gets the next DOM ID on the tree path from the supplied `ancestorID` to the
 	 * supplied `destinationID`. If they are equal, the ID is returned.
@@ -6545,7 +6847,7 @@ var SettingsPanel =
 	  }
 	  return destinationID.substr(0, i);
 	}
-
+	
 	/**
 	 * Gets the nearest common ancestor ID of two IDs.
 	 *
@@ -6575,7 +6877,7 @@ var SettingsPanel =
 	  !isValidID(longestCommonID) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'getFirstCommonAncestorID(%s, %s): Expected a valid React DOM ID: %s', oneID, twoID, longestCommonID) : invariant(false) : undefined;
 	  return longestCommonID;
 	}
-
+	
 	/**
 	 * Traverses the parent path between two IDs (either up or down). The IDs must
 	 * not be the same, and there must exist a parent path between them. If the
@@ -6610,7 +6912,7 @@ var SettingsPanel =
 	    !(depth++ < MAX_TREE_DEPTH) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'traverseParentPath(%s, %s, ...): Detected an infinite loop while ' + 'traversing the React DOM ID tree. This may be due to malformed IDs: %s', start, stop, id) : invariant(false) : undefined;
 	  }
 	}
-
+	
 	/**
 	 * Manages the IDs assigned to DOM representations of React components. This
 	 * uses a specific scheme in order to traverse the DOM efficiently (e.g. in
@@ -6619,7 +6921,7 @@ var SettingsPanel =
 	 * @internal
 	 */
 	var ReactInstanceHandles = {
-
+	
 	  /**
 	   * Constructs a React root ID
 	   * @return {string} A React root ID.
@@ -6627,7 +6929,7 @@ var SettingsPanel =
 	  createReactRootID: function () {
 	    return getReactRootIDString(ReactRootIndex.createReactRootIndex());
 	  },
-
+	
 	  /**
 	   * Constructs a React ID by joining a root ID with a name.
 	   *
@@ -6639,7 +6941,7 @@ var SettingsPanel =
 	  createReactID: function (rootID, name) {
 	    return rootID + name;
 	  },
-
+	
 	  /**
 	   * Gets the DOM ID of the React component that is the root of the tree that
 	   * contains the React component with the supplied DOM ID.
@@ -6655,7 +6957,7 @@ var SettingsPanel =
 	    }
 	    return null;
 	  },
-
+	
 	  /**
 	   * Traverses the ID hierarchy and invokes the supplied `cb` on any IDs that
 	   * should would receive a `mouseEnter` or `mouseLeave` event.
@@ -6679,7 +6981,7 @@ var SettingsPanel =
 	      traverseParentPath(ancestorID, enterID, cb, downArg, true, false);
 	    }
 	  },
-
+	
 	  /**
 	   * Simulates the traversal of a two-phase, capture/bubble event dispatch.
 	   *
@@ -6696,7 +6998,7 @@ var SettingsPanel =
 	      traverseParentPath(targetID, '', cb, arg, false, true);
 	    }
 	  },
-
+	
 	  /**
 	   * Same as `traverseTwoPhase` but skips the `targetID`.
 	   */
@@ -6706,7 +7008,7 @@ var SettingsPanel =
 	      traverseParentPath(targetID, '', cb, arg, true, true);
 	    }
 	  },
-
+	
 	  /**
 	   * Traverse a node ID, calling the supplied `cb` for each ancestor ID. For
 	   * example, passing `.0.$row-0.1` would result in `cb` getting called
@@ -6722,26 +7024,29 @@ var SettingsPanel =
 	  traverseAncestors: function (targetID, cb, arg) {
 	    traverseParentPath('', targetID, cb, arg, true, false);
 	  },
-
+	
 	  getFirstCommonAncestorID: getFirstCommonAncestorID,
-
+	
 	  /**
 	   * Exposed for unit testing.
 	   * @private
 	   */
 	  _getNextDescendantID: getNextDescendantID,
-
+	
 	  isAncestorIDOf: isAncestorIDOf,
-
+	
 	  SEPARATOR: SEPARATOR
-
+	
 	};
-
+	
 	module.exports = ReactInstanceHandles;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 95 */
+/* 96 */
+/*!***************************************!*\
+  !*** ./~/react/lib/ReactRootIndex.js ***!
+  \***************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -6755,9 +7060,9 @@ var SettingsPanel =
 	 * @providesModule ReactRootIndex
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
+	
 	var ReactRootIndexInjection = {
 	  /**
 	   * @param {function} _createReactRootIndex
@@ -6766,16 +7071,19 @@ var SettingsPanel =
 	    ReactRootIndex.createReactRootIndex = _createReactRootIndex;
 	  }
 	};
-
+	
 	var ReactRootIndex = {
 	  createReactRootIndex: null,
 	  injection: ReactRootIndexInjection
 	};
-
+	
 	module.exports = ReactRootIndex;
 
 /***/ },
-/* 96 */
+/* 97 */
+/*!*****************************************!*\
+  !*** ./~/react/lib/ReactInstanceMap.js ***!
+  \*****************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -6788,19 +7096,19 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactInstanceMap
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * `ReactInstanceMap` maintains a mapping from a public facing stateful
 	 * instance (key) and the internal representation (value). This allows public
 	 * methods to accept the user facing instance as an argument and map them back
 	 * to internal methods.
 	 */
-
+	
 	// TODO: Replace this with ES6: var ReactInstanceMap = new Map();
 	var ReactInstanceMap = {
-
+	
 	  /**
 	   * This API should be called `delete` but we'd have to make sure to always
 	   * transform these to strings for IE support. When this transform is fully
@@ -6809,25 +7117,28 @@ var SettingsPanel =
 	  remove: function (key) {
 	    key._reactInternalInstance = undefined;
 	  },
-
+	
 	  get: function (key) {
 	    return key._reactInternalInstance;
 	  },
-
+	
 	  has: function (key) {
 	    return key._reactInternalInstance !== undefined;
 	  },
-
+	
 	  set: function (key, value) {
 	    key._reactInternalInstance = value;
 	  }
-
+	
 	};
-
+	
 	module.exports = ReactInstanceMap;
 
 /***/ },
-/* 97 */
+/* 98 */
+/*!********************************************!*\
+  !*** ./~/react/lib/ReactMarkupChecksum.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6840,27 +7151,27 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactMarkupChecksum
 	 */
-
+	
 	'use strict';
-
-	var adler32 = __webpack_require__(98);
-
+	
+	var adler32 = __webpack_require__(/*! ./adler32 */ 99);
+	
 	var TAG_END = /\/?>/;
-
+	
 	var ReactMarkupChecksum = {
 	  CHECKSUM_ATTR_NAME: 'data-react-checksum',
-
+	
 	  /**
 	   * @param {string} markup Markup string
 	   * @return {string} Markup string with checksum attribute attached
 	   */
 	  addChecksumToMarkup: function (markup) {
 	    var checksum = adler32(markup);
-
+	
 	    // Add checksum (handle both parent tags and self-closing tags)
 	    return markup.replace(TAG_END, ' ' + ReactMarkupChecksum.CHECKSUM_ATTR_NAME + '="' + checksum + '"$&');
 	  },
-
+	
 	  /**
 	   * @param {string} markup to use
 	   * @param {DOMElement} element root React element
@@ -6873,11 +7184,14 @@ var SettingsPanel =
 	    return markupChecksum === existingChecksum;
 	  }
 	};
-
+	
 	module.exports = ReactMarkupChecksum;
 
 /***/ },
-/* 98 */
+/* 99 */
+/*!********************************!*\
+  !*** ./~/react/lib/adler32.js ***!
+  \********************************/
 /***/ function(module, exports) {
 
 	/**
@@ -6890,11 +7204,11 @@ var SettingsPanel =
 	 *
 	 * @providesModule adler32
 	 */
-
+	
 	'use strict';
-
+	
 	var MOD = 65521;
-
+	
 	// adler32 is not cryptographically strong, and is only used to sanity check that
 	// markup generated on the server matches the markup generated on the client.
 	// This implementation (a modified version of the SheetJS version) has been optimized
@@ -6920,11 +7234,14 @@ var SettingsPanel =
 	  b %= MOD;
 	  return a | b << 16;
 	}
-
+	
 	module.exports = adler32;
 
 /***/ },
-/* 99 */
+/* 100 */
+/*!****************************************!*\
+  !*** ./~/react/lib/ReactReconciler.js ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6937,11 +7254,11 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactReconciler
 	 */
-
+	
 	'use strict';
-
-	var ReactRef = __webpack_require__(100);
-
+	
+	var ReactRef = __webpack_require__(/*! ./ReactRef */ 101);
+	
 	/**
 	 * Helper to call ReactRef.attachRefs with this composite component, split out
 	 * to avoid allocations in the transaction mount-ready queue.
@@ -6949,9 +7266,9 @@ var SettingsPanel =
 	function attachRefs() {
 	  ReactRef.attachRefs(this, this._currentElement);
 	}
-
+	
 	var ReactReconciler = {
-
+	
 	  /**
 	   * Initializes the component, renders markup, and registers event listeners.
 	   *
@@ -6969,7 +7286,7 @@ var SettingsPanel =
 	    }
 	    return markup;
 	  },
-
+	
 	  /**
 	   * Releases any resources allocated by `mountComponent`.
 	   *
@@ -6980,7 +7297,7 @@ var SettingsPanel =
 	    ReactRef.detachRefs(internalInstance, internalInstance._currentElement);
 	    internalInstance.unmountComponent();
 	  },
-
+	
 	  /**
 	   * Update a component using a new element.
 	   *
@@ -6992,7 +7309,7 @@ var SettingsPanel =
 	   */
 	  receiveComponent: function (internalInstance, nextElement, transaction, context) {
 	    var prevElement = internalInstance._currentElement;
-
+	
 	    if (nextElement === prevElement && context === internalInstance._context) {
 	      // Since elements are immutable after the owner is rendered,
 	      // we can do a cheap identity compare here to determine if this is a
@@ -7001,25 +7318,25 @@ var SettingsPanel =
 	      // the element. We explicitly check for the existence of an owner since
 	      // it's possible for an element created outside a composite to be
 	      // deeply mutated and reused.
-
+	
 	      // TODO: Bailing out early is just a perf optimization right?
 	      // TODO: Removing the return statement should affect correctness?
 	      return;
 	    }
-
+	
 	    var refsChanged = ReactRef.shouldUpdateRefs(prevElement, nextElement);
-
+	
 	    if (refsChanged) {
 	      ReactRef.detachRefs(internalInstance, prevElement);
 	    }
-
+	
 	    internalInstance.receiveComponent(nextElement, transaction, context);
-
+	
 	    if (refsChanged && internalInstance._currentElement && internalInstance._currentElement.ref != null) {
 	      transaction.getReactMountReady().enqueue(attachRefs, internalInstance);
 	    }
 	  },
-
+	
 	  /**
 	   * Flush any dirty changes in a component.
 	   *
@@ -7030,13 +7347,16 @@ var SettingsPanel =
 	  performUpdateIfNecessary: function (internalInstance, transaction) {
 	    internalInstance.performUpdateIfNecessary(transaction);
 	  }
-
+	
 	};
-
+	
 	module.exports = ReactReconciler;
 
 /***/ },
-/* 100 */
+/* 101 */
+/*!*********************************!*\
+  !*** ./~/react/lib/ReactRef.js ***!
+  \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -7049,13 +7369,13 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactRef
 	 */
-
+	
 	'use strict';
-
-	var ReactOwner = __webpack_require__(101);
-
+	
+	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 102);
+	
 	var ReactRef = {};
-
+	
 	function attachRef(ref, component, owner) {
 	  if (typeof ref === 'function') {
 	    ref(component.getPublicInstance());
@@ -7064,7 +7384,7 @@ var SettingsPanel =
 	    ReactOwner.addComponentAsRefTo(component, ref, owner);
 	  }
 	}
-
+	
 	function detachRef(ref, component, owner) {
 	  if (typeof ref === 'function') {
 	    ref(null);
@@ -7073,7 +7393,7 @@ var SettingsPanel =
 	    ReactOwner.removeComponentAsRefFrom(component, ref, owner);
 	  }
 	}
-
+	
 	ReactRef.attachRefs = function (instance, element) {
 	  if (element === null || element === false) {
 	    return;
@@ -7083,29 +7403,29 @@ var SettingsPanel =
 	    attachRef(ref, instance, element._owner);
 	  }
 	};
-
+	
 	ReactRef.shouldUpdateRefs = function (prevElement, nextElement) {
 	  // If either the owner or a `ref` has changed, make sure the newest owner
 	  // has stored a reference to `this`, and the previous owner (if different)
 	  // has forgotten the reference to `this`. We use the element instead
 	  // of the public this.props because the post processing cannot determine
 	  // a ref. The ref conceptually lives on the element.
-
+	
 	  // TODO: Should this even be possible? The owner cannot change because
 	  // it's forbidden by shouldUpdateReactComponent. The ref can change
 	  // if you swap the keys of but not the refs. Reconsider where this check
 	  // is made. It probably belongs where the key checking and
 	  // instantiateReactComponent is done.
-
+	
 	  var prevEmpty = prevElement === null || prevElement === false;
 	  var nextEmpty = nextElement === null || nextElement === false;
-
+	
 	  return(
 	    // This has a few false positives w/r/t empty components.
 	    prevEmpty || nextEmpty || nextElement._owner !== prevElement._owner || nextElement.ref !== prevElement.ref
 	  );
 	};
-
+	
 	ReactRef.detachRefs = function (instance, element) {
 	  if (element === null || element === false) {
 	    return;
@@ -7115,11 +7435,14 @@ var SettingsPanel =
 	    detachRef(ref, instance, element._owner);
 	  }
 	};
-
+	
 	module.exports = ReactRef;
 
 /***/ },
-/* 101 */
+/* 102 */
+/*!***********************************!*\
+  !*** ./~/react/lib/ReactOwner.js ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7132,11 +7455,11 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactOwner
 	 */
-
+	
 	'use strict';
-
-	var invariant = __webpack_require__(62);
-
+	
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	/**
 	 * ReactOwners are capable of storing references to owned components.
 	 *
@@ -7168,7 +7491,7 @@ var SettingsPanel =
 	 * @class ReactOwner
 	 */
 	var ReactOwner = {
-
+	
 	  /**
 	   * @param {?object} object
 	   * @return {boolean} True if `object` is a valid owner.
@@ -7177,7 +7500,7 @@ var SettingsPanel =
 	  isValidOwner: function (object) {
 	    return !!(object && typeof object.attachRef === 'function' && typeof object.detachRef === 'function');
 	  },
-
+	
 	  /**
 	   * Adds a component by ref to an owner component.
 	   *
@@ -7191,7 +7514,7 @@ var SettingsPanel =
 	    !ReactOwner.isValidOwner(owner) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'addComponentAsRefTo(...): Only a ReactOwner can have refs. You might ' + 'be adding a ref to a component that was not created inside a component\'s ' + '`render` method, or you have multiple copies of React loaded ' + '(details: https://fb.me/react-refs-must-have-owner).') : invariant(false) : undefined;
 	    owner.attachRef(ref, component);
 	  },
-
+	
 	  /**
 	   * Removes a component by ref from an owner component.
 	   *
@@ -7209,14 +7532,17 @@ var SettingsPanel =
 	      owner.detachRef(ref);
 	    }
 	  }
-
+	
 	};
-
+	
 	module.exports = ReactOwner;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 102 */
+/* 103 */
+/*!*****************************************!*\
+  !*** ./~/react/lib/ReactUpdateQueue.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7229,22 +7555,22 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactUpdateQueue
 	 */
-
+	
 	'use strict';
-
-	var ReactCurrentOwner = __webpack_require__(54);
-	var ReactElement = __webpack_require__(91);
-	var ReactInstanceMap = __webpack_require__(96);
-	var ReactUpdates = __webpack_require__(103);
-
-	var assign = __webpack_require__(88);
-	var invariant = __webpack_require__(62);
-	var warning = __webpack_require__(74);
-
+	
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 55);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 92);
+	var ReactInstanceMap = __webpack_require__(/*! ./ReactInstanceMap */ 97);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 104);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	function enqueueUpdate(internalInstance) {
 	  ReactUpdates.enqueueUpdate(internalInstance);
 	}
-
+	
 	function getInternalInstanceReadyForUpdate(publicInstance, callerName) {
 	  var internalInstance = ReactInstanceMap.get(publicInstance);
 	  if (!internalInstance) {
@@ -7256,20 +7582,20 @@ var SettingsPanel =
 	    }
 	    return null;
 	  }
-
+	
 	  if (process.env.NODE_ENV !== 'production') {
 	    process.env.NODE_ENV !== 'production' ? warning(ReactCurrentOwner.current == null, '%s(...): Cannot update during an existing state transition ' + '(such as within `render`). Render methods should be a pure function ' + 'of props and state.', callerName) : undefined;
 	  }
-
+	
 	  return internalInstance;
 	}
-
+	
 	/**
 	 * ReactUpdateQueue allows for state updates to be scheduled into a later
 	 * reconciliation step.
 	 */
 	var ReactUpdateQueue = {
-
+	
 	  /**
 	   * Checks whether or not this composite component is mounted.
 	   * @param {ReactClass} publicInstance The instance we want to test.
@@ -7295,7 +7621,7 @@ var SettingsPanel =
 	      return false;
 	    }
 	  },
-
+	
 	  /**
 	   * Enqueue a callback that will be executed after all the pending updates
 	   * have processed.
@@ -7307,7 +7633,7 @@ var SettingsPanel =
 	  enqueueCallback: function (publicInstance, callback) {
 	    !(typeof callback === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'enqueueCallback(...): You called `setProps`, `replaceProps`, ' + '`setState`, `replaceState`, or `forceUpdate` with a callback that ' + 'isn\'t callable.') : invariant(false) : undefined;
 	    var internalInstance = getInternalInstanceReadyForUpdate(publicInstance);
-
+	
 	    // Previously we would throw an error if we didn't have an internal
 	    // instance. Since we want to make it a no-op instead, we mirror the same
 	    // behavior we have in other enqueue* methods.
@@ -7316,7 +7642,7 @@ var SettingsPanel =
 	    if (!internalInstance) {
 	      return null;
 	    }
-
+	
 	    if (internalInstance._pendingCallbacks) {
 	      internalInstance._pendingCallbacks.push(callback);
 	    } else {
@@ -7328,7 +7654,7 @@ var SettingsPanel =
 	    // componentWillMount during server-side rendering.
 	    enqueueUpdate(internalInstance);
 	  },
-
+	
 	  enqueueCallbackInternal: function (internalInstance, callback) {
 	    !(typeof callback === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'enqueueCallback(...): You called `setProps`, `replaceProps`, ' + '`setState`, `replaceState`, or `forceUpdate` with a callback that ' + 'isn\'t callable.') : invariant(false) : undefined;
 	    if (internalInstance._pendingCallbacks) {
@@ -7338,7 +7664,7 @@ var SettingsPanel =
 	    }
 	    enqueueUpdate(internalInstance);
 	  },
-
+	
 	  /**
 	   * Forces an update. This should only be invoked when it is known with
 	   * certainty that we are **not** in a DOM transaction.
@@ -7354,16 +7680,16 @@ var SettingsPanel =
 	   */
 	  enqueueForceUpdate: function (publicInstance) {
 	    var internalInstance = getInternalInstanceReadyForUpdate(publicInstance, 'forceUpdate');
-
+	
 	    if (!internalInstance) {
 	      return;
 	    }
-
+	
 	    internalInstance._pendingForceUpdate = true;
-
+	
 	    enqueueUpdate(internalInstance);
 	  },
-
+	
 	  /**
 	   * Replaces all of the state. Always use this or `setState` to mutate state.
 	   * You should treat `this.state` as immutable.
@@ -7377,17 +7703,17 @@ var SettingsPanel =
 	   */
 	  enqueueReplaceState: function (publicInstance, completeState) {
 	    var internalInstance = getInternalInstanceReadyForUpdate(publicInstance, 'replaceState');
-
+	
 	    if (!internalInstance) {
 	      return;
 	    }
-
+	
 	    internalInstance._pendingStateQueue = [completeState];
 	    internalInstance._pendingReplaceState = true;
-
+	
 	    enqueueUpdate(internalInstance);
 	  },
-
+	
 	  /**
 	   * Sets a subset of the state. This only exists because _pendingState is
 	   * internal. This provides a merging strategy that is not available to deep
@@ -7400,17 +7726,17 @@ var SettingsPanel =
 	   */
 	  enqueueSetState: function (publicInstance, partialState) {
 	    var internalInstance = getInternalInstanceReadyForUpdate(publicInstance, 'setState');
-
+	
 	    if (!internalInstance) {
 	      return;
 	    }
-
+	
 	    var queue = internalInstance._pendingStateQueue || (internalInstance._pendingStateQueue = []);
 	    queue.push(partialState);
-
+	
 	    enqueueUpdate(internalInstance);
 	  },
-
+	
 	  /**
 	   * Sets a subset of the props.
 	   *
@@ -7425,21 +7751,21 @@ var SettingsPanel =
 	    }
 	    ReactUpdateQueue.enqueueSetPropsInternal(internalInstance, partialProps);
 	  },
-
+	
 	  enqueueSetPropsInternal: function (internalInstance, partialProps) {
 	    var topLevelWrapper = internalInstance._topLevelWrapper;
 	    !topLevelWrapper ? process.env.NODE_ENV !== 'production' ? invariant(false, 'setProps(...): You called `setProps` on a ' + 'component with a parent. This is an anti-pattern since props will ' + 'get reactively updated when rendered. Instead, change the owner\'s ' + '`render` method to pass the correct value as props to the component ' + 'where it is created.') : invariant(false) : undefined;
-
+	
 	    // Merge with the pending element if it exists, otherwise with existing
 	    // element props.
 	    var wrapElement = topLevelWrapper._pendingElement || topLevelWrapper._currentElement;
 	    var element = wrapElement.props;
 	    var props = assign({}, element.props, partialProps);
 	    topLevelWrapper._pendingElement = ReactElement.cloneAndReplaceProps(wrapElement, ReactElement.cloneAndReplaceProps(element, props));
-
+	
 	    enqueueUpdate(topLevelWrapper);
 	  },
-
+	
 	  /**
 	   * Replaces all of the props.
 	   *
@@ -7454,32 +7780,35 @@ var SettingsPanel =
 	    }
 	    ReactUpdateQueue.enqueueReplacePropsInternal(internalInstance, props);
 	  },
-
+	
 	  enqueueReplacePropsInternal: function (internalInstance, props) {
 	    var topLevelWrapper = internalInstance._topLevelWrapper;
 	    !topLevelWrapper ? process.env.NODE_ENV !== 'production' ? invariant(false, 'replaceProps(...): You called `replaceProps` on a ' + 'component with a parent. This is an anti-pattern since props will ' + 'get reactively updated when rendered. Instead, change the owner\'s ' + '`render` method to pass the correct value as props to the component ' + 'where it is created.') : invariant(false) : undefined;
-
+	
 	    // Merge with the pending element if it exists, otherwise with existing
 	    // element props.
 	    var wrapElement = topLevelWrapper._pendingElement || topLevelWrapper._currentElement;
 	    var element = wrapElement.props;
 	    topLevelWrapper._pendingElement = ReactElement.cloneAndReplaceProps(wrapElement, ReactElement.cloneAndReplaceProps(element, props));
-
+	
 	    enqueueUpdate(topLevelWrapper);
 	  },
-
+	
 	  enqueueElementInternal: function (internalInstance, newElement) {
 	    internalInstance._pendingElement = newElement;
 	    enqueueUpdate(internalInstance);
 	  }
-
+	
 	};
-
+	
 	module.exports = ReactUpdateQueue;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 103 */
+/* 104 */
+/*!*************************************!*\
+  !*** ./~/react/lib/ReactUpdates.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7492,28 +7821,28 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactUpdates
 	 */
-
+	
 	'use strict';
-
-	var CallbackQueue = __webpack_require__(104);
-	var PooledClass = __webpack_require__(105);
-	var ReactPerf = __webpack_require__(67);
-	var ReactReconciler = __webpack_require__(99);
-	var Transaction = __webpack_require__(106);
-
-	var assign = __webpack_require__(88);
-	var invariant = __webpack_require__(62);
-
+	
+	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 105);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 106);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 68);
+	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 100);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 107);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	var dirtyComponents = [];
 	var asapCallbackQueue = CallbackQueue.getPooled();
 	var asapEnqueued = false;
-
+	
 	var batchingStrategy = null;
-
+	
 	function ensureInjected() {
 	  !(ReactUpdates.ReactReconcileTransaction && batchingStrategy) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must inject a reconcile transaction class and batching ' + 'strategy') : invariant(false) : undefined;
 	}
-
+	
 	var NESTED_UPDATES = {
 	  initialize: function () {
 	    this.dirtyComponentsLength = dirtyComponents.length;
@@ -7532,7 +7861,7 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	var UPDATE_QUEUEING = {
 	  initialize: function () {
 	    this.callbackQueue.reset();
@@ -7541,21 +7870,21 @@ var SettingsPanel =
 	    this.callbackQueue.notifyAll();
 	  }
 	};
-
+	
 	var TRANSACTION_WRAPPERS = [NESTED_UPDATES, UPDATE_QUEUEING];
-
+	
 	function ReactUpdatesFlushTransaction() {
 	  this.reinitializeTransaction();
 	  this.dirtyComponentsLength = null;
 	  this.callbackQueue = CallbackQueue.getPooled();
 	  this.reconcileTransaction = ReactUpdates.ReactReconcileTransaction.getPooled( /* forceHTML */false);
 	}
-
+	
 	assign(ReactUpdatesFlushTransaction.prototype, Transaction.Mixin, {
 	  getTransactionWrappers: function () {
 	    return TRANSACTION_WRAPPERS;
 	  },
-
+	
 	  destructor: function () {
 	    this.dirtyComponentsLength = null;
 	    CallbackQueue.release(this.callbackQueue);
@@ -7563,21 +7892,21 @@ var SettingsPanel =
 	    ReactUpdates.ReactReconcileTransaction.release(this.reconcileTransaction);
 	    this.reconcileTransaction = null;
 	  },
-
+	
 	  perform: function (method, scope, a) {
 	    // Essentially calls `this.reconcileTransaction.perform(method, scope, a)`
 	    // with this transaction's wrappers around it.
 	    return Transaction.Mixin.perform.call(this, this.reconcileTransaction.perform, this.reconcileTransaction, method, scope, a);
 	  }
 	});
-
+	
 	PooledClass.addPoolingTo(ReactUpdatesFlushTransaction);
-
+	
 	function batchedUpdates(callback, a, b, c, d, e) {
 	  ensureInjected();
 	  batchingStrategy.batchedUpdates(callback, a, b, c, d, e);
 	}
-
+	
 	/**
 	 * Array comparator for ReactComponents by mount ordering.
 	 *
@@ -7588,30 +7917,30 @@ var SettingsPanel =
 	function mountOrderComparator(c1, c2) {
 	  return c1._mountOrder - c2._mountOrder;
 	}
-
+	
 	function runBatchedUpdates(transaction) {
 	  var len = transaction.dirtyComponentsLength;
 	  !(len === dirtyComponents.length) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected flush transaction\'s stored dirty-components length (%s) to ' + 'match dirty-components array length (%s).', len, dirtyComponents.length) : invariant(false) : undefined;
-
+	
 	  // Since reconciling a component higher in the owner hierarchy usually (not
 	  // always -- see shouldComponentUpdate()) will reconcile children, reconcile
 	  // them before their children by sorting the array.
 	  dirtyComponents.sort(mountOrderComparator);
-
+	
 	  for (var i = 0; i < len; i++) {
 	    // If a component is unmounted before pending changes apply, it will still
 	    // be here, but we assume that it has cleared its _pendingCallbacks and
 	    // that performUpdateIfNecessary is a noop.
 	    var component = dirtyComponents[i];
-
+	
 	    // If performUpdateIfNecessary happens to enqueue any new updates, we
 	    // shouldn't execute the callbacks until the next render happens, so
 	    // stash the callbacks first
 	    var callbacks = component._pendingCallbacks;
 	    component._pendingCallbacks = null;
-
+	
 	    ReactReconciler.performUpdateIfNecessary(component, transaction.reconcileTransaction);
-
+	
 	    if (callbacks) {
 	      for (var j = 0; j < callbacks.length; j++) {
 	        transaction.callbackQueue.enqueue(callbacks[j], component.getPublicInstance());
@@ -7619,7 +7948,7 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	var flushBatchedUpdates = function () {
 	  // ReactUpdatesFlushTransaction's wrappers will clear the dirtyComponents
 	  // array and perform any updates enqueued by mount-ready handlers (i.e.,
@@ -7631,7 +7960,7 @@ var SettingsPanel =
 	      transaction.perform(runBatchedUpdates, null, transaction);
 	      ReactUpdatesFlushTransaction.release(transaction);
 	    }
-
+	
 	    if (asapEnqueued) {
 	      asapEnqueued = false;
 	      var queue = asapCallbackQueue;
@@ -7642,28 +7971,28 @@ var SettingsPanel =
 	  }
 	};
 	flushBatchedUpdates = ReactPerf.measure('ReactUpdates', 'flushBatchedUpdates', flushBatchedUpdates);
-
+	
 	/**
 	 * Mark a component as needing a rerender, adding an optional callback to a
 	 * list of functions which will be executed once the rerender occurs.
 	 */
 	function enqueueUpdate(component) {
 	  ensureInjected();
-
+	
 	  // Various parts of our code (such as ReactCompositeComponent's
 	  // _renderValidatedComponent) assume that calls to render aren't nested;
 	  // verify that that's the case. (This is called by each top-level update
 	  // function, like setProps, setState, forceUpdate, etc.; creation and
 	  // destruction of top-level components is guarded in ReactMount.)
-
+	
 	  if (!batchingStrategy.isBatchingUpdates) {
 	    batchingStrategy.batchedUpdates(enqueueUpdate, component);
 	    return;
 	  }
-
+	
 	  dirtyComponents.push(component);
 	}
-
+	
 	/**
 	 * Enqueue a callback to be run at the end of the current batching cycle. Throws
 	 * if no updates are currently being performed.
@@ -7673,13 +8002,13 @@ var SettingsPanel =
 	  asapCallbackQueue.enqueue(callback, context);
 	  asapEnqueued = true;
 	}
-
+	
 	var ReactUpdatesInjection = {
 	  injectReconcileTransaction: function (ReconcileTransaction) {
 	    !ReconcileTransaction ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must provide a reconcile transaction class') : invariant(false) : undefined;
 	    ReactUpdates.ReactReconcileTransaction = ReconcileTransaction;
 	  },
-
+	
 	  injectBatchingStrategy: function (_batchingStrategy) {
 	    !_batchingStrategy ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must provide a batching strategy') : invariant(false) : undefined;
 	    !(typeof _batchingStrategy.batchedUpdates === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must provide a batchedUpdates() function') : invariant(false) : undefined;
@@ -7687,7 +8016,7 @@ var SettingsPanel =
 	    batchingStrategy = _batchingStrategy;
 	  }
 	};
-
+	
 	var ReactUpdates = {
 	  /**
 	   * React references `ReactReconcileTransaction` using this property in order
@@ -7696,19 +8025,22 @@ var SettingsPanel =
 	   * @internal
 	   */
 	  ReactReconcileTransaction: null,
-
+	
 	  batchedUpdates: batchedUpdates,
 	  enqueueUpdate: enqueueUpdate,
 	  flushBatchedUpdates: flushBatchedUpdates,
 	  injection: ReactUpdatesInjection,
 	  asap: asap
 	};
-
+	
 	module.exports = ReactUpdates;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 104 */
+/* 105 */
+/*!**************************************!*\
+  !*** ./~/react/lib/CallbackQueue.js ***!
+  \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7721,14 +8053,14 @@ var SettingsPanel =
 	 *
 	 * @providesModule CallbackQueue
 	 */
-
+	
 	'use strict';
-
-	var PooledClass = __webpack_require__(105);
-
-	var assign = __webpack_require__(88);
-	var invariant = __webpack_require__(62);
-
+	
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 106);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	/**
 	 * A specialized pseudo-event module to help keep track of components waiting to
 	 * be notified when their DOM representations are available for use.
@@ -7744,9 +8076,9 @@ var SettingsPanel =
 	  this._callbacks = null;
 	  this._contexts = null;
 	}
-
+	
 	assign(CallbackQueue.prototype, {
-
+	
 	  /**
 	   * Enqueues a callback to be invoked when `notifyAll` is invoked.
 	   *
@@ -7760,7 +8092,7 @@ var SettingsPanel =
 	    this._callbacks.push(callback);
 	    this._contexts.push(context);
 	  },
-
+	
 	  /**
 	   * Invokes all enqueued callbacks and clears the queue. This is invoked after
 	   * the DOM representation of a component has been created or updated.
@@ -7781,7 +8113,7 @@ var SettingsPanel =
 	      contexts.length = 0;
 	    }
 	  },
-
+	
 	  /**
 	   * Resets the internal queue.
 	   *
@@ -7791,23 +8123,26 @@ var SettingsPanel =
 	    this._callbacks = null;
 	    this._contexts = null;
 	  },
-
+	
 	  /**
 	   * `PooledClass` looks for this.
 	   */
 	  destructor: function () {
 	    this.reset();
 	  }
-
+	
 	});
-
+	
 	PooledClass.addPoolingTo(CallbackQueue);
-
+	
 	module.exports = CallbackQueue;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 105 */
+/* 106 */
+/*!************************************!*\
+  !*** ./~/react/lib/PooledClass.js ***!
+  \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7820,11 +8155,11 @@ var SettingsPanel =
 	 *
 	 * @providesModule PooledClass
 	 */
-
+	
 	'use strict';
-
-	var invariant = __webpack_require__(62);
-
+	
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	/**
 	 * Static poolers. Several custom versions for each potential number of
 	 * arguments. A completely generic pooler is easy to implement, but would
@@ -7842,7 +8177,7 @@ var SettingsPanel =
 	    return new Klass(copyFieldsFrom);
 	  }
 	};
-
+	
 	var twoArgumentPooler = function (a1, a2) {
 	  var Klass = this;
 	  if (Klass.instancePool.length) {
@@ -7853,7 +8188,7 @@ var SettingsPanel =
 	    return new Klass(a1, a2);
 	  }
 	};
-
+	
 	var threeArgumentPooler = function (a1, a2, a3) {
 	  var Klass = this;
 	  if (Klass.instancePool.length) {
@@ -7864,7 +8199,7 @@ var SettingsPanel =
 	    return new Klass(a1, a2, a3);
 	  }
 	};
-
+	
 	var fourArgumentPooler = function (a1, a2, a3, a4) {
 	  var Klass = this;
 	  if (Klass.instancePool.length) {
@@ -7875,7 +8210,7 @@ var SettingsPanel =
 	    return new Klass(a1, a2, a3, a4);
 	  }
 	};
-
+	
 	var fiveArgumentPooler = function (a1, a2, a3, a4, a5) {
 	  var Klass = this;
 	  if (Klass.instancePool.length) {
@@ -7886,7 +8221,7 @@ var SettingsPanel =
 	    return new Klass(a1, a2, a3, a4, a5);
 	  }
 	};
-
+	
 	var standardReleaser = function (instance) {
 	  var Klass = this;
 	  !(instance instanceof Klass) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Trying to release an instance into a pool of a different type.') : invariant(false) : undefined;
@@ -7895,10 +8230,10 @@ var SettingsPanel =
 	    Klass.instancePool.push(instance);
 	  }
 	};
-
+	
 	var DEFAULT_POOL_SIZE = 10;
 	var DEFAULT_POOLER = oneArgumentPooler;
-
+	
 	/**
 	 * Augments `CopyConstructor` to be a poolable class, augmenting only the class
 	 * itself (statically) not adding any prototypical fields. Any CopyConstructor
@@ -7918,7 +8253,7 @@ var SettingsPanel =
 	  NewKlass.release = standardReleaser;
 	  return NewKlass;
 	};
-
+	
 	var PooledClass = {
 	  addPoolingTo: addPoolingTo,
 	  oneArgumentPooler: oneArgumentPooler,
@@ -7927,12 +8262,15 @@ var SettingsPanel =
 	  fourArgumentPooler: fourArgumentPooler,
 	  fiveArgumentPooler: fiveArgumentPooler
 	};
-
+	
 	module.exports = PooledClass;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 106 */
+/* 107 */
+/*!************************************!*\
+  !*** ./~/react/lib/Transaction.js ***!
+  \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7945,11 +8283,11 @@ var SettingsPanel =
 	 *
 	 * @providesModule Transaction
 	 */
-
+	
 	'use strict';
-
-	var invariant = __webpack_require__(62);
-
+	
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	/**
 	 * `Transaction` creates a black box that is able to wrap any method such that
 	 * certain invariants are maintained before and after the method is invoked
@@ -8028,19 +8366,19 @@ var SettingsPanel =
 	    }
 	    this._isInTransaction = false;
 	  },
-
+	
 	  _isInTransaction: false,
-
+	
 	  /**
 	   * @abstract
 	   * @return {Array<TransactionWrapper>} Array of transaction wrappers.
 	   */
 	  getTransactionWrappers: null,
-
+	
 	  isInTransaction: function () {
 	    return !!this._isInTransaction;
 	  },
-
+	
 	  /**
 	   * Executes the function within a safety window. Use this for the top level
 	   * methods that result in large amounts of computation/mutations that would
@@ -8091,7 +8429,7 @@ var SettingsPanel =
 	    }
 	    return ret;
 	  },
-
+	
 	  initializeAll: function (startIndex) {
 	    var transactionWrappers = this.transactionWrappers;
 	    for (var i = startIndex; i < transactionWrappers.length; i++) {
@@ -8115,7 +8453,7 @@ var SettingsPanel =
 	      }
 	    }
 	  },
-
+	
 	  /**
 	   * Invokes each of `this.transactionWrappers.close[i]` functions, passing into
 	   * them the respective return values of `this.transactionWrappers.init[i]`
@@ -8153,23 +8491,26 @@ var SettingsPanel =
 	    this.wrapperInitData.length = 0;
 	  }
 	};
-
+	
 	var Transaction = {
-
+	
 	  Mixin: Mixin,
-
+	
 	  /**
 	   * Token to look for to determine if an error occurred.
 	   */
 	  OBSERVED_ERROR: {}
-
+	
 	};
-
+	
 	module.exports = Transaction;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 107 */
+/* 108 */
+/*!***********************************!*\
+  !*** ./~/fbjs/lib/emptyObject.js ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -8182,20 +8523,23 @@ var SettingsPanel =
 	 *
 	 * @providesModule emptyObject
 	 */
-
+	
 	'use strict';
-
+	
 	var emptyObject = {};
-
+	
 	if (process.env.NODE_ENV !== 'production') {
 	  Object.freeze(emptyObject);
 	}
-
+	
 	module.exports = emptyObject;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 108 */
+/* 109 */
+/*!************************************!*\
+  !*** ./~/fbjs/lib/containsNode.js ***!
+  \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -8209,13 +8553,13 @@ var SettingsPanel =
 	 * @providesModule containsNode
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
-	var isTextNode = __webpack_require__(109);
-
+	
+	var isTextNode = __webpack_require__(/*! ./isTextNode */ 110);
+	
 	/*eslint-disable no-bitwise */
-
+	
 	/**
 	 * Checks if a given DOM node contains or is another DOM node.
 	 *
@@ -8225,12 +8569,12 @@ var SettingsPanel =
 	 */
 	function containsNode(_x, _x2) {
 	  var _again = true;
-
+	
 	  _function: while (_again) {
 	    var outerNode = _x,
 	        innerNode = _x2;
 	    _again = false;
-
+	
 	    if (!outerNode || !innerNode) {
 	      return false;
 	    } else if (outerNode === innerNode) {
@@ -8251,11 +8595,14 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	module.exports = containsNode;
 
 /***/ },
-/* 109 */
+/* 110 */
+/*!**********************************!*\
+  !*** ./~/fbjs/lib/isTextNode.js ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -8269,11 +8616,11 @@ var SettingsPanel =
 	 * @providesModule isTextNode
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
-	var isNode = __webpack_require__(110);
-
+	
+	var isNode = __webpack_require__(/*! ./isNode */ 111);
+	
 	/**
 	 * @param {*} object The object to check.
 	 * @return {boolean} Whether or not the object is a DOM text node.
@@ -8281,11 +8628,14 @@ var SettingsPanel =
 	function isTextNode(object) {
 	  return isNode(object) && object.nodeType == 3;
 	}
-
+	
 	module.exports = isTextNode;
 
 /***/ },
-/* 110 */
+/* 111 */
+/*!******************************!*\
+  !*** ./~/fbjs/lib/isNode.js ***!
+  \******************************/
 /***/ function(module, exports) {
 
 	/**
@@ -8299,21 +8649,24 @@ var SettingsPanel =
 	 * @providesModule isNode
 	 * @typechecks
 	 */
-
+	
 	/**
 	 * @param {*} object The object to check.
 	 * @return {boolean} Whether or not the object is a DOM node.
 	 */
 	'use strict';
-
+	
 	function isNode(object) {
 	  return !!(object && (typeof Node === 'function' ? object instanceof Node : typeof object === 'object' && typeof object.nodeType === 'number' && typeof object.nodeName === 'string'));
 	}
-
+	
 	module.exports = isNode;
 
 /***/ },
-/* 111 */
+/* 112 */
+/*!**************************************************!*\
+  !*** ./~/react/lib/instantiateReactComponent.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -8327,23 +8680,23 @@ var SettingsPanel =
 	 * @providesModule instantiateReactComponent
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var ReactCompositeComponent = __webpack_require__(112);
-	var ReactEmptyComponent = __webpack_require__(117);
-	var ReactNativeComponent = __webpack_require__(118);
-
-	var assign = __webpack_require__(88);
-	var invariant = __webpack_require__(62);
-	var warning = __webpack_require__(74);
-
+	
+	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 113);
+	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 118);
+	var ReactNativeComponent = __webpack_require__(/*! ./ReactNativeComponent */ 119);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	// To avoid a cyclic dependency, we create the final class in this module
 	var ReactCompositeComponentWrapper = function () {};
 	assign(ReactCompositeComponentWrapper.prototype, ReactCompositeComponent.Mixin, {
 	  _instantiateReactComponent: instantiateReactComponent
 	});
-
+	
 	function getDeclarationErrorAddendum(owner) {
 	  if (owner) {
 	    var name = owner.getName();
@@ -8353,7 +8706,7 @@ var SettingsPanel =
 	  }
 	  return '';
 	}
-
+	
 	/**
 	 * Check if the type reference is a known internal type. I.e. not a user
 	 * provided composite type.
@@ -8364,7 +8717,7 @@ var SettingsPanel =
 	function isInternalComponentType(type) {
 	  return typeof type === 'function' && typeof type.prototype !== 'undefined' && typeof type.prototype.mountComponent === 'function' && typeof type.prototype.receiveComponent === 'function';
 	}
-
+	
 	/**
 	 * Given a ReactNode, create an instance that will actually be mounted.
 	 *
@@ -8374,13 +8727,13 @@ var SettingsPanel =
 	 */
 	function instantiateReactComponent(node) {
 	  var instance;
-
+	
 	  if (node === null || node === false) {
 	    instance = new ReactEmptyComponent(instantiateReactComponent);
 	  } else if (typeof node === 'object') {
 	    var element = node;
 	    !(element && (typeof element.type === 'function' || typeof element.type === 'string')) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Element type is invalid: expected a string (for built-in components) ' + 'or a class/function (for composite components) but got: %s.%s', element.type == null ? element.type : typeof element.type, getDeclarationErrorAddendum(element._owner)) : invariant(false) : undefined;
-
+	
 	    // Special case string values
 	    if (typeof element.type === 'string') {
 	      instance = ReactNativeComponent.createInternalComponent(element);
@@ -8397,25 +8750,25 @@ var SettingsPanel =
 	  } else {
 	     true ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Encountered invalid React node of type %s', typeof node) : invariant(false) : undefined;
 	  }
-
+	
 	  if (process.env.NODE_ENV !== 'production') {
 	    process.env.NODE_ENV !== 'production' ? warning(typeof instance.construct === 'function' && typeof instance.mountComponent === 'function' && typeof instance.receiveComponent === 'function' && typeof instance.unmountComponent === 'function', 'Only React Components can be mounted.') : undefined;
 	  }
-
+	
 	  // Sets up the instance. This can probably just move into the constructor now.
 	  instance.construct(node);
-
+	
 	  // These two fields are used by the DOM and ART diffing algorithms
 	  // respectively. Instead of using expandos on components, we should be
 	  // storing the state needed by the diffing algorithms elsewhere.
 	  instance._mountIndex = 0;
 	  instance._mountImage = null;
-
+	
 	  if (process.env.NODE_ENV !== 'production') {
 	    instance._isOwnerNecessary = false;
 	    instance._warnedAboutRefsInRender = false;
 	  }
-
+	
 	  // Internal instances should fully constructed at this point, so they should
 	  // not get any new fields added to them at this point.
 	  if (process.env.NODE_ENV !== 'production') {
@@ -8423,15 +8776,18 @@ var SettingsPanel =
 	      Object.preventExtensions(instance);
 	    }
 	  }
-
+	
 	  return instance;
 	}
-
+	
 	module.exports = instantiateReactComponent;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 112 */
+/* 113 */
+/*!************************************************!*\
+  !*** ./~/react/lib/ReactCompositeComponent.js ***!
+  \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -8444,25 +8800,25 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactCompositeComponent
 	 */
-
+	
 	'use strict';
-
-	var ReactComponentEnvironment = __webpack_require__(113);
-	var ReactCurrentOwner = __webpack_require__(54);
-	var ReactElement = __webpack_require__(91);
-	var ReactInstanceMap = __webpack_require__(96);
-	var ReactPerf = __webpack_require__(67);
-	var ReactPropTypeLocations = __webpack_require__(114);
-	var ReactPropTypeLocationNames = __webpack_require__(115);
-	var ReactReconciler = __webpack_require__(99);
-	var ReactUpdateQueue = __webpack_require__(102);
-
-	var assign = __webpack_require__(88);
-	var emptyObject = __webpack_require__(107);
-	var invariant = __webpack_require__(62);
-	var shouldUpdateReactComponent = __webpack_require__(116);
-	var warning = __webpack_require__(74);
-
+	
+	var ReactComponentEnvironment = __webpack_require__(/*! ./ReactComponentEnvironment */ 114);
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 55);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 92);
+	var ReactInstanceMap = __webpack_require__(/*! ./ReactInstanceMap */ 97);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 68);
+	var ReactPropTypeLocations = __webpack_require__(/*! ./ReactPropTypeLocations */ 115);
+	var ReactPropTypeLocationNames = __webpack_require__(/*! ./ReactPropTypeLocationNames */ 116);
+	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 100);
+	var ReactUpdateQueue = __webpack_require__(/*! ./ReactUpdateQueue */ 103);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var emptyObject = __webpack_require__(/*! fbjs/lib/emptyObject */ 108);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 117);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	function getDeclarationErrorAddendum(component) {
 	  var owner = component._currentElement._owner || null;
 	  if (owner) {
@@ -8473,13 +8829,13 @@ var SettingsPanel =
 	  }
 	  return '';
 	}
-
+	
 	function StatelessComponent(Component) {}
 	StatelessComponent.prototype.render = function () {
 	  var Component = ReactInstanceMap.get(this)._currentElement.type;
 	  return Component(this.props, this.context, this.updater);
 	};
-
+	
 	/**
 	 * ------------------ The Life-Cycle of a Composite Component ------------------
 	 *
@@ -8506,7 +8862,7 @@ var SettingsPanel =
 	 *
 	 * -----------------------------------------------------------------------------
 	 */
-
+	
 	/**
 	 * An incrementing ID assigned to each component when it is mounted. This is
 	 * used to enforce the order in which `ReactUpdates` updates dirty components.
@@ -8514,12 +8870,12 @@ var SettingsPanel =
 	 * @private
 	 */
 	var nextMountID = 1;
-
+	
 	/**
 	 * @lends {ReactCompositeComponent.prototype}
 	 */
 	var ReactCompositeComponentMixin = {
-
+	
 	  /**
 	   * Base constructor for all composite component.
 	   *
@@ -8531,23 +8887,23 @@ var SettingsPanel =
 	    this._currentElement = element;
 	    this._rootNodeID = null;
 	    this._instance = null;
-
+	
 	    // See ReactUpdateQueue
 	    this._pendingElement = null;
 	    this._pendingStateQueue = null;
 	    this._pendingReplaceState = false;
 	    this._pendingForceUpdate = false;
-
+	
 	    this._renderedComponent = null;
-
+	
 	    this._context = null;
 	    this._mountOrder = 0;
 	    this._topLevelWrapper = null;
-
+	
 	    // See ReactUpdates and ReactUpdateQueue.
 	    this._pendingCallbacks = null;
 	  },
-
+	
 	  /**
 	   * Initializes the component, renders markup, and registers event listeners.
 	   *
@@ -8561,22 +8917,22 @@ var SettingsPanel =
 	    this._context = context;
 	    this._mountOrder = nextMountID++;
 	    this._rootNodeID = rootID;
-
+	
 	    var publicProps = this._processProps(this._currentElement.props);
 	    var publicContext = this._processContext(context);
-
+	
 	    var Component = this._currentElement.type;
-
+	
 	    // Initialize the public class
 	    var inst;
 	    var renderedElement;
-
+	
 	    // This is a way to detect if Component is a stateless arrow function
 	    // component, which is not newable. It might not be 100% reliable but is
 	    // something we can do until we start detecting that Component extends
 	    // React.Component. We already assume that typeof Component === 'function'.
 	    var canInstantiate = ('prototype' in Component);
-
+	
 	    if (canInstantiate) {
 	      if (process.env.NODE_ENV !== 'production') {
 	        ReactCurrentOwner.current = this;
@@ -8589,12 +8945,12 @@ var SettingsPanel =
 	        inst = new Component(publicProps, publicContext, ReactUpdateQueue);
 	      }
 	    }
-
+	
 	    if (!canInstantiate || inst === null || inst === false || ReactElement.isValidElement(inst)) {
 	      renderedElement = inst;
 	      inst = new StatelessComponent(Component);
 	    }
-
+	
 	    if (process.env.NODE_ENV !== 'production') {
 	      // This will throw later in _renderValidatedComponent, but add an early
 	      // warning now to help debugging
@@ -8606,19 +8962,19 @@ var SettingsPanel =
 	        process.env.NODE_ENV !== 'production' ? warning(Component.prototype && Component.prototype.isReactComponent || !canInstantiate || !(inst instanceof Component), '%s(...): React component classes must extend React.Component.', Component.displayName || Component.name || 'Component') : undefined;
 	      }
 	    }
-
+	
 	    // These should be set up in the constructor, but as a convenience for
 	    // simpler class abstractions, we set them up after the fact.
 	    inst.props = publicProps;
 	    inst.context = publicContext;
 	    inst.refs = emptyObject;
 	    inst.updater = ReactUpdateQueue;
-
+	
 	    this._instance = inst;
-
+	
 	    // Store a reference from the instance back to the internal representation
 	    ReactInstanceMap.set(inst, this);
-
+	
 	    if (process.env.NODE_ENV !== 'production') {
 	      // Since plain JS classes are defined without any special initialization
 	      // logic, we can not catch common errors early. Therefore, we have to
@@ -8631,17 +8987,17 @@ var SettingsPanel =
 	      process.env.NODE_ENV !== 'production' ? warning(typeof inst.componentDidUnmount !== 'function', '%s has a method called ' + 'componentDidUnmount(). But there is no such lifecycle method. ' + 'Did you mean componentWillUnmount()?', this.getName() || 'A component') : undefined;
 	      process.env.NODE_ENV !== 'production' ? warning(typeof inst.componentWillRecieveProps !== 'function', '%s has a method called ' + 'componentWillRecieveProps(). Did you mean componentWillReceiveProps()?', this.getName() || 'A component') : undefined;
 	    }
-
+	
 	    var initialState = inst.state;
 	    if (initialState === undefined) {
 	      inst.state = initialState = null;
 	    }
 	    !(typeof initialState === 'object' && !Array.isArray(initialState)) ? process.env.NODE_ENV !== 'production' ? invariant(false, '%s.state: must be set to an object or null', this.getName() || 'ReactCompositeComponent') : invariant(false) : undefined;
-
+	
 	    this._pendingStateQueue = null;
 	    this._pendingReplaceState = false;
 	    this._pendingForceUpdate = false;
-
+	
 	    if (inst.componentWillMount) {
 	      inst.componentWillMount();
 	      // When mounting, calls to `setState` by `componentWillMount` will set
@@ -8650,22 +9006,22 @@ var SettingsPanel =
 	        inst.state = this._processPendingState(inst.props, inst.context);
 	      }
 	    }
-
+	
 	    // If not a stateless component, we now render
 	    if (renderedElement === undefined) {
 	      renderedElement = this._renderValidatedComponent();
 	    }
-
+	
 	    this._renderedComponent = this._instantiateReactComponent(renderedElement);
-
+	
 	    var markup = ReactReconciler.mountComponent(this._renderedComponent, rootID, transaction, this._processChildContext(context));
 	    if (inst.componentDidMount) {
 	      transaction.getReactMountReady().enqueue(inst.componentDidMount, inst);
 	    }
-
+	
 	    return markup;
 	  },
-
+	
 	  /**
 	   * Releases any resources allocated by `mountComponent`.
 	   *
@@ -8674,15 +9030,15 @@ var SettingsPanel =
 	   */
 	  unmountComponent: function () {
 	    var inst = this._instance;
-
+	
 	    if (inst.componentWillUnmount) {
 	      inst.componentWillUnmount();
 	    }
-
+	
 	    ReactReconciler.unmountComponent(this._renderedComponent);
 	    this._renderedComponent = null;
 	    this._instance = null;
-
+	
 	    // Reset pending fields
 	    // Even if this component is scheduled for another update in ReactUpdates,
 	    // it would still be ignored because these fields are reset.
@@ -8691,25 +9047,25 @@ var SettingsPanel =
 	    this._pendingForceUpdate = false;
 	    this._pendingCallbacks = null;
 	    this._pendingElement = null;
-
+	
 	    // These fields do not really need to be reset since this object is no
 	    // longer accessible.
 	    this._context = null;
 	    this._rootNodeID = null;
 	    this._topLevelWrapper = null;
-
+	
 	    // Delete the reference from the instance to this internal representation
 	    // which allow the internals to be properly cleaned up even if the user
 	    // leaks a reference to the public instance.
 	    ReactInstanceMap.remove(inst);
-
+	
 	    // Some existing components rely on inst.props even after they've been
 	    // destroyed (in event handlers).
 	    // TODO: inst.props = null;
 	    // TODO: inst.state = null;
 	    // TODO: inst.context = null;
 	  },
-
+	
 	  /**
 	   * Filters the context object to only contain keys specified in
 	   * `contextTypes`
@@ -8731,7 +9087,7 @@ var SettingsPanel =
 	    }
 	    return maskedContext;
 	  },
-
+	
 	  /**
 	   * Filters the context object to only contain keys specified in
 	   * `contextTypes`, and asserts that they are valid.
@@ -8750,7 +9106,7 @@ var SettingsPanel =
 	    }
 	    return maskedContext;
 	  },
-
+	
 	  /**
 	   * @param {object} currentContext
 	   * @return {object}
@@ -8772,7 +9128,7 @@ var SettingsPanel =
 	    }
 	    return currentContext;
 	  },
-
+	
 	  /**
 	   * Processes props by setting default values for unspecified props and
 	   * asserting that the props are valid. Does not mutate its argument; returns
@@ -8791,7 +9147,7 @@ var SettingsPanel =
 	    }
 	    return newProps;
 	  },
-
+	
 	  /**
 	   * Assert that the props are valid
 	   *
@@ -8820,7 +9176,7 @@ var SettingsPanel =
 	          // top-level render calls, so I'm abstracting it away into
 	          // a function to minimize refactoring in the future
 	          var addendum = getDeclarationErrorAddendum(this);
-
+	
 	          if (location === ReactPropTypeLocations.prop) {
 	            // Preface gives us something to blacklist in warning module
 	            process.env.NODE_ENV !== 'production' ? warning(false, 'Failed Composite propType: %s%s', error.message, addendum) : undefined;
@@ -8831,16 +9187,16 @@ var SettingsPanel =
 	      }
 	    }
 	  },
-
+	
 	  receiveComponent: function (nextElement, transaction, nextContext) {
 	    var prevElement = this._currentElement;
 	    var prevContext = this._context;
-
+	
 	    this._pendingElement = null;
-
+	
 	    this.updateComponent(transaction, prevElement, nextElement, prevContext, nextContext);
 	  },
-
+	
 	  /**
 	   * If any of `_pendingElement`, `_pendingStateQueue`, or `_pendingForceUpdate`
 	   * is set, update the component.
@@ -8852,12 +9208,12 @@ var SettingsPanel =
 	    if (this._pendingElement != null) {
 	      ReactReconciler.receiveComponent(this, this._pendingElement || this._currentElement, transaction, this._context);
 	    }
-
+	
 	    if (this._pendingStateQueue !== null || this._pendingForceUpdate) {
 	      this.updateComponent(transaction, this._currentElement, this._currentElement, this._context, this._context);
 	    }
 	  },
-
+	
 	  /**
 	   * Perform an update to a mounted component. The componentWillReceiveProps and
 	   * shouldComponentUpdate methods are called, then (assuming the update isn't
@@ -8875,10 +9231,10 @@ var SettingsPanel =
 	   */
 	  updateComponent: function (transaction, prevParentElement, nextParentElement, prevUnmaskedContext, nextUnmaskedContext) {
 	    var inst = this._instance;
-
+	
 	    var nextContext = this._context === nextUnmaskedContext ? inst.context : this._processContext(nextUnmaskedContext);
 	    var nextProps;
-
+	
 	    // Distinguish between a props update versus a simple state update
 	    if (prevParentElement === nextParentElement) {
 	      // Skip checking prop types again -- we don't read inst.props to avoid
@@ -8889,20 +9245,20 @@ var SettingsPanel =
 	      // An update here will schedule an update but immediately set
 	      // _pendingStateQueue which will ensure that any state updates gets
 	      // immediately reconciled instead of waiting for the next batch.
-
+	
 	      if (inst.componentWillReceiveProps) {
 	        inst.componentWillReceiveProps(nextProps, nextContext);
 	      }
 	    }
-
+	
 	    var nextState = this._processPendingState(nextProps, nextContext);
-
+	
 	    var shouldUpdate = this._pendingForceUpdate || !inst.shouldComponentUpdate || inst.shouldComponentUpdate(nextProps, nextState, nextContext);
-
+	
 	    if (process.env.NODE_ENV !== 'production') {
 	      process.env.NODE_ENV !== 'production' ? warning(typeof shouldUpdate !== 'undefined', '%s.shouldComponentUpdate(): Returned undefined instead of a ' + 'boolean value. Make sure to return true or false.', this.getName() || 'ReactCompositeComponent') : undefined;
 	    }
-
+	
 	    if (shouldUpdate) {
 	      this._pendingForceUpdate = false;
 	      // Will set `this.props`, `this.state` and `this.context`.
@@ -8917,31 +9273,31 @@ var SettingsPanel =
 	      inst.context = nextContext;
 	    }
 	  },
-
+	
 	  _processPendingState: function (props, context) {
 	    var inst = this._instance;
 	    var queue = this._pendingStateQueue;
 	    var replace = this._pendingReplaceState;
 	    this._pendingReplaceState = false;
 	    this._pendingStateQueue = null;
-
+	
 	    if (!queue) {
 	      return inst.state;
 	    }
-
+	
 	    if (replace && queue.length === 1) {
 	      return queue[0];
 	    }
-
+	
 	    var nextState = assign({}, replace ? queue[0] : inst.state);
 	    for (var i = replace ? 1 : 0; i < queue.length; i++) {
 	      var partial = queue[i];
 	      assign(nextState, typeof partial === 'function' ? partial.call(inst, nextState, props, context) : partial);
 	    }
-
+	
 	    return nextState;
 	  },
-
+	
 	  /**
 	   * Merges new props and state, notifies delegate methods of update and
 	   * performs update.
@@ -8956,7 +9312,7 @@ var SettingsPanel =
 	   */
 	  _performComponentUpdate: function (nextElement, nextProps, nextState, nextContext, transaction, unmaskedContext) {
 	    var inst = this._instance;
-
+	
 	    var hasComponentDidUpdate = Boolean(inst.componentDidUpdate);
 	    var prevProps;
 	    var prevState;
@@ -8966,24 +9322,24 @@ var SettingsPanel =
 	      prevState = inst.state;
 	      prevContext = inst.context;
 	    }
-
+	
 	    if (inst.componentWillUpdate) {
 	      inst.componentWillUpdate(nextProps, nextState, nextContext);
 	    }
-
+	
 	    this._currentElement = nextElement;
 	    this._context = unmaskedContext;
 	    inst.props = nextProps;
 	    inst.state = nextState;
 	    inst.context = nextContext;
-
+	
 	    this._updateRenderedComponent(transaction, unmaskedContext);
-
+	
 	    if (hasComponentDidUpdate) {
 	      transaction.getReactMountReady().enqueue(inst.componentDidUpdate.bind(inst, prevProps, prevState, prevContext), inst);
 	    }
 	  },
-
+	
 	  /**
 	   * Call the component's `render` method and update the DOM accordingly.
 	   *
@@ -9001,20 +9357,20 @@ var SettingsPanel =
 	      var thisID = this._rootNodeID;
 	      var prevComponentID = prevComponentInstance._rootNodeID;
 	      ReactReconciler.unmountComponent(prevComponentInstance);
-
+	
 	      this._renderedComponent = this._instantiateReactComponent(nextRenderedElement);
 	      var nextMarkup = ReactReconciler.mountComponent(this._renderedComponent, thisID, transaction, this._processChildContext(context));
 	      this._replaceNodeWithMarkupByID(prevComponentID, nextMarkup);
 	    }
 	  },
-
+	
 	  /**
 	   * @protected
 	   */
 	  _replaceNodeWithMarkupByID: function (prevComponentID, nextMarkup) {
 	    ReactComponentEnvironment.replaceNodeWithMarkupByID(prevComponentID, nextMarkup);
 	  },
-
+	
 	  /**
 	   * @protected
 	   */
@@ -9029,10 +9385,10 @@ var SettingsPanel =
 	        renderedComponent = null;
 	      }
 	    }
-
+	
 	    return renderedComponent;
 	  },
-
+	
 	  /**
 	   * @private
 	   */
@@ -9049,7 +9405,7 @@ var SettingsPanel =
 	    renderedComponent === null || renderedComponent === false || ReactElement.isValidElement(renderedComponent)) ? process.env.NODE_ENV !== 'production' ? invariant(false, '%s.render(): A valid ReactComponent must be returned. You may have ' + 'returned undefined, an array or some other invalid object.', this.getName() || 'ReactCompositeComponent') : invariant(false) : undefined;
 	    return renderedComponent;
 	  },
-
+	
 	  /**
 	   * Lazily allocates the refs object and stores `component` as `ref`.
 	   *
@@ -9069,7 +9425,7 @@ var SettingsPanel =
 	    var refs = inst.refs === emptyObject ? inst.refs = {} : inst.refs;
 	    refs[ref] = publicComponentInstance;
 	  },
-
+	
 	  /**
 	   * Detaches a reference name.
 	   *
@@ -9081,7 +9437,7 @@ var SettingsPanel =
 	    var refs = this.getPublicInstance().refs;
 	    delete refs[ref];
 	  },
-
+	
 	  /**
 	   * Get a text description of the component that can be used to identify it
 	   * in error messages.
@@ -9093,7 +9449,7 @@ var SettingsPanel =
 	    var constructor = this._instance && this._instance.constructor;
 	    return type.displayName || constructor && constructor.displayName || type.name || constructor && constructor.name || null;
 	  },
-
+	
 	  /**
 	   * Get the publicly accessible representation of this component - i.e. what
 	   * is exposed by refs and returned by render. Can be null for stateless
@@ -9109,29 +9465,32 @@ var SettingsPanel =
 	    }
 	    return inst;
 	  },
-
+	
 	  // Stub
 	  _instantiateReactComponent: null
-
+	
 	};
-
+	
 	ReactPerf.measureMethods(ReactCompositeComponentMixin, 'ReactCompositeComponent', {
 	  mountComponent: 'mountComponent',
 	  updateComponent: 'updateComponent',
 	  _renderValidatedComponent: '_renderValidatedComponent'
 	});
-
+	
 	var ReactCompositeComponent = {
-
+	
 	  Mixin: ReactCompositeComponentMixin
-
+	
 	};
-
+	
 	module.exports = ReactCompositeComponent;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 113 */
+/* 114 */
+/*!**************************************************!*\
+  !*** ./~/react/lib/ReactComponentEnvironment.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9144,34 +9503,34 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactComponentEnvironment
 	 */
-
+	
 	'use strict';
-
-	var invariant = __webpack_require__(62);
-
+	
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	var injected = false;
-
+	
 	var ReactComponentEnvironment = {
-
+	
 	  /**
 	   * Optionally injectable environment dependent cleanup hook. (server vs.
 	   * browser etc). Example: A browser system caches DOM nodes based on component
 	   * ID and must remove that cache entry when this instance is unmounted.
 	   */
 	  unmountIDFromEnvironment: null,
-
+	
 	  /**
 	   * Optionally injectable hook for swapping out mount images in the middle of
 	   * the tree.
 	   */
 	  replaceNodeWithMarkupByID: null,
-
+	
 	  /**
 	   * Optionally injectable hook for processing a queue of child updates. Will
 	   * later move into MultiChildComponents.
 	   */
 	  processChildrenUpdates: null,
-
+	
 	  injection: {
 	    injectEnvironment: function (environment) {
 	      !!injected ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactCompositeComponent: injectEnvironment() can only be called once.') : invariant(false) : undefined;
@@ -9181,14 +9540,17 @@ var SettingsPanel =
 	      injected = true;
 	    }
 	  }
-
+	
 	};
-
+	
 	module.exports = ReactComponentEnvironment;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 114 */
+/* 115 */
+/*!***********************************************!*\
+  !*** ./~/react/lib/ReactPropTypeLocations.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -9201,21 +9563,24 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactPropTypeLocations
 	 */
-
+	
 	'use strict';
-
-	var keyMirror = __webpack_require__(66);
-
+	
+	var keyMirror = __webpack_require__(/*! fbjs/lib/keyMirror */ 67);
+	
 	var ReactPropTypeLocations = keyMirror({
 	  prop: null,
 	  context: null,
 	  childContext: null
 	});
-
+	
 	module.exports = ReactPropTypeLocations;
 
 /***/ },
-/* 115 */
+/* 116 */
+/*!***************************************************!*\
+  !*** ./~/react/lib/ReactPropTypeLocationNames.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9228,11 +9593,11 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactPropTypeLocationNames
 	 */
-
+	
 	'use strict';
-
+	
 	var ReactPropTypeLocationNames = {};
-
+	
 	if (process.env.NODE_ENV !== 'production') {
 	  ReactPropTypeLocationNames = {
 	    prop: 'prop',
@@ -9240,12 +9605,15 @@ var SettingsPanel =
 	    childContext: 'child context'
 	  };
 	}
-
+	
 	module.exports = ReactPropTypeLocationNames;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 116 */
+/* 117 */
+/*!***************************************************!*\
+  !*** ./~/react/lib/shouldUpdateReactComponent.js ***!
+  \***************************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -9259,9 +9627,9 @@ var SettingsPanel =
 	 * @providesModule shouldUpdateReactComponent
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * Given a `prevElement` and `nextElement`, determines if the existing
 	 * instance should be updated as opposed to being destroyed or replaced by a new
@@ -9279,7 +9647,7 @@ var SettingsPanel =
 	  if (prevEmpty || nextEmpty) {
 	    return prevEmpty === nextEmpty;
 	  }
-
+	
 	  var prevType = typeof prevElement;
 	  var nextType = typeof nextElement;
 	  if (prevType === 'string' || prevType === 'number') {
@@ -9289,11 +9657,14 @@ var SettingsPanel =
 	  }
 	  return false;
 	}
-
+	
 	module.exports = shouldUpdateReactComponent;
 
 /***/ },
-/* 117 */
+/* 118 */
+/*!********************************************!*\
+  !*** ./~/react/lib/ReactEmptyComponent.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -9306,23 +9677,23 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactEmptyComponent
 	 */
-
+	
 	'use strict';
-
-	var ReactElement = __webpack_require__(91);
-	var ReactEmptyComponentRegistry = __webpack_require__(93);
-	var ReactReconciler = __webpack_require__(99);
-
-	var assign = __webpack_require__(88);
-
+	
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 92);
+	var ReactEmptyComponentRegistry = __webpack_require__(/*! ./ReactEmptyComponentRegistry */ 94);
+	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 100);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	
 	var placeholderElement;
-
+	
 	var ReactEmptyComponentInjection = {
 	  injectEmptyComponent: function (component) {
 	    placeholderElement = ReactElement.createElement(component);
 	  }
 	};
-
+	
 	var ReactEmptyComponent = function (instantiate) {
 	  this._currentElement = null;
 	  this._rootNodeID = null;
@@ -9343,13 +9714,16 @@ var SettingsPanel =
 	    this._renderedComponent = null;
 	  }
 	});
-
+	
 	ReactEmptyComponent.injection = ReactEmptyComponentInjection;
-
+	
 	module.exports = ReactEmptyComponent;
 
 /***/ },
-/* 118 */
+/* 119 */
+/*!*********************************************!*\
+  !*** ./~/react/lib/ReactNativeComponent.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9362,18 +9736,18 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactNativeComponent
 	 */
-
+	
 	'use strict';
-
-	var assign = __webpack_require__(88);
-	var invariant = __webpack_require__(62);
-
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	var autoGenerateWrapperClass = null;
 	var genericComponentClass = null;
 	// This registry keeps track of wrapper classes around native tags.
 	var tagToComponentClass = {};
 	var textComponentClass = null;
-
+	
 	var ReactNativeComponentInjection = {
 	  // This accepts a class that receives the tag string. This is a catch all
 	  // that can render any kind of tag.
@@ -9391,7 +9765,7 @@ var SettingsPanel =
 	    assign(tagToComponentClass, componentClasses);
 	  }
 	};
-
+	
 	/**
 	 * Get a composite component wrapper class for a specific tag.
 	 *
@@ -9409,7 +9783,7 @@ var SettingsPanel =
 	  }
 	  return componentClass;
 	}
-
+	
 	/**
 	 * Get a native internal component class for a specific tag.
 	 *
@@ -9420,7 +9794,7 @@ var SettingsPanel =
 	  !genericComponentClass ? process.env.NODE_ENV !== 'production' ? invariant(false, 'There is no registered component for the tag %s', element.type) : invariant(false) : undefined;
 	  return new genericComponentClass(element.type, element.props);
 	}
-
+	
 	/**
 	 * @param {ReactText} text
 	 * @return {ReactComponent}
@@ -9428,7 +9802,7 @@ var SettingsPanel =
 	function createInstanceForText(text) {
 	  return new textComponentClass(text);
 	}
-
+	
 	/**
 	 * @param {ReactComponent} component
 	 * @return {boolean}
@@ -9436,7 +9810,7 @@ var SettingsPanel =
 	function isTextComponent(component) {
 	  return component instanceof textComponentClass;
 	}
-
+	
 	var ReactNativeComponent = {
 	  getComponentClassForElement: getComponentClassForElement,
 	  createInternalComponent: createInternalComponent,
@@ -9444,12 +9818,15 @@ var SettingsPanel =
 	  isTextComponent: isTextComponent,
 	  injection: ReactNativeComponentInjection
 	};
-
+	
 	module.exports = ReactNativeComponent;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 119 */
+/* 120 */
+/*!*******************************************!*\
+  !*** ./~/react/lib/validateDOMNesting.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9462,15 +9839,15 @@ var SettingsPanel =
 	 *
 	 * @providesModule validateDOMNesting
 	 */
-
+	
 	'use strict';
-
-	var assign = __webpack_require__(88);
-	var emptyFunction = __webpack_require__(64);
-	var warning = __webpack_require__(74);
-
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 65);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	var validateDOMNesting = emptyFunction;
-
+	
 	if (process.env.NODE_ENV !== 'production') {
 	  // This validation code was written based on the HTML5 parsing spec:
 	  // https://html.spec.whatwg.org/multipage/syntax.html#has-an-element-in-scope
@@ -9482,41 +9859,41 @@ var SettingsPanel =
 	  // because it still parses correctly; we do warn for other cases like nested
 	  // <p> tags where the beginning of the second element implicitly closes the
 	  // first, causing a confusing mess.
-
+	
 	  // https://html.spec.whatwg.org/multipage/syntax.html#special
 	  var specialTags = ['address', 'applet', 'area', 'article', 'aside', 'base', 'basefont', 'bgsound', 'blockquote', 'body', 'br', 'button', 'caption', 'center', 'col', 'colgroup', 'dd', 'details', 'dir', 'div', 'dl', 'dt', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'frame', 'frameset', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'iframe', 'img', 'input', 'isindex', 'li', 'link', 'listing', 'main', 'marquee', 'menu', 'menuitem', 'meta', 'nav', 'noembed', 'noframes', 'noscript', 'object', 'ol', 'p', 'param', 'plaintext', 'pre', 'script', 'section', 'select', 'source', 'style', 'summary', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'title', 'tr', 'track', 'ul', 'wbr', 'xmp'];
-
+	
 	  // https://html.spec.whatwg.org/multipage/syntax.html#has-an-element-in-scope
 	  var inScopeTags = ['applet', 'caption', 'html', 'table', 'td', 'th', 'marquee', 'object', 'template',
-
+	
 	  // https://html.spec.whatwg.org/multipage/syntax.html#html-integration-point
 	  // TODO: Distinguish by namespace here -- for <title>, including it here
 	  // errs on the side of fewer warnings
 	  'foreignObject', 'desc', 'title'];
-
+	
 	  // https://html.spec.whatwg.org/multipage/syntax.html#has-an-element-in-button-scope
 	  var buttonScopeTags = inScopeTags.concat(['button']);
-
+	
 	  // https://html.spec.whatwg.org/multipage/syntax.html#generate-implied-end-tags
 	  var impliedEndTags = ['dd', 'dt', 'li', 'option', 'optgroup', 'p', 'rp', 'rt'];
-
+	
 	  var emptyAncestorInfo = {
 	    parentTag: null,
-
+	
 	    formTag: null,
 	    aTagInScope: null,
 	    buttonTagInScope: null,
 	    nobrTagInScope: null,
 	    pTagInButtonScope: null,
-
+	
 	    listItemTagAutoclosing: null,
 	    dlItemTagAutoclosing: null
 	  };
-
+	
 	  var updatedAncestorInfo = function (oldInfo, tag, instance) {
 	    var ancestorInfo = assign({}, oldInfo || emptyAncestorInfo);
 	    var info = { tag: tag, instance: instance };
-
+	
 	    if (inScopeTags.indexOf(tag) !== -1) {
 	      ancestorInfo.aTagInScope = null;
 	      ancestorInfo.buttonTagInScope = null;
@@ -9525,16 +9902,16 @@ var SettingsPanel =
 	    if (buttonScopeTags.indexOf(tag) !== -1) {
 	      ancestorInfo.pTagInButtonScope = null;
 	    }
-
+	
 	    // See rules for 'li', 'dd', 'dt' start tags in
 	    // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-inbody
 	    if (specialTags.indexOf(tag) !== -1 && tag !== 'address' && tag !== 'div' && tag !== 'p') {
 	      ancestorInfo.listItemTagAutoclosing = null;
 	      ancestorInfo.dlItemTagAutoclosing = null;
 	    }
-
+	
 	    ancestorInfo.parentTag = info;
-
+	
 	    if (tag === 'form') {
 	      ancestorInfo.formTag = info;
 	    }
@@ -9556,10 +9933,10 @@ var SettingsPanel =
 	    if (tag === 'dd' || tag === 'dt') {
 	      ancestorInfo.dlItemTagAutoclosing = info;
 	    }
-
+	
 	    return ancestorInfo;
 	  };
-
+	
 	  /**
 	   * Returns whether
 	   */
@@ -9575,39 +9952,39 @@ var SettingsPanel =
 	      // but
 	      case 'option':
 	        return tag === '#text';
-
+	
 	      // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intd
 	      // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-incaption
 	      // No special behavior since these rules fall back to "in body" mode for
 	      // all except special table nodes which cause bad parsing behavior anyway.
-
+	
 	      // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intr
 	      case 'tr':
 	        return tag === 'th' || tag === 'td' || tag === 'style' || tag === 'script' || tag === 'template';
-
+	
 	      // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intbody
 	      case 'tbody':
 	      case 'thead':
 	      case 'tfoot':
 	        return tag === 'tr' || tag === 'style' || tag === 'script' || tag === 'template';
-
+	
 	      // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-incolgroup
 	      case 'colgroup':
 	        return tag === 'col' || tag === 'template';
-
+	
 	      // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intable
 	      case 'table':
 	        return tag === 'caption' || tag === 'colgroup' || tag === 'tbody' || tag === 'tfoot' || tag === 'thead' || tag === 'style' || tag === 'script' || tag === 'template';
-
+	
 	      // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-inhead
 	      case 'head':
 	        return tag === 'base' || tag === 'basefont' || tag === 'bgsound' || tag === 'link' || tag === 'meta' || tag === 'title' || tag === 'noscript' || tag === 'noframes' || tag === 'style' || tag === 'script' || tag === 'template';
-
+	
 	      // https://html.spec.whatwg.org/multipage/semantics.html#the-html-element
 	      case 'html':
 	        return tag === 'head' || tag === 'body';
 	    }
-
+	
 	    // Probably in the "in body" parsing mode, so we outlaw only tag combos
 	    // where the parsing rules cause implicit opens or closes to be added.
 	    // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-inbody
@@ -9619,11 +9996,11 @@ var SettingsPanel =
 	      case 'h5':
 	      case 'h6':
 	        return parentTag !== 'h1' && parentTag !== 'h2' && parentTag !== 'h3' && parentTag !== 'h4' && parentTag !== 'h5' && parentTag !== 'h6';
-
+	
 	      case 'rp':
 	      case 'rt':
 	        return impliedEndTags.indexOf(parentTag) === -1;
-
+	
 	      case 'caption':
 	      case 'col':
 	      case 'colgroup':
@@ -9641,10 +10018,10 @@ var SettingsPanel =
 	        // cases are invalid.
 	        return parentTag == null;
 	    }
-
+	
 	    return true;
 	  };
-
+	
 	  /**
 	   * Returns whether
 	   */
@@ -9674,16 +10051,16 @@ var SettingsPanel =
 	      case 'section':
 	      case 'summary':
 	      case 'ul':
-
+	
 	      case 'pre':
 	      case 'listing':
-
+	
 	      case 'table':
-
+	
 	      case 'hr':
-
+	
 	      case 'xmp':
-
+	
 	      case 'h1':
 	      case 'h2':
 	      case 'h3':
@@ -9691,32 +10068,32 @@ var SettingsPanel =
 	      case 'h5':
 	      case 'h6':
 	        return ancestorInfo.pTagInButtonScope;
-
+	
 	      case 'form':
 	        return ancestorInfo.formTag || ancestorInfo.pTagInButtonScope;
-
+	
 	      case 'li':
 	        return ancestorInfo.listItemTagAutoclosing;
-
+	
 	      case 'dd':
 	      case 'dt':
 	        return ancestorInfo.dlItemTagAutoclosing;
-
+	
 	      case 'button':
 	        return ancestorInfo.buttonTagInScope;
-
+	
 	      case 'a':
 	        // Spec says something about storing a list of markers, but it sounds
 	        // equivalent to this check.
 	        return ancestorInfo.aTagInScope;
-
+	
 	      case 'nobr':
 	        return ancestorInfo.nobrTagInScope;
 	    }
-
+	
 	    return null;
 	  };
-
+	
 	  /**
 	   * Given a ReactCompositeComponent instance, return a list of its recursive
 	   * owners, starting at the root and ending with the instance itself.
@@ -9725,7 +10102,7 @@ var SettingsPanel =
 	    if (!instance) {
 	      return [];
 	    }
-
+	
 	    var stack = [];
 	    /*eslint-disable space-after-keywords */
 	    do {
@@ -9735,31 +10112,31 @@ var SettingsPanel =
 	    stack.reverse();
 	    return stack;
 	  };
-
+	
 	  var didWarn = {};
-
+	
 	  validateDOMNesting = function (childTag, childInstance, ancestorInfo) {
 	    ancestorInfo = ancestorInfo || emptyAncestorInfo;
 	    var parentInfo = ancestorInfo.parentTag;
 	    var parentTag = parentInfo && parentInfo.tag;
-
+	
 	    var invalidParent = isTagValidWithParent(childTag, parentTag) ? null : parentInfo;
 	    var invalidAncestor = invalidParent ? null : findInvalidAncestorForTag(childTag, ancestorInfo);
 	    var problematic = invalidParent || invalidAncestor;
-
+	
 	    if (problematic) {
 	      var ancestorTag = problematic.tag;
 	      var ancestorInstance = problematic.instance;
-
+	
 	      var childOwner = childInstance && childInstance._currentElement._owner;
 	      var ancestorOwner = ancestorInstance && ancestorInstance._currentElement._owner;
-
+	
 	      var childOwners = findOwnerStack(childOwner);
 	      var ancestorOwners = findOwnerStack(ancestorOwner);
-
+	
 	      var minStackLen = Math.min(childOwners.length, ancestorOwners.length);
 	      var i;
-
+	
 	      var deepestCommon = -1;
 	      for (i = 0; i < minStackLen; i++) {
 	        if (childOwners[i] === ancestorOwners[i]) {
@@ -9768,7 +10145,7 @@ var SettingsPanel =
 	          break;
 	        }
 	      }
-
+	
 	      var UNKNOWN = '(unknown)';
 	      var childOwnerNames = childOwners.slice(deepestCommon + 1).map(function (inst) {
 	        return inst.getName() || UNKNOWN;
@@ -9782,13 +10159,13 @@ var SettingsPanel =
 	      deepestCommon !== -1 ? childOwners[deepestCommon].getName() || UNKNOWN : [], ancestorOwnerNames, ancestorTag,
 	      // If we're warning about an invalid (non-parent) ancestry, add '...'
 	      invalidAncestor ? ['...'] : [], childOwnerNames, childTag).join(' > ');
-
+	
 	      var warnKey = !!invalidParent + '|' + childTag + '|' + ancestorTag + '|' + ownerInfo;
 	      if (didWarn[warnKey]) {
 	        return;
 	      }
 	      didWarn[warnKey] = true;
-
+	
 	      if (invalidParent) {
 	        var info = '';
 	        if (ancestorTag === 'table' && childTag === 'tr') {
@@ -9800,11 +10177,11 @@ var SettingsPanel =
 	      }
 	    }
 	  };
-
+	
 	  validateDOMNesting.ancestorInfoContextKey = '__validateDOMNesting_ancestorInfo$' + Math.random().toString(36).slice(2);
-
+	
 	  validateDOMNesting.updatedAncestorInfo = updatedAncestorInfo;
-
+	
 	  // For testing
 	  validateDOMNesting.isTagValidInContext = function (tag, ancestorInfo) {
 	    ancestorInfo = ancestorInfo || emptyAncestorInfo;
@@ -9813,12 +10190,15 @@ var SettingsPanel =
 	    return isTagValidWithParent(tag, parentTag) && !findInvalidAncestorForTag(tag, ancestorInfo);
 	  };
 	}
-
+	
 	module.exports = validateDOMNesting;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 120 */
+/* 121 */
+/*!**********************************************!*\
+  !*** ./~/react/lib/ReactDefaultInjection.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9831,33 +10211,33 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactDefaultInjection
 	 */
-
+	
 	'use strict';
-
-	var BeforeInputEventPlugin = __webpack_require__(121);
-	var ChangeEventPlugin = __webpack_require__(129);
-	var ClientReactRootIndex = __webpack_require__(132);
-	var DefaultEventPluginOrder = __webpack_require__(133);
-	var EnterLeaveEventPlugin = __webpack_require__(134);
-	var ExecutionEnvironment = __webpack_require__(58);
-	var HTMLDOMPropertyConfig = __webpack_require__(138);
-	var ReactBrowserComponentMixin = __webpack_require__(139);
-	var ReactComponentBrowserEnvironment = __webpack_require__(75);
-	var ReactDefaultBatchingStrategy = __webpack_require__(141);
-	var ReactDOMComponent = __webpack_require__(142);
-	var ReactDOMTextComponent = __webpack_require__(55);
-	var ReactEventListener = __webpack_require__(167);
-	var ReactInjection = __webpack_require__(170);
-	var ReactInstanceHandles = __webpack_require__(94);
-	var ReactMount = __webpack_require__(77);
-	var ReactReconcileTransaction = __webpack_require__(174);
-	var SelectEventPlugin = __webpack_require__(179);
-	var ServerReactRootIndex = __webpack_require__(180);
-	var SimpleEventPlugin = __webpack_require__(181);
-	var SVGDOMPropertyConfig = __webpack_require__(190);
-
+	
+	var BeforeInputEventPlugin = __webpack_require__(/*! ./BeforeInputEventPlugin */ 122);
+	var ChangeEventPlugin = __webpack_require__(/*! ./ChangeEventPlugin */ 130);
+	var ClientReactRootIndex = __webpack_require__(/*! ./ClientReactRootIndex */ 133);
+	var DefaultEventPluginOrder = __webpack_require__(/*! ./DefaultEventPluginOrder */ 134);
+	var EnterLeaveEventPlugin = __webpack_require__(/*! ./EnterLeaveEventPlugin */ 135);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 59);
+	var HTMLDOMPropertyConfig = __webpack_require__(/*! ./HTMLDOMPropertyConfig */ 139);
+	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 140);
+	var ReactComponentBrowserEnvironment = __webpack_require__(/*! ./ReactComponentBrowserEnvironment */ 76);
+	var ReactDefaultBatchingStrategy = __webpack_require__(/*! ./ReactDefaultBatchingStrategy */ 142);
+	var ReactDOMComponent = __webpack_require__(/*! ./ReactDOMComponent */ 143);
+	var ReactDOMTextComponent = __webpack_require__(/*! ./ReactDOMTextComponent */ 56);
+	var ReactEventListener = __webpack_require__(/*! ./ReactEventListener */ 168);
+	var ReactInjection = __webpack_require__(/*! ./ReactInjection */ 171);
+	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 95);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	var ReactReconcileTransaction = __webpack_require__(/*! ./ReactReconcileTransaction */ 175);
+	var SelectEventPlugin = __webpack_require__(/*! ./SelectEventPlugin */ 180);
+	var ServerReactRootIndex = __webpack_require__(/*! ./ServerReactRootIndex */ 181);
+	var SimpleEventPlugin = __webpack_require__(/*! ./SimpleEventPlugin */ 182);
+	var SVGDOMPropertyConfig = __webpack_require__(/*! ./SVGDOMPropertyConfig */ 191);
+	
 	var alreadyInjected = false;
-
+	
 	function inject() {
 	  if (alreadyInjected) {
 	    // TODO: This is currently true because these injections are shared between
@@ -9866,16 +10246,16 @@ var SettingsPanel =
 	    return;
 	  }
 	  alreadyInjected = true;
-
+	
 	  ReactInjection.EventEmitter.injectReactEventListener(ReactEventListener);
-
+	
 	  /**
 	   * Inject modules for resolving DOM hierarchy and plugin ordering.
 	   */
 	  ReactInjection.EventPluginHub.injectEventPluginOrder(DefaultEventPluginOrder);
 	  ReactInjection.EventPluginHub.injectInstanceHandle(ReactInstanceHandles);
 	  ReactInjection.EventPluginHub.injectMount(ReactMount);
-
+	
 	  /**
 	   * Some important event plugins included by default (without having to require
 	   * them).
@@ -9887,41 +10267,44 @@ var SettingsPanel =
 	    SelectEventPlugin: SelectEventPlugin,
 	    BeforeInputEventPlugin: BeforeInputEventPlugin
 	  });
-
+	
 	  ReactInjection.NativeComponent.injectGenericComponentClass(ReactDOMComponent);
-
+	
 	  ReactInjection.NativeComponent.injectTextComponentClass(ReactDOMTextComponent);
-
+	
 	  ReactInjection.Class.injectMixin(ReactBrowserComponentMixin);
-
+	
 	  ReactInjection.DOMProperty.injectDOMPropertyConfig(HTMLDOMPropertyConfig);
 	  ReactInjection.DOMProperty.injectDOMPropertyConfig(SVGDOMPropertyConfig);
-
+	
 	  ReactInjection.EmptyComponent.injectEmptyComponent('noscript');
-
+	
 	  ReactInjection.Updates.injectReconcileTransaction(ReactReconcileTransaction);
 	  ReactInjection.Updates.injectBatchingStrategy(ReactDefaultBatchingStrategy);
-
+	
 	  ReactInjection.RootIndex.injectCreateReactRootIndex(ExecutionEnvironment.canUseDOM ? ClientReactRootIndex.createReactRootIndex : ServerReactRootIndex.createReactRootIndex);
-
+	
 	  ReactInjection.Component.injectEnvironment(ReactComponentBrowserEnvironment);
-
+	
 	  if (process.env.NODE_ENV !== 'production') {
 	    var url = ExecutionEnvironment.canUseDOM && window.location.href || '';
 	    if (/[?&]react_perf\b/.test(url)) {
-	      var ReactDefaultPerf = __webpack_require__(191);
+	      var ReactDefaultPerf = __webpack_require__(/*! ./ReactDefaultPerf */ 192);
 	      ReactDefaultPerf.start();
 	    }
 	  }
 	}
-
+	
 	module.exports = {
 	  inject: inject
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 121 */
+/* 122 */
+/*!***********************************************!*\
+  !*** ./~/react/lib/BeforeInputEventPlugin.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -9935,38 +10318,38 @@ var SettingsPanel =
 	 * @providesModule BeforeInputEventPlugin
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var EventConstants = __webpack_require__(79);
-	var EventPropagators = __webpack_require__(122);
-	var ExecutionEnvironment = __webpack_require__(58);
-	var FallbackCompositionState = __webpack_require__(123);
-	var SyntheticCompositionEvent = __webpack_require__(125);
-	var SyntheticInputEvent = __webpack_require__(127);
-
-	var keyOf = __webpack_require__(128);
-
+	
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 80);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 123);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 59);
+	var FallbackCompositionState = __webpack_require__(/*! ./FallbackCompositionState */ 124);
+	var SyntheticCompositionEvent = __webpack_require__(/*! ./SyntheticCompositionEvent */ 126);
+	var SyntheticInputEvent = __webpack_require__(/*! ./SyntheticInputEvent */ 128);
+	
+	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 129);
+	
 	var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 	var START_KEYCODE = 229;
-
+	
 	var canUseCompositionEvent = ExecutionEnvironment.canUseDOM && 'CompositionEvent' in window;
-
+	
 	var documentMode = null;
 	if (ExecutionEnvironment.canUseDOM && 'documentMode' in document) {
 	  documentMode = document.documentMode;
 	}
-
+	
 	// Webkit offers a very useful `textInput` event that can be used to
 	// directly represent `beforeInput`. The IE `textinput` event is not as
 	// useful, so we don't use it.
 	var canUseTextInputEvent = ExecutionEnvironment.canUseDOM && 'TextEvent' in window && !documentMode && !isPresto();
-
+	
 	// In IE9+, we have access to composition events, but the data supplied
 	// by the native compositionend event may be incorrect. Japanese ideographic
 	// spaces, for instance (\u3000) are not recorded correctly.
 	var useFallbackCompositionData = ExecutionEnvironment.canUseDOM && (!canUseCompositionEvent || documentMode && documentMode > 8 && documentMode <= 11);
-
+	
 	/**
 	 * Opera <= 12 includes TextEvent in window, but does not fire
 	 * text input events. Rely on keypress instead.
@@ -9975,12 +10358,12 @@ var SettingsPanel =
 	  var opera = window.opera;
 	  return typeof opera === 'object' && typeof opera.version === 'function' && parseInt(opera.version(), 10) <= 12;
 	}
-
+	
 	var SPACEBAR_CODE = 32;
 	var SPACEBAR_CHAR = String.fromCharCode(SPACEBAR_CODE);
-
+	
 	var topLevelTypes = EventConstants.topLevelTypes;
-
+	
 	// Events and their corresponding property names.
 	var eventTypes = {
 	  beforeInput: {
@@ -10012,10 +10395,10 @@ var SettingsPanel =
 	    dependencies: [topLevelTypes.topBlur, topLevelTypes.topCompositionUpdate, topLevelTypes.topKeyDown, topLevelTypes.topKeyPress, topLevelTypes.topKeyUp, topLevelTypes.topMouseDown]
 	  }
 	};
-
+	
 	// Track whether we've ever handled a keypress on the space key.
 	var hasSpaceKeypress = false;
-
+	
 	/**
 	 * Return whether a native keypress event is assumed to be a command.
 	 * This is required because Firefox fires `keypress` events for key commands
@@ -10026,7 +10409,7 @@ var SettingsPanel =
 	  // ctrlKey && altKey is equivalent to AltGr, and is not a command.
 	  !(nativeEvent.ctrlKey && nativeEvent.altKey);
 	}
-
+	
 	/**
 	 * Translate native top level events into event types.
 	 *
@@ -10043,7 +10426,7 @@ var SettingsPanel =
 	      return eventTypes.compositionUpdate;
 	  }
 	}
-
+	
 	/**
 	 * Does our fallback best-guess model think this event signifies that
 	 * composition has begun?
@@ -10055,7 +10438,7 @@ var SettingsPanel =
 	function isFallbackCompositionStart(topLevelType, nativeEvent) {
 	  return topLevelType === topLevelTypes.topKeyDown && nativeEvent.keyCode === START_KEYCODE;
 	}
-
+	
 	/**
 	 * Does our fallback mode think that this event is the end of composition?
 	 *
@@ -10081,7 +10464,7 @@ var SettingsPanel =
 	      return false;
 	  }
 	}
-
+	
 	/**
 	 * Google Input Tools provides composition data via a CustomEvent,
 	 * with the `data` property populated in the `detail` object. If this
@@ -10098,10 +10481,10 @@ var SettingsPanel =
 	  }
 	  return null;
 	}
-
+	
 	// Track the current IME composition fallback object, if any.
 	var currentComposition = null;
-
+	
 	/**
 	 * @param {string} topLevelType Record from `EventConstants`.
 	 * @param {DOMEventTarget} topLevelTarget The listening component root node.
@@ -10112,7 +10495,7 @@ var SettingsPanel =
 	function extractCompositionEvent(topLevelType, topLevelTarget, topLevelTargetID, nativeEvent, nativeEventTarget) {
 	  var eventType;
 	  var fallbackData;
-
+	
 	  if (canUseCompositionEvent) {
 	    eventType = getCompositionEventType(topLevelType);
 	  } else if (!currentComposition) {
@@ -10122,11 +10505,11 @@ var SettingsPanel =
 	  } else if (isFallbackCompositionEnd(topLevelType, nativeEvent)) {
 	    eventType = eventTypes.compositionEnd;
 	  }
-
+	
 	  if (!eventType) {
 	    return null;
 	  }
-
+	
 	  if (useFallbackCompositionData) {
 	    // The current composition is stored statically and must not be
 	    // overwritten while composition continues.
@@ -10138,9 +10521,9 @@ var SettingsPanel =
 	      }
 	    }
 	  }
-
+	
 	  var event = SyntheticCompositionEvent.getPooled(eventType, topLevelTargetID, nativeEvent, nativeEventTarget);
-
+	
 	  if (fallbackData) {
 	    // Inject data generated from fallback path into the synthetic event.
 	    // This matches the property of native CompositionEventInterface.
@@ -10151,11 +10534,11 @@ var SettingsPanel =
 	      event.data = customData;
 	    }
 	  }
-
+	
 	  EventPropagators.accumulateTwoPhaseDispatches(event);
 	  return event;
 	}
-
+	
 	/**
 	 * @param {string} topLevelType Record from `EventConstants`.
 	 * @param {object} nativeEvent Native browser event.
@@ -10184,29 +10567,29 @@ var SettingsPanel =
 	      if (which !== SPACEBAR_CODE) {
 	        return null;
 	      }
-
+	
 	      hasSpaceKeypress = true;
 	      return SPACEBAR_CHAR;
-
+	
 	    case topLevelTypes.topTextInput:
 	      // Record the characters to be added to the DOM.
 	      var chars = nativeEvent.data;
-
+	
 	      // If it's a spacebar character, assume that we have already handled
 	      // it at the keypress level and bail immediately. Android Chrome
 	      // doesn't give us keycodes, so we need to blacklist it.
 	      if (chars === SPACEBAR_CHAR && hasSpaceKeypress) {
 	        return null;
 	      }
-
+	
 	      return chars;
-
+	
 	    default:
 	      // For other native event types, do nothing.
 	      return null;
 	  }
 	}
-
+	
 	/**
 	 * For browsers that do not provide the `textInput` event, extract the
 	 * appropriate string to use for SyntheticInputEvent.
@@ -10227,7 +10610,7 @@ var SettingsPanel =
 	    }
 	    return null;
 	  }
-
+	
 	  switch (topLevelType) {
 	    case topLevelTypes.topPaste:
 	      // If a paste event occurs after a keypress, throw out the input
@@ -10260,7 +10643,7 @@ var SettingsPanel =
 	      return null;
 	  }
 	}
-
+	
 	/**
 	 * Extract a SyntheticInputEvent for `beforeInput`, based on either native
 	 * `textInput` or fallback behavior.
@@ -10273,26 +10656,26 @@ var SettingsPanel =
 	 */
 	function extractBeforeInputEvent(topLevelType, topLevelTarget, topLevelTargetID, nativeEvent, nativeEventTarget) {
 	  var chars;
-
+	
 	  if (canUseTextInputEvent) {
 	    chars = getNativeBeforeInputChars(topLevelType, nativeEvent);
 	  } else {
 	    chars = getFallbackBeforeInputChars(topLevelType, nativeEvent);
 	  }
-
+	
 	  // If no characters are being inserted, no BeforeInput event should
 	  // be fired.
 	  if (!chars) {
 	    return null;
 	  }
-
+	
 	  var event = SyntheticInputEvent.getPooled(eventTypes.beforeInput, topLevelTargetID, nativeEvent, nativeEventTarget);
-
+	
 	  event.data = chars;
 	  EventPropagators.accumulateTwoPhaseDispatches(event);
 	  return event;
 	}
-
+	
 	/**
 	 * Create an `onBeforeInput` event to match
 	 * http://www.w3.org/TR/2013/WD-DOM-Level-3-Events-20131105/#events-inputevents.
@@ -10312,9 +10695,9 @@ var SettingsPanel =
 	 * `composition` event types.
 	 */
 	var BeforeInputEventPlugin = {
-
+	
 	  eventTypes: eventTypes,
-
+	
 	  /**
 	   * @param {string} topLevelType Record from `EventConstants`.
 	   * @param {DOMEventTarget} topLevelTarget The listening component root node.
@@ -10327,11 +10710,14 @@ var SettingsPanel =
 	    return [extractCompositionEvent(topLevelType, topLevelTarget, topLevelTargetID, nativeEvent, nativeEventTarget), extractBeforeInputEvent(topLevelType, topLevelTarget, topLevelTargetID, nativeEvent, nativeEventTarget)];
 	  }
 	};
-
+	
 	module.exports = BeforeInputEventPlugin;
 
 /***/ },
-/* 122 */
+/* 123 */
+/*!*****************************************!*\
+  !*** ./~/react/lib/EventPropagators.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -10344,20 +10730,20 @@ var SettingsPanel =
 	 *
 	 * @providesModule EventPropagators
 	 */
-
+	
 	'use strict';
-
-	var EventConstants = __webpack_require__(79);
-	var EventPluginHub = __webpack_require__(80);
-
-	var warning = __webpack_require__(74);
-
-	var accumulateInto = __webpack_require__(84);
-	var forEachAccumulated = __webpack_require__(85);
-
+	
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 80);
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 81);
+	
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
+	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 85);
+	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 86);
+	
 	var PropagationPhases = EventConstants.PropagationPhases;
 	var getListener = EventPluginHub.getListener;
-
+	
 	/**
 	 * Some event types have a notion of different registration names for different
 	 * "phases" of propagation. This finds listeners by a given phase.
@@ -10366,7 +10752,7 @@ var SettingsPanel =
 	  var registrationName = event.dispatchConfig.phasedRegistrationNames[propagationPhase];
 	  return getListener(id, registrationName);
 	}
-
+	
 	/**
 	 * Tags a `SyntheticEvent` with dispatched listeners. Creating this function
 	 * here, allows us to not have to bind or create functions for each event.
@@ -10384,7 +10770,7 @@ var SettingsPanel =
 	    event._dispatchIDs = accumulateInto(event._dispatchIDs, domID);
 	  }
 	}
-
+	
 	/**
 	 * Collect dispatches (must be entirely collected before dispatching - see unit
 	 * tests). Lazily allocate the array to conserve memory.  We must loop through
@@ -10397,7 +10783,7 @@ var SettingsPanel =
 	    EventPluginHub.injection.getInstanceHandle().traverseTwoPhase(event.dispatchMarker, accumulateDirectionalDispatches, event);
 	  }
 	}
-
+	
 	/**
 	 * Same as `accumulateTwoPhaseDispatchesSingle`, but skips over the targetID.
 	 */
@@ -10406,7 +10792,7 @@ var SettingsPanel =
 	    EventPluginHub.injection.getInstanceHandle().traverseTwoPhaseSkipTarget(event.dispatchMarker, accumulateDirectionalDispatches, event);
 	  }
 	}
-
+	
 	/**
 	 * Accumulates without regard to direction, does not look for phased
 	 * registration names. Same as `accumulateDirectDispatchesSingle` but without
@@ -10422,7 +10808,7 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	/**
 	 * Accumulates dispatches on an `SyntheticEvent`, but only for the
 	 * `dispatchMarker`.
@@ -10433,23 +10819,23 @@ var SettingsPanel =
 	    accumulateDispatches(event.dispatchMarker, null, event);
 	  }
 	}
-
+	
 	function accumulateTwoPhaseDispatches(events) {
 	  forEachAccumulated(events, accumulateTwoPhaseDispatchesSingle);
 	}
-
+	
 	function accumulateTwoPhaseDispatchesSkipTarget(events) {
 	  forEachAccumulated(events, accumulateTwoPhaseDispatchesSingleSkipTarget);
 	}
-
+	
 	function accumulateEnterLeaveDispatches(leave, enter, fromID, toID) {
 	  EventPluginHub.injection.getInstanceHandle().traverseEnterLeave(fromID, toID, accumulateDispatches, leave, enter);
 	}
-
+	
 	function accumulateDirectDispatches(events) {
 	  forEachAccumulated(events, accumulateDirectDispatchesSingle);
 	}
-
+	
 	/**
 	 * A small set of propagation patterns, each of which will accept a small amount
 	 * of information, and generate a set of "dispatch ready event objects" - which
@@ -10467,12 +10853,15 @@ var SettingsPanel =
 	  accumulateDirectDispatches: accumulateDirectDispatches,
 	  accumulateEnterLeaveDispatches: accumulateEnterLeaveDispatches
 	};
-
+	
 	module.exports = EventPropagators;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 123 */
+/* 124 */
+/*!*************************************************!*\
+  !*** ./~/react/lib/FallbackCompositionState.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10486,14 +10875,14 @@ var SettingsPanel =
 	 * @providesModule FallbackCompositionState
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var PooledClass = __webpack_require__(105);
-
-	var assign = __webpack_require__(88);
-	var getTextContentAccessor = __webpack_require__(124);
-
+	
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 106);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var getTextContentAccessor = __webpack_require__(/*! ./getTextContentAccessor */ 125);
+	
 	/**
 	 * This helper class stores information about text content of a target node,
 	 * allowing comparison of content before and after a given event.
@@ -10510,14 +10899,14 @@ var SettingsPanel =
 	  this._startText = this.getText();
 	  this._fallbackText = null;
 	}
-
+	
 	assign(FallbackCompositionState.prototype, {
 	  destructor: function () {
 	    this._root = null;
 	    this._startText = null;
 	    this._fallbackText = null;
 	  },
-
+	
 	  /**
 	   * Get current text of input.
 	   *
@@ -10529,7 +10918,7 @@ var SettingsPanel =
 	    }
 	    return this._root[getTextContentAccessor()];
 	  },
-
+	
 	  /**
 	   * Determine the differing substring between the initially stored
 	   * text content and the current content.
@@ -10540,39 +10929,42 @@ var SettingsPanel =
 	    if (this._fallbackText) {
 	      return this._fallbackText;
 	    }
-
+	
 	    var start;
 	    var startValue = this._startText;
 	    var startLength = startValue.length;
 	    var end;
 	    var endValue = this.getText();
 	    var endLength = endValue.length;
-
+	
 	    for (start = 0; start < startLength; start++) {
 	      if (startValue[start] !== endValue[start]) {
 	        break;
 	      }
 	    }
-
+	
 	    var minEnd = startLength - start;
 	    for (end = 1; end <= minEnd; end++) {
 	      if (startValue[startLength - end] !== endValue[endLength - end]) {
 	        break;
 	      }
 	    }
-
+	
 	    var sliceTail = end > 1 ? 1 - end : undefined;
 	    this._fallbackText = endValue.slice(start, sliceTail);
 	    return this._fallbackText;
 	  }
 	});
-
+	
 	PooledClass.addPoolingTo(FallbackCompositionState);
-
+	
 	module.exports = FallbackCompositionState;
 
 /***/ },
-/* 124 */
+/* 125 */
+/*!***********************************************!*\
+  !*** ./~/react/lib/getTextContentAccessor.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10585,13 +10977,13 @@ var SettingsPanel =
 	 *
 	 * @providesModule getTextContentAccessor
 	 */
-
+	
 	'use strict';
-
-	var ExecutionEnvironment = __webpack_require__(58);
-
+	
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 59);
+	
 	var contentKey = null;
-
+	
 	/**
 	 * Gets the key used to access text content on a DOM node.
 	 *
@@ -10606,11 +10998,14 @@ var SettingsPanel =
 	  }
 	  return contentKey;
 	}
-
+	
 	module.exports = getTextContentAccessor;
 
 /***/ },
-/* 125 */
+/* 126 */
+/*!**************************************************!*\
+  !*** ./~/react/lib/SyntheticCompositionEvent.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10624,11 +11019,11 @@ var SettingsPanel =
 	 * @providesModule SyntheticCompositionEvent
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var SyntheticEvent = __webpack_require__(126);
-
+	
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 127);
+	
 	/**
 	 * @interface Event
 	 * @see http://www.w3.org/TR/DOM-Level-3-Events/#events-compositionevents
@@ -10636,7 +11031,7 @@ var SettingsPanel =
 	var CompositionEventInterface = {
 	  data: null
 	};
-
+	
 	/**
 	 * @param {object} dispatchConfig Configuration used to dispatch this event.
 	 * @param {string} dispatchMarker Marker identifying the event target.
@@ -10646,13 +11041,16 @@ var SettingsPanel =
 	function SyntheticCompositionEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget) {
 	  SyntheticEvent.call(this, dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget);
 	}
-
+	
 	SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface);
-
+	
 	module.exports = SyntheticCompositionEvent;
 
 /***/ },
-/* 126 */
+/* 127 */
+/*!***************************************!*\
+  !*** ./~/react/lib/SyntheticEvent.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -10666,15 +11064,15 @@ var SettingsPanel =
 	 * @providesModule SyntheticEvent
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var PooledClass = __webpack_require__(105);
-
-	var assign = __webpack_require__(88);
-	var emptyFunction = __webpack_require__(64);
-	var warning = __webpack_require__(74);
-
+	
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 106);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 65);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	/**
 	 * @interface Event
 	 * @see http://www.w3.org/TR/DOM-Level-3-Events/
@@ -10692,7 +11090,7 @@ var SettingsPanel =
 	  defaultPrevented: null,
 	  isTrusted: null
 	};
-
+	
 	/**
 	 * Synthetic events are dispatched by event plugins, typically in response to a
 	 * top-level event delegation handler.
@@ -10716,7 +11114,7 @@ var SettingsPanel =
 	  this.nativeEvent = nativeEvent;
 	  this.target = nativeEventTarget;
 	  this.currentTarget = nativeEventTarget;
-
+	
 	  var Interface = this.constructor.Interface;
 	  for (var propName in Interface) {
 	    if (!Interface.hasOwnProperty(propName)) {
@@ -10729,7 +11127,7 @@ var SettingsPanel =
 	      this[propName] = nativeEvent[propName];
 	    }
 	  }
-
+	
 	  var defaultPrevented = nativeEvent.defaultPrevented != null ? nativeEvent.defaultPrevented : nativeEvent.returnValue === false;
 	  if (defaultPrevented) {
 	    this.isDefaultPrevented = emptyFunction.thatReturnsTrue;
@@ -10738,9 +11136,9 @@ var SettingsPanel =
 	  }
 	  this.isPropagationStopped = emptyFunction.thatReturnsFalse;
 	}
-
+	
 	assign(SyntheticEvent.prototype, {
-
+	
 	  preventDefault: function () {
 	    this.defaultPrevented = true;
 	    var event = this.nativeEvent;
@@ -10750,7 +11148,7 @@ var SettingsPanel =
 	    if (!event) {
 	      return;
 	    }
-
+	
 	    if (event.preventDefault) {
 	      event.preventDefault();
 	    } else {
@@ -10758,7 +11156,7 @@ var SettingsPanel =
 	    }
 	    this.isDefaultPrevented = emptyFunction.thatReturnsTrue;
 	  },
-
+	
 	  stopPropagation: function () {
 	    var event = this.nativeEvent;
 	    if (process.env.NODE_ENV !== 'production') {
@@ -10767,7 +11165,7 @@ var SettingsPanel =
 	    if (!event) {
 	      return;
 	    }
-
+	
 	    if (event.stopPropagation) {
 	      event.stopPropagation();
 	    } else {
@@ -10775,7 +11173,7 @@ var SettingsPanel =
 	    }
 	    this.isPropagationStopped = emptyFunction.thatReturnsTrue;
 	  },
-
+	
 	  /**
 	   * We release all dispatched `SyntheticEvent`s after each event loop, adding
 	   * them back into the pool. This allows a way to hold onto a reference that
@@ -10784,14 +11182,14 @@ var SettingsPanel =
 	  persist: function () {
 	    this.isPersistent = emptyFunction.thatReturnsTrue;
 	  },
-
+	
 	  /**
 	   * Checks if this event should be released back into the pool.
 	   *
 	   * @return {boolean} True if this should not be released, false otherwise.
 	   */
 	  isPersistent: emptyFunction.thatReturnsFalse,
-
+	
 	  /**
 	   * `PooledClass` looks for `destructor` on each instance it releases.
 	   */
@@ -10804,11 +11202,11 @@ var SettingsPanel =
 	    this.dispatchMarker = null;
 	    this.nativeEvent = null;
 	  }
-
+	
 	});
-
+	
 	SyntheticEvent.Interface = EventInterface;
-
+	
 	/**
 	 * Helper to reduce boilerplate when creating subclasses.
 	 *
@@ -10817,25 +11215,28 @@ var SettingsPanel =
 	 */
 	SyntheticEvent.augmentClass = function (Class, Interface) {
 	  var Super = this;
-
+	
 	  var prototype = Object.create(Super.prototype);
 	  assign(prototype, Class.prototype);
 	  Class.prototype = prototype;
 	  Class.prototype.constructor = Class;
-
+	
 	  Class.Interface = assign({}, Super.Interface, Interface);
 	  Class.augmentClass = Super.augmentClass;
-
+	
 	  PooledClass.addPoolingTo(Class, PooledClass.fourArgumentPooler);
 	};
-
+	
 	PooledClass.addPoolingTo(SyntheticEvent, PooledClass.fourArgumentPooler);
-
+	
 	module.exports = SyntheticEvent;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 127 */
+/* 128 */
+/*!********************************************!*\
+  !*** ./~/react/lib/SyntheticInputEvent.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10849,11 +11250,11 @@ var SettingsPanel =
 	 * @providesModule SyntheticInputEvent
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var SyntheticEvent = __webpack_require__(126);
-
+	
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 127);
+	
 	/**
 	 * @interface Event
 	 * @see http://www.w3.org/TR/2013/WD-DOM-Level-3-Events-20131105
@@ -10862,7 +11263,7 @@ var SettingsPanel =
 	var InputEventInterface = {
 	  data: null
 	};
-
+	
 	/**
 	 * @param {object} dispatchConfig Configuration used to dispatch this event.
 	 * @param {string} dispatchMarker Marker identifying the event target.
@@ -10872,13 +11273,16 @@ var SettingsPanel =
 	function SyntheticInputEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget) {
 	  SyntheticEvent.call(this, dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget);
 	}
-
+	
 	SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
-
+	
 	module.exports = SyntheticInputEvent;
 
 /***/ },
-/* 128 */
+/* 129 */
+/*!*****************************!*\
+  !*** ./~/fbjs/lib/keyOf.js ***!
+  \*****************************/
 /***/ function(module, exports) {
 
 	/**
@@ -10891,7 +11295,7 @@ var SettingsPanel =
 	 *
 	 * @providesModule keyOf
 	 */
-
+	
 	/**
 	 * Allows extraction of a minified key. Let's the build system minify keys
 	 * without losing the ability to dynamically use key strings as values
@@ -10903,7 +11307,7 @@ var SettingsPanel =
 	 * reuse those resolutions.
 	 */
 	"use strict";
-
+	
 	var keyOf = function (oneKeyObj) {
 	  var key;
 	  for (key in oneKeyObj) {
@@ -10914,11 +11318,14 @@ var SettingsPanel =
 	  }
 	  return null;
 	};
-
+	
 	module.exports = keyOf;
 
 /***/ },
-/* 129 */
+/* 130 */
+/*!******************************************!*\
+  !*** ./~/react/lib/ChangeEventPlugin.js ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10931,23 +11338,23 @@ var SettingsPanel =
 	 *
 	 * @providesModule ChangeEventPlugin
 	 */
-
+	
 	'use strict';
-
-	var EventConstants = __webpack_require__(79);
-	var EventPluginHub = __webpack_require__(80);
-	var EventPropagators = __webpack_require__(122);
-	var ExecutionEnvironment = __webpack_require__(58);
-	var ReactUpdates = __webpack_require__(103);
-	var SyntheticEvent = __webpack_require__(126);
-
-	var getEventTarget = __webpack_require__(130);
-	var isEventSupported = __webpack_require__(89);
-	var isTextInputElement = __webpack_require__(131);
-	var keyOf = __webpack_require__(128);
-
+	
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 80);
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 81);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 123);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 59);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 104);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 127);
+	
+	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 131);
+	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 90);
+	var isTextInputElement = __webpack_require__(/*! ./isTextInputElement */ 132);
+	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 129);
+	
 	var topLevelTypes = EventConstants.topLevelTypes;
-
+	
 	var eventTypes = {
 	  change: {
 	    phasedRegistrationNames: {
@@ -10957,7 +11364,7 @@ var SettingsPanel =
 	    dependencies: [topLevelTypes.topBlur, topLevelTypes.topChange, topLevelTypes.topClick, topLevelTypes.topFocus, topLevelTypes.topInput, topLevelTypes.topKeyDown, topLevelTypes.topKeyUp, topLevelTypes.topSelectionChange]
 	  }
 	};
-
+	
 	/**
 	 * For IE shims
 	 */
@@ -10965,7 +11372,7 @@ var SettingsPanel =
 	var activeElementID = null;
 	var activeElementValue = null;
 	var activeElementValueProp = null;
-
+	
 	/**
 	 * SECTION: handle `change` event
 	 */
@@ -10973,17 +11380,17 @@ var SettingsPanel =
 	  var nodeName = elem.nodeName && elem.nodeName.toLowerCase();
 	  return nodeName === 'select' || nodeName === 'input' && elem.type === 'file';
 	}
-
+	
 	var doesChangeEventBubble = false;
 	if (ExecutionEnvironment.canUseDOM) {
 	  // See `handleChange` comment below
 	  doesChangeEventBubble = isEventSupported('change') && (!('documentMode' in document) || document.documentMode > 8);
 	}
-
+	
 	function manualDispatchChangeEvent(nativeEvent) {
 	  var event = SyntheticEvent.getPooled(eventTypes.change, activeElementID, nativeEvent, getEventTarget(nativeEvent));
 	  EventPropagators.accumulateTwoPhaseDispatches(event);
-
+	
 	  // If change and propertychange bubbled, we'd just bind to it like all the
 	  // other events and have it go through ReactBrowserEventEmitter. Since it
 	  // doesn't, we manually listen for the events and so we have to enqueue and
@@ -10997,18 +11404,18 @@ var SettingsPanel =
 	  // handlers can run. See https://github.com/facebook/react/issues/708.
 	  ReactUpdates.batchedUpdates(runEventInBatch, event);
 	}
-
+	
 	function runEventInBatch(event) {
 	  EventPluginHub.enqueueEvents(event);
 	  EventPluginHub.processEventQueue(false);
 	}
-
+	
 	function startWatchingForChangeEventIE8(target, targetID) {
 	  activeElement = target;
 	  activeElementID = targetID;
 	  activeElement.attachEvent('onchange', manualDispatchChangeEvent);
 	}
-
+	
 	function stopWatchingForChangeEventIE8() {
 	  if (!activeElement) {
 	    return;
@@ -11017,7 +11424,7 @@ var SettingsPanel =
 	  activeElement = null;
 	  activeElementID = null;
 	}
-
+	
 	function getTargetIDForChangeEvent(topLevelType, topLevelTarget, topLevelTargetID) {
 	  if (topLevelType === topLevelTypes.topChange) {
 	    return topLevelTargetID;
@@ -11033,7 +11440,7 @@ var SettingsPanel =
 	    stopWatchingForChangeEventIE8();
 	  }
 	}
-
+	
 	/**
 	 * SECTION: handle `input` event
 	 */
@@ -11043,7 +11450,7 @@ var SettingsPanel =
 	  // deleting text, so we ignore its input events
 	  isInputEventSupported = isEventSupported('input') && (!('documentMode' in document) || document.documentMode > 9);
 	}
-
+	
 	/**
 	 * (For old IE.) Replacement getter/setter for the `value` property that gets
 	 * set on the active element.
@@ -11058,7 +11465,7 @@ var SettingsPanel =
 	    activeElementValueProp.set.call(this, val);
 	  }
 	};
-
+	
 	/**
 	 * (For old IE.) Starts tracking propertychange events on the passed-in element
 	 * and override the value property so that we can distinguish user events from
@@ -11069,13 +11476,13 @@ var SettingsPanel =
 	  activeElementID = targetID;
 	  activeElementValue = target.value;
 	  activeElementValueProp = Object.getOwnPropertyDescriptor(target.constructor.prototype, 'value');
-
+	
 	  // Not guarded in a canDefineProperty check: IE8 supports defineProperty only
 	  // on DOM elements
 	  Object.defineProperty(activeElement, 'value', newValueProp);
 	  activeElement.attachEvent('onpropertychange', handlePropertyChange);
 	}
-
+	
 	/**
 	 * (For old IE.) Removes the event listeners from the currently-tracked element,
 	 * if any exists.
@@ -11084,17 +11491,17 @@ var SettingsPanel =
 	  if (!activeElement) {
 	    return;
 	  }
-
+	
 	  // delete restores the original property definition
 	  delete activeElement.value;
 	  activeElement.detachEvent('onpropertychange', handlePropertyChange);
-
+	
 	  activeElement = null;
 	  activeElementID = null;
 	  activeElementValue = null;
 	  activeElementValueProp = null;
 	}
-
+	
 	/**
 	 * (For old IE.) Handles a propertychange event, sending a `change` event if
 	 * the value of the active element has changed.
@@ -11108,10 +11515,10 @@ var SettingsPanel =
 	    return;
 	  }
 	  activeElementValue = value;
-
+	
 	  manualDispatchChangeEvent(nativeEvent);
 	}
-
+	
 	/**
 	 * If a `change` event should be fired, returns the target's ID.
 	 */
@@ -11122,7 +11529,7 @@ var SettingsPanel =
 	    return topLevelTargetID;
 	  }
 	}
-
+	
 	// For IE8 and IE9.
 	function handleEventsForInputEventIE(topLevelType, topLevelTarget, topLevelTargetID) {
 	  if (topLevelType === topLevelTypes.topFocus) {
@@ -11145,7 +11552,7 @@ var SettingsPanel =
 	    stopWatchingForValueChange();
 	  }
 	}
-
+	
 	// For IE8 and IE9.
 	function getTargetIDForInputEventIE(topLevelType, topLevelTarget, topLevelTargetID) {
 	  if (topLevelType === topLevelTypes.topSelectionChange || topLevelType === topLevelTypes.topKeyUp || topLevelType === topLevelTypes.topKeyDown) {
@@ -11165,7 +11572,7 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	/**
 	 * SECTION: handle `click` event
 	 */
@@ -11175,13 +11582,13 @@ var SettingsPanel =
 	  // until `blur` in IE8.
 	  return elem.nodeName && elem.nodeName.toLowerCase() === 'input' && (elem.type === 'checkbox' || elem.type === 'radio');
 	}
-
+	
 	function getTargetIDForClickEvent(topLevelType, topLevelTarget, topLevelTargetID) {
 	  if (topLevelType === topLevelTypes.topClick) {
 	    return topLevelTargetID;
 	  }
 	}
-
+	
 	/**
 	 * This plugin creates an `onChange` event that normalizes change events
 	 * across form elements. This event fires at a time when it's possible to
@@ -11193,9 +11600,9 @@ var SettingsPanel =
 	 * - select
 	 */
 	var ChangeEventPlugin = {
-
+	
 	  eventTypes: eventTypes,
-
+	
 	  /**
 	   * @param {string} topLevelType Record from `EventConstants`.
 	   * @param {DOMEventTarget} topLevelTarget The listening component root node.
@@ -11205,7 +11612,7 @@ var SettingsPanel =
 	   * @see {EventPluginHub.extractEvents}
 	   */
 	  extractEvents: function (topLevelType, topLevelTarget, topLevelTargetID, nativeEvent, nativeEventTarget) {
-
+	
 	    var getTargetIDFunc, handleEventFunc;
 	    if (shouldUseChangeEvent(topLevelTarget)) {
 	      if (doesChangeEventBubble) {
@@ -11223,7 +11630,7 @@ var SettingsPanel =
 	    } else if (shouldUseClickEvent(topLevelTarget)) {
 	      getTargetIDFunc = getTargetIDForClickEvent;
 	    }
-
+	
 	    if (getTargetIDFunc) {
 	      var targetID = getTargetIDFunc(topLevelType, topLevelTarget, topLevelTargetID);
 	      if (targetID) {
@@ -11233,18 +11640,21 @@ var SettingsPanel =
 	        return event;
 	      }
 	    }
-
+	
 	    if (handleEventFunc) {
 	      handleEventFunc(topLevelType, topLevelTarget, topLevelTargetID);
 	    }
 	  }
-
+	
 	};
-
+	
 	module.exports = ChangeEventPlugin;
 
 /***/ },
-/* 130 */
+/* 131 */
+/*!***************************************!*\
+  !*** ./~/react/lib/getEventTarget.js ***!
+  \***************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -11258,9 +11668,9 @@ var SettingsPanel =
 	 * @providesModule getEventTarget
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * Gets the target node from a native browser event by accounting for
 	 * inconsistencies in browser DOM APIs.
@@ -11274,11 +11684,14 @@ var SettingsPanel =
 	  // @see http://www.quirksmode.org/js/events_properties.html
 	  return target.nodeType === 3 ? target.parentNode : target;
 	}
-
+	
 	module.exports = getEventTarget;
 
 /***/ },
-/* 131 */
+/* 132 */
+/*!*******************************************!*\
+  !*** ./~/react/lib/isTextInputElement.js ***!
+  \*******************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -11291,9 +11704,9 @@ var SettingsPanel =
 	 *
 	 * @providesModule isTextInputElement
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * @see http://www.whatwg.org/specs/web-apps/current-work/multipage/the-input-element.html#input-type-attr-summary
 	 */
@@ -11314,16 +11727,19 @@ var SettingsPanel =
 	  'url': true,
 	  'week': true
 	};
-
+	
 	function isTextInputElement(elem) {
 	  var nodeName = elem && elem.nodeName && elem.nodeName.toLowerCase();
 	  return nodeName && (nodeName === 'input' && supportedInputTypes[elem.type] || nodeName === 'textarea');
 	}
-
+	
 	module.exports = isTextInputElement;
 
 /***/ },
-/* 132 */
+/* 133 */
+/*!*********************************************!*\
+  !*** ./~/react/lib/ClientReactRootIndex.js ***!
+  \*********************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -11337,21 +11753,24 @@ var SettingsPanel =
 	 * @providesModule ClientReactRootIndex
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
+	
 	var nextReactRootIndex = 0;
-
+	
 	var ClientReactRootIndex = {
 	  createReactRootIndex: function () {
 	    return nextReactRootIndex++;
 	  }
 	};
-
+	
 	module.exports = ClientReactRootIndex;
 
 /***/ },
-/* 133 */
+/* 134 */
+/*!************************************************!*\
+  !*** ./~/react/lib/DefaultEventPluginOrder.js ***!
+  \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11364,11 +11783,11 @@ var SettingsPanel =
 	 *
 	 * @providesModule DefaultEventPluginOrder
 	 */
-
+	
 	'use strict';
-
-	var keyOf = __webpack_require__(128);
-
+	
+	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 129);
+	
 	/**
 	 * Module that is injectable into `EventPluginHub`, that specifies a
 	 * deterministic ordering of `EventPlugin`s. A convenient way to reason about
@@ -11379,11 +11798,14 @@ var SettingsPanel =
 	 * preventing default on events is convenient in `SimpleEventPlugin` handlers.
 	 */
 	var DefaultEventPluginOrder = [keyOf({ ResponderEventPlugin: null }), keyOf({ SimpleEventPlugin: null }), keyOf({ TapEventPlugin: null }), keyOf({ EnterLeaveEventPlugin: null }), keyOf({ ChangeEventPlugin: null }), keyOf({ SelectEventPlugin: null }), keyOf({ BeforeInputEventPlugin: null })];
-
+	
 	module.exports = DefaultEventPluginOrder;
 
 /***/ },
-/* 134 */
+/* 135 */
+/*!**********************************************!*\
+  !*** ./~/react/lib/EnterLeaveEventPlugin.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11397,19 +11819,19 @@ var SettingsPanel =
 	 * @providesModule EnterLeaveEventPlugin
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var EventConstants = __webpack_require__(79);
-	var EventPropagators = __webpack_require__(122);
-	var SyntheticMouseEvent = __webpack_require__(135);
-
-	var ReactMount = __webpack_require__(77);
-	var keyOf = __webpack_require__(128);
-
+	
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 80);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 123);
+	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 136);
+	
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 129);
+	
 	var topLevelTypes = EventConstants.topLevelTypes;
 	var getFirstReactDOM = ReactMount.getFirstReactDOM;
-
+	
 	var eventTypes = {
 	  mouseEnter: {
 	    registrationName: keyOf({ onMouseEnter: null }),
@@ -11420,13 +11842,13 @@ var SettingsPanel =
 	    dependencies: [topLevelTypes.topMouseOut, topLevelTypes.topMouseOver]
 	  }
 	};
-
+	
 	var extractedEvents = [null, null];
-
+	
 	var EnterLeaveEventPlugin = {
-
+	
 	  eventTypes: eventTypes,
-
+	
 	  /**
 	   * For almost every interaction we care about, there will be both a top-level
 	   * `mouseover` and `mouseout` event that occurs. Only use `mouseout` so that
@@ -11449,7 +11871,7 @@ var SettingsPanel =
 	      // Must not be a mouse in or mouse out - ignoring.
 	      return null;
 	    }
-
+	
 	    var win;
 	    if (topLevelTarget.window === topLevelTarget) {
 	      // `topLevelTarget` is probably a window object.
@@ -11463,7 +11885,7 @@ var SettingsPanel =
 	        win = window;
 	      }
 	    }
-
+	
 	    var from;
 	    var to;
 	    var fromID = '';
@@ -11483,36 +11905,39 @@ var SettingsPanel =
 	      to = topLevelTarget;
 	      toID = topLevelTargetID;
 	    }
-
+	
 	    if (from === to) {
 	      // Nothing pertains to our managed components.
 	      return null;
 	    }
-
+	
 	    var leave = SyntheticMouseEvent.getPooled(eventTypes.mouseLeave, fromID, nativeEvent, nativeEventTarget);
 	    leave.type = 'mouseleave';
 	    leave.target = from;
 	    leave.relatedTarget = to;
-
+	
 	    var enter = SyntheticMouseEvent.getPooled(eventTypes.mouseEnter, toID, nativeEvent, nativeEventTarget);
 	    enter.type = 'mouseenter';
 	    enter.target = to;
 	    enter.relatedTarget = from;
-
+	
 	    EventPropagators.accumulateEnterLeaveDispatches(leave, enter, fromID, toID);
-
+	
 	    extractedEvents[0] = leave;
 	    extractedEvents[1] = enter;
-
+	
 	    return extractedEvents;
 	  }
-
+	
 	};
-
+	
 	module.exports = EnterLeaveEventPlugin;
 
 /***/ },
-/* 135 */
+/* 136 */
+/*!********************************************!*\
+  !*** ./~/react/lib/SyntheticMouseEvent.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11526,14 +11951,14 @@ var SettingsPanel =
 	 * @providesModule SyntheticMouseEvent
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var SyntheticUIEvent = __webpack_require__(136);
-	var ViewportMetrics = __webpack_require__(87);
-
-	var getEventModifierState = __webpack_require__(137);
-
+	
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 137);
+	var ViewportMetrics = __webpack_require__(/*! ./ViewportMetrics */ 88);
+	
+	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 138);
+	
 	/**
 	 * @interface MouseEvent
 	 * @see http://www.w3.org/TR/DOM-Level-3-Events/
@@ -11574,7 +11999,7 @@ var SettingsPanel =
 	    return 'pageY' in event ? event.pageY : event.clientY + ViewportMetrics.currentScrollTop;
 	  }
 	};
-
+	
 	/**
 	 * @param {object} dispatchConfig Configuration used to dispatch this event.
 	 * @param {string} dispatchMarker Marker identifying the event target.
@@ -11584,13 +12009,16 @@ var SettingsPanel =
 	function SyntheticMouseEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget) {
 	  SyntheticUIEvent.call(this, dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget);
 	}
-
+	
 	SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
-
+	
 	module.exports = SyntheticMouseEvent;
 
 /***/ },
-/* 136 */
+/* 137 */
+/*!*****************************************!*\
+  !*** ./~/react/lib/SyntheticUIEvent.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11604,13 +12032,13 @@ var SettingsPanel =
 	 * @providesModule SyntheticUIEvent
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var SyntheticEvent = __webpack_require__(126);
-
-	var getEventTarget = __webpack_require__(130);
-
+	
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 127);
+	
+	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 131);
+	
 	/**
 	 * @interface UIEvent
 	 * @see http://www.w3.org/TR/DOM-Level-3-Events/
@@ -11620,13 +12048,13 @@ var SettingsPanel =
 	    if (event.view) {
 	      return event.view;
 	    }
-
+	
 	    var target = getEventTarget(event);
 	    if (target != null && target.window === target) {
 	      // target is a window object
 	      return target;
 	    }
-
+	
 	    var doc = target.ownerDocument;
 	    // TODO: Figure out why `ownerDocument` is sometimes undefined in IE8.
 	    if (doc) {
@@ -11639,7 +12067,7 @@ var SettingsPanel =
 	    return event.detail || 0;
 	  }
 	};
-
+	
 	/**
 	 * @param {object} dispatchConfig Configuration used to dispatch this event.
 	 * @param {string} dispatchMarker Marker identifying the event target.
@@ -11649,13 +12077,16 @@ var SettingsPanel =
 	function SyntheticUIEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget) {
 	  SyntheticEvent.call(this, dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget);
 	}
-
+	
 	SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
-
+	
 	module.exports = SyntheticUIEvent;
 
 /***/ },
-/* 137 */
+/* 138 */
+/*!**********************************************!*\
+  !*** ./~/react/lib/getEventModifierState.js ***!
+  \**********************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -11669,21 +12100,21 @@ var SettingsPanel =
 	 * @providesModule getEventModifierState
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * Translation from modifier key to the associated property in the event.
 	 * @see http://www.w3.org/TR/DOM-Level-3-Events/#keys-Modifiers
 	 */
-
+	
 	var modifierKeyToProp = {
 	  'Alt': 'altKey',
 	  'Control': 'ctrlKey',
 	  'Meta': 'metaKey',
 	  'Shift': 'shiftKey'
 	};
-
+	
 	// IE8 does not implement getModifierState so we simply map it to the only
 	// modifier keys exposed by the event itself, does not support Lock-keys.
 	// Currently, all major browsers except Chrome seems to support Lock-keys.
@@ -11696,15 +12127,18 @@ var SettingsPanel =
 	  var keyProp = modifierKeyToProp[keyArg];
 	  return keyProp ? !!nativeEvent[keyProp] : false;
 	}
-
+	
 	function getEventModifierState(nativeEvent) {
 	  return modifierStateGetter;
 	}
-
+	
 	module.exports = getEventModifierState;
 
 /***/ },
-/* 138 */
+/* 139 */
+/*!**********************************************!*\
+  !*** ./~/react/lib/HTMLDOMPropertyConfig.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11717,12 +12151,12 @@ var SettingsPanel =
 	 *
 	 * @providesModule HTMLDOMPropertyConfig
 	 */
-
+	
 	'use strict';
-
-	var DOMProperty = __webpack_require__(72);
-	var ExecutionEnvironment = __webpack_require__(58);
-
+	
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 73);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 59);
+	
 	var MUST_USE_ATTRIBUTE = DOMProperty.injection.MUST_USE_ATTRIBUTE;
 	var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 	var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -11730,13 +12164,13 @@ var SettingsPanel =
 	var HAS_NUMERIC_VALUE = DOMProperty.injection.HAS_NUMERIC_VALUE;
 	var HAS_POSITIVE_NUMERIC_VALUE = DOMProperty.injection.HAS_POSITIVE_NUMERIC_VALUE;
 	var HAS_OVERLOADED_BOOLEAN_VALUE = DOMProperty.injection.HAS_OVERLOADED_BOOLEAN_VALUE;
-
+	
 	var hasSVG;
 	if (ExecutionEnvironment.canUseDOM) {
 	  var implementation = document.implementation;
 	  hasSVG = implementation && implementation.hasFeature && implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#BasicStructure', '1.1');
 	}
-
+	
 	var HTMLDOMPropertyConfig = {
 	  isCustomAttribute: RegExp.prototype.test.bind(/^(data|aria)-[a-z_][a-z\d_.\-]*$/),
 	  Properties: {
@@ -11870,7 +12304,7 @@ var SettingsPanel =
 	    width: MUST_USE_ATTRIBUTE,
 	    wmode: MUST_USE_ATTRIBUTE,
 	    wrap: null,
-
+	
 	    /**
 	     * RDFa Properties
 	     */
@@ -11883,7 +12317,7 @@ var SettingsPanel =
 	    resource: MUST_USE_ATTRIBUTE,
 	    'typeof': MUST_USE_ATTRIBUTE,
 	    vocab: MUST_USE_ATTRIBUTE,
-
+	
 	    /**
 	     * Non-standard Properties
 	     */
@@ -11935,11 +12369,14 @@ var SettingsPanel =
 	    srcSet: 'srcset'
 	  }
 	};
-
+	
 	module.exports = HTMLDOMPropertyConfig;
 
 /***/ },
-/* 139 */
+/* 140 */
+/*!***************************************************!*\
+  !*** ./~/react/lib/ReactBrowserComponentMixin.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -11952,16 +12389,16 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactBrowserComponentMixin
 	 */
-
+	
 	'use strict';
-
-	var ReactInstanceMap = __webpack_require__(96);
-
-	var findDOMNode = __webpack_require__(140);
-	var warning = __webpack_require__(74);
-
+	
+	var ReactInstanceMap = __webpack_require__(/*! ./ReactInstanceMap */ 97);
+	
+	var findDOMNode = __webpack_require__(/*! ./findDOMNode */ 141);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	var didWarnKey = '_getDOMNodeDidWarn';
-
+	
 	var ReactBrowserComponentMixin = {
 	  /**
 	   * Returns the DOM node rendered by this component.
@@ -11976,12 +12413,15 @@ var SettingsPanel =
 	    return findDOMNode(this);
 	  }
 	};
-
+	
 	module.exports = ReactBrowserComponentMixin;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 140 */
+/* 141 */
+/*!************************************!*\
+  !*** ./~/react/lib/findDOMNode.js ***!
+  \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -11995,16 +12435,16 @@ var SettingsPanel =
 	 * @providesModule findDOMNode
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var ReactCurrentOwner = __webpack_require__(54);
-	var ReactInstanceMap = __webpack_require__(96);
-	var ReactMount = __webpack_require__(77);
-
-	var invariant = __webpack_require__(62);
-	var warning = __webpack_require__(74);
-
+	
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 55);
+	var ReactInstanceMap = __webpack_require__(/*! ./ReactInstanceMap */ 97);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	/**
 	 * Returns the DOM node rendered by this element.
 	 *
@@ -12031,12 +12471,15 @@ var SettingsPanel =
 	  !(componentOrElement.render == null || typeof componentOrElement.render !== 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'findDOMNode was called on an unmounted component.') : invariant(false) : undefined;
 	   true ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Element appears to be neither ReactComponent nor DOMNode (keys: %s)', Object.keys(componentOrElement)) : invariant(false) : undefined;
 	}
-
+	
 	module.exports = findDOMNode;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 141 */
+/* 142 */
+/*!*****************************************************!*\
+  !*** ./~/react/lib/ReactDefaultBatchingStrategy.js ***!
+  \*****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -12049,53 +12492,53 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactDefaultBatchingStrategy
 	 */
-
+	
 	'use strict';
-
-	var ReactUpdates = __webpack_require__(103);
-	var Transaction = __webpack_require__(106);
-
-	var assign = __webpack_require__(88);
-	var emptyFunction = __webpack_require__(64);
-
+	
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 104);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 107);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 65);
+	
 	var RESET_BATCHED_UPDATES = {
 	  initialize: emptyFunction,
 	  close: function () {
 	    ReactDefaultBatchingStrategy.isBatchingUpdates = false;
 	  }
 	};
-
+	
 	var FLUSH_BATCHED_UPDATES = {
 	  initialize: emptyFunction,
 	  close: ReactUpdates.flushBatchedUpdates.bind(ReactUpdates)
 	};
-
+	
 	var TRANSACTION_WRAPPERS = [FLUSH_BATCHED_UPDATES, RESET_BATCHED_UPDATES];
-
+	
 	function ReactDefaultBatchingStrategyTransaction() {
 	  this.reinitializeTransaction();
 	}
-
+	
 	assign(ReactDefaultBatchingStrategyTransaction.prototype, Transaction.Mixin, {
 	  getTransactionWrappers: function () {
 	    return TRANSACTION_WRAPPERS;
 	  }
 	});
-
+	
 	var transaction = new ReactDefaultBatchingStrategyTransaction();
-
+	
 	var ReactDefaultBatchingStrategy = {
 	  isBatchingUpdates: false,
-
+	
 	  /**
 	   * Call the provided function in a context within which calls to `setState`
 	   * and friends are batched such that components aren't updated unnecessarily.
 	   */
 	  batchedUpdates: function (callback, a, b, c, d, e) {
 	    var alreadyBatchingUpdates = ReactDefaultBatchingStrategy.isBatchingUpdates;
-
+	
 	    ReactDefaultBatchingStrategy.isBatchingUpdates = true;
-
+	
 	    // The code is written this way to avoid extra allocations
 	    if (alreadyBatchingUpdates) {
 	      callback(a, b, c, d, e);
@@ -12104,11 +12547,14 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	module.exports = ReactDefaultBatchingStrategy;
 
 /***/ },
-/* 142 */
+/* 143 */
+/*!******************************************!*\
+  !*** ./~/react/lib/ReactDOMComponent.js ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -12122,53 +12568,53 @@ var SettingsPanel =
 	 * @providesModule ReactDOMComponent
 	 * @typechecks static-only
 	 */
-
+	
 	/* global hasOwnProperty:true */
-
+	
 	'use strict';
-
-	var AutoFocusUtils = __webpack_require__(143);
-	var CSSPropertyOperations = __webpack_require__(145);
-	var DOMProperty = __webpack_require__(72);
-	var DOMPropertyOperations = __webpack_require__(71);
-	var EventConstants = __webpack_require__(79);
-	var ReactBrowserEventEmitter = __webpack_require__(78);
-	var ReactComponentBrowserEnvironment = __webpack_require__(75);
-	var ReactDOMButton = __webpack_require__(153);
-	var ReactDOMInput = __webpack_require__(154);
-	var ReactDOMOption = __webpack_require__(158);
-	var ReactDOMSelect = __webpack_require__(161);
-	var ReactDOMTextarea = __webpack_require__(162);
-	var ReactMount = __webpack_require__(77);
-	var ReactMultiChild = __webpack_require__(163);
-	var ReactPerf = __webpack_require__(67);
-	var ReactUpdateQueue = __webpack_require__(102);
-
-	var assign = __webpack_require__(88);
-	var canDefineProperty = __webpack_require__(92);
-	var escapeTextContentForBrowser = __webpack_require__(70);
-	var invariant = __webpack_require__(62);
-	var isEventSupported = __webpack_require__(89);
-	var keyOf = __webpack_require__(128);
-	var setInnerHTML = __webpack_require__(68);
-	var setTextContent = __webpack_require__(69);
-	var shallowEqual = __webpack_require__(166);
-	var validateDOMNesting = __webpack_require__(119);
-	var warning = __webpack_require__(74);
-
+	
+	var AutoFocusUtils = __webpack_require__(/*! ./AutoFocusUtils */ 144);
+	var CSSPropertyOperations = __webpack_require__(/*! ./CSSPropertyOperations */ 146);
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 73);
+	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 72);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 80);
+	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 79);
+	var ReactComponentBrowserEnvironment = __webpack_require__(/*! ./ReactComponentBrowserEnvironment */ 76);
+	var ReactDOMButton = __webpack_require__(/*! ./ReactDOMButton */ 154);
+	var ReactDOMInput = __webpack_require__(/*! ./ReactDOMInput */ 155);
+	var ReactDOMOption = __webpack_require__(/*! ./ReactDOMOption */ 159);
+	var ReactDOMSelect = __webpack_require__(/*! ./ReactDOMSelect */ 162);
+	var ReactDOMTextarea = __webpack_require__(/*! ./ReactDOMTextarea */ 163);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	var ReactMultiChild = __webpack_require__(/*! ./ReactMultiChild */ 164);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 68);
+	var ReactUpdateQueue = __webpack_require__(/*! ./ReactUpdateQueue */ 103);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var canDefineProperty = __webpack_require__(/*! ./canDefineProperty */ 93);
+	var escapeTextContentForBrowser = __webpack_require__(/*! ./escapeTextContentForBrowser */ 71);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 90);
+	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 129);
+	var setInnerHTML = __webpack_require__(/*! ./setInnerHTML */ 69);
+	var setTextContent = __webpack_require__(/*! ./setTextContent */ 70);
+	var shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ 167);
+	var validateDOMNesting = __webpack_require__(/*! ./validateDOMNesting */ 120);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	var deleteListener = ReactBrowserEventEmitter.deleteListener;
 	var listenTo = ReactBrowserEventEmitter.listenTo;
 	var registrationNameModules = ReactBrowserEventEmitter.registrationNameModules;
-
+	
 	// For quickly matching children type, to test if can be treated as content.
 	var CONTENT_TYPES = { 'string': true, 'number': true };
-
+	
 	var CHILDREN = keyOf({ children: null });
 	var STYLE = keyOf({ style: null });
 	var HTML = keyOf({ __html: null });
-
+	
 	var ELEMENT_NODE_TYPE = 1;
-
+	
 	function getDeclarationErrorAddendum(internalInstance) {
 	  if (internalInstance) {
 	    var owner = internalInstance._currentElement._owner || null;
@@ -12181,7 +12627,7 @@ var SettingsPanel =
 	  }
 	  return '';
 	}
-
+	
 	var legacyPropsDescriptor;
 	if (process.env.NODE_ENV !== 'production') {
 	  legacyPropsDescriptor = {
@@ -12195,7 +12641,7 @@ var SettingsPanel =
 	    }
 	  };
 	}
-
+	
 	function legacyGetDOMNode() {
 	  if (process.env.NODE_ENV !== 'production') {
 	    var component = this._reactInternalComponent;
@@ -12203,7 +12649,7 @@ var SettingsPanel =
 	  }
 	  return this;
 	}
-
+	
 	function legacyIsMounted() {
 	  var component = this._reactInternalComponent;
 	  if (process.env.NODE_ENV !== 'production') {
@@ -12211,14 +12657,14 @@ var SettingsPanel =
 	  }
 	  return !!component;
 	}
-
+	
 	function legacySetStateEtc() {
 	  if (process.env.NODE_ENV !== 'production') {
 	    var component = this._reactInternalComponent;
 	    process.env.NODE_ENV !== 'production' ? warning(false, 'ReactDOMComponent: Do not access .setState(), .replaceState(), or ' + '.forceUpdate() of a DOM node. This is a no-op.%s', getDeclarationErrorAddendum(component)) : undefined;
 	  }
 	}
-
+	
 	function legacySetProps(partialProps, callback) {
 	  var component = this._reactInternalComponent;
 	  if (process.env.NODE_ENV !== 'production') {
@@ -12232,7 +12678,7 @@ var SettingsPanel =
 	    ReactUpdateQueue.enqueueCallbackInternal(component, callback);
 	  }
 	}
-
+	
 	function legacyReplaceProps(partialProps, callback) {
 	  var component = this._reactInternalComponent;
 	  if (process.env.NODE_ENV !== 'production') {
@@ -12246,7 +12692,7 @@ var SettingsPanel =
 	    ReactUpdateQueue.enqueueCallbackInternal(component, callback);
 	  }
 	}
-
+	
 	function friendlyStringify(obj) {
 	  if (typeof obj === 'object') {
 	    if (Array.isArray(obj)) {
@@ -12270,9 +12716,9 @@ var SettingsPanel =
 	  // inf and nan don't become null
 	  return String(obj);
 	}
-
+	
 	var styleMutationWarning = {};
-
+	
 	function checkAndWarnForMutatedStyle(style1, style2, component) {
 	  if (style1 == null || style2 == null) {
 	    return;
@@ -12280,25 +12726,25 @@ var SettingsPanel =
 	  if (shallowEqual(style1, style2)) {
 	    return;
 	  }
-
+	
 	  var componentName = component._tag;
 	  var owner = component._currentElement._owner;
 	  var ownerName;
 	  if (owner) {
 	    ownerName = owner.getName();
 	  }
-
+	
 	  var hash = ownerName + '|' + componentName;
-
+	
 	  if (styleMutationWarning.hasOwnProperty(hash)) {
 	    return;
 	  }
-
+	
 	  styleMutationWarning[hash] = true;
-
+	
 	  process.env.NODE_ENV !== 'production' ? warning(false, '`%s` was passed a style object that has previously been mutated. ' + 'Mutating `style` is deprecated. Consider cloning it beforehand. Check ' + 'the `render` %s. Previous style: %s. Mutated style: %s.', componentName, owner ? 'of `' + ownerName + '`' : 'using <' + componentName + '>', friendlyStringify(style1), friendlyStringify(style2)) : undefined;
 	}
-
+	
 	/**
 	 * @param {object} component
 	 * @param {?object} props
@@ -12323,7 +12769,7 @@ var SettingsPanel =
 	  }
 	  !(props.style == null || typeof props.style === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'The `style` prop expects a mapping from style properties to values, ' + 'not a string. For example, style={{marginRight: spacing + \'em\'}} when ' + 'using JSX.%s', getDeclarationErrorAddendum(component)) : invariant(false) : undefined;
 	}
-
+	
 	function enqueuePutListener(id, registrationName, listener, transaction) {
 	  if (process.env.NODE_ENV !== 'production') {
 	    // IE8 has no API for event capturing and the `onScroll` event doesn't
@@ -12341,12 +12787,12 @@ var SettingsPanel =
 	    listener: listener
 	  });
 	}
-
+	
 	function putListener() {
 	  var listenerToPut = this;
 	  ReactBrowserEventEmitter.putListener(listenerToPut.id, listenerToPut.registrationName, listenerToPut.listener);
 	}
-
+	
 	// There are so many media events, it makes sense to just
 	// maintain a list rather than create a `trapBubbledEvent` for each
 	var mediaEvents = {
@@ -12374,7 +12820,7 @@ var SettingsPanel =
 	  topVolumeChange: 'volumechange',
 	  topWaiting: 'waiting'
 	};
-
+	
 	function trapBubbledEventsLocal() {
 	  var inst = this;
 	  // If a component renders to null or if another component fatals and causes
@@ -12382,14 +12828,14 @@ var SettingsPanel =
 	  !inst._rootNodeID ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Must be mounted to trap events') : invariant(false) : undefined;
 	  var node = ReactMount.getNode(inst._rootNodeID);
 	  !node ? process.env.NODE_ENV !== 'production' ? invariant(false, 'trapBubbledEvent(...): Requires node to be rendered.') : invariant(false) : undefined;
-
+	
 	  switch (inst._tag) {
 	    case 'iframe':
 	      inst._wrapperState.listeners = [ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topLoad, 'load', node)];
 	      break;
 	    case 'video':
 	    case 'audio':
-
+	
 	      inst._wrapperState.listeners = [];
 	      // create listener for each media event
 	      for (var event in mediaEvents) {
@@ -12397,7 +12843,7 @@ var SettingsPanel =
 	          inst._wrapperState.listeners.push(ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes[event], mediaEvents[event], node));
 	        }
 	      }
-
+	
 	      break;
 	    case 'img':
 	      inst._wrapperState.listeners = [ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topError, 'error', node), ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topLoad, 'load', node)];
@@ -12407,18 +12853,18 @@ var SettingsPanel =
 	      break;
 	  }
 	}
-
+	
 	function mountReadyInputWrapper() {
 	  ReactDOMInput.mountReadyWrapper(this);
 	}
-
+	
 	function postUpdateSelectWrapper() {
 	  ReactDOMSelect.postUpdateWrapper(this);
 	}
-
+	
 	// For HTML, certain tags should omit their close tag. We keep a whitelist for
 	// those special cased tags.
-
+	
 	var omittedCloseTags = {
 	  'area': true,
 	  'base': true,
@@ -12436,36 +12882,36 @@ var SettingsPanel =
 	  'track': true,
 	  'wbr': true
 	};
-
+	
 	// NOTE: menuitem's close tag should be omitted, but that causes problems.
 	var newlineEatingTags = {
 	  'listing': true,
 	  'pre': true,
 	  'textarea': true
 	};
-
+	
 	// For HTML, certain tags cannot have children. This has the same purpose as
 	// `omittedCloseTags` except that `menuitem` should still have its closing tag.
-
+	
 	var voidElementTags = assign({
 	  'menuitem': true
 	}, omittedCloseTags);
-
+	
 	// We accept any tag to be rendered but since this gets injected into arbitrary
 	// HTML, we want to make sure that it's a safe tag.
 	// http://www.w3.org/TR/REC-xml/#NT-Name
-
+	
 	var VALID_TAG_REGEX = /^[a-zA-Z][a-zA-Z:_\.\-\d]*$/; // Simplified subset
 	var validatedTagCache = {};
 	var hasOwnProperty = ({}).hasOwnProperty;
-
+	
 	function validateDangerousTag(tag) {
 	  if (!hasOwnProperty.call(validatedTagCache, tag)) {
 	    !VALID_TAG_REGEX.test(tag) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Invalid tag: %s', tag) : invariant(false) : undefined;
 	    validatedTagCache[tag] = true;
 	  }
 	}
-
+	
 	function processChildContextDev(context, inst) {
 	  // Pass down our tag name to child components for validation purposes
 	  context = assign({}, context);
@@ -12473,11 +12919,11 @@ var SettingsPanel =
 	  context[validateDOMNesting.ancestorInfoContextKey] = validateDOMNesting.updatedAncestorInfo(info, inst._tag, inst);
 	  return context;
 	}
-
+	
 	function isCustomComponent(tagName, props) {
 	  return tagName.indexOf('-') >= 0 || props.is != null;
 	}
-
+	
 	/**
 	 * Creates a new React class that is idempotent and capable of containing other
 	 * React components. It accepts event listeners and DOM properties that are
@@ -12507,15 +12953,15 @@ var SettingsPanel =
 	    this._processedContextDev = null;
 	  }
 	}
-
+	
 	ReactDOMComponent.displayName = 'ReactDOMComponent';
-
+	
 	ReactDOMComponent.Mixin = {
-
+	
 	  construct: function (element) {
 	    this._currentElement = element;
 	  },
-
+	
 	  /**
 	   * Generates root tag markup then recurses. This method has side effects and
 	   * is not idempotent.
@@ -12528,9 +12974,9 @@ var SettingsPanel =
 	   */
 	  mountComponent: function (rootID, transaction, context) {
 	    this._rootNodeID = rootID;
-
+	
 	    var props = this._currentElement.props;
-
+	
 	    switch (this._tag) {
 	      case 'iframe':
 	      case 'img':
@@ -12563,20 +13009,20 @@ var SettingsPanel =
 	        props = ReactDOMTextarea.getNativeProps(this, props, context);
 	        break;
 	    }
-
+	
 	    assertValidProps(this, props);
 	    if (process.env.NODE_ENV !== 'production') {
 	      if (context[validateDOMNesting.ancestorInfoContextKey]) {
 	        validateDOMNesting(this._tag, this, context[validateDOMNesting.ancestorInfoContextKey]);
 	      }
 	    }
-
+	
 	    if (process.env.NODE_ENV !== 'production') {
 	      this._unprocessedContextDev = context;
 	      this._processedContextDev = processChildContextDev(context, this);
 	      context = this._processedContextDev;
 	    }
-
+	
 	    var mountImage;
 	    if (transaction.useCreateElement) {
 	      var ownerDocument = context[ReactMount.ownerDocumentContextKey];
@@ -12596,7 +13042,7 @@ var SettingsPanel =
 	        mountImage = tagOpen + '>' + tagContent + '</' + this._currentElement.type + '>';
 	      }
 	    }
-
+	
 	    switch (this._tag) {
 	      case 'input':
 	        transaction.getReactMountReady().enqueue(mountReadyInputWrapper, this);
@@ -12609,10 +13055,10 @@ var SettingsPanel =
 	        }
 	        break;
 	    }
-
+	
 	    return mountImage;
 	  },
-
+	
 	  /**
 	   * Creates markup for the open tag and all attributes.
 	   *
@@ -12628,7 +13074,7 @@ var SettingsPanel =
 	   */
 	  _createOpenTagMarkupAndPutListeners: function (transaction, props) {
 	    var ret = '<' + this._currentElement.type;
-
+	
 	    for (var propKey in props) {
 	      if (!props.hasOwnProperty(propKey)) {
 	        continue;
@@ -12665,17 +13111,17 @@ var SettingsPanel =
 	        }
 	      }
 	    }
-
+	
 	    // For static pages, no need to put React ID and checksum. Saves lots of
 	    // bytes.
 	    if (transaction.renderToStaticMarkup) {
 	      return ret;
 	    }
-
+	
 	    var markupForID = DOMPropertyOperations.createMarkupForID(this._rootNodeID);
 	    return ret + ' ' + markupForID;
 	  },
-
+	
 	  /**
 	   * Creates markup for the content between the tags.
 	   *
@@ -12687,7 +13133,7 @@ var SettingsPanel =
 	   */
 	  _createContentMarkup: function (transaction, props, context) {
 	    var ret = '';
-
+	
 	    // Intentional use of != to avoid catching zero/false.
 	    var innerHTML = props.dangerouslySetInnerHTML;
 	    if (innerHTML != null) {
@@ -12721,7 +13167,7 @@ var SettingsPanel =
 	      return ret;
 	    }
 	  },
-
+	
 	  _createInitialChildren: function (transaction, props, context, el) {
 	    // Intentional use of != to avoid catching zero/false.
 	    var innerHTML = props.dangerouslySetInnerHTML;
@@ -12743,7 +13189,7 @@ var SettingsPanel =
 	      }
 	    }
 	  },
-
+	
 	  /**
 	   * Receives a next element and updates the component.
 	   *
@@ -12757,7 +13203,7 @@ var SettingsPanel =
 	    this._currentElement = nextElement;
 	    this.updateComponent(transaction, prevElement, nextElement, context);
 	  },
-
+	
 	  /**
 	   * Updates a native DOM component after it has already been allocated and
 	   * attached to the DOM. Reconciles the root DOM node, then recurses.
@@ -12771,7 +13217,7 @@ var SettingsPanel =
 	  updateComponent: function (transaction, prevElement, nextElement, context) {
 	    var lastProps = prevElement.props;
 	    var nextProps = this._currentElement.props;
-
+	
 	    switch (this._tag) {
 	      case 'button':
 	        lastProps = ReactDOMButton.getNativeProps(this, lastProps);
@@ -12796,7 +13242,7 @@ var SettingsPanel =
 	        nextProps = ReactDOMTextarea.getNativeProps(this, nextProps);
 	        break;
 	    }
-
+	
 	    if (process.env.NODE_ENV !== 'production') {
 	      // If the context is reference-equal to the old one, pass down the same
 	      // processed object so the update bailout in ReactReconciler behaves
@@ -12807,22 +13253,22 @@ var SettingsPanel =
 	      }
 	      context = this._processedContextDev;
 	    }
-
+	
 	    assertValidProps(this, nextProps);
 	    this._updateDOMProperties(lastProps, nextProps, transaction, null);
 	    this._updateDOMChildren(lastProps, nextProps, transaction, context);
-
+	
 	    if (!canDefineProperty && this._nodeWithLegacyProperties) {
 	      this._nodeWithLegacyProperties.props = nextProps;
 	    }
-
+	
 	    if (this._tag === 'select') {
 	      // <select> value update needs to occur after <option> children
 	      // reconciliation
 	      transaction.getReactMountReady().enqueue(postUpdateSelectWrapper, this);
 	    }
 	  },
-
+	
 	  /**
 	   * Reconciles the properties by detecting differences in property values and
 	   * updating the DOM as necessary. This function is probably the single most
@@ -12941,7 +13387,7 @@ var SettingsPanel =
 	      CSSPropertyOperations.setValueForStyles(node, styleUpdates);
 	    }
 	  },
-
+	
 	  /**
 	   * Reconciles the children with the various properties that affect the
 	   * children content.
@@ -12954,14 +13400,14 @@ var SettingsPanel =
 	  _updateDOMChildren: function (lastProps, nextProps, transaction, context) {
 	    var lastContent = CONTENT_TYPES[typeof lastProps.children] ? lastProps.children : null;
 	    var nextContent = CONTENT_TYPES[typeof nextProps.children] ? nextProps.children : null;
-
+	
 	    var lastHtml = lastProps.dangerouslySetInnerHTML && lastProps.dangerouslySetInnerHTML.__html;
 	    var nextHtml = nextProps.dangerouslySetInnerHTML && nextProps.dangerouslySetInnerHTML.__html;
-
+	
 	    // Note the use of `!=` which checks for null or undefined.
 	    var lastChildren = lastContent != null ? null : lastProps.children;
 	    var nextChildren = nextContent != null ? null : nextProps.children;
-
+	
 	    // If we're switching from children to content/html or vice versa, remove
 	    // the old content
 	    var lastHasContentOrHtml = lastContent != null || lastHtml != null;
@@ -12971,7 +13417,7 @@ var SettingsPanel =
 	    } else if (lastHasContentOrHtml && !nextHasContentOrHtml) {
 	      this.updateTextContent('');
 	    }
-
+	
 	    if (nextContent != null) {
 	      if (lastContent !== nextContent) {
 	        this.updateTextContent('' + nextContent);
@@ -12984,7 +13430,7 @@ var SettingsPanel =
 	      this.updateChildren(nextChildren, transaction, context);
 	    }
 	  },
-
+	
 	  /**
 	   * Destroys all event registrations for this instance. Does not remove from
 	   * the DOM. That must be done by the parent.
@@ -13020,7 +13466,7 @@ var SettingsPanel =
 	         true ? process.env.NODE_ENV !== 'production' ? invariant(false, '<%s> tried to unmount. Because of cross-browser quirks it is ' + 'impossible to unmount some top-level components (eg <html>, ' + '<head>, and <body>) reliably and efficiently. To fix this, have a ' + 'single top-level component that never unmounts render these ' + 'elements.', this._tag) : invariant(false) : undefined;
 	        break;
 	    }
-
+	
 	    this.unmountChildren();
 	    ReactBrowserEventEmitter.deleteAllListeners(this._rootNodeID);
 	    ReactComponentBrowserEnvironment.unmountIDFromEnvironment(this._rootNodeID);
@@ -13032,11 +13478,11 @@ var SettingsPanel =
 	      this._nodeWithLegacyProperties = null;
 	    }
 	  },
-
+	
 	  getPublicInstance: function () {
 	    if (!this._nodeWithLegacyProperties) {
 	      var node = ReactMount.getNode(this._rootNodeID);
-
+	
 	      node._reactInternalComponent = this;
 	      node.getDOMNode = legacyGetDOMNode;
 	      node.isMounted = legacyIsMounted;
@@ -13045,7 +13491,7 @@ var SettingsPanel =
 	      node.forceUpdate = legacySetStateEtc;
 	      node.setProps = legacySetProps;
 	      node.replaceProps = legacyReplaceProps;
-
+	
 	      if (process.env.NODE_ENV !== 'production') {
 	        if (canDefineProperty) {
 	          Object.defineProperties(node, legacyPropsDescriptor);
@@ -13057,26 +13503,29 @@ var SettingsPanel =
 	        // updateComponent will update this property on subsequent renders
 	        node.props = this._currentElement.props;
 	      }
-
+	
 	      this._nodeWithLegacyProperties = node;
 	    }
 	    return this._nodeWithLegacyProperties;
 	  }
-
+	
 	};
-
+	
 	ReactPerf.measureMethods(ReactDOMComponent, 'ReactDOMComponent', {
 	  mountComponent: 'mountComponent',
 	  updateComponent: 'updateComponent'
 	});
-
+	
 	assign(ReactDOMComponent.prototype, ReactDOMComponent.Mixin, ReactMultiChild.Mixin);
-
+	
 	module.exports = ReactDOMComponent;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 143 */
+/* 144 */
+/*!***************************************!*\
+  !*** ./~/react/lib/AutoFocusUtils.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -13090,14 +13539,14 @@ var SettingsPanel =
 	 * @providesModule AutoFocusUtils
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var ReactMount = __webpack_require__(77);
-
-	var findDOMNode = __webpack_require__(140);
-	var focusNode = __webpack_require__(144);
-
+	
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	
+	var findDOMNode = __webpack_require__(/*! ./findDOMNode */ 141);
+	var focusNode = __webpack_require__(/*! fbjs/lib/focusNode */ 145);
+	
 	var Mixin = {
 	  componentDidMount: function () {
 	    if (this.props.autoFocus) {
@@ -13105,19 +13554,22 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	var AutoFocusUtils = {
 	  Mixin: Mixin,
-
+	
 	  focusDOMComponent: function () {
 	    focusNode(ReactMount.getNode(this._rootNodeID));
 	  }
 	};
-
+	
 	module.exports = AutoFocusUtils;
 
 /***/ },
-/* 144 */
+/* 145 */
+/*!*********************************!*\
+  !*** ./~/fbjs/lib/focusNode.js ***!
+  \*********************************/
 /***/ function(module, exports) {
 
 	/**
@@ -13130,9 +13582,9 @@ var SettingsPanel =
 	 *
 	 * @providesModule focusNode
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * @param {DOMElement} node input/textarea to focus
 	 */
@@ -13144,11 +13596,14 @@ var SettingsPanel =
 	    node.focus();
 	  } catch (e) {}
 	}
-
+	
 	module.exports = focusNode;
 
 /***/ },
-/* 145 */
+/* 146 */
+/*!**********************************************!*\
+  !*** ./~/react/lib/CSSPropertyOperations.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -13162,23 +13617,23 @@ var SettingsPanel =
 	 * @providesModule CSSPropertyOperations
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var CSSProperty = __webpack_require__(146);
-	var ExecutionEnvironment = __webpack_require__(58);
-	var ReactPerf = __webpack_require__(67);
-
-	var camelizeStyleName = __webpack_require__(147);
-	var dangerousStyleValue = __webpack_require__(149);
-	var hyphenateStyleName = __webpack_require__(150);
-	var memoizeStringOnly = __webpack_require__(152);
-	var warning = __webpack_require__(74);
-
+	
+	var CSSProperty = __webpack_require__(/*! ./CSSProperty */ 147);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 59);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 68);
+	
+	var camelizeStyleName = __webpack_require__(/*! fbjs/lib/camelizeStyleName */ 148);
+	var dangerousStyleValue = __webpack_require__(/*! ./dangerousStyleValue */ 150);
+	var hyphenateStyleName = __webpack_require__(/*! fbjs/lib/hyphenateStyleName */ 151);
+	var memoizeStringOnly = __webpack_require__(/*! fbjs/lib/memoizeStringOnly */ 153);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	var processStyleName = memoizeStringOnly(function (styleName) {
 	  return hyphenateStyleName(styleName);
 	});
-
+	
 	var hasShorthandPropertyBug = false;
 	var styleFloatAccessor = 'cssFloat';
 	if (ExecutionEnvironment.canUseDOM) {
@@ -13194,44 +13649,44 @@ var SettingsPanel =
 	    styleFloatAccessor = 'styleFloat';
 	  }
 	}
-
+	
 	if (process.env.NODE_ENV !== 'production') {
 	  // 'msTransform' is correct, but the other prefixes should be capitalized
 	  var badVendoredStyleNamePattern = /^(?:webkit|moz|o)[A-Z]/;
-
+	
 	  // style values shouldn't contain a semicolon
 	  var badStyleValueWithSemicolonPattern = /;\s*$/;
-
+	
 	  var warnedStyleNames = {};
 	  var warnedStyleValues = {};
-
+	
 	  var warnHyphenatedStyleName = function (name) {
 	    if (warnedStyleNames.hasOwnProperty(name) && warnedStyleNames[name]) {
 	      return;
 	    }
-
+	
 	    warnedStyleNames[name] = true;
 	    process.env.NODE_ENV !== 'production' ? warning(false, 'Unsupported style property %s. Did you mean %s?', name, camelizeStyleName(name)) : undefined;
 	  };
-
+	
 	  var warnBadVendoredStyleName = function (name) {
 	    if (warnedStyleNames.hasOwnProperty(name) && warnedStyleNames[name]) {
 	      return;
 	    }
-
+	
 	    warnedStyleNames[name] = true;
 	    process.env.NODE_ENV !== 'production' ? warning(false, 'Unsupported vendor-prefixed style property %s. Did you mean %s?', name, name.charAt(0).toUpperCase() + name.slice(1)) : undefined;
 	  };
-
+	
 	  var warnStyleValueWithSemicolon = function (name, value) {
 	    if (warnedStyleValues.hasOwnProperty(value) && warnedStyleValues[value]) {
 	      return;
 	    }
-
+	
 	    warnedStyleValues[value] = true;
 	    process.env.NODE_ENV !== 'production' ? warning(false, 'Style property values shouldn\'t contain a semicolon. ' + 'Try "%s: %s" instead.', name, value.replace(badStyleValueWithSemicolonPattern, '')) : undefined;
 	  };
-
+	
 	  /**
 	   * @param {string} name
 	   * @param {*} value
@@ -13246,12 +13701,12 @@ var SettingsPanel =
 	    }
 	  };
 	}
-
+	
 	/**
 	 * Operations for dealing with CSS properties.
 	 */
 	var CSSPropertyOperations = {
-
+	
 	  /**
 	   * Serializes a mapping of style properties for use as inline styles:
 	   *
@@ -13281,7 +13736,7 @@ var SettingsPanel =
 	    }
 	    return serialized || null;
 	  },
-
+	
 	  /**
 	   * Sets the value for multiple styles on a node.  If a value is specified as
 	   * '' (empty string), the corresponding style property will be unset.
@@ -13318,18 +13773,21 @@ var SettingsPanel =
 	      }
 	    }
 	  }
-
+	
 	};
-
+	
 	ReactPerf.measureMethods(CSSPropertyOperations, 'CSSPropertyOperations', {
 	  setValueForStyles: 'setValueForStyles'
 	});
-
+	
 	module.exports = CSSPropertyOperations;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 146 */
+/* 147 */
+/*!************************************!*\
+  !*** ./~/react/lib/CSSProperty.js ***!
+  \************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -13342,9 +13800,9 @@ var SettingsPanel =
 	 *
 	 * @providesModule CSSProperty
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * CSS properties which accept numbers but are not in units of "px".
 	 */
@@ -13370,7 +13828,7 @@ var SettingsPanel =
 	  widows: true,
 	  zIndex: true,
 	  zoom: true,
-
+	
 	  // SVG-related properties
 	  fillOpacity: true,
 	  stopOpacity: true,
@@ -13378,7 +13836,7 @@ var SettingsPanel =
 	  strokeOpacity: true,
 	  strokeWidth: true
 	};
-
+	
 	/**
 	 * @param {string} prefix vendor-specific prefix, eg: Webkit
 	 * @param {string} key style name, eg: transitionDuration
@@ -13388,13 +13846,13 @@ var SettingsPanel =
 	function prefixKey(prefix, key) {
 	  return prefix + key.charAt(0).toUpperCase() + key.substring(1);
 	}
-
+	
 	/**
 	 * Support style names that may come passed in prefixed by adding permutations
 	 * of vendor prefixes.
 	 */
 	var prefixes = ['Webkit', 'ms', 'Moz', 'O'];
-
+	
 	// Using Object.keys here, or else the vanilla for-in loop makes IE8 go into an
 	// infinite loop, because it iterates over the newly added props too.
 	Object.keys(isUnitlessNumber).forEach(function (prop) {
@@ -13402,7 +13860,7 @@ var SettingsPanel =
 	    isUnitlessNumber[prefixKey(prefix, prop)] = isUnitlessNumber[prop];
 	  });
 	});
-
+	
 	/**
 	 * Most style properties can be unset by doing .style[prop] = '' but IE8
 	 * doesn't like doing that with shorthand properties so for the properties that
@@ -13464,16 +13922,19 @@ var SettingsPanel =
 	    outlineColor: true
 	  }
 	};
-
+	
 	var CSSProperty = {
 	  isUnitlessNumber: isUnitlessNumber,
 	  shorthandPropertyExpansions: shorthandPropertyExpansions
 	};
-
+	
 	module.exports = CSSProperty;
 
 /***/ },
-/* 147 */
+/* 148 */
+/*!*****************************************!*\
+  !*** ./~/fbjs/lib/camelizeStyleName.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -13487,13 +13948,13 @@ var SettingsPanel =
 	 * @providesModule camelizeStyleName
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
-	var camelize = __webpack_require__(148);
-
+	
+	var camelize = __webpack_require__(/*! ./camelize */ 149);
+	
 	var msPattern = /^-ms-/;
-
+	
 	/**
 	 * Camelcases a hyphenated CSS property name, for example:
 	 *
@@ -13514,11 +13975,14 @@ var SettingsPanel =
 	function camelizeStyleName(string) {
 	  return camelize(string.replace(msPattern, 'ms-'));
 	}
-
+	
 	module.exports = camelizeStyleName;
 
 /***/ },
-/* 148 */
+/* 149 */
+/*!********************************!*\
+  !*** ./~/fbjs/lib/camelize.js ***!
+  \********************************/
 /***/ function(module, exports) {
 
 	/**
@@ -13532,11 +13996,11 @@ var SettingsPanel =
 	 * @providesModule camelize
 	 * @typechecks
 	 */
-
+	
 	"use strict";
-
+	
 	var _hyphenPattern = /-(.)/g;
-
+	
 	/**
 	 * Camelcases a hyphenated string, for example:
 	 *
@@ -13551,11 +14015,14 @@ var SettingsPanel =
 	    return character.toUpperCase();
 	  });
 	}
-
+	
 	module.exports = camelize;
 
 /***/ },
-/* 149 */
+/* 150 */
+/*!********************************************!*\
+  !*** ./~/react/lib/dangerousStyleValue.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -13569,13 +14036,13 @@ var SettingsPanel =
 	 * @providesModule dangerousStyleValue
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var CSSProperty = __webpack_require__(146);
-
+	
+	var CSSProperty = __webpack_require__(/*! ./CSSProperty */ 147);
+	
 	var isUnitlessNumber = CSSProperty.isUnitlessNumber;
-
+	
 	/**
 	 * Convert a value into the proper css writable value. The style name `name`
 	 * should be logical (no hyphens), as specified
@@ -13595,27 +14062,30 @@ var SettingsPanel =
 	  // This is not an XSS hole but instead a potential CSS injection issue
 	  // which has lead to a greater discussion about how we're going to
 	  // trust URLs moving forward. See #2115901
-
+	
 	  var isEmpty = value == null || typeof value === 'boolean' || value === '';
 	  if (isEmpty) {
 	    return '';
 	  }
-
+	
 	  var isNonNumeric = isNaN(value);
 	  if (isNonNumeric || value === 0 || isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name]) {
 	    return '' + value; // cast to string
 	  }
-
+	
 	  if (typeof value === 'string') {
 	    value = value.trim();
 	  }
 	  return value + 'px';
 	}
-
+	
 	module.exports = dangerousStyleValue;
 
 /***/ },
-/* 150 */
+/* 151 */
+/*!******************************************!*\
+  !*** ./~/fbjs/lib/hyphenateStyleName.js ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -13629,13 +14099,13 @@ var SettingsPanel =
 	 * @providesModule hyphenateStyleName
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
-	var hyphenate = __webpack_require__(151);
-
+	
+	var hyphenate = __webpack_require__(/*! ./hyphenate */ 152);
+	
 	var msPattern = /^ms-/;
-
+	
 	/**
 	 * Hyphenates a camelcased CSS property name, for example:
 	 *
@@ -13655,11 +14125,14 @@ var SettingsPanel =
 	function hyphenateStyleName(string) {
 	  return hyphenate(string).replace(msPattern, '-ms-');
 	}
-
+	
 	module.exports = hyphenateStyleName;
 
 /***/ },
-/* 151 */
+/* 152 */
+/*!*********************************!*\
+  !*** ./~/fbjs/lib/hyphenate.js ***!
+  \*********************************/
 /***/ function(module, exports) {
 
 	/**
@@ -13673,11 +14146,11 @@ var SettingsPanel =
 	 * @providesModule hyphenate
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
+	
 	var _uppercasePattern = /([A-Z])/g;
-
+	
 	/**
 	 * Hyphenates a camelcased string, for example:
 	 *
@@ -13693,11 +14166,14 @@ var SettingsPanel =
 	function hyphenate(string) {
 	  return string.replace(_uppercasePattern, '-$1').toLowerCase();
 	}
-
+	
 	module.exports = hyphenate;
 
 /***/ },
-/* 152 */
+/* 153 */
+/*!*****************************************!*\
+  !*** ./~/fbjs/lib/memoizeStringOnly.js ***!
+  \*****************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -13711,9 +14187,9 @@ var SettingsPanel =
 	 * @providesModule memoizeStringOnly
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * Memoizes the return value of a function that accepts one string argument.
 	 *
@@ -13729,11 +14205,14 @@ var SettingsPanel =
 	    return cache[string];
 	  };
 	}
-
+	
 	module.exports = memoizeStringOnly;
 
 /***/ },
-/* 153 */
+/* 154 */
+/*!***************************************!*\
+  !*** ./~/react/lib/ReactDOMButton.js ***!
+  \***************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -13746,23 +14225,23 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactDOMButton
 	 */
-
+	
 	'use strict';
-
+	
 	var mouseListenerNames = {
 	  onClick: true,
 	  onDoubleClick: true,
 	  onMouseDown: true,
 	  onMouseMove: true,
 	  onMouseUp: true,
-
+	
 	  onClickCapture: true,
 	  onDoubleClickCapture: true,
 	  onMouseDownCapture: true,
 	  onMouseMoveCapture: true,
 	  onMouseUpCapture: true
 	};
-
+	
 	/**
 	 * Implements a <button> native component that does not receive mouse events
 	 * when `disabled` is set.
@@ -13772,7 +14251,7 @@ var SettingsPanel =
 	    if (!props.disabled) {
 	      return props;
 	    }
-
+	
 	    // Copy the props, except the mouse listeners
 	    var nativeProps = {};
 	    for (var key in props) {
@@ -13780,15 +14259,18 @@ var SettingsPanel =
 	        nativeProps[key] = props[key];
 	      }
 	    }
-
+	
 	    return nativeProps;
 	  }
 	};
-
+	
 	module.exports = ReactDOMButton;
 
 /***/ },
-/* 154 */
+/* 155 */
+/*!**************************************!*\
+  !*** ./~/react/lib/ReactDOMInput.js ***!
+  \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -13801,26 +14283,26 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactDOMInput
 	 */
-
+	
 	'use strict';
-
-	var ReactDOMIDOperations = __webpack_require__(76);
-	var LinkedValueUtils = __webpack_require__(155);
-	var ReactMount = __webpack_require__(77);
-	var ReactUpdates = __webpack_require__(103);
-
-	var assign = __webpack_require__(88);
-	var invariant = __webpack_require__(62);
-
+	
+	var ReactDOMIDOperations = __webpack_require__(/*! ./ReactDOMIDOperations */ 77);
+	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 156);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 104);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	var instancesByReactID = {};
-
+	
 	function forceUpdateIfMounted() {
 	  if (this._rootNodeID) {
 	    // DOM component is still mounted; update
 	    ReactDOMInput.updateWrapper(this);
 	  }
 	}
-
+	
 	/**
 	 * Implements an <input> native component that allows setting these optional
 	 * props: `checked`, `value`, `defaultChecked`, and `defaultValue`.
@@ -13841,7 +14323,7 @@ var SettingsPanel =
 	  getNativeProps: function (inst, props, context) {
 	    var value = LinkedValueUtils.getValue(props);
 	    var checked = LinkedValueUtils.getChecked(props);
-
+	
 	    var nativeProps = assign({}, props, {
 	      defaultChecked: undefined,
 	      defaultValue: undefined,
@@ -13849,15 +14331,15 @@ var SettingsPanel =
 	      checked: checked != null ? checked : inst._wrapperState.initialChecked,
 	      onChange: inst._wrapperState.onChange
 	    });
-
+	
 	    return nativeProps;
 	  },
-
+	
 	  mountWrapper: function (inst, props) {
 	    if (process.env.NODE_ENV !== 'production') {
 	      LinkedValueUtils.checkPropTypes('input', props, inst._currentElement._owner);
 	    }
-
+	
 	    var defaultValue = props.defaultValue;
 	    inst._wrapperState = {
 	      initialChecked: props.defaultChecked || false,
@@ -13865,25 +14347,25 @@ var SettingsPanel =
 	      onChange: _handleChange.bind(inst)
 	    };
 	  },
-
+	
 	  mountReadyWrapper: function (inst) {
 	    // Can't be in mountWrapper or else server rendering leaks.
 	    instancesByReactID[inst._rootNodeID] = inst;
 	  },
-
+	
 	  unmountWrapper: function (inst) {
 	    delete instancesByReactID[inst._rootNodeID];
 	  },
-
+	
 	  updateWrapper: function (inst) {
 	    var props = inst._currentElement.props;
-
+	
 	    // TODO: Shouldn't this be getChecked(props)?
 	    var checked = props.checked;
 	    if (checked != null) {
 	      ReactDOMIDOperations.updatePropertyByID(inst._rootNodeID, 'checked', checked || false);
 	    }
-
+	
 	    var value = LinkedValueUtils.getValue(props);
 	    if (value != null) {
 	      // Cast `value` to a string to ensure the value is set correctly. While
@@ -13892,26 +14374,26 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	function _handleChange(event) {
 	  var props = this._currentElement.props;
-
+	
 	  var returnValue = LinkedValueUtils.executeOnChange(props, event);
-
+	
 	  // Here we use asap to wait until all updates have propagated, which
 	  // is important when using controlled components within layers:
 	  // https://github.com/facebook/react/issues/1698
 	  ReactUpdates.asap(forceUpdateIfMounted, this);
-
+	
 	  var name = props.name;
 	  if (props.type === 'radio' && name != null) {
 	    var rootNode = ReactMount.getNode(this._rootNodeID);
 	    var queryRoot = rootNode;
-
+	
 	    while (queryRoot.parentNode) {
 	      queryRoot = queryRoot.parentNode;
 	    }
-
+	
 	    // If `rootNode.form` was non-null, then we could try `form.elements`,
 	    // but that sometimes behaves strangely in IE8. We could also try using
 	    // `form.getElementsByName`, but that will only return direct children
@@ -13919,7 +14401,7 @@ var SettingsPanel =
 	    // the input might not even be in a form, let's just use the global
 	    // `querySelectorAll` to ensure we don't miss anything.
 	    var group = queryRoot.querySelectorAll('input[name=' + JSON.stringify('' + name) + '][type="radio"]');
-
+	
 	    for (var i = 0; i < group.length; i++) {
 	      var otherNode = group[i];
 	      if (otherNode === rootNode || otherNode.form !== rootNode.form) {
@@ -13939,15 +14421,18 @@ var SettingsPanel =
 	      ReactUpdates.asap(forceUpdateIfMounted, otherInstance);
 	    }
 	  }
-
+	
 	  return returnValue;
 	}
-
+	
 	module.exports = ReactDOMInput;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 155 */
+/* 156 */
+/*!*****************************************!*\
+  !*** ./~/react/lib/LinkedValueUtils.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -13961,15 +14446,15 @@ var SettingsPanel =
 	 * @providesModule LinkedValueUtils
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var ReactPropTypes = __webpack_require__(156);
-	var ReactPropTypeLocations = __webpack_require__(114);
-
-	var invariant = __webpack_require__(62);
-	var warning = __webpack_require__(74);
-
+	
+	var ReactPropTypes = __webpack_require__(/*! ./ReactPropTypes */ 157);
+	var ReactPropTypeLocations = __webpack_require__(/*! ./ReactPropTypeLocations */ 115);
+	
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	var hasReadOnlyValue = {
 	  'button': true,
 	  'checkbox': true,
@@ -13979,7 +14464,7 @@ var SettingsPanel =
 	  'reset': true,
 	  'submit': true
 	};
-
+	
 	function _assertSingleLink(inputProps) {
 	  !(inputProps.checkedLink == null || inputProps.valueLink == null) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Cannot provide a checkedLink and a valueLink. If you want to use ' + 'checkedLink, you probably don\'t want to use valueLink and vice versa.') : invariant(false) : undefined;
 	}
@@ -13987,12 +14472,12 @@ var SettingsPanel =
 	  _assertSingleLink(inputProps);
 	  !(inputProps.value == null && inputProps.onChange == null) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Cannot provide a valueLink and a value or onChange event. If you want ' + 'to use value or onChange, you probably don\'t want to use valueLink.') : invariant(false) : undefined;
 	}
-
+	
 	function _assertCheckedLink(inputProps) {
 	  _assertSingleLink(inputProps);
 	  !(inputProps.checked == null && inputProps.onChange == null) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Cannot provide a checkedLink and a checked property or onChange event. ' + 'If you want to use checked or onChange, you probably don\'t want to ' + 'use checkedLink') : invariant(false) : undefined;
 	}
-
+	
 	var propTypes = {
 	  value: function (props, propName, componentName) {
 	    if (!props[propName] || hasReadOnlyValue[props.type] || props.onChange || props.readOnly || props.disabled) {
@@ -14008,7 +14493,7 @@ var SettingsPanel =
 	  },
 	  onChange: ReactPropTypes.func
 	};
-
+	
 	var loggedTypeFailures = {};
 	function getDeclarationErrorAddendum(owner) {
 	  if (owner) {
@@ -14019,7 +14504,7 @@ var SettingsPanel =
 	  }
 	  return '';
 	}
-
+	
 	/**
 	 * Provide a linked `value` attribute for controlled forms. You should not use
 	 * this outside of the ReactDOM controlled form components.
@@ -14034,13 +14519,13 @@ var SettingsPanel =
 	        // Only monitor this failure once because there tends to be a lot of the
 	        // same error.
 	        loggedTypeFailures[error.message] = true;
-
+	
 	        var addendum = getDeclarationErrorAddendum(owner);
 	        process.env.NODE_ENV !== 'production' ? warning(false, 'Failed form propType: %s%s', error.message, addendum) : undefined;
 	      }
 	    }
 	  },
-
+	
 	  /**
 	   * @param {object} inputProps Props for form component
 	   * @return {*} current value of the input either from value prop or link.
@@ -14052,7 +14537,7 @@ var SettingsPanel =
 	    }
 	    return inputProps.value;
 	  },
-
+	
 	  /**
 	   * @param {object} inputProps Props for form component
 	   * @return {*} current checked status of the input either from checked prop
@@ -14065,7 +14550,7 @@ var SettingsPanel =
 	    }
 	    return inputProps.checked;
 	  },
-
+	
 	  /**
 	   * @param {object} inputProps Props for form component
 	   * @param {SyntheticEvent} event change event to handle
@@ -14082,12 +14567,15 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	module.exports = LinkedValueUtils;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 156 */
+/* 157 */
+/*!***************************************!*\
+  !*** ./~/react/lib/ReactPropTypes.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -14100,15 +14588,15 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactPropTypes
 	 */
-
+	
 	'use strict';
-
-	var ReactElement = __webpack_require__(91);
-	var ReactPropTypeLocationNames = __webpack_require__(115);
-
-	var emptyFunction = __webpack_require__(64);
-	var getIteratorFn = __webpack_require__(157);
-
+	
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 92);
+	var ReactPropTypeLocationNames = __webpack_require__(/*! ./ReactPropTypeLocationNames */ 116);
+	
+	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 65);
+	var getIteratorFn = __webpack_require__(/*! ./getIteratorFn */ 158);
+	
 	/**
 	 * Collection of methods that allow declaration and validation of props that are
 	 * supplied to React components. Example usage:
@@ -14155,9 +14643,9 @@ var SettingsPanel =
 	 *
 	 * @internal
 	 */
-
+	
 	var ANONYMOUS = '<<anonymous>>';
-
+	
 	var ReactPropTypes = {
 	  array: createPrimitiveTypeChecker('array'),
 	  bool: createPrimitiveTypeChecker('boolean'),
@@ -14165,7 +14653,7 @@ var SettingsPanel =
 	  number: createPrimitiveTypeChecker('number'),
 	  object: createPrimitiveTypeChecker('object'),
 	  string: createPrimitiveTypeChecker('string'),
-
+	
 	  any: createAnyTypeChecker(),
 	  arrayOf: createArrayOfTypeChecker,
 	  element: createElementTypeChecker(),
@@ -14176,7 +14664,7 @@ var SettingsPanel =
 	  oneOfType: createUnionTypeChecker,
 	  shape: createShapeTypeChecker
 	};
-
+	
 	function createChainableTypeChecker(validate) {
 	  function checkType(isRequired, props, propName, componentName, location, propFullName) {
 	    componentName = componentName || ANONYMOUS;
@@ -14191,13 +14679,13 @@ var SettingsPanel =
 	      return validate(props, propName, componentName, location, propFullName);
 	    }
 	  }
-
+	
 	  var chainedCheckType = checkType.bind(null, false);
 	  chainedCheckType.isRequired = checkType.bind(null, true);
-
+	
 	  return chainedCheckType;
 	}
-
+	
 	function createPrimitiveTypeChecker(expectedType) {
 	  function validate(props, propName, componentName, location, propFullName) {
 	    var propValue = props[propName];
@@ -14208,18 +14696,18 @@ var SettingsPanel =
 	      // check, but we can offer a more precise error message here rather than
 	      // 'of type `object`'.
 	      var preciseType = getPreciseType(propValue);
-
+	
 	      return new Error('Invalid ' + locationName + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
 	    }
 	    return null;
 	  }
 	  return createChainableTypeChecker(validate);
 	}
-
+	
 	function createAnyTypeChecker() {
 	  return createChainableTypeChecker(emptyFunction.thatReturns(null));
 	}
-
+	
 	function createArrayOfTypeChecker(typeChecker) {
 	  function validate(props, propName, componentName, location, propFullName) {
 	    var propValue = props[propName];
@@ -14238,7 +14726,7 @@ var SettingsPanel =
 	  }
 	  return createChainableTypeChecker(validate);
 	}
-
+	
 	function createElementTypeChecker() {
 	  function validate(props, propName, componentName, location, propFullName) {
 	    if (!ReactElement.isValidElement(props[propName])) {
@@ -14249,7 +14737,7 @@ var SettingsPanel =
 	  }
 	  return createChainableTypeChecker(validate);
 	}
-
+	
 	function createInstanceTypeChecker(expectedClass) {
 	  function validate(props, propName, componentName, location, propFullName) {
 	    if (!(props[propName] instanceof expectedClass)) {
@@ -14262,14 +14750,14 @@ var SettingsPanel =
 	  }
 	  return createChainableTypeChecker(validate);
 	}
-
+	
 	function createEnumTypeChecker(expectedValues) {
 	  if (!Array.isArray(expectedValues)) {
 	    return createChainableTypeChecker(function () {
 	      return new Error('Invalid argument supplied to oneOf, expected an instance of array.');
 	    });
 	  }
-
+	
 	  function validate(props, propName, componentName, location, propFullName) {
 	    var propValue = props[propName];
 	    for (var i = 0; i < expectedValues.length; i++) {
@@ -14277,14 +14765,14 @@ var SettingsPanel =
 	        return null;
 	      }
 	    }
-
+	
 	    var locationName = ReactPropTypeLocationNames[location];
 	    var valuesString = JSON.stringify(expectedValues);
 	    return new Error('Invalid ' + locationName + ' `' + propFullName + '` of value `' + propValue + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
 	  }
 	  return createChainableTypeChecker(validate);
 	}
-
+	
 	function createObjectOfTypeChecker(typeChecker) {
 	  function validate(props, propName, componentName, location, propFullName) {
 	    var propValue = props[propName];
@@ -14305,14 +14793,14 @@ var SettingsPanel =
 	  }
 	  return createChainableTypeChecker(validate);
 	}
-
+	
 	function createUnionTypeChecker(arrayOfTypeCheckers) {
 	  if (!Array.isArray(arrayOfTypeCheckers)) {
 	    return createChainableTypeChecker(function () {
 	      return new Error('Invalid argument supplied to oneOfType, expected an instance of array.');
 	    });
 	  }
-
+	
 	  function validate(props, propName, componentName, location, propFullName) {
 	    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
 	      var checker = arrayOfTypeCheckers[i];
@@ -14320,13 +14808,13 @@ var SettingsPanel =
 	        return null;
 	      }
 	    }
-
+	
 	    var locationName = ReactPropTypeLocationNames[location];
 	    return new Error('Invalid ' + locationName + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
 	  }
 	  return createChainableTypeChecker(validate);
 	}
-
+	
 	function createNodeChecker() {
 	  function validate(props, propName, componentName, location, propFullName) {
 	    if (!isNode(props[propName])) {
@@ -14337,7 +14825,7 @@ var SettingsPanel =
 	  }
 	  return createChainableTypeChecker(validate);
 	}
-
+	
 	function createShapeTypeChecker(shapeTypes) {
 	  function validate(props, propName, componentName, location, propFullName) {
 	    var propValue = props[propName];
@@ -14360,7 +14848,7 @@ var SettingsPanel =
 	  }
 	  return createChainableTypeChecker(validate);
 	}
-
+	
 	function isNode(propValue) {
 	  switch (typeof propValue) {
 	    case 'number':
@@ -14376,7 +14864,7 @@ var SettingsPanel =
 	      if (propValue === null || ReactElement.isValidElement(propValue)) {
 	        return true;
 	      }
-
+	
 	      var iteratorFn = getIteratorFn(propValue);
 	      if (iteratorFn) {
 	        var iterator = iteratorFn.call(propValue);
@@ -14401,13 +14889,13 @@ var SettingsPanel =
 	      } else {
 	        return false;
 	      }
-
+	
 	      return true;
 	    default:
 	      return false;
 	  }
 	}
-
+	
 	// Equivalent of `typeof` but with special handling for array and regexp.
 	function getPropType(propValue) {
 	  var propType = typeof propValue;
@@ -14422,7 +14910,7 @@ var SettingsPanel =
 	  }
 	  return propType;
 	}
-
+	
 	// This handles more types than `getPropType`. Only used for error messages.
 	// See `createPrimitiveTypeChecker`.
 	function getPreciseType(propValue) {
@@ -14436,7 +14924,7 @@ var SettingsPanel =
 	  }
 	  return propType;
 	}
-
+	
 	// Returns class name of the object, if any.
 	function getClassName(propValue) {
 	  if (!propValue.constructor || !propValue.constructor.name) {
@@ -14444,11 +14932,14 @@ var SettingsPanel =
 	  }
 	  return propValue.constructor.name;
 	}
-
+	
 	module.exports = ReactPropTypes;
 
 /***/ },
-/* 157 */
+/* 158 */
+/*!**************************************!*\
+  !*** ./~/react/lib/getIteratorFn.js ***!
+  \**************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -14462,13 +14953,13 @@ var SettingsPanel =
 	 * @providesModule getIteratorFn
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
+	
 	/* global Symbol */
 	var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
 	var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
-
+	
 	/**
 	 * Returns the iterator method function contained on the iterable object.
 	 *
@@ -14489,11 +14980,14 @@ var SettingsPanel =
 	    return iteratorFn;
 	  }
 	}
-
+	
 	module.exports = getIteratorFn;
 
 /***/ },
-/* 158 */
+/* 159 */
+/*!***************************************!*\
+  !*** ./~/react/lib/ReactDOMOption.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -14506,17 +15000,17 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactDOMOption
 	 */
-
+	
 	'use strict';
-
-	var ReactChildren = __webpack_require__(159);
-	var ReactDOMSelect = __webpack_require__(161);
-
-	var assign = __webpack_require__(88);
-	var warning = __webpack_require__(74);
-
+	
+	var ReactChildren = __webpack_require__(/*! ./ReactChildren */ 160);
+	var ReactDOMSelect = __webpack_require__(/*! ./ReactDOMSelect */ 162);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	var valueContextKey = ReactDOMSelect.valueContextKey;
-
+	
 	/**
 	 * Implements an <option> native component that warns when `selected` is set.
 	 */
@@ -14526,10 +15020,10 @@ var SettingsPanel =
 	    if (process.env.NODE_ENV !== 'production') {
 	      process.env.NODE_ENV !== 'production' ? warning(props.selected == null, 'Use the `defaultValue` or `value` props on <select> instead of ' + 'setting `selected` on <option>.') : undefined;
 	    }
-
+	
 	    // Look up whether this option is 'selected' via context
 	    var selectValue = context[valueContextKey];
-
+	
 	    // If context key is null (e.g., no specified value or after initial mount)
 	    // or missing (e.g., for <datalist>), we don't change props.selected
 	    var selected = null;
@@ -14547,21 +15041,21 @@ var SettingsPanel =
 	        selected = '' + selectValue === '' + props.value;
 	      }
 	    }
-
+	
 	    inst._wrapperState = { selected: selected };
 	  },
-
+	
 	  getNativeProps: function (inst, props, context) {
 	    var nativeProps = assign({ selected: undefined, children: undefined }, props);
-
+	
 	    // Read state only from initial mount because <select> updates value
 	    // manually; we need the initial state only for server rendering
 	    if (inst._wrapperState.selected != null) {
 	      nativeProps.selected = inst._wrapperState.selected;
 	    }
-
+	
 	    var content = '';
-
+	
 	    // Flatten children and warn if they aren't strings or numbers;
 	    // invalid types are ignored.
 	    ReactChildren.forEach(props.children, function (child) {
@@ -14574,18 +15068,21 @@ var SettingsPanel =
 	        process.env.NODE_ENV !== 'production' ? warning(false, 'Only strings and numbers are supported as <option> children.') : undefined;
 	      }
 	    });
-
+	
 	    nativeProps.children = content;
 	    return nativeProps;
 	  }
-
+	
 	};
-
+	
 	module.exports = ReactDOMOption;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 159 */
+/* 160 */
+/*!**************************************!*\
+  !*** ./~/react/lib/ReactChildren.js ***!
+  \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -14598,23 +15095,23 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactChildren
 	 */
-
+	
 	'use strict';
-
-	var PooledClass = __webpack_require__(105);
-	var ReactElement = __webpack_require__(91);
-
-	var emptyFunction = __webpack_require__(64);
-	var traverseAllChildren = __webpack_require__(160);
-
+	
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 106);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 92);
+	
+	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 65);
+	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 161);
+	
 	var twoArgumentPooler = PooledClass.twoArgumentPooler;
 	var fourArgumentPooler = PooledClass.fourArgumentPooler;
-
+	
 	var userProvidedKeyEscapeRegex = /\/(?!\/)/g;
 	function escapeUserProvidedKey(text) {
 	  return ('' + text).replace(userProvidedKeyEscapeRegex, '//');
 	}
-
+	
 	/**
 	 * PooledClass representing the bookkeeping associated with performing a child
 	 * traversal. Allows avoiding binding callbacks.
@@ -14634,14 +15131,14 @@ var SettingsPanel =
 	  this.count = 0;
 	};
 	PooledClass.addPoolingTo(ForEachBookKeeping, twoArgumentPooler);
-
+	
 	function forEachSingleChild(bookKeeping, child, name) {
 	  var func = bookKeeping.func;
 	  var context = bookKeeping.context;
-
+	
 	  func.call(context, child, bookKeeping.count++);
 	}
-
+	
 	/**
 	 * Iterates through children that are typically specified as `props.children`.
 	 *
@@ -14660,7 +15157,7 @@ var SettingsPanel =
 	  traverseAllChildren(children, forEachSingleChild, traverseContext);
 	  ForEachBookKeeping.release(traverseContext);
 	}
-
+	
 	/**
 	 * PooledClass representing the bookkeeping associated with performing a child
 	 * mapping. Allows avoiding binding callbacks.
@@ -14685,13 +15182,13 @@ var SettingsPanel =
 	  this.count = 0;
 	};
 	PooledClass.addPoolingTo(MapBookKeeping, fourArgumentPooler);
-
+	
 	function mapSingleChildIntoContext(bookKeeping, child, childKey) {
 	  var result = bookKeeping.result;
 	  var keyPrefix = bookKeeping.keyPrefix;
 	  var func = bookKeeping.func;
 	  var context = bookKeeping.context;
-
+	
 	  var mappedChild = func.call(context, child, bookKeeping.count++);
 	  if (Array.isArray(mappedChild)) {
 	    mapIntoWithKeyPrefixInternal(mappedChild, result, childKey, emptyFunction.thatReturnsArgument);
@@ -14705,7 +15202,7 @@ var SettingsPanel =
 	    result.push(mappedChild);
 	  }
 	}
-
+	
 	function mapIntoWithKeyPrefixInternal(children, array, prefix, func, context) {
 	  var escapedPrefix = '';
 	  if (prefix != null) {
@@ -14715,7 +15212,7 @@ var SettingsPanel =
 	  traverseAllChildren(children, mapSingleChildIntoContext, traverseContext);
 	  MapBookKeeping.release(traverseContext);
 	}
-
+	
 	/**
 	 * Maps children that are typically specified as `props.children`.
 	 *
@@ -14735,11 +15232,11 @@ var SettingsPanel =
 	  mapIntoWithKeyPrefixInternal(children, result, null, func, context);
 	  return result;
 	}
-
+	
 	function forEachSingleChildDummy(traverseContext, child, name) {
 	  return null;
 	}
-
+	
 	/**
 	 * Count the number of children that are typically specified as
 	 * `props.children`.
@@ -14750,7 +15247,7 @@ var SettingsPanel =
 	function countChildren(children, context) {
 	  return traverseAllChildren(children, forEachSingleChildDummy, null);
 	}
-
+	
 	/**
 	 * Flatten a children object (typically specified as `props.children`) and
 	 * return an array with appropriately re-keyed children.
@@ -14760,7 +15257,7 @@ var SettingsPanel =
 	  mapIntoWithKeyPrefixInternal(children, result, null, emptyFunction.thatReturnsArgument);
 	  return result;
 	}
-
+	
 	var ReactChildren = {
 	  forEach: forEachChildren,
 	  map: mapChildren,
@@ -14768,11 +15265,14 @@ var SettingsPanel =
 	  count: countChildren,
 	  toArray: toArray
 	};
-
+	
 	module.exports = ReactChildren;
 
 /***/ },
-/* 160 */
+/* 161 */
+/*!********************************************!*\
+  !*** ./~/react/lib/traverseAllChildren.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -14785,39 +15285,39 @@ var SettingsPanel =
 	 *
 	 * @providesModule traverseAllChildren
 	 */
-
+	
 	'use strict';
-
-	var ReactCurrentOwner = __webpack_require__(54);
-	var ReactElement = __webpack_require__(91);
-	var ReactInstanceHandles = __webpack_require__(94);
-
-	var getIteratorFn = __webpack_require__(157);
-	var invariant = __webpack_require__(62);
-	var warning = __webpack_require__(74);
-
+	
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 55);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 92);
+	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 95);
+	
+	var getIteratorFn = __webpack_require__(/*! ./getIteratorFn */ 158);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
 	var SUBSEPARATOR = ':';
-
+	
 	/**
 	 * TODO: Test that a single child and an array with one item have the same key
 	 * pattern.
 	 */
-
+	
 	var userProvidedKeyEscaperLookup = {
 	  '=': '=0',
 	  '.': '=1',
 	  ':': '=2'
 	};
-
+	
 	var userProvidedKeyEscapeRegex = /[=.:]/g;
-
+	
 	var didWarnAboutMaps = false;
-
+	
 	function userProvidedKeyEscaper(match) {
 	  return userProvidedKeyEscaperLookup[match];
 	}
-
+	
 	/**
 	 * Generate a key string that identifies a component within a set.
 	 *
@@ -14833,7 +15333,7 @@ var SettingsPanel =
 	  // Implicit key determined by the index in the set
 	  return index.toString(36);
 	}
-
+	
 	/**
 	 * Escape a component key so that it is safe to use in a reactid.
 	 *
@@ -14843,7 +15343,7 @@ var SettingsPanel =
 	function escapeUserProvidedKey(text) {
 	  return ('' + text).replace(userProvidedKeyEscapeRegex, userProvidedKeyEscaper);
 	}
-
+	
 	/**
 	 * Wrap a `key` value explicitly provided by the user to distinguish it from
 	 * implicitly-generated keys generated by a component's index in its parent.
@@ -14854,7 +15354,7 @@ var SettingsPanel =
 	function wrapUserProvidedKey(key) {
 	  return '$' + escapeUserProvidedKey(key);
 	}
-
+	
 	/**
 	 * @param {?*} children Children tree container.
 	 * @param {!string} nameSoFar Name of the key path so far.
@@ -14865,12 +15365,12 @@ var SettingsPanel =
 	 */
 	function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext) {
 	  var type = typeof children;
-
+	
 	  if (type === 'undefined' || type === 'boolean') {
 	    // All of the above are perceived as null.
 	    children = null;
 	  }
-
+	
 	  if (children === null || type === 'string' || type === 'number' || ReactElement.isValidElement(children)) {
 	    callback(traverseContext, children,
 	    // If it's the only child, treat the name as if it was wrapped in an array
@@ -14878,12 +15378,12 @@ var SettingsPanel =
 	    nameSoFar === '' ? SEPARATOR + getComponentKey(children, 0) : nameSoFar);
 	    return 1;
 	  }
-
+	
 	  var child;
 	  var nextName;
 	  var subtreeCount = 0; // Count of children found in the current subtree.
 	  var nextNamePrefix = nameSoFar === '' ? SEPARATOR : nameSoFar + SUBSEPARATOR;
-
+	
 	  if (Array.isArray(children)) {
 	    for (var i = 0; i < children.length; i++) {
 	      child = children[i];
@@ -14935,10 +15435,10 @@ var SettingsPanel =
 	       true ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Objects are not valid as a React child (found: %s).%s', childrenString === '[object Object]' ? 'object with keys {' + Object.keys(children).join(', ') + '}' : childrenString, addendum) : invariant(false) : undefined;
 	    }
 	  }
-
+	
 	  return subtreeCount;
 	}
-
+	
 	/**
 	 * Traverses children that are typically specified as `props.children`, but
 	 * might also be specified through attributes:
@@ -14959,15 +15459,18 @@ var SettingsPanel =
 	  if (children == null) {
 	    return 0;
 	  }
-
+	
 	  return traverseAllChildrenImpl(children, '', callback, traverseContext);
 	}
-
+	
 	module.exports = traverseAllChildren;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 161 */
+/* 162 */
+/*!***************************************!*\
+  !*** ./~/react/lib/ReactDOMSelect.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -14980,31 +15483,31 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactDOMSelect
 	 */
-
+	
 	'use strict';
-
-	var LinkedValueUtils = __webpack_require__(155);
-	var ReactMount = __webpack_require__(77);
-	var ReactUpdates = __webpack_require__(103);
-
-	var assign = __webpack_require__(88);
-	var warning = __webpack_require__(74);
-
+	
+	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 156);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 104);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	var valueContextKey = '__ReactDOMSelect_value$' + Math.random().toString(36).slice(2);
-
+	
 	function updateOptionsIfPendingUpdateAndMounted() {
 	  if (this._rootNodeID && this._wrapperState.pendingUpdate) {
 	    this._wrapperState.pendingUpdate = false;
-
+	
 	    var props = this._currentElement.props;
 	    var value = LinkedValueUtils.getValue(props);
-
+	
 	    if (value != null) {
 	      updateOptions(this, Boolean(props.multiple), value);
 	    }
 	  }
 	}
-
+	
 	function getDeclarationErrorAddendum(owner) {
 	  if (owner) {
 	    var name = owner.getName();
@@ -15014,9 +15517,9 @@ var SettingsPanel =
 	  }
 	  return '';
 	}
-
+	
 	var valuePropNames = ['value', 'defaultValue'];
-
+	
 	/**
 	 * Validation function for `value` and `defaultValue`.
 	 * @private
@@ -15024,7 +15527,7 @@ var SettingsPanel =
 	function checkSelectPropTypes(inst, props) {
 	  var owner = inst._currentElement._owner;
 	  LinkedValueUtils.checkPropTypes('select', props, owner);
-
+	
 	  for (var i = 0; i < valuePropNames.length; i++) {
 	    var propName = valuePropNames[i];
 	    if (props[propName] == null) {
@@ -15037,7 +15540,7 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	/**
 	 * @param {ReactDOMComponent} inst
 	 * @param {boolean} multiple
@@ -15047,7 +15550,7 @@ var SettingsPanel =
 	function updateOptions(inst, multiple, propValue) {
 	  var selectedValue, i;
 	  var options = ReactMount.getNode(inst._rootNodeID).options;
-
+	
 	  if (multiple) {
 	    selectedValue = {};
 	    for (i = 0; i < propValue.length; i++) {
@@ -15074,7 +15577,7 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	/**
 	 * Implements a <select> native component that allows optionally setting the
 	 * props `value` and `defaultValue`. If `multiple` is false, the prop must be a
@@ -15092,19 +15595,19 @@ var SettingsPanel =
 	 */
 	var ReactDOMSelect = {
 	  valueContextKey: valueContextKey,
-
+	
 	  getNativeProps: function (inst, props, context) {
 	    return assign({}, props, {
 	      onChange: inst._wrapperState.onChange,
 	      value: undefined
 	    });
 	  },
-
+	
 	  mountWrapper: function (inst, props) {
 	    if (process.env.NODE_ENV !== 'production') {
 	      checkSelectPropTypes(inst, props);
 	    }
-
+	
 	    var value = LinkedValueUtils.getValue(props);
 	    inst._wrapperState = {
 	      pendingUpdate: false,
@@ -15113,7 +15616,7 @@ var SettingsPanel =
 	      wasMultiple: Boolean(props.multiple)
 	    };
 	  },
-
+	
 	  processChildContext: function (inst, props, context) {
 	    // Pass down initial value so initial generated markup has correct
 	    // `selected` attributes
@@ -15121,17 +15624,17 @@ var SettingsPanel =
 	    childContext[valueContextKey] = inst._wrapperState.initialValue;
 	    return childContext;
 	  },
-
+	
 	  postUpdateWrapper: function (inst) {
 	    var props = inst._currentElement.props;
-
+	
 	    // After the initial mount, we control selected-ness manually so don't pass
 	    // the context value down
 	    inst._wrapperState.initialValue = undefined;
-
+	
 	    var wasMultiple = inst._wrapperState.wasMultiple;
 	    inst._wrapperState.wasMultiple = Boolean(props.multiple);
-
+	
 	    var value = LinkedValueUtils.getValue(props);
 	    if (value != null) {
 	      inst._wrapperState.pendingUpdate = false;
@@ -15147,21 +15650,24 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	function _handleChange(event) {
 	  var props = this._currentElement.props;
 	  var returnValue = LinkedValueUtils.executeOnChange(props, event);
-
+	
 	  this._wrapperState.pendingUpdate = true;
 	  ReactUpdates.asap(updateOptionsIfPendingUpdateAndMounted, this);
 	  return returnValue;
 	}
-
+	
 	module.exports = ReactDOMSelect;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 162 */
+/* 163 */
+/*!*****************************************!*\
+  !*** ./~/react/lib/ReactDOMTextarea.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -15174,24 +15680,24 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactDOMTextarea
 	 */
-
+	
 	'use strict';
-
-	var LinkedValueUtils = __webpack_require__(155);
-	var ReactDOMIDOperations = __webpack_require__(76);
-	var ReactUpdates = __webpack_require__(103);
-
-	var assign = __webpack_require__(88);
-	var invariant = __webpack_require__(62);
-	var warning = __webpack_require__(74);
-
+	
+	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 156);
+	var ReactDOMIDOperations = __webpack_require__(/*! ./ReactDOMIDOperations */ 77);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 104);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	function forceUpdateIfMounted() {
 	  if (this._rootNodeID) {
 	    // DOM component is still mounted; update
 	    ReactDOMTextarea.updateWrapper(this);
 	  }
 	}
-
+	
 	/**
 	 * Implements a <textarea> native component that allows setting `value`, and
 	 * `defaultValue`. This differs from the traditional DOM API because value is
@@ -15210,7 +15716,7 @@ var SettingsPanel =
 	var ReactDOMTextarea = {
 	  getNativeProps: function (inst, props, context) {
 	    !(props.dangerouslySetInnerHTML == null) ? process.env.NODE_ENV !== 'production' ? invariant(false, '`dangerouslySetInnerHTML` does not make sense on <textarea>.') : invariant(false) : undefined;
-
+	
 	    // Always set children to the same thing. In IE9, the selection range will
 	    // get reset if `textContent` is mutated.
 	    var nativeProps = assign({}, props, {
@@ -15219,15 +15725,15 @@ var SettingsPanel =
 	      children: inst._wrapperState.initialValue,
 	      onChange: inst._wrapperState.onChange
 	    });
-
+	
 	    return nativeProps;
 	  },
-
+	
 	  mountWrapper: function (inst, props) {
 	    if (process.env.NODE_ENV !== 'production') {
 	      LinkedValueUtils.checkPropTypes('textarea', props, inst._currentElement._owner);
 	    }
-
+	
 	    var defaultValue = props.defaultValue;
 	    // TODO (yungsters): Remove support for children content in <textarea>.
 	    var children = props.children;
@@ -15240,14 +15746,14 @@ var SettingsPanel =
 	        !(children.length <= 1) ? process.env.NODE_ENV !== 'production' ? invariant(false, '<textarea> can only have at most one child.') : invariant(false) : undefined;
 	        children = children[0];
 	      }
-
+	
 	      defaultValue = '' + children;
 	    }
 	    if (defaultValue == null) {
 	      defaultValue = '';
 	    }
 	    var value = LinkedValueUtils.getValue(props);
-
+	
 	    inst._wrapperState = {
 	      // We save the initial value so that `ReactDOMComponent` doesn't update
 	      // `textContent` (unnecessary since we update value).
@@ -15257,7 +15763,7 @@ var SettingsPanel =
 	      onChange: _handleChange.bind(inst)
 	    };
 	  },
-
+	
 	  updateWrapper: function (inst) {
 	    var props = inst._currentElement.props;
 	    var value = LinkedValueUtils.getValue(props);
@@ -15268,19 +15774,22 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	function _handleChange(event) {
 	  var props = this._currentElement.props;
 	  var returnValue = LinkedValueUtils.executeOnChange(props, event);
 	  ReactUpdates.asap(forceUpdateIfMounted, this);
 	  return returnValue;
 	}
-
+	
 	module.exports = ReactDOMTextarea;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 163 */
+/* 164 */
+/*!****************************************!*\
+  !*** ./~/react/lib/ReactMultiChild.js ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -15294,18 +15803,18 @@ var SettingsPanel =
 	 * @providesModule ReactMultiChild
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var ReactComponentEnvironment = __webpack_require__(113);
-	var ReactMultiChildUpdateTypes = __webpack_require__(65);
-
-	var ReactCurrentOwner = __webpack_require__(54);
-	var ReactReconciler = __webpack_require__(99);
-	var ReactChildReconciler = __webpack_require__(164);
-
-	var flattenChildren = __webpack_require__(165);
-
+	
+	var ReactComponentEnvironment = __webpack_require__(/*! ./ReactComponentEnvironment */ 114);
+	var ReactMultiChildUpdateTypes = __webpack_require__(/*! ./ReactMultiChildUpdateTypes */ 66);
+	
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 55);
+	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 100);
+	var ReactChildReconciler = __webpack_require__(/*! ./ReactChildReconciler */ 165);
+	
+	var flattenChildren = __webpack_require__(/*! ./flattenChildren */ 166);
+	
 	/**
 	 * Updating children of a component may trigger recursive updates. The depth is
 	 * used to batch recursive updates to render markup more efficiently.
@@ -15314,7 +15823,7 @@ var SettingsPanel =
 	 * @private
 	 */
 	var updateDepth = 0;
-
+	
 	/**
 	 * Queue of update configuration objects.
 	 *
@@ -15324,7 +15833,7 @@ var SettingsPanel =
 	 * @private
 	 */
 	var updateQueue = [];
-
+	
 	/**
 	 * Queue of markup to be rendered.
 	 *
@@ -15332,7 +15841,7 @@ var SettingsPanel =
 	 * @private
 	 */
 	var markupQueue = [];
-
+	
 	/**
 	 * Enqueues markup to be rendered and inserted at a supplied index.
 	 *
@@ -15353,7 +15862,7 @@ var SettingsPanel =
 	    toIndex: toIndex
 	  });
 	}
-
+	
 	/**
 	 * Enqueues moving an existing element to another index.
 	 *
@@ -15374,7 +15883,7 @@ var SettingsPanel =
 	    toIndex: toIndex
 	  });
 	}
-
+	
 	/**
 	 * Enqueues removing an element at an index.
 	 *
@@ -15394,7 +15903,7 @@ var SettingsPanel =
 	    toIndex: null
 	  });
 	}
-
+	
 	/**
 	 * Enqueues setting the markup of a node.
 	 *
@@ -15414,7 +15923,7 @@ var SettingsPanel =
 	    toIndex: null
 	  });
 	}
-
+	
 	/**
 	 * Enqueues setting the text content.
 	 *
@@ -15434,7 +15943,7 @@ var SettingsPanel =
 	    toIndex: null
 	  });
 	}
-
+	
 	/**
 	 * Processes any enqueued updates.
 	 *
@@ -15446,7 +15955,7 @@ var SettingsPanel =
 	    clearQueue();
 	  }
 	}
-
+	
 	/**
 	 * Clears any enqueued updates.
 	 *
@@ -15456,7 +15965,7 @@ var SettingsPanel =
 	  updateQueue.length = 0;
 	  markupQueue.length = 0;
 	}
-
+	
 	/**
 	 * ReactMultiChild are capable of reconciling multiple children.
 	 *
@@ -15464,7 +15973,7 @@ var SettingsPanel =
 	 * @internal
 	 */
 	var ReactMultiChild = {
-
+	
 	  /**
 	   * Provides common functionality for components that must reconcile multiple
 	   * children. This is used by `ReactDOMComponent` to mount, update, and
@@ -15473,7 +15982,7 @@ var SettingsPanel =
 	   * @lends {ReactMultiChild.prototype}
 	   */
 	  Mixin: {
-
+	
 	    _reconcilerInstantiateChildren: function (nestedChildren, transaction, context) {
 	      if (process.env.NODE_ENV !== 'production') {
 	        if (this._currentElement) {
@@ -15487,7 +15996,7 @@ var SettingsPanel =
 	      }
 	      return ReactChildReconciler.instantiateChildren(nestedChildren, transaction, context);
 	    },
-
+	
 	    _reconcilerUpdateChildren: function (prevChildren, nextNestedChildrenElements, transaction, context) {
 	      var nextChildren;
 	      if (process.env.NODE_ENV !== 'production') {
@@ -15504,7 +16013,7 @@ var SettingsPanel =
 	      nextChildren = flattenChildren(nextNestedChildrenElements);
 	      return ReactChildReconciler.updateChildren(prevChildren, nextChildren, transaction, context);
 	    },
-
+	
 	    /**
 	     * Generates a "mount image" for each of the supplied children. In the case
 	     * of `ReactDOMComponent`, a mount image is a string of markup.
@@ -15530,7 +16039,7 @@ var SettingsPanel =
 	      }
 	      return mountImages;
 	    },
-
+	
 	    /**
 	     * Replaces any rendered children with a text content string.
 	     *
@@ -15564,7 +16073,7 @@ var SettingsPanel =
 	        }
 	      }
 	    },
-
+	
 	    /**
 	     * Replaces any rendered children with a markup string.
 	     *
@@ -15596,7 +16105,7 @@ var SettingsPanel =
 	        }
 	      }
 	    },
-
+	
 	    /**
 	     * Updates the rendered children with new children.
 	     *
@@ -15621,7 +16130,7 @@ var SettingsPanel =
 	        }
 	      }
 	    },
-
+	
 	    /**
 	     * Improve performance by isolating this hot code path from the try/catch
 	     * block in `updateChildren`.
@@ -15671,7 +16180,7 @@ var SettingsPanel =
 	        }
 	      }
 	    },
-
+	
 	    /**
 	     * Unmounts all rendered children. This should be used to clean up children
 	     * when this component is unmounted.
@@ -15683,7 +16192,7 @@ var SettingsPanel =
 	      ReactChildReconciler.unmountChildren(renderedChildren);
 	      this._renderedChildren = null;
 	    },
-
+	
 	    /**
 	     * Moves a child component to the supplied index.
 	     *
@@ -15700,7 +16209,7 @@ var SettingsPanel =
 	        enqueueMove(this._rootNodeID, child._mountIndex, toIndex);
 	      }
 	    },
-
+	
 	    /**
 	     * Creates a child component.
 	     *
@@ -15711,7 +16220,7 @@ var SettingsPanel =
 	    createChild: function (child, mountImage) {
 	      enqueueInsertMarkup(this._rootNodeID, mountImage, child._mountIndex);
 	    },
-
+	
 	    /**
 	     * Removes a child component.
 	     *
@@ -15721,7 +16230,7 @@ var SettingsPanel =
 	    removeChild: function (child) {
 	      enqueueRemove(this._rootNodeID, child._mountIndex);
 	    },
-
+	
 	    /**
 	     * Sets this text content string.
 	     *
@@ -15731,7 +16240,7 @@ var SettingsPanel =
 	    setTextContent: function (textContent) {
 	      enqueueTextContent(this._rootNodeID, textContent);
 	    },
-
+	
 	    /**
 	     * Sets this markup string.
 	     *
@@ -15741,7 +16250,7 @@ var SettingsPanel =
 	    setMarkup: function (markup) {
 	      enqueueSetMarkup(this._rootNodeID, markup);
 	    },
-
+	
 	    /**
 	     * Mounts a child with the supplied name.
 	     *
@@ -15760,7 +16269,7 @@ var SettingsPanel =
 	      child._mountIndex = index;
 	      this.createChild(child, mountImage);
 	    },
-
+	
 	    /**
 	     * Unmounts a rendered child.
 	     *
@@ -15773,16 +16282,19 @@ var SettingsPanel =
 	      this.removeChild(child);
 	      child._mountIndex = null;
 	    }
-
+	
 	  }
-
+	
 	};
-
+	
 	module.exports = ReactMultiChild;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 164 */
+/* 165 */
+/*!*********************************************!*\
+  !*** ./~/react/lib/ReactChildReconciler.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -15796,16 +16308,16 @@ var SettingsPanel =
 	 * @providesModule ReactChildReconciler
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var ReactReconciler = __webpack_require__(99);
-
-	var instantiateReactComponent = __webpack_require__(111);
-	var shouldUpdateReactComponent = __webpack_require__(116);
-	var traverseAllChildren = __webpack_require__(160);
-	var warning = __webpack_require__(74);
-
+	
+	var ReactReconciler = __webpack_require__(/*! ./ReactReconciler */ 100);
+	
+	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 112);
+	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 117);
+	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 161);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	function instantiateChild(childInstances, child, name) {
 	  // We found a component instance.
 	  var keyUnique = childInstances[name] === undefined;
@@ -15816,7 +16328,7 @@ var SettingsPanel =
 	    childInstances[name] = instantiateReactComponent(child, null);
 	  }
 	}
-
+	
 	/**
 	 * ReactChildReconciler provides helpers for initializing or updating a set of
 	 * children. Its output is suitable for passing it onto ReactMultiChild which
@@ -15839,7 +16351,7 @@ var SettingsPanel =
 	    traverseAllChildren(nestedChildNodes, instantiateChild, childInstances);
 	    return childInstances;
 	  },
-
+	
 	  /**
 	   * Updates the rendered children and returns a new set of children.
 	   *
@@ -15887,7 +16399,7 @@ var SettingsPanel =
 	    }
 	    return nextChildren;
 	  },
-
+	
 	  /**
 	   * Unmounts all rendered children. This should be used to clean up children
 	   * when this component is unmounted.
@@ -15903,14 +16415,17 @@ var SettingsPanel =
 	      }
 	    }
 	  }
-
+	
 	};
-
+	
 	module.exports = ReactChildReconciler;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 165 */
+/* 166 */
+/*!****************************************!*\
+  !*** ./~/react/lib/flattenChildren.js ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -15923,12 +16438,12 @@ var SettingsPanel =
 	 *
 	 * @providesModule flattenChildren
 	 */
-
+	
 	'use strict';
-
-	var traverseAllChildren = __webpack_require__(160);
-	var warning = __webpack_require__(74);
-
+	
+	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 161);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	/**
 	 * @param {function} traverseContext Context passed through traversal.
 	 * @param {?ReactComponent} child React child component.
@@ -15945,7 +16460,7 @@ var SettingsPanel =
 	    result[name] = child;
 	  }
 	}
-
+	
 	/**
 	 * Flattens children that are typically specified as `props.children`. Any null
 	 * children will not be included in the resulting object.
@@ -15959,12 +16474,15 @@ var SettingsPanel =
 	  traverseAllChildren(children, flattenSingleChildIntoContext, result);
 	  return result;
 	}
-
+	
 	module.exports = flattenChildren;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 166 */
+/* 167 */
+/*!************************************!*\
+  !*** ./~/fbjs/lib/shallowEqual.js ***!
+  \************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -15979,11 +16497,11 @@ var SettingsPanel =
 	 * @typechecks
 	 * 
 	 */
-
+	
 	'use strict';
-
+	
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
-
+	
 	/**
 	 * Performs equality by iterating through keys on an object and returning false
 	 * when any key has values which are not strictly equal between the arguments.
@@ -15993,18 +16511,18 @@ var SettingsPanel =
 	  if (objA === objB) {
 	    return true;
 	  }
-
+	
 	  if (typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null) {
 	    return false;
 	  }
-
+	
 	  var keysA = Object.keys(objA);
 	  var keysB = Object.keys(objB);
-
+	
 	  if (keysA.length !== keysB.length) {
 	    return false;
 	  }
-
+	
 	  // Test for A's keys different from B.
 	  var bHasOwnProperty = hasOwnProperty.bind(objB);
 	  for (var i = 0; i < keysA.length; i++) {
@@ -16012,14 +16530,17 @@ var SettingsPanel =
 	      return false;
 	    }
 	  }
-
+	
 	  return true;
 	}
-
+	
 	module.exports = shallowEqual;
 
 /***/ },
-/* 167 */
+/* 168 */
+/*!*******************************************!*\
+  !*** ./~/react/lib/ReactEventListener.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -16033,22 +16554,22 @@ var SettingsPanel =
 	 * @providesModule ReactEventListener
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var EventListener = __webpack_require__(168);
-	var ExecutionEnvironment = __webpack_require__(58);
-	var PooledClass = __webpack_require__(105);
-	var ReactInstanceHandles = __webpack_require__(94);
-	var ReactMount = __webpack_require__(77);
-	var ReactUpdates = __webpack_require__(103);
-
-	var assign = __webpack_require__(88);
-	var getEventTarget = __webpack_require__(130);
-	var getUnboundedScrollPosition = __webpack_require__(169);
-
+	
+	var EventListener = __webpack_require__(/*! fbjs/lib/EventListener */ 169);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 59);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 106);
+	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 95);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 104);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 131);
+	var getUnboundedScrollPosition = __webpack_require__(/*! fbjs/lib/getUnboundedScrollPosition */ 170);
+	
 	var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
-
+	
 	/**
 	 * Finds the parent React component of `node`.
 	 *
@@ -16066,7 +16587,7 @@ var SettingsPanel =
 	  var parent = ReactMount.getFirstReactDOM(container);
 	  return parent;
 	}
-
+	
 	// Used to store ancestor hierarchy in top level callback
 	function TopLevelCallbackBookKeeping(topLevelType, nativeEvent) {
 	  this.topLevelType = topLevelType;
@@ -16081,7 +16602,7 @@ var SettingsPanel =
 	  }
 	});
 	PooledClass.addPoolingTo(TopLevelCallbackBookKeeping, PooledClass.twoArgumentPooler);
-
+	
 	function handleTopLevelImpl(bookKeeping) {
 	  // TODO: Re-enable event.path handling
 	  //
@@ -16092,15 +16613,15 @@ var SettingsPanel =
 	  //   // Legacy browsers don't have a path attribute on native events
 	  //   handleTopLevelWithoutPath(bookKeeping);
 	  // }
-
+	
 	  void handleTopLevelWithPath; // temporarily unused
 	  handleTopLevelWithoutPath(bookKeeping);
 	}
-
+	
 	// Legacy browsers don't have a path attribute on native events
 	function handleTopLevelWithoutPath(bookKeeping) {
 	  var topLevelTarget = ReactMount.getFirstReactDOM(getEventTarget(bookKeeping.nativeEvent)) || window;
-
+	
 	  // Loop through the hierarchy, in case there's any nested components.
 	  // It's important that we build the array of ancestors before calling any
 	  // event handlers, because event handlers can modify the DOM, leading to
@@ -16110,14 +16631,14 @@ var SettingsPanel =
 	    bookKeeping.ancestors.push(ancestor);
 	    ancestor = findParent(ancestor);
 	  }
-
+	
 	  for (var i = 0; i < bookKeeping.ancestors.length; i++) {
 	    topLevelTarget = bookKeeping.ancestors[i];
 	    var topLevelTargetID = ReactMount.getID(topLevelTarget) || '';
 	    ReactEventListener._handleTopLevel(bookKeeping.topLevelType, topLevelTarget, topLevelTargetID, bookKeeping.nativeEvent, getEventTarget(bookKeeping.nativeEvent));
 	  }
 	}
-
+	
 	// New browsers have a path attribute on native events
 	function handleTopLevelWithPath(bookKeeping) {
 	  var path = bookKeeping.nativeEvent.path;
@@ -16134,11 +16655,11 @@ var SettingsPanel =
 	      var currentPathElementID = ReactMount.getID(currentPathElement);
 	      var newRootID = ReactInstanceHandles.getReactRootIDFromNodeID(currentPathElementID);
 	      bookKeeping.ancestors.push(currentPathElement);
-
+	
 	      var topLevelTargetID = ReactMount.getID(currentPathElement) || '';
 	      eventsFired++;
 	      ReactEventListener._handleTopLevel(bookKeeping.topLevelType, currentPathElement, topLevelTargetID, bookKeeping.nativeEvent, currentNativeTarget);
-
+	
 	      // Jump to the root of this React render tree
 	      while (currentPathElementID !== newRootID) {
 	        i++;
@@ -16151,30 +16672,30 @@ var SettingsPanel =
 	    ReactEventListener._handleTopLevel(bookKeeping.topLevelType, window, '', bookKeeping.nativeEvent, getEventTarget(bookKeeping.nativeEvent));
 	  }
 	}
-
+	
 	function scrollValueMonitor(cb) {
 	  var scrollPosition = getUnboundedScrollPosition(window);
 	  cb(scrollPosition);
 	}
-
+	
 	var ReactEventListener = {
 	  _enabled: true,
 	  _handleTopLevel: null,
-
+	
 	  WINDOW_HANDLE: ExecutionEnvironment.canUseDOM ? window : null,
-
+	
 	  setHandleTopLevel: function (handleTopLevel) {
 	    ReactEventListener._handleTopLevel = handleTopLevel;
 	  },
-
+	
 	  setEnabled: function (enabled) {
 	    ReactEventListener._enabled = !!enabled;
 	  },
-
+	
 	  isEnabled: function () {
 	    return ReactEventListener._enabled;
 	  },
-
+	
 	  /**
 	   * Traps top-level events by using event bubbling.
 	   *
@@ -16192,7 +16713,7 @@ var SettingsPanel =
 	    }
 	    return EventListener.listen(element, handlerBaseName, ReactEventListener.dispatchEvent.bind(null, topLevelType));
 	  },
-
+	
 	  /**
 	   * Traps a top-level event by using event capturing.
 	   *
@@ -16210,17 +16731,17 @@ var SettingsPanel =
 	    }
 	    return EventListener.capture(element, handlerBaseName, ReactEventListener.dispatchEvent.bind(null, topLevelType));
 	  },
-
+	
 	  monitorScrollValue: function (refresh) {
 	    var callback = scrollValueMonitor.bind(null, refresh);
 	    EventListener.listen(window, 'scroll', callback);
 	  },
-
+	
 	  dispatchEvent: function (topLevelType, nativeEvent) {
 	    if (!ReactEventListener._enabled) {
 	      return;
 	    }
-
+	
 	    var bookKeeping = TopLevelCallbackBookKeeping.getPooled(topLevelType, nativeEvent);
 	    try {
 	      // Event queue being processed in the same cycle allows
@@ -16231,11 +16752,14 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	module.exports = ReactEventListener;
 
 /***/ },
-/* 168 */
+/* 169 */
+/*!*************************************!*\
+  !*** ./~/fbjs/lib/EventListener.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -16256,11 +16780,11 @@ var SettingsPanel =
 	 * @providesModule EventListener
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
-	var emptyFunction = __webpack_require__(64);
-
+	
+	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 65);
+	
 	/**
 	 * Upstream version of event listener. Does not take into account specific
 	 * nature of platform.
@@ -16291,7 +16815,7 @@ var SettingsPanel =
 	      };
 	    }
 	  },
-
+	
 	  /**
 	   * Listen to DOM events during the capture phase.
 	   *
@@ -16317,15 +16841,18 @@ var SettingsPanel =
 	      };
 	    }
 	  },
-
+	
 	  registerDefault: function () {}
 	};
-
+	
 	module.exports = EventListener;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 169 */
+/* 170 */
+/*!**************************************************!*\
+  !*** ./~/fbjs/lib/getUnboundedScrollPosition.js ***!
+  \**************************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -16339,9 +16866,9 @@ var SettingsPanel =
 	 * @providesModule getUnboundedScrollPosition
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * Gets the scroll position of the supplied element or window.
 	 *
@@ -16364,11 +16891,14 @@ var SettingsPanel =
 	    y: scrollable.scrollTop
 	  };
 	}
-
+	
 	module.exports = getUnboundedScrollPosition;
 
 /***/ },
-/* 170 */
+/* 171 */
+/*!***************************************!*\
+  !*** ./~/react/lib/ReactInjection.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -16381,20 +16911,20 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactInjection
 	 */
-
+	
 	'use strict';
-
-	var DOMProperty = __webpack_require__(72);
-	var EventPluginHub = __webpack_require__(80);
-	var ReactComponentEnvironment = __webpack_require__(113);
-	var ReactClass = __webpack_require__(171);
-	var ReactEmptyComponent = __webpack_require__(117);
-	var ReactBrowserEventEmitter = __webpack_require__(78);
-	var ReactNativeComponent = __webpack_require__(118);
-	var ReactPerf = __webpack_require__(67);
-	var ReactRootIndex = __webpack_require__(95);
-	var ReactUpdates = __webpack_require__(103);
-
+	
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 73);
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 81);
+	var ReactComponentEnvironment = __webpack_require__(/*! ./ReactComponentEnvironment */ 114);
+	var ReactClass = __webpack_require__(/*! ./ReactClass */ 172);
+	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 118);
+	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 79);
+	var ReactNativeComponent = __webpack_require__(/*! ./ReactNativeComponent */ 119);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 68);
+	var ReactRootIndex = __webpack_require__(/*! ./ReactRootIndex */ 96);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 104);
+	
 	var ReactInjection = {
 	  Component: ReactComponentEnvironment.injection,
 	  Class: ReactClass.injection,
@@ -16407,11 +16937,14 @@ var SettingsPanel =
 	  RootIndex: ReactRootIndex.injection,
 	  Updates: ReactUpdates.injection
 	};
-
+	
 	module.exports = ReactInjection;
 
 /***/ },
-/* 171 */
+/* 172 */
+/*!***********************************!*\
+  !*** ./~/react/lib/ReactClass.js ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -16424,24 +16957,24 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactClass
 	 */
-
+	
 	'use strict';
-
-	var ReactComponent = __webpack_require__(172);
-	var ReactElement = __webpack_require__(91);
-	var ReactPropTypeLocations = __webpack_require__(114);
-	var ReactPropTypeLocationNames = __webpack_require__(115);
-	var ReactNoopUpdateQueue = __webpack_require__(173);
-
-	var assign = __webpack_require__(88);
-	var emptyObject = __webpack_require__(107);
-	var invariant = __webpack_require__(62);
-	var keyMirror = __webpack_require__(66);
-	var keyOf = __webpack_require__(128);
-	var warning = __webpack_require__(74);
-
+	
+	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 173);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 92);
+	var ReactPropTypeLocations = __webpack_require__(/*! ./ReactPropTypeLocations */ 115);
+	var ReactPropTypeLocationNames = __webpack_require__(/*! ./ReactPropTypeLocationNames */ 116);
+	var ReactNoopUpdateQueue = __webpack_require__(/*! ./ReactNoopUpdateQueue */ 174);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var emptyObject = __webpack_require__(/*! fbjs/lib/emptyObject */ 108);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var keyMirror = __webpack_require__(/*! fbjs/lib/keyMirror */ 67);
+	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 129);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	var MIXINS_KEY = keyOf({ mixins: null });
-
+	
 	/**
 	 * Policies that describe methods in `ReactClassInterface`.
 	 */
@@ -16466,9 +16999,9 @@ var SettingsPanel =
 	   */
 	  DEFINE_MANY_MERGED: null
 	});
-
+	
 	var injectedMixins = [];
-
+	
 	var warnedSetProps = false;
 	function warnSetProps() {
 	  if (!warnedSetProps) {
@@ -16476,7 +17009,7 @@ var SettingsPanel =
 	    process.env.NODE_ENV !== 'production' ? warning(false, 'setProps(...) and replaceProps(...) are deprecated. ' + 'Instead, call render again at the top level.') : undefined;
 	  }
 	}
-
+	
 	/**
 	 * Composite components are higher-level components that compose other composite
 	 * or native components.
@@ -16500,7 +17033,7 @@ var SettingsPanel =
 	 * @internal
 	 */
 	var ReactClassInterface = {
-
+	
 	  /**
 	   * An array of Mixin objects to include when defining your component.
 	   *
@@ -16508,7 +17041,7 @@ var SettingsPanel =
 	   * @optional
 	   */
 	  mixins: SpecPolicy.DEFINE_MANY,
-
+	
 	  /**
 	   * An object containing properties and methods that should be defined on
 	   * the component's constructor instead of its prototype (static methods).
@@ -16517,7 +17050,7 @@ var SettingsPanel =
 	   * @optional
 	   */
 	  statics: SpecPolicy.DEFINE_MANY,
-
+	
 	  /**
 	   * Definition of prop types for this component.
 	   *
@@ -16525,7 +17058,7 @@ var SettingsPanel =
 	   * @optional
 	   */
 	  propTypes: SpecPolicy.DEFINE_MANY,
-
+	
 	  /**
 	   * Definition of context types for this component.
 	   *
@@ -16533,7 +17066,7 @@ var SettingsPanel =
 	   * @optional
 	   */
 	  contextTypes: SpecPolicy.DEFINE_MANY,
-
+	
 	  /**
 	   * Definition of context types this component sets for its children.
 	   *
@@ -16541,9 +17074,9 @@ var SettingsPanel =
 	   * @optional
 	   */
 	  childContextTypes: SpecPolicy.DEFINE_MANY,
-
+	
 	  // ==== Definition methods ====
-
+	
 	  /**
 	   * Invoked when the component is mounted. Values in the mapping will be set on
 	   * `this.props` if that prop is not specified (i.e. using an `in` check).
@@ -16555,7 +17088,7 @@ var SettingsPanel =
 	   * @optional
 	   */
 	  getDefaultProps: SpecPolicy.DEFINE_MANY_MERGED,
-
+	
 	  /**
 	   * Invoked once before the component is mounted. The return value will be used
 	   * as the initial value of `this.state`.
@@ -16571,13 +17104,13 @@ var SettingsPanel =
 	   * @optional
 	   */
 	  getInitialState: SpecPolicy.DEFINE_MANY_MERGED,
-
+	
 	  /**
 	   * @return {object}
 	   * @optional
 	   */
 	  getChildContext: SpecPolicy.DEFINE_MANY_MERGED,
-
+	
 	  /**
 	   * Uses props from `this.props` and state from `this.state` to render the
 	   * structure of the component.
@@ -16595,9 +17128,9 @@ var SettingsPanel =
 	   * @required
 	   */
 	  render: SpecPolicy.DEFINE_ONCE,
-
+	
 	  // ==== Delegate methods ====
-
+	
 	  /**
 	   * Invoked when the component is initially created and about to be mounted.
 	   * This may have side effects, but any external subscriptions or data created
@@ -16606,7 +17139,7 @@ var SettingsPanel =
 	   * @optional
 	   */
 	  componentWillMount: SpecPolicy.DEFINE_MANY,
-
+	
 	  /**
 	   * Invoked when the component has been mounted and has a DOM representation.
 	   * However, there is no guarantee that the DOM node is in the document.
@@ -16618,7 +17151,7 @@ var SettingsPanel =
 	   * @optional
 	   */
 	  componentDidMount: SpecPolicy.DEFINE_MANY,
-
+	
 	  /**
 	   * Invoked before the component receives new props.
 	   *
@@ -16639,7 +17172,7 @@ var SettingsPanel =
 	   * @optional
 	   */
 	  componentWillReceiveProps: SpecPolicy.DEFINE_MANY,
-
+	
 	  /**
 	   * Invoked while deciding if the component should be updated as a result of
 	   * receiving new props, state and/or context.
@@ -16661,7 +17194,7 @@ var SettingsPanel =
 	   * @optional
 	   */
 	  shouldComponentUpdate: SpecPolicy.DEFINE_ONCE,
-
+	
 	  /**
 	   * Invoked when the component is about to update due to a transition from
 	   * `this.props`, `this.state` and `this.context` to `nextProps`, `nextState`
@@ -16678,7 +17211,7 @@ var SettingsPanel =
 	   * @optional
 	   */
 	  componentWillUpdate: SpecPolicy.DEFINE_MANY,
-
+	
 	  /**
 	   * Invoked when the component's DOM representation has been updated.
 	   *
@@ -16692,7 +17225,7 @@ var SettingsPanel =
 	   * @optional
 	   */
 	  componentDidUpdate: SpecPolicy.DEFINE_MANY,
-
+	
 	  /**
 	   * Invoked when the component is about to be removed from its parent and have
 	   * its DOM representation destroyed.
@@ -16705,9 +17238,9 @@ var SettingsPanel =
 	   * @optional
 	   */
 	  componentWillUnmount: SpecPolicy.DEFINE_MANY,
-
+	
 	  // ==== Advanced methods ====
-
+	
 	  /**
 	   * Updates the component's currently mounted DOM representation.
 	   *
@@ -16719,9 +17252,9 @@ var SettingsPanel =
 	   * @overridable
 	   */
 	  updateComponent: SpecPolicy.OVERRIDE_BASE
-
+	
 	};
-
+	
 	/**
 	 * Mapping from class specification keys to special processing functions.
 	 *
@@ -16775,7 +17308,7 @@ var SettingsPanel =
 	    mixStaticSpecIntoComponent(Constructor, statics);
 	  },
 	  autobind: function () {} };
-
+	
 	// noop
 	function validateTypeDef(Constructor, typeDef, location) {
 	  for (var propName in typeDef) {
@@ -16786,21 +17319,21 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	function validateMethodOverride(proto, name) {
 	  var specPolicy = ReactClassInterface.hasOwnProperty(name) ? ReactClassInterface[name] : null;
-
+	
 	  // Disallow overriding of base class methods unless explicitly allowed.
 	  if (ReactClassMixin.hasOwnProperty(name)) {
 	    !(specPolicy === SpecPolicy.OVERRIDE_BASE) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactClassInterface: You are attempting to override ' + '`%s` from your class specification. Ensure that your method names ' + 'do not overlap with React methods.', name) : invariant(false) : undefined;
 	  }
-
+	
 	  // Disallow defining methods more than once unless explicitly allowed.
 	  if (proto.hasOwnProperty(name)) {
 	    !(specPolicy === SpecPolicy.DEFINE_MANY || specPolicy === SpecPolicy.DEFINE_MANY_MERGED) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactClassInterface: You are attempting to define ' + '`%s` on your component more than once. This conflict may be due ' + 'to a mixin.', name) : invariant(false) : undefined;
 	  }
 	}
-
+	
 	/**
 	 * Mixin helper which handles policy validation and reserved
 	 * specification keys when building React classses.
@@ -16809,32 +17342,32 @@ var SettingsPanel =
 	  if (!spec) {
 	    return;
 	  }
-
+	
 	  !(typeof spec !== 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactClass: You\'re attempting to ' + 'use a component class as a mixin. Instead, just use a regular object.') : invariant(false) : undefined;
 	  !!ReactElement.isValidElement(spec) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactClass: You\'re attempting to ' + 'use a component as a mixin. Instead, just use a regular object.') : invariant(false) : undefined;
-
+	
 	  var proto = Constructor.prototype;
-
+	
 	  // By handling mixins before any other properties, we ensure the same
 	  // chaining order is applied to methods with DEFINE_MANY policy, whether
 	  // mixins are listed before or after these methods in the spec.
 	  if (spec.hasOwnProperty(MIXINS_KEY)) {
 	    RESERVED_SPEC_KEYS.mixins(Constructor, spec.mixins);
 	  }
-
+	
 	  for (var name in spec) {
 	    if (!spec.hasOwnProperty(name)) {
 	      continue;
 	    }
-
+	
 	    if (name === MIXINS_KEY) {
 	      // We have already handled mixins in a special case above.
 	      continue;
 	    }
-
+	
 	    var property = spec[name];
 	    validateMethodOverride(proto, name);
-
+	
 	    if (RESERVED_SPEC_KEYS.hasOwnProperty(name)) {
 	      RESERVED_SPEC_KEYS[name](Constructor, property);
 	    } else {
@@ -16846,7 +17379,7 @@ var SettingsPanel =
 	      var isAlreadyDefined = proto.hasOwnProperty(name);
 	      var isFunction = typeof property === 'function';
 	      var shouldAutoBind = isFunction && !isReactClassMethod && !isAlreadyDefined && spec.autobind !== false;
-
+	
 	      if (shouldAutoBind) {
 	        if (!proto.__reactAutoBindMap) {
 	          proto.__reactAutoBindMap = {};
@@ -16856,10 +17389,10 @@ var SettingsPanel =
 	      } else {
 	        if (isAlreadyDefined) {
 	          var specPolicy = ReactClassInterface[name];
-
+	
 	          // These cases should already be caught by validateMethodOverride.
 	          !(isReactClassMethod && (specPolicy === SpecPolicy.DEFINE_MANY_MERGED || specPolicy === SpecPolicy.DEFINE_MANY)) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactClass: Unexpected spec policy %s for key %s ' + 'when mixing in component specs.', specPolicy, name) : invariant(false) : undefined;
-
+	
 	          // For methods which are defined more than once, call the existing
 	          // methods before calling the new property, merging if appropriate.
 	          if (specPolicy === SpecPolicy.DEFINE_MANY_MERGED) {
@@ -16881,7 +17414,7 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	function mixStaticSpecIntoComponent(Constructor, statics) {
 	  if (!statics) {
 	    return;
@@ -16891,16 +17424,16 @@ var SettingsPanel =
 	    if (!statics.hasOwnProperty(name)) {
 	      continue;
 	    }
-
+	
 	    var isReserved = (name in RESERVED_SPEC_KEYS);
 	    !!isReserved ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactClass: You are attempting to define a reserved ' + 'property, `%s`, that shouldn\'t be on the "statics" key. Define it ' + 'as an instance property instead; it will still be accessible on the ' + 'constructor.', name) : invariant(false) : undefined;
-
+	
 	    var isInherited = (name in Constructor);
 	    !!isInherited ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactClass: You are attempting to define ' + '`%s` on your component more than once. This conflict may be ' + 'due to a mixin.', name) : invariant(false) : undefined;
 	    Constructor[name] = property;
 	  }
 	}
-
+	
 	/**
 	 * Merge two objects, but throw if both contain the same key.
 	 *
@@ -16910,7 +17443,7 @@ var SettingsPanel =
 	 */
 	function mergeIntoWithNoDuplicateKeys(one, two) {
 	  !(one && two && typeof one === 'object' && typeof two === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'mergeIntoWithNoDuplicateKeys(): Cannot merge non-objects.') : invariant(false) : undefined;
-
+	
 	  for (var key in two) {
 	    if (two.hasOwnProperty(key)) {
 	      !(one[key] === undefined) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'mergeIntoWithNoDuplicateKeys(): ' + 'Tried to merge two objects with the same key: `%s`. This conflict ' + 'may be due to a mixin; in particular, this may be caused by two ' + 'getInitialState() or getDefaultProps() methods returning objects ' + 'with clashing keys.', key) : invariant(false) : undefined;
@@ -16919,7 +17452,7 @@ var SettingsPanel =
 	  }
 	  return one;
 	}
-
+	
 	/**
 	 * Creates a function that invokes two functions and merges their return values.
 	 *
@@ -16943,7 +17476,7 @@ var SettingsPanel =
 	    return c;
 	  };
 	}
-
+	
 	/**
 	 * Creates a function that invokes two functions and ignores their return vales.
 	 *
@@ -16958,7 +17491,7 @@ var SettingsPanel =
 	    two.apply(this, arguments);
 	  };
 	}
-
+	
 	/**
 	 * Binds a method to the component.
 	 *
@@ -16979,7 +17512,7 @@ var SettingsPanel =
 	      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
 	        args[_key - 1] = arguments[_key];
 	      }
-
+	
 	      // User is trying to bind() an autobound method; we effectively will
 	      // ignore the value of "this" that the user is trying to use, so
 	      // let's warn.
@@ -16999,7 +17532,7 @@ var SettingsPanel =
 	  }
 	  return boundMethod;
 	}
-
+	
 	/**
 	 * Binds all auto-bound methods in a component.
 	 *
@@ -17013,13 +17546,13 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	/**
 	 * Add more to the ReactClass base class. These are all legacy features and
 	 * therefore not already part of the modern ReactComponent.
 	 */
 	var ReactClassMixin = {
-
+	
 	  /**
 	   * TODO: This will be deprecated because state should always keep a consistent
 	   * type signature and the only use case for this, is to avoid that.
@@ -17030,7 +17563,7 @@ var SettingsPanel =
 	      this.updater.enqueueCallback(this, callback);
 	    }
 	  },
-
+	
 	  /**
 	   * Checks whether or not this composite component is mounted.
 	   * @return {boolean} True if mounted, false otherwise.
@@ -17040,7 +17573,7 @@ var SettingsPanel =
 	  isMounted: function () {
 	    return this.updater.isMounted(this);
 	  },
-
+	
 	  /**
 	   * Sets a subset of the props.
 	   *
@@ -17059,7 +17592,7 @@ var SettingsPanel =
 	      this.updater.enqueueCallback(this, callback);
 	    }
 	  },
-
+	
 	  /**
 	   * Replace all the props.
 	   *
@@ -17079,17 +17612,17 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	var ReactClassComponent = function () {};
 	assign(ReactClassComponent.prototype, ReactComponent.prototype, ReactClassMixin);
-
+	
 	/**
 	 * Module for creating composite components.
 	 *
 	 * @class ReactClass
 	 */
 	var ReactClass = {
-
+	
 	  /**
 	   * Creates a composite component class given a class specification.
 	   *
@@ -17101,26 +17634,26 @@ var SettingsPanel =
 	    var Constructor = function (props, context, updater) {
 	      // This constructor is overridden by mocks. The argument is used
 	      // by mocks to assert on what gets mounted.
-
+	
 	      if (process.env.NODE_ENV !== 'production') {
 	        process.env.NODE_ENV !== 'production' ? warning(this instanceof Constructor, 'Something is calling a React component directly. Use a factory or ' + 'JSX instead. See: https://fb.me/react-legacyfactory') : undefined;
 	      }
-
+	
 	      // Wire up auto-binding
 	      if (this.__reactAutoBindMap) {
 	        bindAutoBindMethods(this);
 	      }
-
+	
 	      this.props = props;
 	      this.context = context;
 	      this.refs = emptyObject;
 	      this.updater = updater || ReactNoopUpdateQueue;
-
+	
 	      this.state = null;
-
+	
 	      // ReactClasses doesn't have constructors. Instead, they use the
 	      // getInitialState and componentWillMount methods for initialization.
-
+	
 	      var initialState = this.getInitialState ? this.getInitialState() : null;
 	      if (process.env.NODE_ENV !== 'production') {
 	        // We allow auto-mocks to proceed as if they're returning null.
@@ -17131,21 +17664,21 @@ var SettingsPanel =
 	        }
 	      }
 	      !(typeof initialState === 'object' && !Array.isArray(initialState)) ? process.env.NODE_ENV !== 'production' ? invariant(false, '%s.getInitialState(): must return an object or null', Constructor.displayName || 'ReactCompositeComponent') : invariant(false) : undefined;
-
+	
 	      this.state = initialState;
 	    };
 	    Constructor.prototype = new ReactClassComponent();
 	    Constructor.prototype.constructor = Constructor;
-
+	
 	    injectedMixins.forEach(mixSpecIntoComponent.bind(null, Constructor));
-
+	
 	    mixSpecIntoComponent(Constructor, spec);
-
+	
 	    // Initialize the defaultProps property after all mixins have been merged.
 	    if (Constructor.getDefaultProps) {
 	      Constructor.defaultProps = Constructor.getDefaultProps();
 	    }
-
+	
 	    if (process.env.NODE_ENV !== 'production') {
 	      // This is a tag to indicate that the use of these method names is ok,
 	      // since it's used with createClass. If it's not, then it's likely a
@@ -17158,37 +17691,40 @@ var SettingsPanel =
 	        Constructor.prototype.getInitialState.isReactClassApproved = {};
 	      }
 	    }
-
+	
 	    !Constructor.prototype.render ? process.env.NODE_ENV !== 'production' ? invariant(false, 'createClass(...): Class specification must implement a `render` method.') : invariant(false) : undefined;
-
+	
 	    if (process.env.NODE_ENV !== 'production') {
 	      process.env.NODE_ENV !== 'production' ? warning(!Constructor.prototype.componentShouldUpdate, '%s has a method called ' + 'componentShouldUpdate(). Did you mean shouldComponentUpdate()? ' + 'The name is phrased as a question because the function is ' + 'expected to return a value.', spec.displayName || 'A component') : undefined;
 	      process.env.NODE_ENV !== 'production' ? warning(!Constructor.prototype.componentWillRecieveProps, '%s has a method called ' + 'componentWillRecieveProps(). Did you mean componentWillReceiveProps()?', spec.displayName || 'A component') : undefined;
 	    }
-
+	
 	    // Reduce time spent doing lookups by setting these on the prototype.
 	    for (var methodName in ReactClassInterface) {
 	      if (!Constructor.prototype[methodName]) {
 	        Constructor.prototype[methodName] = null;
 	      }
 	    }
-
+	
 	    return Constructor;
 	  },
-
+	
 	  injection: {
 	    injectMixin: function (mixin) {
 	      injectedMixins.push(mixin);
 	    }
 	  }
-
+	
 	};
-
+	
 	module.exports = ReactClass;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 172 */
+/* 173 */
+/*!***************************************!*\
+  !*** ./~/react/lib/ReactComponent.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -17201,16 +17737,16 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactComponent
 	 */
-
+	
 	'use strict';
-
-	var ReactNoopUpdateQueue = __webpack_require__(173);
-
-	var canDefineProperty = __webpack_require__(92);
-	var emptyObject = __webpack_require__(107);
-	var invariant = __webpack_require__(62);
-	var warning = __webpack_require__(74);
-
+	
+	var ReactNoopUpdateQueue = __webpack_require__(/*! ./ReactNoopUpdateQueue */ 174);
+	
+	var canDefineProperty = __webpack_require__(/*! ./canDefineProperty */ 93);
+	var emptyObject = __webpack_require__(/*! fbjs/lib/emptyObject */ 108);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	/**
 	 * Base class helpers for the updating state of a component.
 	 */
@@ -17222,9 +17758,9 @@ var SettingsPanel =
 	  // renderer.
 	  this.updater = updater || ReactNoopUpdateQueue;
 	}
-
+	
 	ReactComponent.prototype.isReactComponent = {};
-
+	
 	/**
 	 * Sets a subset of the state. Always use this to mutate
 	 * state. You should treat `this.state` as immutable.
@@ -17260,7 +17796,7 @@ var SettingsPanel =
 	    this.updater.enqueueCallback(this, callback);
 	  }
 	};
-
+	
 	/**
 	 * Forces an update. This should only be invoked when it is known with
 	 * certainty that we are **not** in a DOM transaction.
@@ -17281,7 +17817,7 @@ var SettingsPanel =
 	    this.updater.enqueueCallback(this, callback);
 	  }
 	};
-
+	
 	/**
 	 * Deprecated APIs. These APIs used to exist on classic React classes but since
 	 * we would like to deprecate them, we're not going to move them over to this
@@ -17311,12 +17847,15 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	module.exports = ReactComponent;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 173 */
+/* 174 */
+/*!*********************************************!*\
+  !*** ./~/react/lib/ReactNoopUpdateQueue.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -17329,22 +17868,22 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactNoopUpdateQueue
 	 */
-
+	
 	'use strict';
-
-	var warning = __webpack_require__(74);
-
+	
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	function warnTDZ(publicInstance, callerName) {
 	  if (process.env.NODE_ENV !== 'production') {
 	    process.env.NODE_ENV !== 'production' ? warning(false, '%s(...): Can only update a mounted or mounting component. ' + 'This usually means you called %s() on an unmounted component. ' + 'This is a no-op. Please check the code for the %s component.', callerName, callerName, publicInstance.constructor && publicInstance.constructor.displayName || '') : undefined;
 	  }
 	}
-
+	
 	/**
 	 * This is the abstract API for an update queue.
 	 */
 	var ReactNoopUpdateQueue = {
-
+	
 	  /**
 	   * Checks whether or not this composite component is mounted.
 	   * @param {ReactClass} publicInstance The instance we want to test.
@@ -17355,7 +17894,7 @@ var SettingsPanel =
 	  isMounted: function (publicInstance) {
 	    return false;
 	  },
-
+	
 	  /**
 	   * Enqueue a callback that will be executed after all the pending updates
 	   * have processed.
@@ -17365,7 +17904,7 @@ var SettingsPanel =
 	   * @internal
 	   */
 	  enqueueCallback: function (publicInstance, callback) {},
-
+	
 	  /**
 	   * Forces an update. This should only be invoked when it is known with
 	   * certainty that we are **not** in a DOM transaction.
@@ -17382,7 +17921,7 @@ var SettingsPanel =
 	  enqueueForceUpdate: function (publicInstance) {
 	    warnTDZ(publicInstance, 'forceUpdate');
 	  },
-
+	
 	  /**
 	   * Replaces all of the state. Always use this or `setState` to mutate state.
 	   * You should treat `this.state` as immutable.
@@ -17397,7 +17936,7 @@ var SettingsPanel =
 	  enqueueReplaceState: function (publicInstance, completeState) {
 	    warnTDZ(publicInstance, 'replaceState');
 	  },
-
+	
 	  /**
 	   * Sets a subset of the state. This only exists because _pendingState is
 	   * internal. This provides a merging strategy that is not available to deep
@@ -17411,7 +17950,7 @@ var SettingsPanel =
 	  enqueueSetState: function (publicInstance, partialState) {
 	    warnTDZ(publicInstance, 'setState');
 	  },
-
+	
 	  /**
 	   * Sets a subset of the props.
 	   *
@@ -17422,7 +17961,7 @@ var SettingsPanel =
 	  enqueueSetProps: function (publicInstance, partialProps) {
 	    warnTDZ(publicInstance, 'setProps');
 	  },
-
+	
 	  /**
 	   * Replaces all of the props.
 	   *
@@ -17433,14 +17972,17 @@ var SettingsPanel =
 	  enqueueReplaceProps: function (publicInstance, props) {
 	    warnTDZ(publicInstance, 'replaceProps');
 	  }
-
+	
 	};
-
+	
 	module.exports = ReactNoopUpdateQueue;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 174 */
+/* 175 */
+/*!**************************************************!*\
+  !*** ./~/react/lib/ReactReconcileTransaction.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -17454,18 +17996,18 @@ var SettingsPanel =
 	 * @providesModule ReactReconcileTransaction
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var CallbackQueue = __webpack_require__(104);
-	var PooledClass = __webpack_require__(105);
-	var ReactBrowserEventEmitter = __webpack_require__(78);
-	var ReactDOMFeatureFlags = __webpack_require__(90);
-	var ReactInputSelection = __webpack_require__(175);
-	var Transaction = __webpack_require__(106);
-
-	var assign = __webpack_require__(88);
-
+	
+	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 105);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 106);
+	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 79);
+	var ReactDOMFeatureFlags = __webpack_require__(/*! ./ReactDOMFeatureFlags */ 91);
+	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 176);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 107);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	
 	/**
 	 * Ensures that, when possible, the selection range (currently selected text
 	 * input) is not disturbed by performing the transaction.
@@ -17480,7 +18022,7 @@ var SettingsPanel =
 	   */
 	  close: ReactInputSelection.restoreSelection
 	};
-
+	
 	/**
 	 * Suppresses events (blur/focus) that could be inadvertently dispatched due to
 	 * high level DOM manipulations (like temporarily removing a text input from the
@@ -17496,7 +18038,7 @@ var SettingsPanel =
 	    ReactBrowserEventEmitter.setEnabled(false);
 	    return currentlyEnabled;
 	  },
-
+	
 	  /**
 	   * @param {boolean} previouslyEnabled Enabled status of
 	   *   `ReactBrowserEventEmitter` before the reconciliation occurred. `close`
@@ -17506,7 +18048,7 @@ var SettingsPanel =
 	    ReactBrowserEventEmitter.setEnabled(previouslyEnabled);
 	  }
 	};
-
+	
 	/**
 	 * Provides a queue for collecting `componentDidMount` and
 	 * `componentDidUpdate` callbacks during the the transaction.
@@ -17518,7 +18060,7 @@ var SettingsPanel =
 	  initialize: function () {
 	    this.reactMountReady.reset();
 	  },
-
+	
 	  /**
 	   * After DOM is flushed, invoke all registered `onDOMReady` callbacks.
 	   */
@@ -17526,14 +18068,14 @@ var SettingsPanel =
 	    this.reactMountReady.notifyAll();
 	  }
 	};
-
+	
 	/**
 	 * Executed within the scope of the `Transaction` instance. Consider these as
 	 * being member methods, but with an implied ordering while being isolated from
 	 * each other.
 	 */
 	var TRANSACTION_WRAPPERS = [SELECTION_RESTORATION, EVENT_SUPPRESSION, ON_DOM_READY_QUEUEING];
-
+	
 	/**
 	 * Currently:
 	 * - The order that these are listed in the transaction is critical:
@@ -17559,7 +18101,7 @@ var SettingsPanel =
 	  this.reactMountReady = CallbackQueue.getPooled(null);
 	  this.useCreateElement = !forceHTML && ReactDOMFeatureFlags.useCreateElement;
 	}
-
+	
 	var Mixin = {
 	  /**
 	   * @see Transaction
@@ -17571,14 +18113,14 @@ var SettingsPanel =
 	  getTransactionWrappers: function () {
 	    return TRANSACTION_WRAPPERS;
 	  },
-
+	
 	  /**
 	   * @return {object} The queue to collect `onDOMReady` callbacks with.
 	   */
 	  getReactMountReady: function () {
 	    return this.reactMountReady;
 	  },
-
+	
 	  /**
 	   * `PooledClass` looks for this, and will invoke this before allowing this
 	   * instance to be reused.
@@ -17588,15 +18130,18 @@ var SettingsPanel =
 	    this.reactMountReady = null;
 	  }
 	};
-
+	
 	assign(ReactReconcileTransaction.prototype, Transaction.Mixin, Mixin);
-
+	
 	PooledClass.addPoolingTo(ReactReconcileTransaction);
-
+	
 	module.exports = ReactReconcileTransaction;
 
 /***/ },
-/* 175 */
+/* 176 */
+/*!********************************************!*\
+  !*** ./~/react/lib/ReactInputSelection.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -17609,19 +18154,19 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactInputSelection
 	 */
-
+	
 	'use strict';
-
-	var ReactDOMSelection = __webpack_require__(176);
-
-	var containsNode = __webpack_require__(108);
-	var focusNode = __webpack_require__(144);
-	var getActiveElement = __webpack_require__(178);
-
+	
+	var ReactDOMSelection = __webpack_require__(/*! ./ReactDOMSelection */ 177);
+	
+	var containsNode = __webpack_require__(/*! fbjs/lib/containsNode */ 109);
+	var focusNode = __webpack_require__(/*! fbjs/lib/focusNode */ 145);
+	var getActiveElement = __webpack_require__(/*! fbjs/lib/getActiveElement */ 179);
+	
 	function isInDocument(node) {
 	  return containsNode(document.documentElement, node);
 	}
-
+	
 	/**
 	 * @ReactInputSelection: React input selection module. Based on Selection.js,
 	 * but modified to be suitable for react and has a couple of bug fixes (doesn't
@@ -17629,12 +18174,12 @@ var SettingsPanel =
 	 * Input selection module for React.
 	 */
 	var ReactInputSelection = {
-
+	
 	  hasSelectionCapabilities: function (elem) {
 	    var nodeName = elem && elem.nodeName && elem.nodeName.toLowerCase();
 	    return nodeName && (nodeName === 'input' && elem.type === 'text' || nodeName === 'textarea' || elem.contentEditable === 'true');
 	  },
-
+	
 	  getSelectionInformation: function () {
 	    var focusedElem = getActiveElement();
 	    return {
@@ -17642,7 +18187,7 @@ var SettingsPanel =
 	      selectionRange: ReactInputSelection.hasSelectionCapabilities(focusedElem) ? ReactInputSelection.getSelection(focusedElem) : null
 	    };
 	  },
-
+	
 	  /**
 	   * @restoreSelection: If any selection information was potentially lost,
 	   * restore it. This is useful when performing operations that could remove dom
@@ -17659,7 +18204,7 @@ var SettingsPanel =
 	      focusNode(priorFocusedElem);
 	    }
 	  },
-
+	
 	  /**
 	   * @getSelection: Gets the selection bounds of a focused textarea, input or
 	   * contentEditable node.
@@ -17668,7 +18213,7 @@ var SettingsPanel =
 	   */
 	  getSelection: function (input) {
 	    var selection;
-
+	
 	    if ('selectionStart' in input) {
 	      // Modern browser with input or textarea.
 	      selection = {
@@ -17690,10 +18235,10 @@ var SettingsPanel =
 	      // Content editable or old IE textarea.
 	      selection = ReactDOMSelection.getOffsets(input);
 	    }
-
+	
 	    return selection || { start: 0, end: 0 };
 	  },
-
+	
 	  /**
 	   * @setSelection: Sets the selection bounds of a textarea or input and focuses
 	   * the input.
@@ -17706,7 +18251,7 @@ var SettingsPanel =
 	    if (typeof end === 'undefined') {
 	      end = start;
 	    }
-
+	
 	    if ('selectionStart' in input) {
 	      input.selectionStart = start;
 	      input.selectionEnd = Math.min(end, input.value.length);
@@ -17721,11 +18266,14 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	module.exports = ReactInputSelection;
 
 /***/ },
-/* 176 */
+/* 177 */
+/*!******************************************!*\
+  !*** ./~/react/lib/ReactDOMSelection.js ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -17738,14 +18286,14 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactDOMSelection
 	 */
-
+	
 	'use strict';
-
-	var ExecutionEnvironment = __webpack_require__(58);
-
-	var getNodeForCharacterOffset = __webpack_require__(177);
-	var getTextContentAccessor = __webpack_require__(124);
-
+	
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 59);
+	
+	var getNodeForCharacterOffset = __webpack_require__(/*! ./getNodeForCharacterOffset */ 178);
+	var getTextContentAccessor = __webpack_require__(/*! ./getTextContentAccessor */ 125);
+	
 	/**
 	 * While `isCollapsed` is available on the Selection object and `collapsed`
 	 * is available on the Range object, IE11 sometimes gets them wrong.
@@ -17754,7 +18302,7 @@ var SettingsPanel =
 	function isCollapsed(anchorNode, anchorOffset, focusNode, focusOffset) {
 	  return anchorNode === focusNode && anchorOffset === focusOffset;
 	}
-
+	
 	/**
 	 * Get the appropriate anchor and focus node/offset pairs for IE.
 	 *
@@ -17773,39 +18321,39 @@ var SettingsPanel =
 	  var selection = document.selection;
 	  var selectedRange = selection.createRange();
 	  var selectedLength = selectedRange.text.length;
-
+	
 	  // Duplicate selection so we can move range without breaking user selection.
 	  var fromStart = selectedRange.duplicate();
 	  fromStart.moveToElementText(node);
 	  fromStart.setEndPoint('EndToStart', selectedRange);
-
+	
 	  var startOffset = fromStart.text.length;
 	  var endOffset = startOffset + selectedLength;
-
+	
 	  return {
 	    start: startOffset,
 	    end: endOffset
 	  };
 	}
-
+	
 	/**
 	 * @param {DOMElement} node
 	 * @return {?object}
 	 */
 	function getModernOffsets(node) {
 	  var selection = window.getSelection && window.getSelection();
-
+	
 	  if (!selection || selection.rangeCount === 0) {
 	    return null;
 	  }
-
+	
 	  var anchorNode = selection.anchorNode;
 	  var anchorOffset = selection.anchorOffset;
 	  var focusNode = selection.focusNode;
 	  var focusOffset = selection.focusOffset;
-
+	
 	  var currentRange = selection.getRangeAt(0);
-
+	
 	  // In Firefox, range.startContainer and range.endContainer can be "anonymous
 	  // divs", e.g. the up/down buttons on an <input type="number">. Anonymous
 	  // divs do not seem to expose properties, triggering a "Permission denied
@@ -17821,35 +18369,35 @@ var SettingsPanel =
 	  } catch (e) {
 	    return null;
 	  }
-
+	
 	  // If the node and offset values are the same, the selection is collapsed.
 	  // `Selection.isCollapsed` is available natively, but IE sometimes gets
 	  // this value wrong.
 	  var isSelectionCollapsed = isCollapsed(selection.anchorNode, selection.anchorOffset, selection.focusNode, selection.focusOffset);
-
+	
 	  var rangeLength = isSelectionCollapsed ? 0 : currentRange.toString().length;
-
+	
 	  var tempRange = currentRange.cloneRange();
 	  tempRange.selectNodeContents(node);
 	  tempRange.setEnd(currentRange.startContainer, currentRange.startOffset);
-
+	
 	  var isTempRangeCollapsed = isCollapsed(tempRange.startContainer, tempRange.startOffset, tempRange.endContainer, tempRange.endOffset);
-
+	
 	  var start = isTempRangeCollapsed ? 0 : tempRange.toString().length;
 	  var end = start + rangeLength;
-
+	
 	  // Detect whether the selection is backward.
 	  var detectionRange = document.createRange();
 	  detectionRange.setStart(anchorNode, anchorOffset);
 	  detectionRange.setEnd(focusNode, focusOffset);
 	  var isBackward = detectionRange.collapsed;
-
+	
 	  return {
 	    start: isBackward ? end : start,
 	    end: isBackward ? start : end
 	  };
 	}
-
+	
 	/**
 	 * @param {DOMElement|DOMTextNode} node
 	 * @param {object} offsets
@@ -17857,7 +18405,7 @@ var SettingsPanel =
 	function setIEOffsets(node, offsets) {
 	  var range = document.selection.createRange().duplicate();
 	  var start, end;
-
+	
 	  if (typeof offsets.end === 'undefined') {
 	    start = offsets.start;
 	    end = start;
@@ -17868,14 +18416,14 @@ var SettingsPanel =
 	    start = offsets.start;
 	    end = offsets.end;
 	  }
-
+	
 	  range.moveToElementText(node);
 	  range.moveStart('character', start);
 	  range.setEndPoint('EndToStart', range);
 	  range.moveEnd('character', end - start);
 	  range.select();
 	}
-
+	
 	/**
 	 * In modern non-IE browsers, we can support both forward and backward
 	 * selections.
@@ -17892,12 +18440,12 @@ var SettingsPanel =
 	  if (!window.getSelection) {
 	    return;
 	  }
-
+	
 	  var selection = window.getSelection();
 	  var length = node[getTextContentAccessor()].length;
 	  var start = Math.min(offsets.start, length);
 	  var end = typeof offsets.end === 'undefined' ? start : Math.min(offsets.end, length);
-
+	
 	  // IE 11 uses modern selection, but doesn't support the extend method.
 	  // Flip backward selections, so we can set with a single range.
 	  if (!selection.extend && start > end) {
@@ -17905,15 +18453,15 @@ var SettingsPanel =
 	    end = start;
 	    start = temp;
 	  }
-
+	
 	  var startMarker = getNodeForCharacterOffset(node, start);
 	  var endMarker = getNodeForCharacterOffset(node, end);
-
+	
 	  if (startMarker && endMarker) {
 	    var range = document.createRange();
 	    range.setStart(startMarker.node, startMarker.offset);
 	    selection.removeAllRanges();
-
+	
 	    if (start > end) {
 	      selection.addRange(range);
 	      selection.extend(endMarker.node, endMarker.offset);
@@ -17923,26 +18471,29 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	var useIEOffsets = ExecutionEnvironment.canUseDOM && 'selection' in document && !('getSelection' in window);
-
+	
 	var ReactDOMSelection = {
 	  /**
 	   * @param {DOMElement} node
 	   */
 	  getOffsets: useIEOffsets ? getIEOffsets : getModernOffsets,
-
+	
 	  /**
 	   * @param {DOMElement|DOMTextNode} node
 	   * @param {object} offsets
 	   */
 	  setOffsets: useIEOffsets ? setIEOffsets : setModernOffsets
 	};
-
+	
 	module.exports = ReactDOMSelection;
 
 /***/ },
-/* 177 */
+/* 178 */
+/*!**************************************************!*\
+  !*** ./~/react/lib/getNodeForCharacterOffset.js ***!
+  \**************************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -17955,9 +18506,9 @@ var SettingsPanel =
 	 *
 	 * @providesModule getNodeForCharacterOffset
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * Given any node return the first leaf node without children.
 	 *
@@ -17970,7 +18521,7 @@ var SettingsPanel =
 	  }
 	  return node;
 	}
-
+	
 	/**
 	 * Get the next sibling within a container. This will walk up the
 	 * DOM if a node's siblings have been exhausted.
@@ -17986,7 +18537,7 @@ var SettingsPanel =
 	    node = node.parentNode;
 	  }
 	}
-
+	
 	/**
 	 * Get object describing the nodes which contain characters at offset.
 	 *
@@ -17998,29 +18549,32 @@ var SettingsPanel =
 	  var node = getLeafNode(root);
 	  var nodeStart = 0;
 	  var nodeEnd = 0;
-
+	
 	  while (node) {
 	    if (node.nodeType === 3) {
 	      nodeEnd = nodeStart + node.textContent.length;
-
+	
 	      if (nodeStart <= offset && nodeEnd >= offset) {
 	        return {
 	          node: node,
 	          offset: offset - nodeStart
 	        };
 	      }
-
+	
 	      nodeStart = nodeEnd;
 	    }
-
+	
 	    node = getLeafNode(getSiblingNode(node));
 	  }
 	}
-
+	
 	module.exports = getNodeForCharacterOffset;
 
 /***/ },
-/* 178 */
+/* 179 */
+/*!****************************************!*\
+  !*** ./~/fbjs/lib/getActiveElement.js ***!
+  \****************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -18034,7 +18588,7 @@ var SettingsPanel =
 	 * @providesModule getActiveElement
 	 * @typechecks
 	 */
-
+	
 	/**
 	 * Same as document.activeElement but wraps in a try-catch block. In IE it is
 	 * not safe to call document.activeElement if there is nothing focused.
@@ -18042,7 +18596,7 @@ var SettingsPanel =
 	 * The activeElement will be null only if the document body is not yet defined.
 	 */
 	"use strict";
-
+	
 	function getActiveElement() /*?DOMElement*/{
 	  try {
 	    return document.activeElement || document.body;
@@ -18050,11 +18604,14 @@ var SettingsPanel =
 	    return document.body;
 	  }
 	}
-
+	
 	module.exports = getActiveElement;
 
 /***/ },
-/* 179 */
+/* 180 */
+/*!******************************************!*\
+  !*** ./~/react/lib/SelectEventPlugin.js ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -18067,24 +18624,24 @@ var SettingsPanel =
 	 *
 	 * @providesModule SelectEventPlugin
 	 */
-
+	
 	'use strict';
-
-	var EventConstants = __webpack_require__(79);
-	var EventPropagators = __webpack_require__(122);
-	var ExecutionEnvironment = __webpack_require__(58);
-	var ReactInputSelection = __webpack_require__(175);
-	var SyntheticEvent = __webpack_require__(126);
-
-	var getActiveElement = __webpack_require__(178);
-	var isTextInputElement = __webpack_require__(131);
-	var keyOf = __webpack_require__(128);
-	var shallowEqual = __webpack_require__(166);
-
+	
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 80);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 123);
+	var ExecutionEnvironment = __webpack_require__(/*! fbjs/lib/ExecutionEnvironment */ 59);
+	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 176);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 127);
+	
+	var getActiveElement = __webpack_require__(/*! fbjs/lib/getActiveElement */ 179);
+	var isTextInputElement = __webpack_require__(/*! ./isTextInputElement */ 132);
+	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 129);
+	var shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ 167);
+	
 	var topLevelTypes = EventConstants.topLevelTypes;
-
+	
 	var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
-
+	
 	var eventTypes = {
 	  select: {
 	    phasedRegistrationNames: {
@@ -18094,17 +18651,17 @@ var SettingsPanel =
 	    dependencies: [topLevelTypes.topBlur, topLevelTypes.topContextMenu, topLevelTypes.topFocus, topLevelTypes.topKeyDown, topLevelTypes.topMouseDown, topLevelTypes.topMouseUp, topLevelTypes.topSelectionChange]
 	  }
 	};
-
+	
 	var activeElement = null;
 	var activeElementID = null;
 	var lastSelection = null;
 	var mouseDown = false;
-
+	
 	// Track whether a listener exists for this plugin. If none exist, we do
 	// not extract events.
 	var hasListener = false;
 	var ON_SELECT_KEY = keyOf({ onSelect: null });
-
+	
 	/**
 	 * Get an object which is a unique representation of the current selection.
 	 *
@@ -18138,7 +18695,7 @@ var SettingsPanel =
 	    };
 	  }
 	}
-
+	
 	/**
 	 * Poll selection to see whether it's changed.
 	 *
@@ -18153,25 +18710,25 @@ var SettingsPanel =
 	  if (mouseDown || activeElement == null || activeElement !== getActiveElement()) {
 	    return null;
 	  }
-
+	
 	  // Only fire when selection has actually changed.
 	  var currentSelection = getSelection(activeElement);
 	  if (!lastSelection || !shallowEqual(lastSelection, currentSelection)) {
 	    lastSelection = currentSelection;
-
+	
 	    var syntheticEvent = SyntheticEvent.getPooled(eventTypes.select, activeElementID, nativeEvent, nativeEventTarget);
-
+	
 	    syntheticEvent.type = 'select';
 	    syntheticEvent.target = activeElement;
-
+	
 	    EventPropagators.accumulateTwoPhaseDispatches(syntheticEvent);
-
+	
 	    return syntheticEvent;
 	  }
-
+	
 	  return null;
 	}
-
+	
 	/**
 	 * This plugin creates an `onSelect` event that normalizes select events
 	 * across form elements.
@@ -18187,9 +18744,9 @@ var SettingsPanel =
 	 * - Fires after user input.
 	 */
 	var SelectEventPlugin = {
-
+	
 	  eventTypes: eventTypes,
-
+	
 	  /**
 	   * @param {string} topLevelType Record from `EventConstants`.
 	   * @param {DOMEventTarget} topLevelTarget The listening component root node.
@@ -18202,7 +18759,7 @@ var SettingsPanel =
 	    if (!hasListener) {
 	      return null;
 	    }
-
+	
 	    switch (topLevelType) {
 	      // Track the input node that has focus.
 	      case topLevelTypes.topFocus:
@@ -18217,7 +18774,7 @@ var SettingsPanel =
 	        activeElementID = null;
 	        lastSelection = null;
 	        break;
-
+	
 	      // Don't fire the event while the user is dragging. This matches the
 	      // semantics of the native select event.
 	      case topLevelTypes.topMouseDown:
@@ -18227,7 +18784,7 @@ var SettingsPanel =
 	      case topLevelTypes.topMouseUp:
 	        mouseDown = false;
 	        return constructSelectEvent(nativeEvent, nativeEventTarget);
-
+	
 	      // Chrome and IE fire non-standard event when selection is changed (and
 	      // sometimes when it hasn't). IE's event fires out of order with respect
 	      // to key and input events on deletion, so we discard it.
@@ -18246,21 +18803,24 @@ var SettingsPanel =
 	      case topLevelTypes.topKeyUp:
 	        return constructSelectEvent(nativeEvent, nativeEventTarget);
 	    }
-
+	
 	    return null;
 	  },
-
+	
 	  didPutListener: function (id, registrationName, listener) {
 	    if (registrationName === ON_SELECT_KEY) {
 	      hasListener = true;
 	    }
 	  }
 	};
-
+	
 	module.exports = SelectEventPlugin;
 
 /***/ },
-/* 180 */
+/* 181 */
+/*!*********************************************!*\
+  !*** ./~/react/lib/ServerReactRootIndex.js ***!
+  \*********************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -18274,9 +18834,9 @@ var SettingsPanel =
 	 * @providesModule ServerReactRootIndex
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * Size of the reactRoot ID space. We generate random numbers for React root
 	 * IDs and if there's a collision the events and DOM update system will
@@ -18284,17 +18844,20 @@ var SettingsPanel =
 	 * now this will work on a smaller scale.
 	 */
 	var GLOBAL_MOUNT_POINT_MAX = Math.pow(2, 53);
-
+	
 	var ServerReactRootIndex = {
 	  createReactRootIndex: function () {
 	    return Math.ceil(Math.random() * GLOBAL_MOUNT_POINT_MAX);
 	  }
 	};
-
+	
 	module.exports = ServerReactRootIndex;
 
 /***/ },
-/* 181 */
+/* 182 */
+/*!******************************************!*\
+  !*** ./~/react/lib/SimpleEventPlugin.js ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -18307,30 +18870,30 @@ var SettingsPanel =
 	 *
 	 * @providesModule SimpleEventPlugin
 	 */
-
+	
 	'use strict';
-
-	var EventConstants = __webpack_require__(79);
-	var EventListener = __webpack_require__(168);
-	var EventPropagators = __webpack_require__(122);
-	var ReactMount = __webpack_require__(77);
-	var SyntheticClipboardEvent = __webpack_require__(182);
-	var SyntheticEvent = __webpack_require__(126);
-	var SyntheticFocusEvent = __webpack_require__(183);
-	var SyntheticKeyboardEvent = __webpack_require__(184);
-	var SyntheticMouseEvent = __webpack_require__(135);
-	var SyntheticDragEvent = __webpack_require__(187);
-	var SyntheticTouchEvent = __webpack_require__(188);
-	var SyntheticUIEvent = __webpack_require__(136);
-	var SyntheticWheelEvent = __webpack_require__(189);
-
-	var emptyFunction = __webpack_require__(64);
-	var getEventCharCode = __webpack_require__(185);
-	var invariant = __webpack_require__(62);
-	var keyOf = __webpack_require__(128);
-
+	
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 80);
+	var EventListener = __webpack_require__(/*! fbjs/lib/EventListener */ 169);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 123);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	var SyntheticClipboardEvent = __webpack_require__(/*! ./SyntheticClipboardEvent */ 183);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 127);
+	var SyntheticFocusEvent = __webpack_require__(/*! ./SyntheticFocusEvent */ 184);
+	var SyntheticKeyboardEvent = __webpack_require__(/*! ./SyntheticKeyboardEvent */ 185);
+	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 136);
+	var SyntheticDragEvent = __webpack_require__(/*! ./SyntheticDragEvent */ 188);
+	var SyntheticTouchEvent = __webpack_require__(/*! ./SyntheticTouchEvent */ 189);
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 137);
+	var SyntheticWheelEvent = __webpack_require__(/*! ./SyntheticWheelEvent */ 190);
+	
+	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 65);
+	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 186);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 129);
+	
 	var topLevelTypes = EventConstants.topLevelTypes;
-
+	
 	var eventTypes = {
 	  abort: {
 	    phasedRegistrationNames: {
@@ -18677,7 +19240,7 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	var topLevelEventsToDispatchConfig = {
 	  topAbort: eventTypes.abort,
 	  topBlur: eventTypes.blur,
@@ -18737,18 +19300,18 @@ var SettingsPanel =
 	  topWaiting: eventTypes.waiting,
 	  topWheel: eventTypes.wheel
 	};
-
+	
 	for (var type in topLevelEventsToDispatchConfig) {
 	  topLevelEventsToDispatchConfig[type].dependencies = [type];
 	}
-
+	
 	var ON_CLICK_KEY = keyOf({ onClick: null });
 	var onClickListeners = {};
-
+	
 	var SimpleEventPlugin = {
-
+	
 	  eventTypes: eventTypes,
-
+	
 	  /**
 	   * @param {string} topLevelType Record from `EventConstants`.
 	   * @param {DOMEventTarget} topLevelTarget The listening component root node.
@@ -18860,7 +19423,7 @@ var SettingsPanel =
 	    EventPropagators.accumulateTwoPhaseDispatches(event);
 	    return event;
 	  },
-
+	
 	  didPutListener: function (id, registrationName, listener) {
 	    // Mobile Safari does not fire properly bubble click events on
 	    // non-interactive elements, which means delegated click listeners do not
@@ -18873,21 +19436,24 @@ var SettingsPanel =
 	      }
 	    }
 	  },
-
+	
 	  willDeleteListener: function (id, registrationName) {
 	    if (registrationName === ON_CLICK_KEY) {
 	      onClickListeners[id].remove();
 	      delete onClickListeners[id];
 	    }
 	  }
-
+	
 	};
-
+	
 	module.exports = SimpleEventPlugin;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 182 */
+/* 183 */
+/*!************************************************!*\
+  !*** ./~/react/lib/SyntheticClipboardEvent.js ***!
+  \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -18901,11 +19467,11 @@ var SettingsPanel =
 	 * @providesModule SyntheticClipboardEvent
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var SyntheticEvent = __webpack_require__(126);
-
+	
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 127);
+	
 	/**
 	 * @interface Event
 	 * @see http://www.w3.org/TR/clipboard-apis/
@@ -18915,7 +19481,7 @@ var SettingsPanel =
 	    return 'clipboardData' in event ? event.clipboardData : window.clipboardData;
 	  }
 	};
-
+	
 	/**
 	 * @param {object} dispatchConfig Configuration used to dispatch this event.
 	 * @param {string} dispatchMarker Marker identifying the event target.
@@ -18925,13 +19491,16 @@ var SettingsPanel =
 	function SyntheticClipboardEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget) {
 	  SyntheticEvent.call(this, dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget);
 	}
-
+	
 	SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
-
+	
 	module.exports = SyntheticClipboardEvent;
 
 /***/ },
-/* 183 */
+/* 184 */
+/*!********************************************!*\
+  !*** ./~/react/lib/SyntheticFocusEvent.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -18945,11 +19514,11 @@ var SettingsPanel =
 	 * @providesModule SyntheticFocusEvent
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var SyntheticUIEvent = __webpack_require__(136);
-
+	
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 137);
+	
 	/**
 	 * @interface FocusEvent
 	 * @see http://www.w3.org/TR/DOM-Level-3-Events/
@@ -18957,7 +19526,7 @@ var SettingsPanel =
 	var FocusEventInterface = {
 	  relatedTarget: null
 	};
-
+	
 	/**
 	 * @param {object} dispatchConfig Configuration used to dispatch this event.
 	 * @param {string} dispatchMarker Marker identifying the event target.
@@ -18967,13 +19536,16 @@ var SettingsPanel =
 	function SyntheticFocusEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget) {
 	  SyntheticUIEvent.call(this, dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget);
 	}
-
+	
 	SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
-
+	
 	module.exports = SyntheticFocusEvent;
 
 /***/ },
-/* 184 */
+/* 185 */
+/*!***********************************************!*\
+  !*** ./~/react/lib/SyntheticKeyboardEvent.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -18987,15 +19559,15 @@ var SettingsPanel =
 	 * @providesModule SyntheticKeyboardEvent
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var SyntheticUIEvent = __webpack_require__(136);
-
-	var getEventCharCode = __webpack_require__(185);
-	var getEventKey = __webpack_require__(186);
-	var getEventModifierState = __webpack_require__(137);
-
+	
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 137);
+	
+	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 186);
+	var getEventKey = __webpack_require__(/*! ./getEventKey */ 187);
+	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 138);
+	
 	/**
 	 * @interface KeyboardEvent
 	 * @see http://www.w3.org/TR/DOM-Level-3-Events/
@@ -19014,7 +19586,7 @@ var SettingsPanel =
 	  charCode: function (event) {
 	    // `charCode` is the result of a KeyPress event and represents the value of
 	    // the actual printable character.
-
+	
 	    // KeyPress is deprecated, but its replacement is not yet final and not
 	    // implemented in any major browser. Only KeyPress has charCode.
 	    if (event.type === 'keypress') {
@@ -19025,7 +19597,7 @@ var SettingsPanel =
 	  keyCode: function (event) {
 	    // `keyCode` is the result of a KeyDown/Up event and represents the value of
 	    // physical keyboard key.
-
+	
 	    // The actual meaning of the value depends on the users' keyboard layout
 	    // which cannot be detected. Assuming that it is a US keyboard layout
 	    // provides a surprisingly accurate mapping for US and European users.
@@ -19047,7 +19619,7 @@ var SettingsPanel =
 	    return 0;
 	  }
 	};
-
+	
 	/**
 	 * @param {object} dispatchConfig Configuration used to dispatch this event.
 	 * @param {string} dispatchMarker Marker identifying the event target.
@@ -19057,13 +19629,16 @@ var SettingsPanel =
 	function SyntheticKeyboardEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget) {
 	  SyntheticUIEvent.call(this, dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget);
 	}
-
+	
 	SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
-
+	
 	module.exports = SyntheticKeyboardEvent;
 
 /***/ },
-/* 185 */
+/* 186 */
+/*!*****************************************!*\
+  !*** ./~/react/lib/getEventCharCode.js ***!
+  \*****************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -19077,9 +19652,9 @@ var SettingsPanel =
 	 * @providesModule getEventCharCode
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
+	
 	/**
 	 * `charCode` represents the actual "character code" and is safe to use with
 	 * `String.fromCharCode`. As such, only keys that correspond to printable
@@ -19093,10 +19668,10 @@ var SettingsPanel =
 	function getEventCharCode(nativeEvent) {
 	  var charCode;
 	  var keyCode = nativeEvent.keyCode;
-
+	
 	  if ('charCode' in nativeEvent) {
 	    charCode = nativeEvent.charCode;
-
+	
 	    // FF does not set `charCode` for the Enter-key, check against `keyCode`.
 	    if (charCode === 0 && keyCode === 13) {
 	      charCode = 13;
@@ -19105,20 +19680,23 @@ var SettingsPanel =
 	    // IE8 does not implement `charCode`, but `keyCode` has the correct value.
 	    charCode = keyCode;
 	  }
-
+	
 	  // Some non-printable keys are reported in `charCode`/`keyCode`, discard them.
 	  // Must not discard the (non-)printable Enter-key.
 	  if (charCode >= 32 || charCode === 13) {
 	    return charCode;
 	  }
-
+	
 	  return 0;
 	}
-
+	
 	module.exports = getEventCharCode;
 
 /***/ },
-/* 186 */
+/* 187 */
+/*!************************************!*\
+  !*** ./~/react/lib/getEventKey.js ***!
+  \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -19132,11 +19710,11 @@ var SettingsPanel =
 	 * @providesModule getEventKey
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var getEventCharCode = __webpack_require__(185);
-
+	
+	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 186);
+	
 	/**
 	 * Normalization of deprecated HTML5 `key` values
 	 * @see https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent#Key_names
@@ -19155,7 +19733,7 @@ var SettingsPanel =
 	  'Scroll': 'ScrollLock',
 	  'MozPrintableKey': 'Unidentified'
 	};
-
+	
 	/**
 	 * Translation from legacy `keyCode` to HTML5 `key`
 	 * Only special keys supported, all others depend on keyboard layout or browser
@@ -19189,7 +19767,7 @@ var SettingsPanel =
 	  145: 'ScrollLock',
 	  224: 'Meta'
 	};
-
+	
 	/**
 	 * @param {object} nativeEvent Native browser event.
 	 * @return {string} Normalized `key` property.
@@ -19198,7 +19776,7 @@ var SettingsPanel =
 	  if (nativeEvent.key) {
 	    // Normalize inconsistent values reported by browsers due to
 	    // implementations of a working draft specification.
-
+	
 	    // FireFox implements `key` but returns `MozPrintableKey` for all
 	    // printable characters (normalized to `Unidentified`), ignore it.
 	    var key = normalizeKey[nativeEvent.key] || nativeEvent.key;
@@ -19206,11 +19784,11 @@ var SettingsPanel =
 	      return key;
 	    }
 	  }
-
+	
 	  // Browser does not implement `key`, polyfill as much of it as we can.
 	  if (nativeEvent.type === 'keypress') {
 	    var charCode = getEventCharCode(nativeEvent);
-
+	
 	    // The enter-key is technically both printable and non-printable and can
 	    // thus be captured by `keypress`, no other non-printable key should.
 	    return charCode === 13 ? 'Enter' : String.fromCharCode(charCode);
@@ -19222,11 +19800,14 @@ var SettingsPanel =
 	  }
 	  return '';
 	}
-
+	
 	module.exports = getEventKey;
 
 /***/ },
-/* 187 */
+/* 188 */
+/*!*******************************************!*\
+  !*** ./~/react/lib/SyntheticDragEvent.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -19240,11 +19821,11 @@ var SettingsPanel =
 	 * @providesModule SyntheticDragEvent
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var SyntheticMouseEvent = __webpack_require__(135);
-
+	
+	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 136);
+	
 	/**
 	 * @interface DragEvent
 	 * @see http://www.w3.org/TR/DOM-Level-3-Events/
@@ -19252,7 +19833,7 @@ var SettingsPanel =
 	var DragEventInterface = {
 	  dataTransfer: null
 	};
-
+	
 	/**
 	 * @param {object} dispatchConfig Configuration used to dispatch this event.
 	 * @param {string} dispatchMarker Marker identifying the event target.
@@ -19262,13 +19843,16 @@ var SettingsPanel =
 	function SyntheticDragEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget) {
 	  SyntheticMouseEvent.call(this, dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget);
 	}
-
+	
 	SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
-
+	
 	module.exports = SyntheticDragEvent;
 
 /***/ },
-/* 188 */
+/* 189 */
+/*!********************************************!*\
+  !*** ./~/react/lib/SyntheticTouchEvent.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -19282,13 +19866,13 @@ var SettingsPanel =
 	 * @providesModule SyntheticTouchEvent
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var SyntheticUIEvent = __webpack_require__(136);
-
-	var getEventModifierState = __webpack_require__(137);
-
+	
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 137);
+	
+	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 138);
+	
 	/**
 	 * @interface TouchEvent
 	 * @see http://www.w3.org/TR/touch-events/
@@ -19303,7 +19887,7 @@ var SettingsPanel =
 	  shiftKey: null,
 	  getModifierState: getEventModifierState
 	};
-
+	
 	/**
 	 * @param {object} dispatchConfig Configuration used to dispatch this event.
 	 * @param {string} dispatchMarker Marker identifying the event target.
@@ -19313,13 +19897,16 @@ var SettingsPanel =
 	function SyntheticTouchEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget) {
 	  SyntheticUIEvent.call(this, dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget);
 	}
-
+	
 	SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
-
+	
 	module.exports = SyntheticTouchEvent;
 
 /***/ },
-/* 189 */
+/* 190 */
+/*!********************************************!*\
+  !*** ./~/react/lib/SyntheticWheelEvent.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -19333,11 +19920,11 @@ var SettingsPanel =
 	 * @providesModule SyntheticWheelEvent
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var SyntheticMouseEvent = __webpack_require__(135);
-
+	
+	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 136);
+	
 	/**
 	 * @interface WheelEvent
 	 * @see http://www.w3.org/TR/DOM-Level-3-Events/
@@ -19356,14 +19943,14 @@ var SettingsPanel =
 	    'wheelDelta' in event ? -event.wheelDelta : 0;
 	  },
 	  deltaZ: null,
-
+	
 	  // Browsers without "deltaMode" is reporting in raw wheel delta where one
 	  // notch on the scroll is always +/- 120, roughly equivalent to pixels.
 	  // A good approximation of DOM_DELTA_LINE (1) is 5% of viewport size or
 	  // ~40 pixels, for DOM_DELTA_SCREEN (2) it is 87.5% of viewport size.
 	  deltaMode: null
 	};
-
+	
 	/**
 	 * @param {object} dispatchConfig Configuration used to dispatch this event.
 	 * @param {string} dispatchMarker Marker identifying the event target.
@@ -19373,13 +19960,16 @@ var SettingsPanel =
 	function SyntheticWheelEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget) {
 	  SyntheticMouseEvent.call(this, dispatchConfig, dispatchMarker, nativeEvent, nativeEventTarget);
 	}
-
+	
 	SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
-
+	
 	module.exports = SyntheticWheelEvent;
 
 /***/ },
-/* 190 */
+/* 191 */
+/*!*********************************************!*\
+  !*** ./~/react/lib/SVGDOMPropertyConfig.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -19392,18 +19982,18 @@ var SettingsPanel =
 	 *
 	 * @providesModule SVGDOMPropertyConfig
 	 */
-
+	
 	'use strict';
-
-	var DOMProperty = __webpack_require__(72);
-
+	
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 73);
+	
 	var MUST_USE_ATTRIBUTE = DOMProperty.injection.MUST_USE_ATTRIBUTE;
-
+	
 	var NS = {
 	  xlink: 'http://www.w3.org/1999/xlink',
 	  xml: 'http://www.w3.org/XML/1998/namespace'
 	};
-
+	
 	var SVGDOMPropertyConfig = {
 	  Properties: {
 	    clipPath: MUST_USE_ATTRIBUTE,
@@ -19507,11 +20097,14 @@ var SettingsPanel =
 	    xmlSpace: 'xml:space'
 	  }
 	};
-
+	
 	module.exports = SVGDOMPropertyConfig;
 
 /***/ },
-/* 191 */
+/* 192 */
+/*!*****************************************!*\
+  !*** ./~/react/lib/ReactDefaultPerf.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -19525,46 +20118,46 @@ var SettingsPanel =
 	 * @providesModule ReactDefaultPerf
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var DOMProperty = __webpack_require__(72);
-	var ReactDefaultPerfAnalysis = __webpack_require__(192);
-	var ReactMount = __webpack_require__(77);
-	var ReactPerf = __webpack_require__(67);
-
-	var performanceNow = __webpack_require__(193);
-
+	
+	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 73);
+	var ReactDefaultPerfAnalysis = __webpack_require__(/*! ./ReactDefaultPerfAnalysis */ 193);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 68);
+	
+	var performanceNow = __webpack_require__(/*! fbjs/lib/performanceNow */ 194);
+	
 	function roundFloat(val) {
 	  return Math.floor(val * 100) / 100;
 	}
-
+	
 	function addValue(obj, key, val) {
 	  obj[key] = (obj[key] || 0) + val;
 	}
-
+	
 	var ReactDefaultPerf = {
 	  _allMeasurements: [], // last item in the list is the current one
 	  _mountStack: [0],
 	  _injected: false,
-
+	
 	  start: function () {
 	    if (!ReactDefaultPerf._injected) {
 	      ReactPerf.injection.injectMeasure(ReactDefaultPerf.measure);
 	    }
-
+	
 	    ReactDefaultPerf._allMeasurements.length = 0;
 	    ReactPerf.enableMeasure = true;
 	  },
-
+	
 	  stop: function () {
 	    ReactPerf.enableMeasure = false;
 	  },
-
+	
 	  getLastMeasurements: function () {
 	    return ReactDefaultPerf._allMeasurements;
 	  },
-
+	
 	  printExclusive: function (measurements) {
 	    measurements = measurements || ReactDefaultPerf._allMeasurements;
 	    var summary = ReactDefaultPerfAnalysis.getExclusiveSummary(measurements);
@@ -19582,7 +20175,7 @@ var SettingsPanel =
 	    // TODO: ReactDefaultPerfAnalysis.getTotalTime() does not return the correct
 	    // number.
 	  },
-
+	
 	  printInclusive: function (measurements) {
 	    measurements = measurements || ReactDefaultPerf._allMeasurements;
 	    var summary = ReactDefaultPerfAnalysis.getInclusiveSummary(measurements);
@@ -19595,7 +20188,7 @@ var SettingsPanel =
 	    }));
 	    console.log('Total time:', ReactDefaultPerfAnalysis.getTotalTime(measurements).toFixed(2) + ' ms');
 	  },
-
+	
 	  getMeasurementsSummaryMap: function (measurements) {
 	    var summary = ReactDefaultPerfAnalysis.getInclusiveSummary(measurements, true);
 	    return summary.map(function (item) {
@@ -19606,13 +20199,13 @@ var SettingsPanel =
 	      };
 	    });
 	  },
-
+	
 	  printWasted: function (measurements) {
 	    measurements = measurements || ReactDefaultPerf._allMeasurements;
 	    console.table(ReactDefaultPerf.getMeasurementsSummaryMap(measurements));
 	    console.log('Total time:', ReactDefaultPerfAnalysis.getTotalTime(measurements).toFixed(2) + ' ms');
 	  },
-
+	
 	  printDOM: function (measurements) {
 	    measurements = measurements || ReactDefaultPerf._allMeasurements;
 	    var summary = ReactDefaultPerfAnalysis.getDOMSummary(measurements);
@@ -19625,7 +20218,7 @@ var SettingsPanel =
 	    }));
 	    console.log('Total time:', ReactDefaultPerfAnalysis.getTotalTime(measurements).toFixed(2) + ' ms');
 	  },
-
+	
 	  _recordWrite: function (id, fnName, totalTime, args) {
 	    // TODO: totalTime isn't that useful since it doesn't count paints/reflows
 	    var writes = ReactDefaultPerf._allMeasurements[ReactDefaultPerf._allMeasurements.length - 1].writes;
@@ -19636,17 +20229,17 @@ var SettingsPanel =
 	      args: args
 	    });
 	  },
-
+	
 	  measure: function (moduleName, fnName, func) {
 	    return function () {
 	      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 	        args[_key] = arguments[_key];
 	      }
-
+	
 	      var totalTime;
 	      var rv;
 	      var start;
-
+	
 	      if (fnName === '_renderNewRootComponent' || fnName === 'flushBatchedUpdates') {
 	        // A "measurement" is a set of metrics recorded for each flush. We want
 	        // to group the metrics for a given flush together so we can look at the
@@ -19670,7 +20263,7 @@ var SettingsPanel =
 	        start = performanceNow();
 	        rv = func.apply(this, args);
 	        totalTime = performanceNow() - start;
-
+	
 	        if (fnName === '_mountImageIntoNode') {
 	          var mountID = ReactMount.getID(args[1]);
 	          ReactDefaultPerf._recordWrite(mountID, fnName, totalTime, args[0]);
@@ -19703,29 +20296,29 @@ var SettingsPanel =
 	        return rv;
 	      } else if (moduleName === 'ReactCompositeComponent' && (fnName === 'mountComponent' || fnName === 'updateComponent' || // TODO: receiveComponent()?
 	      fnName === '_renderValidatedComponent')) {
-
+	
 	        if (this._currentElement.type === ReactMount.TopLevelWrapper) {
 	          return func.apply(this, args);
 	        }
-
+	
 	        var rootNodeID = fnName === 'mountComponent' ? args[0] : this._rootNodeID;
 	        var isRender = fnName === '_renderValidatedComponent';
 	        var isMount = fnName === 'mountComponent';
-
+	
 	        var mountStack = ReactDefaultPerf._mountStack;
 	        var entry = ReactDefaultPerf._allMeasurements[ReactDefaultPerf._allMeasurements.length - 1];
-
+	
 	        if (isRender) {
 	          addValue(entry.counts, rootNodeID, 1);
 	        } else if (isMount) {
 	          entry.created[rootNodeID] = true;
 	          mountStack.push(0);
 	        }
-
+	
 	        start = performanceNow();
 	        rv = func.apply(this, args);
 	        totalTime = performanceNow() - start;
-
+	
 	        if (isRender) {
 	          addValue(entry.render, rootNodeID, totalTime);
 	        } else if (isMount) {
@@ -19736,12 +20329,12 @@ var SettingsPanel =
 	        } else {
 	          addValue(entry.inclusive, rootNodeID, totalTime);
 	        }
-
+	
 	        entry.displayNames[rootNodeID] = {
 	          current: this.getName(),
 	          owner: this._currentElement._owner ? this._currentElement._owner.getName() : '<root>'
 	        };
-
+	
 	        return rv;
 	      } else {
 	        return func.apply(this, args);
@@ -19749,11 +20342,14 @@ var SettingsPanel =
 	    };
 	  }
 	};
-
+	
 	module.exports = ReactDefaultPerf;
 
 /***/ },
-/* 192 */
+/* 193 */
+/*!*************************************************!*\
+  !*** ./~/react/lib/ReactDefaultPerfAnalysis.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -19766,11 +20362,11 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactDefaultPerfAnalysis
 	 */
-
+	
 	'use strict';
-
-	var assign = __webpack_require__(88);
-
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	
 	// Don't try to save users less than 1.2ms (a number I made up)
 	var DONT_CARE_THRESHOLD = 1.2;
 	var DOM_OPERATION_TYPES = {
@@ -19787,7 +20383,7 @@ var SettingsPanel =
 	  'replaceNodeWithMarkup': 'replace',
 	  'updateTextContent': 'set textContent'
 	};
-
+	
 	function getTotalTime(measurements) {
 	  // TODO: return number of DOM ops? could be misleading.
 	  // TODO: measure dropped frames after reconcile?
@@ -19800,7 +20396,7 @@ var SettingsPanel =
 	  }
 	  return totalTime;
 	}
-
+	
 	function getDOMSummary(measurements) {
 	  var items = [];
 	  measurements.forEach(function (measurement) {
@@ -19816,18 +20412,18 @@ var SettingsPanel =
 	  });
 	  return items;
 	}
-
+	
 	function getExclusiveSummary(measurements) {
 	  var candidates = {};
 	  var displayName;
-
+	
 	  for (var i = 0; i < measurements.length; i++) {
 	    var measurement = measurements[i];
 	    var allIDs = assign({}, measurement.exclusive, measurement.inclusive);
-
+	
 	    for (var id in allIDs) {
 	      displayName = measurement.displayNames[id].current;
-
+	
 	      candidates[displayName] = candidates[displayName] || {
 	        componentName: displayName,
 	        inclusive: 0,
@@ -19849,7 +20445,7 @@ var SettingsPanel =
 	      }
 	    }
 	  }
-
+	
 	  // Now make a sorted array with the results.
 	  var arr = [];
 	  for (displayName in candidates) {
@@ -19857,45 +20453,45 @@ var SettingsPanel =
 	      arr.push(candidates[displayName]);
 	    }
 	  }
-
+	
 	  arr.sort(function (a, b) {
 	    return b.exclusive - a.exclusive;
 	  });
-
+	
 	  return arr;
 	}
-
+	
 	function getInclusiveSummary(measurements, onlyClean) {
 	  var candidates = {};
 	  var inclusiveKey;
-
+	
 	  for (var i = 0; i < measurements.length; i++) {
 	    var measurement = measurements[i];
 	    var allIDs = assign({}, measurement.exclusive, measurement.inclusive);
 	    var cleanComponents;
-
+	
 	    if (onlyClean) {
 	      cleanComponents = getUnchangedComponents(measurement);
 	    }
-
+	
 	    for (var id in allIDs) {
 	      if (onlyClean && !cleanComponents[id]) {
 	        continue;
 	      }
-
+	
 	      var displayName = measurement.displayNames[id];
-
+	
 	      // Inclusive time is not useful for many components without knowing where
 	      // they are instantiated. So we aggregate inclusive time with both the
 	      // owner and current displayName as the key.
 	      inclusiveKey = displayName.owner + ' > ' + displayName.current;
-
+	
 	      candidates[inclusiveKey] = candidates[inclusiveKey] || {
 	        componentName: inclusiveKey,
 	        time: 0,
 	        count: 0
 	      };
-
+	
 	      if (measurement.inclusive[id]) {
 	        candidates[inclusiveKey].time += measurement.inclusive[id];
 	      }
@@ -19904,7 +20500,7 @@ var SettingsPanel =
 	      }
 	    }
 	  }
-
+	
 	  // Now make a sorted array with the results.
 	  var arr = [];
 	  for (inclusiveKey in candidates) {
@@ -19912,14 +20508,14 @@ var SettingsPanel =
 	      arr.push(candidates[inclusiveKey]);
 	    }
 	  }
-
+	
 	  arr.sort(function (a, b) {
 	    return b.time - a.time;
 	  });
-
+	
 	  return arr;
 	}
-
+	
 	function getUnchangedComponents(measurement) {
 	  // For a given reconcile, look at which components did not actually
 	  // render anything to the DOM and return a mapping of their ID to
@@ -19927,7 +20523,7 @@ var SettingsPanel =
 	  var cleanComponents = {};
 	  var dirtyLeafIDs = Object.keys(measurement.writes);
 	  var allIDs = assign({}, measurement.exclusive, measurement.inclusive);
-
+	
 	  for (var id in allIDs) {
 	    var isDirty = false;
 	    // For each component that rendered, see if a component that triggered
@@ -19948,18 +20544,21 @@ var SettingsPanel =
 	  }
 	  return cleanComponents;
 	}
-
+	
 	var ReactDefaultPerfAnalysis = {
 	  getExclusiveSummary: getExclusiveSummary,
 	  getInclusiveSummary: getInclusiveSummary,
 	  getDOMSummary: getDOMSummary,
 	  getTotalTime: getTotalTime
 	};
-
+	
 	module.exports = ReactDefaultPerfAnalysis;
 
 /***/ },
-/* 193 */
+/* 194 */
+/*!**************************************!*\
+  !*** ./~/fbjs/lib/performanceNow.js ***!
+  \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -19973,13 +20572,13 @@ var SettingsPanel =
 	 * @providesModule performanceNow
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
-	var performance = __webpack_require__(194);
-
+	
+	var performance = __webpack_require__(/*! ./performance */ 195);
+	
 	var performanceNow;
-
+	
 	/**
 	 * Detect if we can use `window.performance.now()` and gracefully fallback to
 	 * `Date.now()` if it doesn't exist. We need to support Firefox < 15 for now
@@ -19994,11 +20593,14 @@ var SettingsPanel =
 	    return Date.now();
 	  };
 	}
-
+	
 	module.exports = performanceNow;
 
 /***/ },
-/* 194 */
+/* 195 */
+/*!***********************************!*\
+  !*** ./~/fbjs/lib/performance.js ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -20012,21 +20614,24 @@ var SettingsPanel =
 	 * @providesModule performance
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
-	var ExecutionEnvironment = __webpack_require__(58);
-
+	
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 59);
+	
 	var performance;
-
+	
 	if (ExecutionEnvironment.canUseDOM) {
 	  performance = window.performance || window.msPerformance || window.webkitPerformance;
 	}
-
+	
 	module.exports = performance || {};
 
 /***/ },
-/* 195 */
+/* 196 */
+/*!*************************************!*\
+  !*** ./~/react/lib/ReactVersion.js ***!
+  \*************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -20039,13 +20644,16 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactVersion
 	 */
-
+	
 	'use strict';
-
+	
 	module.exports = '0.14.5';
 
 /***/ },
-/* 196 */
+/* 197 */
+/*!***************************************************!*\
+  !*** ./~/react/lib/renderSubtreeIntoContainer.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -20058,15 +20666,18 @@ var SettingsPanel =
 	 *
 	* @providesModule renderSubtreeIntoContainer
 	*/
-
+	
 	'use strict';
-
-	var ReactMount = __webpack_require__(77);
-
+	
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 78);
+	
 	module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ },
-/* 197 */
+/* 198 */
+/*!***************************************!*\
+  !*** ./~/react/lib/ReactDOMServer.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -20079,25 +20690,28 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactDOMServer
 	 */
-
+	
 	'use strict';
-
-	var ReactDefaultInjection = __webpack_require__(120);
-	var ReactServerRendering = __webpack_require__(198);
-	var ReactVersion = __webpack_require__(195);
-
+	
+	var ReactDefaultInjection = __webpack_require__(/*! ./ReactDefaultInjection */ 121);
+	var ReactServerRendering = __webpack_require__(/*! ./ReactServerRendering */ 199);
+	var ReactVersion = __webpack_require__(/*! ./ReactVersion */ 196);
+	
 	ReactDefaultInjection.inject();
-
+	
 	var ReactDOMServer = {
 	  renderToString: ReactServerRendering.renderToString,
 	  renderToStaticMarkup: ReactServerRendering.renderToStaticMarkup,
 	  version: ReactVersion
 	};
-
+	
 	module.exports = ReactDOMServer;
 
 /***/ },
-/* 198 */
+/* 199 */
+/*!*********************************************!*\
+  !*** ./~/react/lib/ReactServerRendering.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20112,33 +20726,33 @@ var SettingsPanel =
 	 * @providesModule ReactServerRendering
 	 */
 	'use strict';
-
-	var ReactDefaultBatchingStrategy = __webpack_require__(141);
-	var ReactElement = __webpack_require__(91);
-	var ReactInstanceHandles = __webpack_require__(94);
-	var ReactMarkupChecksum = __webpack_require__(97);
-	var ReactServerBatchingStrategy = __webpack_require__(199);
-	var ReactServerRenderingTransaction = __webpack_require__(200);
-	var ReactUpdates = __webpack_require__(103);
-
-	var emptyObject = __webpack_require__(107);
-	var instantiateReactComponent = __webpack_require__(111);
-	var invariant = __webpack_require__(62);
-
+	
+	var ReactDefaultBatchingStrategy = __webpack_require__(/*! ./ReactDefaultBatchingStrategy */ 142);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 92);
+	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 95);
+	var ReactMarkupChecksum = __webpack_require__(/*! ./ReactMarkupChecksum */ 98);
+	var ReactServerBatchingStrategy = __webpack_require__(/*! ./ReactServerBatchingStrategy */ 200);
+	var ReactServerRenderingTransaction = __webpack_require__(/*! ./ReactServerRenderingTransaction */ 201);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 104);
+	
+	var emptyObject = __webpack_require__(/*! fbjs/lib/emptyObject */ 108);
+	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 112);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	/**
 	 * @param {ReactElement} element
 	 * @return {string} the HTML markup
 	 */
 	function renderToString(element) {
 	  !ReactElement.isValidElement(element) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'renderToString(): You must pass a valid ReactElement.') : invariant(false) : undefined;
-
+	
 	  var transaction;
 	  try {
 	    ReactUpdates.injection.injectBatchingStrategy(ReactServerBatchingStrategy);
-
+	
 	    var id = ReactInstanceHandles.createReactRootID();
 	    transaction = ReactServerRenderingTransaction.getPooled(false);
-
+	
 	    return transaction.perform(function () {
 	      var componentInstance = instantiateReactComponent(element, null);
 	      var markup = componentInstance.mountComponent(id, transaction, emptyObject);
@@ -20151,7 +20765,7 @@ var SettingsPanel =
 	    ReactUpdates.injection.injectBatchingStrategy(ReactDefaultBatchingStrategy);
 	  }
 	}
-
+	
 	/**
 	 * @param {ReactElement} element
 	 * @return {string} the HTML markup, without the extra React ID and checksum
@@ -20159,14 +20773,14 @@ var SettingsPanel =
 	 */
 	function renderToStaticMarkup(element) {
 	  !ReactElement.isValidElement(element) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'renderToStaticMarkup(): You must pass a valid ReactElement.') : invariant(false) : undefined;
-
+	
 	  var transaction;
 	  try {
 	    ReactUpdates.injection.injectBatchingStrategy(ReactServerBatchingStrategy);
-
+	
 	    var id = ReactInstanceHandles.createReactRootID();
 	    transaction = ReactServerRenderingTransaction.getPooled(true);
-
+	
 	    return transaction.perform(function () {
 	      var componentInstance = instantiateReactComponent(element, null);
 	      return componentInstance.mountComponent(id, transaction, emptyObject);
@@ -20178,15 +20792,18 @@ var SettingsPanel =
 	    ReactUpdates.injection.injectBatchingStrategy(ReactDefaultBatchingStrategy);
 	  }
 	}
-
+	
 	module.exports = {
 	  renderToString: renderToString,
 	  renderToStaticMarkup: renderToStaticMarkup
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 199 */
+/* 200 */
+/*!****************************************************!*\
+  !*** ./~/react/lib/ReactServerBatchingStrategy.js ***!
+  \****************************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -20200,9 +20817,9 @@ var SettingsPanel =
 	 * @providesModule ReactServerBatchingStrategy
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
+	
 	var ReactServerBatchingStrategy = {
 	  isBatchingUpdates: false,
 	  batchedUpdates: function (callback) {
@@ -20210,11 +20827,14 @@ var SettingsPanel =
 	    // schedule any updates. We will simply ignore them.
 	  }
 	};
-
+	
 	module.exports = ReactServerBatchingStrategy;
 
 /***/ },
-/* 200 */
+/* 201 */
+/*!********************************************************!*\
+  !*** ./~/react/lib/ReactServerRenderingTransaction.js ***!
+  \********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -20228,16 +20848,16 @@ var SettingsPanel =
 	 * @providesModule ReactServerRenderingTransaction
 	 * @typechecks
 	 */
-
+	
 	'use strict';
-
-	var PooledClass = __webpack_require__(105);
-	var CallbackQueue = __webpack_require__(104);
-	var Transaction = __webpack_require__(106);
-
-	var assign = __webpack_require__(88);
-	var emptyFunction = __webpack_require__(64);
-
+	
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 106);
+	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 105);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 107);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 65);
+	
 	/**
 	 * Provides a `CallbackQueue` queue for collecting `onDOMReady` callbacks
 	 * during the performing of the transaction.
@@ -20249,17 +20869,17 @@ var SettingsPanel =
 	  initialize: function () {
 	    this.reactMountReady.reset();
 	  },
-
+	
 	  close: emptyFunction
 	};
-
+	
 	/**
 	 * Executed within the scope of the `Transaction` instance. Consider these as
 	 * being member methods, but with an implied ordering while being isolated from
 	 * each other.
 	 */
 	var TRANSACTION_WRAPPERS = [ON_DOM_READY_QUEUEING];
-
+	
 	/**
 	 * @class ReactServerRenderingTransaction
 	 * @param {boolean} renderToStaticMarkup
@@ -20270,7 +20890,7 @@ var SettingsPanel =
 	  this.reactMountReady = CallbackQueue.getPooled(null);
 	  this.useCreateElement = false;
 	}
-
+	
 	var Mixin = {
 	  /**
 	   * @see Transaction
@@ -20281,14 +20901,14 @@ var SettingsPanel =
 	  getTransactionWrappers: function () {
 	    return TRANSACTION_WRAPPERS;
 	  },
-
+	
 	  /**
 	   * @return {object} The queue to collect `onDOMReady` callbacks with.
 	   */
 	  getReactMountReady: function () {
 	    return this.reactMountReady;
 	  },
-
+	
 	  /**
 	   * `PooledClass` looks for this, and will invoke this before allowing this
 	   * instance to be reused.
@@ -20298,15 +20918,18 @@ var SettingsPanel =
 	    this.reactMountReady = null;
 	  }
 	};
-
+	
 	assign(ReactServerRenderingTransaction.prototype, Transaction.Mixin, Mixin);
-
+	
 	PooledClass.addPoolingTo(ReactServerRenderingTransaction);
-
+	
 	module.exports = ReactServerRenderingTransaction;
 
 /***/ },
-/* 201 */
+/* 202 */
+/*!****************************************!*\
+  !*** ./~/react/lib/ReactIsomorphic.js ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20319,35 +20942,35 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactIsomorphic
 	 */
-
+	
 	'use strict';
-
-	var ReactChildren = __webpack_require__(159);
-	var ReactComponent = __webpack_require__(172);
-	var ReactClass = __webpack_require__(171);
-	var ReactDOMFactories = __webpack_require__(202);
-	var ReactElement = __webpack_require__(91);
-	var ReactElementValidator = __webpack_require__(203);
-	var ReactPropTypes = __webpack_require__(156);
-	var ReactVersion = __webpack_require__(195);
-
-	var assign = __webpack_require__(88);
-	var onlyChild = __webpack_require__(205);
-
+	
+	var ReactChildren = __webpack_require__(/*! ./ReactChildren */ 160);
+	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 173);
+	var ReactClass = __webpack_require__(/*! ./ReactClass */ 172);
+	var ReactDOMFactories = __webpack_require__(/*! ./ReactDOMFactories */ 203);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 92);
+	var ReactElementValidator = __webpack_require__(/*! ./ReactElementValidator */ 204);
+	var ReactPropTypes = __webpack_require__(/*! ./ReactPropTypes */ 157);
+	var ReactVersion = __webpack_require__(/*! ./ReactVersion */ 196);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var onlyChild = __webpack_require__(/*! ./onlyChild */ 206);
+	
 	var createElement = ReactElement.createElement;
 	var createFactory = ReactElement.createFactory;
 	var cloneElement = ReactElement.cloneElement;
-
+	
 	if (process.env.NODE_ENV !== 'production') {
 	  createElement = ReactElementValidator.createElement;
 	  createFactory = ReactElementValidator.createFactory;
 	  cloneElement = ReactElementValidator.cloneElement;
 	}
-
+	
 	var React = {
-
+	
 	  // Modern
-
+	
 	  Children: {
 	    map: ReactChildren.map,
 	    forEach: ReactChildren.forEach,
@@ -20355,15 +20978,15 @@ var SettingsPanel =
 	    toArray: ReactChildren.toArray,
 	    only: onlyChild
 	  },
-
+	
 	  Component: ReactComponent,
-
+	
 	  createElement: createElement,
 	  cloneElement: cloneElement,
 	  isValidElement: ReactElement.isValidElement,
-
+	
 	  // Classic
-
+	
 	  PropTypes: ReactPropTypes,
 	  createClass: ReactClass.createClass,
 	  createFactory: createFactory,
@@ -20371,22 +20994,25 @@ var SettingsPanel =
 	    // Currently a noop. Will be used to validate and trace mixins.
 	    return mixin;
 	  },
-
+	
 	  // This looks DOM specific but these are actually isomorphic helpers
 	  // since they are just generating DOM strings.
 	  DOM: ReactDOMFactories,
-
+	
 	  version: ReactVersion,
-
+	
 	  // Hook for JSX spread, don't use this for anything else.
 	  __spread: assign
 	};
-
+	
 	module.exports = React;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 202 */
+/* 203 */
+/*!******************************************!*\
+  !*** ./~/react/lib/ReactDOMFactories.js ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20400,14 +21026,14 @@ var SettingsPanel =
 	 * @providesModule ReactDOMFactories
 	 * @typechecks static-only
 	 */
-
+	
 	'use strict';
-
-	var ReactElement = __webpack_require__(91);
-	var ReactElementValidator = __webpack_require__(203);
-
-	var mapObject = __webpack_require__(204);
-
+	
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 92);
+	var ReactElementValidator = __webpack_require__(/*! ./ReactElementValidator */ 204);
+	
+	var mapObject = __webpack_require__(/*! fbjs/lib/mapObject */ 205);
+	
 	/**
 	 * Create a factory that creates HTML tag elements.
 	 *
@@ -20420,7 +21046,7 @@ var SettingsPanel =
 	  }
 	  return ReactElement.createFactory(tag);
 	}
-
+	
 	/**
 	 * Creates a mapping from supported HTML tags to `ReactDOMComponent` classes.
 	 * This is also accessible via `React.DOM`.
@@ -20541,7 +21167,7 @@ var SettingsPanel =
 	  'var': 'var',
 	  video: 'video',
 	  wbr: 'wbr',
-
+	
 	  // SVG
 	  circle: 'circle',
 	  clipPath: 'clipPath',
@@ -20562,14 +21188,17 @@ var SettingsPanel =
 	  svg: 'svg',
 	  text: 'text',
 	  tspan: 'tspan'
-
+	
 	}, createDOMFactory);
-
+	
 	module.exports = ReactDOMFactories;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 203 */
+/* 204 */
+/*!**********************************************!*\
+  !*** ./~/react/lib/ReactElementValidator.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20582,26 +21211,26 @@ var SettingsPanel =
 	 *
 	 * @providesModule ReactElementValidator
 	 */
-
+	
 	/**
 	 * ReactElementValidator provides a wrapper around a element factory
 	 * which validates the props passed to the element. This is intended to be
 	 * used only in DEV and could be replaced by a static type checker for languages
 	 * that support it.
 	 */
-
+	
 	'use strict';
-
-	var ReactElement = __webpack_require__(91);
-	var ReactPropTypeLocations = __webpack_require__(114);
-	var ReactPropTypeLocationNames = __webpack_require__(115);
-	var ReactCurrentOwner = __webpack_require__(54);
-
-	var canDefineProperty = __webpack_require__(92);
-	var getIteratorFn = __webpack_require__(157);
-	var invariant = __webpack_require__(62);
-	var warning = __webpack_require__(74);
-
+	
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 92);
+	var ReactPropTypeLocations = __webpack_require__(/*! ./ReactPropTypeLocations */ 115);
+	var ReactPropTypeLocationNames = __webpack_require__(/*! ./ReactPropTypeLocationNames */ 116);
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 55);
+	
+	var canDefineProperty = __webpack_require__(/*! ./canDefineProperty */ 93);
+	var getIteratorFn = __webpack_require__(/*! ./getIteratorFn */ 158);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	function getDeclarationErrorAddendum() {
 	  if (ReactCurrentOwner.current) {
 	    var name = ReactCurrentOwner.current.getName();
@@ -20611,16 +21240,16 @@ var SettingsPanel =
 	  }
 	  return '';
 	}
-
+	
 	/**
 	 * Warn if there's no key explicitly set on dynamic arrays of children or
 	 * object keys are not valid. This allows us to keep track of children between
 	 * updates.
 	 */
 	var ownerHasKeyUseWarning = {};
-
+	
 	var loggedTypeFailures = {};
-
+	
 	/**
 	 * Warn if the element doesn't have an explicit key assigned to it.
 	 * This element is in an array. The array could grow and shrink or be
@@ -20636,7 +21265,7 @@ var SettingsPanel =
 	    return;
 	  }
 	  element._store.validated = true;
-
+	
 	  var addenda = getAddendaForKeyUse('uniqueKey', element, parentType);
 	  if (addenda === null) {
 	    // we already showed the warning
@@ -20644,7 +21273,7 @@ var SettingsPanel =
 	  }
 	  process.env.NODE_ENV !== 'production' ? warning(false, 'Each child in an array or iterator should have a unique "key" prop.' + '%s%s%s', addenda.parentOrOwner || '', addenda.childOwner || '', addenda.url || '') : undefined;
 	}
-
+	
 	/**
 	 * Shared warning and monitoring code for the key warnings.
 	 *
@@ -20663,19 +21292,19 @@ var SettingsPanel =
 	      addendum = ' Check the top-level render call using <' + parentName + '>.';
 	    }
 	  }
-
+	
 	  var memoizer = ownerHasKeyUseWarning[messageType] || (ownerHasKeyUseWarning[messageType] = {});
 	  if (memoizer[addendum]) {
 	    return null;
 	  }
 	  memoizer[addendum] = true;
-
+	
 	  var addenda = {
 	    parentOrOwner: addendum,
 	    url: ' See https://fb.me/react-warning-keys for more information.',
 	    childOwner: null
 	  };
-
+	
 	  // Usually the current owner is the offender, but if it accepts children as a
 	  // property, it may be the creator of the child that's responsible for
 	  // assigning it a key.
@@ -20683,10 +21312,10 @@ var SettingsPanel =
 	    // Give the component that originally created this child.
 	    addenda.childOwner = ' It was passed a child from ' + element._owner.getName() + '.';
 	  }
-
+	
 	  return addenda;
 	}
-
+	
 	/**
 	 * Ensure that every element either is passed in a static location, in an
 	 * array with an explicit keys property defined, or in an object literal
@@ -20728,7 +21357,7 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	/**
 	 * Assert that the props are valid
 	 *
@@ -20758,14 +21387,14 @@ var SettingsPanel =
 	        // Only monitor this failure once because there tends to be a lot of the
 	        // same error.
 	        loggedTypeFailures[error.message] = true;
-
+	
 	        var addendum = getDeclarationErrorAddendum();
 	        process.env.NODE_ENV !== 'production' ? warning(false, 'Failed propType: %s%s', error.message, addendum) : undefined;
 	      }
 	    }
 	  }
 	}
-
+	
 	/**
 	 * Given an element, validate that its props follow the propTypes definition,
 	 * provided by the type.
@@ -20785,23 +21414,23 @@ var SettingsPanel =
 	    process.env.NODE_ENV !== 'production' ? warning(componentClass.getDefaultProps.isReactClassApproved, 'getDefaultProps is only used on classic React.createClass ' + 'definitions. Use a static property named `defaultProps` instead.') : undefined;
 	  }
 	}
-
+	
 	var ReactElementValidator = {
-
+	
 	  createElement: function (type, props, children) {
 	    var validType = typeof type === 'string' || typeof type === 'function';
 	    // We warn in this case but don't throw. We expect the element creation to
 	    // succeed and there will likely be errors in render.
 	    process.env.NODE_ENV !== 'production' ? warning(validType, 'React.createElement: type should not be null, undefined, boolean, or ' + 'number. It should be a string (for DOM elements) or a ReactClass ' + '(for composite components).%s', getDeclarationErrorAddendum()) : undefined;
-
+	
 	    var element = ReactElement.createElement.apply(this, arguments);
-
+	
 	    // The result can be nullish if a mock or a custom function is used.
 	    // TODO: Drop this when these are no longer allowed as the type argument.
 	    if (element == null) {
 	      return element;
 	    }
-
+	
 	    // Skip key warning if the type isn't valid since our key validation logic
 	    // doesn't expect a non-string/function type and can throw confusing errors.
 	    // We don't want exception behavior to differ between dev and prod.
@@ -20812,17 +21441,17 @@ var SettingsPanel =
 	        validateChildKeys(arguments[i], type);
 	      }
 	    }
-
+	
 	    validatePropTypes(element);
-
+	
 	    return element;
 	  },
-
+	
 	  createFactory: function (type) {
 	    var validatedFactory = ReactElementValidator.createElement.bind(null, type);
 	    // Legacy hook TODO: Warn if this is accessed
 	    validatedFactory.type = type;
-
+	
 	    if (process.env.NODE_ENV !== 'production') {
 	      if (canDefineProperty) {
 	        Object.defineProperty(validatedFactory, 'type', {
@@ -20837,10 +21466,10 @@ var SettingsPanel =
 	        });
 	      }
 	    }
-
+	
 	    return validatedFactory;
 	  },
-
+	
 	  cloneElement: function (element, props, children) {
 	    var newElement = ReactElement.cloneElement.apply(this, arguments);
 	    for (var i = 2; i < arguments.length; i++) {
@@ -20849,14 +21478,17 @@ var SettingsPanel =
 	    validatePropTypes(newElement);
 	    return newElement;
 	  }
-
+	
 	};
-
+	
 	module.exports = ReactElementValidator;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 204 */
+/* 205 */
+/*!*********************************!*\
+  !*** ./~/fbjs/lib/mapObject.js ***!
+  \*********************************/
 /***/ function(module, exports) {
 
 	/**
@@ -20869,11 +21501,11 @@ var SettingsPanel =
 	 *
 	 * @providesModule mapObject
 	 */
-
+	
 	'use strict';
-
+	
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
-
+	
 	/**
 	 * Executes the provided `callback` once for each enumerable own property in the
 	 * object and constructs a new object from the results. The `callback` is
@@ -20908,11 +21540,14 @@ var SettingsPanel =
 	  }
 	  return result;
 	}
-
+	
 	module.exports = mapObject;
 
 /***/ },
-/* 205 */
+/* 206 */
+/*!**********************************!*\
+  !*** ./~/react/lib/onlyChild.js ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20926,11 +21561,11 @@ var SettingsPanel =
 	 * @providesModule onlyChild
 	 */
 	'use strict';
-
-	var ReactElement = __webpack_require__(91);
-
-	var invariant = __webpack_require__(62);
-
+	
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 92);
+	
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
+	
 	/**
 	 * Returns the first child in a collection of children and verifies that there
 	 * is only one child in the collection. The current implementation of this
@@ -20946,12 +21581,15 @@ var SettingsPanel =
 	  !ReactElement.isValidElement(children) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'onlyChild must be passed a children with exactly one child.') : invariant(false) : undefined;
 	  return children;
 	}
-
+	
 	module.exports = onlyChild;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 206 */
+/* 207 */
+/*!***********************************!*\
+  !*** ./~/react/lib/deprecated.js ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20964,12 +21602,12 @@ var SettingsPanel =
 	 *
 	 * @providesModule deprecated
 	 */
-
+	
 	'use strict';
-
-	var assign = __webpack_require__(88);
-	var warning = __webpack_require__(74);
-
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var warning = __webpack_require__(/*! fbjs/lib/warning */ 75);
+	
 	/**
 	 * This will log a single deprecation notice per function and forward the call
 	 * on to the new API.
@@ -20997,30 +21635,39 @@ var SettingsPanel =
 	    // In particular, this is needed to support PropTypes
 	    return assign(newFn, fn);
 	  }
-
+	
 	  return fn;
 	}
-
+	
 	module.exports = deprecated;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
-
-/***/ },
-/* 207 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	module.exports = __webpack_require__(52);
-
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
 /* 208 */
+/*!******************************!*\
+  !*** ./~/react-dom/index.js ***!
+  \******************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(209);
+	'use strict';
+	
+	module.exports = __webpack_require__(/*! react/lib/ReactDOM */ 53);
+
 
 /***/ },
 /* 209 */
+/*!****************************************!*\
+  !*** ./~/react-addons-update/index.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(/*! react/lib/update */ 210);
+
+/***/ },
+/* 210 */
+/*!*******************************!*\
+  !*** ./~/react/lib/update.js ***!
+  \*******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -21033,16 +21680,16 @@ var SettingsPanel =
 	 *
 	 * @providesModule update
 	 */
-
+	
 	/* global hasOwnProperty:true */
-
+	
 	'use strict';
-
-	var assign = __webpack_require__(88);
-	var keyOf = __webpack_require__(128);
-	var invariant = __webpack_require__(62);
+	
+	var assign = __webpack_require__(/*! ./Object.assign */ 89);
+	var keyOf = __webpack_require__(/*! fbjs/lib/keyOf */ 129);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 63);
 	var hasOwnProperty = ({}).hasOwnProperty;
-
+	
 	function shallowCopy(x) {
 	  if (Array.isArray(x)) {
 	    return x.concat();
@@ -21052,60 +21699,60 @@ var SettingsPanel =
 	    return x;
 	  }
 	}
-
+	
 	var COMMAND_PUSH = keyOf({ $push: null });
 	var COMMAND_UNSHIFT = keyOf({ $unshift: null });
 	var COMMAND_SPLICE = keyOf({ $splice: null });
 	var COMMAND_SET = keyOf({ $set: null });
 	var COMMAND_MERGE = keyOf({ $merge: null });
 	var COMMAND_APPLY = keyOf({ $apply: null });
-
+	
 	var ALL_COMMANDS_LIST = [COMMAND_PUSH, COMMAND_UNSHIFT, COMMAND_SPLICE, COMMAND_SET, COMMAND_MERGE, COMMAND_APPLY];
-
+	
 	var ALL_COMMANDS_SET = {};
-
+	
 	ALL_COMMANDS_LIST.forEach(function (command) {
 	  ALL_COMMANDS_SET[command] = true;
 	});
-
+	
 	function invariantArrayCase(value, spec, command) {
 	  !Array.isArray(value) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected target of %s to be an array; got %s.', command, value) : invariant(false) : undefined;
 	  var specValue = spec[command];
 	  !Array.isArray(specValue) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be an array; got %s. ' + 'Did you forget to wrap your parameter in an array?', command, specValue) : invariant(false) : undefined;
 	}
-
+	
 	function update(value, spec) {
 	  !(typeof spec === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): You provided a key path to update() that did not contain one ' + 'of %s. Did you forget to include {%s: ...}?', ALL_COMMANDS_LIST.join(', '), COMMAND_SET) : invariant(false) : undefined;
-
+	
 	  if (hasOwnProperty.call(spec, COMMAND_SET)) {
 	    !(Object.keys(spec).length === 1) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Cannot have more than one key in an object with %s', COMMAND_SET) : invariant(false) : undefined;
-
+	
 	    return spec[COMMAND_SET];
 	  }
-
+	
 	  var nextValue = shallowCopy(value);
-
+	
 	  if (hasOwnProperty.call(spec, COMMAND_MERGE)) {
 	    var mergeObj = spec[COMMAND_MERGE];
 	    !(mergeObj && typeof mergeObj === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): %s expects a spec of type \'object\'; got %s', COMMAND_MERGE, mergeObj) : invariant(false) : undefined;
 	    !(nextValue && typeof nextValue === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): %s expects a target of type \'object\'; got %s', COMMAND_MERGE, nextValue) : invariant(false) : undefined;
 	    assign(nextValue, spec[COMMAND_MERGE]);
 	  }
-
+	
 	  if (hasOwnProperty.call(spec, COMMAND_PUSH)) {
 	    invariantArrayCase(value, spec, COMMAND_PUSH);
 	    spec[COMMAND_PUSH].forEach(function (item) {
 	      nextValue.push(item);
 	    });
 	  }
-
+	
 	  if (hasOwnProperty.call(spec, COMMAND_UNSHIFT)) {
 	    invariantArrayCase(value, spec, COMMAND_UNSHIFT);
 	    spec[COMMAND_UNSHIFT].forEach(function (item) {
 	      nextValue.unshift(item);
 	    });
 	  }
-
+	
 	  if (hasOwnProperty.call(spec, COMMAND_SPLICE)) {
 	    !Array.isArray(value) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected %s target to be an array; got %s', COMMAND_SPLICE, value) : invariant(false) : undefined;
 	    !Array.isArray(spec[COMMAND_SPLICE]) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be an array of arrays; got %s. ' + 'Did you forget to wrap your parameters in an array?', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : invariant(false) : undefined;
@@ -21114,80 +21761,83 @@ var SettingsPanel =
 	      nextValue.splice.apply(nextValue, args);
 	    });
 	  }
-
+	
 	  if (hasOwnProperty.call(spec, COMMAND_APPLY)) {
 	    !(typeof spec[COMMAND_APPLY] === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be a function; got %s.', COMMAND_APPLY, spec[COMMAND_APPLY]) : invariant(false) : undefined;
 	    nextValue = spec[COMMAND_APPLY](nextValue);
 	  }
-
+	
 	  for (var k in spec) {
 	    if (!(ALL_COMMANDS_SET.hasOwnProperty(k) && ALL_COMMANDS_SET[k])) {
 	      nextValue[k] = update(value[k], spec[k]);
 	    }
 	  }
-
+	
 	  return nextValue;
 	}
-
+	
 	module.exports = update;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 54)))
 
 /***/ },
-/* 210 */
+/* 211 */
+/*!*********************************************!*\
+  !*** ./src/components/SettingsSearchBox.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-
-	var _extends2 = __webpack_require__(211);
-
+	
+	var _extends2 = __webpack_require__(/*! babel-runtime/helpers/extends */ 212);
+	
 	var _extends3 = _interopRequireDefault(_extends2);
-
-	var _getPrototypeOf = __webpack_require__(1);
-
+	
+	var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ 2);
+	
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(13);
-
+	
+	var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ 14);
+	
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(40);
-
+	
+	var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ 41);
+	
 	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(14);
-
+	
+	var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ 15);
+	
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(43);
-
+	
+	var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ 44);
+	
 	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(50);
-
+	
+	var _react = __webpack_require__(/*! react */ 51);
+	
 	var _react2 = _interopRequireDefault(_react);
-
-	var _keys = __webpack_require__(216);
-
-	var _keys2 = _interopRequireDefault(_keys);
-
-	var _search = __webpack_require__(217);
-
+	
+	var _search = __webpack_require__(/*! ../assets/search.png */ 246);
+	
 	var _search2 = _interopRequireDefault(_search);
-
+	
+	var _keys = __webpack_require__(/*! ../keys */ 217);
+	
+	var _keys2 = _interopRequireDefault(_keys);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	var SettingsSearchBox = (function (_Component) {
 	    (0, _inherits3.default)(SettingsSearchBox, _Component);
-
+	
 	    function SettingsSearchBox() {
 	        (0, _classCallCheck3.default)(this, SettingsSearchBox);
 	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(SettingsSearchBox).apply(this, arguments));
 	    }
-
+	
 	    (0, _createClass3.default)(SettingsSearchBox, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
@@ -21218,7 +21868,7 @@ var SettingsPanel =
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
-
+	
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'search-box' },
@@ -21238,66 +21888,81 @@ var SettingsPanel =
 	    }]);
 	    return SettingsSearchBox;
 	})(_react.Component);
-
+	
 	exports.default = SettingsSearchBox;
 
 /***/ },
-/* 211 */
+/* 212 */
+/*!********************************************!*\
+  !*** ./~/babel-runtime/helpers/extends.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-
-	var _Object$assign = __webpack_require__(212)["default"];
-
+	
+	var _Object$assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ 213)["default"];
+	
 	exports["default"] = _Object$assign || function (target) {
 	  for (var i = 1; i < arguments.length; i++) {
 	    var source = arguments[i];
-
+	
 	    for (var key in source) {
 	      if (Object.prototype.hasOwnProperty.call(source, key)) {
 	        target[key] = source[key];
 	      }
 	    }
 	  }
-
+	
 	  return target;
 	};
-
+	
 	exports.__esModule = true;
 
 /***/ },
-/* 212 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(213), __esModule: true };
-
-/***/ },
 /* 213 */
+/*!**************************************************!*\
+  !*** ./~/babel-runtime/core-js/object/assign.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(214);
-	module.exports = __webpack_require__(9).Object.assign;
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/object/assign */ 214), __esModule: true };
 
 /***/ },
 /* 214 */
+/*!***********************************************!*\
+  !*** ./~/core-js/library/fn/object/assign.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	// 19.1.3.1 Object.assign(target, source)
-	var $export = __webpack_require__(7);
-
-	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(215)});
+	__webpack_require__(/*! ../../modules/es6.object.assign */ 215);
+	module.exports = __webpack_require__(/*! ../../modules/$.core */ 10).Object.assign;
 
 /***/ },
 /* 215 */
+/*!********************************************************!*\
+  !*** ./~/core-js/library/modules/es6.object.assign.js ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// 19.1.3.1 Object.assign(target, source)
+	var $export = __webpack_require__(/*! ./$.export */ 8);
+	
+	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(/*! ./$.object-assign */ 216)});
+
+/***/ },
+/* 216 */
+/*!******************************************************!*\
+  !*** ./~/core-js/library/modules/$.object-assign.js ***!
+  \******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.1 Object.assign(target, source, ...)
-	var $        = __webpack_require__(19)
-	  , toObject = __webpack_require__(4)
-	  , IObject  = __webpack_require__(31);
-
+	var $        = __webpack_require__(/*! ./$ */ 20)
+	  , toObject = __webpack_require__(/*! ./$.to-object */ 5)
+	  , IObject  = __webpack_require__(/*! ./$.iobject */ 32);
+	
 	// should work with symbols and should have deterministic property order (V8 bug)
-	module.exports = __webpack_require__(12)(function(){
+	module.exports = __webpack_require__(/*! ./$.fails */ 13)(function(){
 	  var a = Object.assign
 	    , A = {}
 	    , B = {}
@@ -21326,11 +21991,14 @@ var SettingsPanel =
 	} : Object.assign;
 
 /***/ },
-/* 216 */
+/* 217 */
+/*!*********************!*\
+  !*** ./src/keys.js ***!
+  \*********************/
 /***/ function(module, exports) {
 
 	"use strict";
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
@@ -21340,63 +22008,60 @@ var SettingsPanel =
 	    ENTER: 13,
 	    ESCAPE: 27
 	};
-
+	
 	exports.default = Keys;
 
 /***/ },
-/* 217 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNvyMY98AAAD9SURBVDhPnZIrC8JgFIYNglHwD1hE7BZB0F9h1CQWQTCZZGHsBpuwVTGqf8BsWrJYrAarRQRBBOHzPeP7xpnbQBw87Jz3sgtbQQjxFylB1/WqZVlD27YDx3H6nudVvjNEYkFhjMITCMYV+oDniHhAoEVBhPagSZphGG3MR/A2TbOmskQ8wNygePd9v8QDKNTlnRdcjwcYZ5S33FRAp6cIucbNEOUDNxXQL2DHNW7SQe/Y4wHsI6lPuR4PBMwThcAKBGAtd2LOs4kizDJY4gIPGX7JcwT0WWaR47puQ834EbooRt9XlVOFPFDogBvKE9ozQ3lomlZUc8r8DVH4ANQDF8+Q4TB/AAAAAElFTkSuQmCC"
-
-/***/ },
 /* 218 */
+/*!*****************************************!*\
+  !*** ./src/components/SettingsGroup.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-
-	var _getPrototypeOf = __webpack_require__(1);
-
+	
+	var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ 2);
+	
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(13);
-
+	
+	var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ 14);
+	
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(40);
-
+	
+	var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ 41);
+	
 	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(14);
-
+	
+	var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ 15);
+	
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(43);
-
+	
+	var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ 44);
+	
 	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(50);
-
+	
+	var _react = __webpack_require__(/*! react */ 51);
+	
 	var _react2 = _interopRequireDefault(_react);
-
-	var _Setting = __webpack_require__(219);
-
+	
+	var _Setting = __webpack_require__(/*! ./Setting */ 219);
+	
 	var _Setting2 = _interopRequireDefault(_Setting);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	var SettingsGroup = (function (_Component) {
 	    (0, _inherits3.default)(SettingsGroup, _Component);
-
+	
 	    function SettingsGroup() {
 	        (0, _classCallCheck3.default)(this, SettingsGroup);
 	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(SettingsGroup).apply(this, arguments));
 	    }
-
+	
 	    (0, _createClass3.default)(SettingsGroup, [{
 	        key: 'render',
 	        value: function render() {
@@ -21405,7 +22070,7 @@ var SettingsPanel =
 	            var settings = _props.settings;
 	            var dataCenters = _props.dataCenters;
 	            var onSettingClick = _props.onSettingClick;
-
+	
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'setting-group', ref: name },
@@ -21428,83 +22093,119 @@ var SettingsPanel =
 	    }]);
 	    return SettingsGroup;
 	})(_react.Component);
-
+	
 	exports.default = SettingsGroup;
 
 /***/ },
 /* 219 */
+/*!*****************************************!*\
+  !*** ./src/components/Setting/index.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.SettingValue = exports.SettingDescription = exports.Setting = undefined;
+	
+	var _Setting = __webpack_require__(/*! ./Setting */ 220);
+	
+	var _Setting2 = _interopRequireDefault(_Setting);
+	
+	var _SettingDescription = __webpack_require__(/*! ./SettingDescription.js */ 227);
+	
+	var _SettingDescription2 = _interopRequireDefault(_SettingDescription);
+	
+	var _SettingValue = __webpack_require__(/*! ./SettingValue.js */ 221);
+	
+	var _SettingValue2 = _interopRequireDefault(_SettingValue);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _Setting2.default;
+	exports.Setting = _Setting2.default;
+	exports.SettingDescription = _SettingDescription2.default;
+	exports.SettingValue = _SettingValue2.default;
 
+/***/ },
+/* 220 */
+/*!*******************************************!*\
+  !*** ./src/components/Setting/Setting.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-
-	var _getPrototypeOf = __webpack_require__(1);
-
+	
+	var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ 2);
+	
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(13);
-
+	
+	var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ 14);
+	
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(40);
-
+	
+	var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ 41);
+	
 	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(14);
-
+	
+	var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ 15);
+	
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(43);
-
+	
+	var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ 44);
+	
 	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(50);
-
+	
+	var _react = __webpack_require__(/*! react */ 51);
+	
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(207);
-
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 208);
+	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _SettingValue = __webpack_require__(220);
-
+	
+	var _SettingValue = __webpack_require__(/*! ./SettingValue */ 221);
+	
 	var _SettingValue2 = _interopRequireDefault(_SettingValue);
-
-	var _markedRenderer = __webpack_require__(221);
-
-	var _SettingDescription = __webpack_require__(226);
-
+	
+	var _SettingDescription = __webpack_require__(/*! ./SettingDescription */ 227);
+	
 	var _SettingDescription2 = _interopRequireDefault(_SettingDescription);
-
+	
+	var _markedRenderer = __webpack_require__(/*! ../../marked-renderer */ 222);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	var matches = Element.prototype.matches ? function (element, selector) {
 	    return element.matches(selector);
 	} : function (element, selector) {
 	    return element.matchesSelector(selector);
 	};
-
+	
 	var Setting = (function (_Component) {
 	    (0, _inherits3.default)(Setting, _Component);
-
+	
 	    function Setting() {
 	        (0, _classCallCheck3.default)(this, Setting);
 	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Setting).apply(this, arguments));
 	    }
-
+	
 	    (0, _createClass3.default)(Setting, [{
 	        key: 'scrollIntoView',
 	        value: function scrollIntoView() {
 	            var node = _reactDom2.default.findDOMNode(this);
-
+	
 	            // check if contained by window
 	            var rect = node.getBoundingClientRect();
-
+	
 	            var bottom = window.innerHeight || document.documentElement.clientHeight;
-
+	
 	            if (rect.top < 94) {
 	                // arbitrary point below the nav bar
 	                // off the top of the screen
@@ -21518,9 +22219,9 @@ var SettingsPanel =
 	        key: 'handleClick',
 	        value: function handleClick(e) {
 	            e.stopPropagation();
-
+	
 	            var target = e.target;
-
+	
 	            if (!matches(target, 'span.desc a')) {
 	                this.props.onSettingClick(this.props.setting);
 	            }
@@ -21529,15 +22230,15 @@ var SettingsPanel =
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
-
+	
 	            var setting = this.props.setting;
-
+	
 	            var className = setting.activeOverride ? 'active-override ' : "";
-
+	
 	            if (setting.allOverrides.length > 0) className += 'overrides ';
-
+	
 	            if (setting.isFocused) className += 'focused ';
-
+	
 	            return _react2.default.createElement(
 	                'div',
 	                { className: className + 'setting', onClick: function onClick(e) {
@@ -21563,58 +22264,61 @@ var SettingsPanel =
 	    }]);
 	    return Setting;
 	})(_react.Component);
-
+	
 	exports.default = Setting;
 
 /***/ },
-/* 220 */
+/* 221 */
+/*!************************************************!*\
+  !*** ./src/components/Setting/SettingValue.js ***!
+  \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-
-	var _react = __webpack_require__(50);
-
+	
+	var _react = __webpack_require__(/*! react */ 51);
+	
 	var _react2 = _interopRequireDefault(_react);
-
-	var _markedRenderer = __webpack_require__(221);
-
-	var _settingTrue = __webpack_require__(224);
-
+	
+	var _markedRenderer = __webpack_require__(/*! ../../marked-renderer */ 222);
+	
+	var _settingTrue = __webpack_require__(/*! ../../assets/setting-true.png */ 225);
+	
 	var _settingTrue2 = _interopRequireDefault(_settingTrue);
-
-	var _settingFalse = __webpack_require__(225);
-
+	
+	var _settingFalse = __webpack_require__(/*! ../../assets/setting-false.png */ 226);
+	
 	var _settingFalse2 = _interopRequireDefault(_settingFalse);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	// String.join helper for elements / dom nodes
 	function intersperse(arr, sep) {
 	    return arr && arr.slice(1).reduce(function (xs, x, i) {
 	        return xs.concat([sep, x]);
 	    }, [arr[0]]) || [];
 	}
-
+	
 	function ValueFor(setting) {
 	    if (setting.isEnum) return EnumValue;
-
+	
 	    return ({
 	        'System.Boolean': BoolValue
 	    })[setting.typeName] || TextValue;
 	}
-
+	
 	var SettingValue = function SettingValue(props) {
 	    var setting = props.setting;
-
+	
 	    var overrideInfo = null;
 	    if (setting.activeOverride) {
-
+	
 	        var dcOverride = props.setting.activeOverride.dataCenter;
-
+	
 	        overrideInfo = _react2.default.createElement(
 	            'p',
 	            { className: 'overrides' },
@@ -21640,7 +22344,7 @@ var SettingsPanel =
 	            intersperse(children, ", ")
 	        );
 	    }
-
+	
 	    var Value = ValueFor(setting);
 	    return _react2.default.createElement(
 	        'div',
@@ -21649,13 +22353,13 @@ var SettingsPanel =
 	        overrideInfo
 	    );
 	};
-
+	
 	var EnumValue = function EnumValue(props) {
 	    var _props$setting = props.setting;
 	    var activeOverride = _props$setting.activeOverride;
 	    var defaultValue = _props$setting.defaultValue;
 	    var enumNames = _props$setting.enumNames;
-
+	
 	    var value = (activeOverride || defaultValue).value;
 	    var name = enumNames[value].name;
 	    var description = enumNames[value].description;
@@ -21670,21 +22374,21 @@ var SettingsPanel =
 	        _react2.default.createElement('span', { 'render-if': description, dangerouslySetInnerHTML: { __html: (0, _markedRenderer.render)(description) } })
 	    );
 	};
-
+	
 	var BoolValue = function BoolValue(props) {
 	    var setting = props.setting;
 	    var value = (setting.activeOverride || setting.defaultValue).value;
-
+	
 	    var boolVal = typeof value === 'string' ? value.toLowerCase() === 'true' : !!value;
-
+	
 	    return _react2.default.createElement('img', { src: boolVal ? _settingTrue2.default : _settingFalse2.default, alt: value });
 	};
-
+	
 	var TextValue = function TextValue(props) {
 	    var _props$setting2 = props.setting;
 	    var activeOverride = _props$setting2.activeOverride;
 	    var defaultValue = _props$setting2.defaultValue;
-
+	
 	    var value = (activeOverride || defaultValue).value;
 	    return _react2.default.createElement(
 	        'pre',
@@ -21692,79 +22396,85 @@ var SettingsPanel =
 	        value
 	    );
 	};
-
+	
 	exports.default = SettingValue;
 
 /***/ },
-/* 221 */
+/* 222 */
+/*!********************************!*\
+  !*** ./src/marked-renderer.js ***!
+  \********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.render = undefined;
-
-	var _objectAssign = __webpack_require__(222);
-
+	
+	var _objectAssign = __webpack_require__(/*! object-assign */ 223);
+	
 	var _objectAssign2 = _interopRequireDefault(_objectAssign);
-
-	var _marked = __webpack_require__(223);
-
+	
+	var _marked = __webpack_require__(/*! marked */ 224);
+	
 	var _marked2 = _interopRequireDefault(_marked);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	var create = function create() {
 	  var overrides = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
+	
 	  var renderer = new _marked2.default.Renderer();
-
+	
 	  renderer.link = function (href, title, text) {
 	    title = title ? ' title="' + title + '"' : '';
 	    return '<a href="' + href + '"' + title + ' target="_blank">' + text + '</a>';
 	  };
-
+	
 	  return (0, _objectAssign2.default)(renderer, overrides);
 	};
-
+	
 	var render = exports.render = function render(text) {
 	  var overrides = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 	  return (0, _marked2.default)(text, { renderer: create(overrides) });
 	};
 
 /***/ },
-/* 222 */
+/* 223 */
+/*!**********************************!*\
+  !*** ./~/object-assign/index.js ***!
+  \**********************************/
 /***/ function(module, exports) {
 
 	/* eslint-disable no-unused-vars */
 	'use strict';
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
+	
 	function toObject(val) {
 		if (val === null || val === undefined) {
 			throw new TypeError('Object.assign cannot be called with null or undefined');
 		}
-
+	
 		return Object(val);
 	}
-
+	
 	module.exports = Object.assign || function (target, source) {
 		var from;
 		var to = toObject(target);
 		var symbols;
-
+	
 		for (var s = 1; s < arguments.length; s++) {
 			from = Object(arguments[s]);
-
+	
 			for (var key in from) {
 				if (hasOwnProperty.call(from, key)) {
 					to[key] = from[key];
 				}
 			}
-
+	
 			if (Object.getOwnPropertySymbols) {
 				symbols = Object.getOwnPropertySymbols(from);
 				for (var i = 0; i < symbols.length; i++) {
@@ -21774,13 +22484,16 @@ var SettingsPanel =
 				}
 			}
 		}
-
+	
 		return to;
 	};
 
 
 /***/ },
-/* 223 */
+/* 224 */
+/*!********************************!*\
+  !*** ./~/marked/lib/marked.js ***!
+  \********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -21788,13 +22501,13 @@ var SettingsPanel =
 	 * Copyright (c) 2011-2014, Christopher Jeffrey. (MIT Licensed)
 	 * https://github.com/chjj/marked
 	 */
-
+	
 	;(function() {
-
+	
 	/**
 	 * Block-Level Grammar
 	 */
-
+	
 	var block = {
 	  newline: /^\n+/,
 	  code: /^( {4}[^\n]+\n*)+/,
@@ -21811,35 +22524,35 @@ var SettingsPanel =
 	  paragraph: /^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,
 	  text: /^[^\n]+/
 	};
-
+	
 	block.bullet = /(?:[*+-]|\d+\.)/;
 	block.item = /^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/;
 	block.item = replace(block.item, 'gm')
 	  (/bull/g, block.bullet)
 	  ();
-
+	
 	block.list = replace(block.list)
 	  (/bull/g, block.bullet)
 	  ('hr', '\\n+(?=\\1?(?:[-*_] *){3,}(?:\\n+|$))')
 	  ('def', '\\n+(?=' + block.def.source + ')')
 	  ();
-
+	
 	block.blockquote = replace(block.blockquote)
 	  ('def', block.def)
 	  ();
-
+	
 	block._tag = '(?!(?:'
 	  + 'a|em|strong|small|s|cite|q|dfn|abbr|data|time|code'
 	  + '|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo'
 	  + '|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|[^\\w\\s@]*@)\\b';
-
+	
 	block.html = replace(block.html)
 	  ('comment', /<!--[\s\S]*?-->/)
 	  ('closed', /<(tag)[\s\S]+?<\/\1>/)
 	  ('closing', /<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)
 	  (/tag/g, block._tag)
 	  ();
-
+	
 	block.paragraph = replace(block.paragraph)
 	  ('hr', block.hr)
 	  ('heading', block.heading)
@@ -21848,48 +22561,48 @@ var SettingsPanel =
 	  ('tag', '<' + block._tag)
 	  ('def', block.def)
 	  ();
-
+	
 	/**
 	 * Normal Block Grammar
 	 */
-
+	
 	block.normal = merge({}, block);
-
+	
 	/**
 	 * GFM Block Grammar
 	 */
-
+	
 	block.gfm = merge({}, block.normal, {
 	  fences: /^ *(`{3,}|~{3,})[ \.]*(\S+)? *\n([\s\S]*?)\s*\1 *(?:\n+|$)/,
 	  paragraph: /^/,
 	  heading: /^ *(#{1,6}) +([^\n]+?) *#* *(?:\n+|$)/
 	});
-
+	
 	block.gfm.paragraph = replace(block.paragraph)
 	  ('(?!', '(?!'
 	    + block.gfm.fences.source.replace('\\1', '\\2') + '|'
 	    + block.list.source.replace('\\1', '\\3') + '|')
 	  ();
-
+	
 	/**
 	 * GFM + Tables Block Grammar
 	 */
-
+	
 	block.tables = merge({}, block.gfm, {
 	  nptable: /^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,
 	  table: /^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/
 	});
-
+	
 	/**
 	 * Block Lexer
 	 */
-
+	
 	function Lexer(options) {
 	  this.tokens = [];
 	  this.tokens.links = {};
 	  this.options = options || marked.defaults;
 	  this.rules = block.normal;
-
+	
 	  if (this.options.gfm) {
 	    if (this.options.tables) {
 	      this.rules = block.tables;
@@ -21898,40 +22611,40 @@ var SettingsPanel =
 	    }
 	  }
 	}
-
+	
 	/**
 	 * Expose Block Rules
 	 */
-
+	
 	Lexer.rules = block;
-
+	
 	/**
 	 * Static Lex Method
 	 */
-
+	
 	Lexer.lex = function(src, options) {
 	  var lexer = new Lexer(options);
 	  return lexer.lex(src);
 	};
-
+	
 	/**
 	 * Preprocessing
 	 */
-
+	
 	Lexer.prototype.lex = function(src) {
 	  src = src
 	    .replace(/\r\n|\r/g, '\n')
 	    .replace(/\t/g, '    ')
 	    .replace(/\u00a0/g, ' ')
 	    .replace(/\u2424/g, '\n');
-
+	
 	  return this.token(src, true);
 	};
-
+	
 	/**
 	 * Lexing
 	 */
-
+	
 	Lexer.prototype.token = function(src, top, bq) {
 	  var src = src.replace(/^ +$/gm, '')
 	    , next
@@ -21943,7 +22656,7 @@ var SettingsPanel =
 	    , space
 	    , i
 	    , l;
-
+	
 	  while (src) {
 	    // newline
 	    if (cap = this.rules.newline.exec(src)) {
@@ -21954,7 +22667,7 @@ var SettingsPanel =
 	        });
 	      }
 	    }
-
+	
 	    // code
 	    if (cap = this.rules.code.exec(src)) {
 	      src = src.substring(cap[0].length);
@@ -21967,7 +22680,7 @@ var SettingsPanel =
 	      });
 	      continue;
 	    }
-
+	
 	    // fences (gfm)
 	    if (cap = this.rules.fences.exec(src)) {
 	      src = src.substring(cap[0].length);
@@ -21978,7 +22691,7 @@ var SettingsPanel =
 	      });
 	      continue;
 	    }
-
+	
 	    // heading
 	    if (cap = this.rules.heading.exec(src)) {
 	      src = src.substring(cap[0].length);
@@ -21989,18 +22702,18 @@ var SettingsPanel =
 	      });
 	      continue;
 	    }
-
+	
 	    // table no leading pipe (gfm)
 	    if (top && (cap = this.rules.nptable.exec(src))) {
 	      src = src.substring(cap[0].length);
-
+	
 	      item = {
 	        type: 'table',
 	        header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
 	        align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
 	        cells: cap[3].replace(/\n$/, '').split('\n')
 	      };
-
+	
 	      for (i = 0; i < item.align.length; i++) {
 	        if (/^ *-+: *$/.test(item.align[i])) {
 	          item.align[i] = 'right';
@@ -22012,16 +22725,16 @@ var SettingsPanel =
 	          item.align[i] = null;
 	        }
 	      }
-
+	
 	      for (i = 0; i < item.cells.length; i++) {
 	        item.cells[i] = item.cells[i].split(/ *\| */);
 	      }
-
+	
 	      this.tokens.push(item);
-
+	
 	      continue;
 	    }
-
+	
 	    // lheading
 	    if (cap = this.rules.lheading.exec(src)) {
 	      src = src.substring(cap[0].length);
@@ -22032,7 +22745,7 @@ var SettingsPanel =
 	      });
 	      continue;
 	    }
-
+	
 	    // hr
 	    if (cap = this.rules.hr.exec(src)) {
 	      src = src.substring(cap[0].length);
@@ -22041,54 +22754,54 @@ var SettingsPanel =
 	      });
 	      continue;
 	    }
-
+	
 	    // blockquote
 	    if (cap = this.rules.blockquote.exec(src)) {
 	      src = src.substring(cap[0].length);
-
+	
 	      this.tokens.push({
 	        type: 'blockquote_start'
 	      });
-
+	
 	      cap = cap[0].replace(/^ *> ?/gm, '');
-
+	
 	      // Pass `top` to keep the current
 	      // "toplevel" state. This is exactly
 	      // how markdown.pl works.
 	      this.token(cap, top, true);
-
+	
 	      this.tokens.push({
 	        type: 'blockquote_end'
 	      });
-
+	
 	      continue;
 	    }
-
+	
 	    // list
 	    if (cap = this.rules.list.exec(src)) {
 	      src = src.substring(cap[0].length);
 	      bull = cap[2];
-
+	
 	      this.tokens.push({
 	        type: 'list_start',
 	        ordered: bull.length > 1
 	      });
-
+	
 	      // Get each top-level item.
 	      cap = cap[0].match(this.rules.item);
-
+	
 	      next = false;
 	      l = cap.length;
 	      i = 0;
-
+	
 	      for (; i < l; i++) {
 	        item = cap[i];
-
+	
 	        // Remove the list item's bullet
 	        // so it is seen as the next token.
 	        space = item.length;
 	        item = item.replace(/^ *([*+-]|\d+\.) +/, '');
-
+	
 	        // Outdent whatever the
 	        // list item contains. Hacky.
 	        if (~item.indexOf('\n ')) {
@@ -22097,7 +22810,7 @@ var SettingsPanel =
 	            ? item.replace(new RegExp('^ {1,' + space + '}', 'gm'), '')
 	            : item.replace(/^ {1,4}/gm, '');
 	        }
-
+	
 	        // Determine whether the next list item belongs here.
 	        // Backpedal if it does not belong in this list.
 	        if (this.options.smartLists && i !== l - 1) {
@@ -22107,7 +22820,7 @@ var SettingsPanel =
 	            i = l - 1;
 	          }
 	        }
-
+	
 	        // Determine whether item is loose or not.
 	        // Use: /(^|\n)(?! )[^\n]+\n\n(?!\s*$)/
 	        // for discount behavior.
@@ -22116,28 +22829,28 @@ var SettingsPanel =
 	          next = item.charAt(item.length - 1) === '\n';
 	          if (!loose) loose = next;
 	        }
-
+	
 	        this.tokens.push({
 	          type: loose
 	            ? 'loose_item_start'
 	            : 'list_item_start'
 	        });
-
+	
 	        // Recurse.
 	        this.token(item, false, bq);
-
+	
 	        this.tokens.push({
 	          type: 'list_item_end'
 	        });
 	      }
-
+	
 	      this.tokens.push({
 	        type: 'list_end'
 	      });
-
+	
 	      continue;
 	    }
-
+	
 	    // html
 	    if (cap = this.rules.html.exec(src)) {
 	      src = src.substring(cap[0].length);
@@ -22151,7 +22864,7 @@ var SettingsPanel =
 	      });
 	      continue;
 	    }
-
+	
 	    // def
 	    if ((!bq && top) && (cap = this.rules.def.exec(src))) {
 	      src = src.substring(cap[0].length);
@@ -22161,18 +22874,18 @@ var SettingsPanel =
 	      };
 	      continue;
 	    }
-
+	
 	    // table (gfm)
 	    if (top && (cap = this.rules.table.exec(src))) {
 	      src = src.substring(cap[0].length);
-
+	
 	      item = {
 	        type: 'table',
 	        header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
 	        align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
 	        cells: cap[3].replace(/(?: *\| *)?\n$/, '').split('\n')
 	      };
-
+	
 	      for (i = 0; i < item.align.length; i++) {
 	        if (/^ *-+: *$/.test(item.align[i])) {
 	          item.align[i] = 'right';
@@ -22184,18 +22897,18 @@ var SettingsPanel =
 	          item.align[i] = null;
 	        }
 	      }
-
+	
 	      for (i = 0; i < item.cells.length; i++) {
 	        item.cells[i] = item.cells[i]
 	          .replace(/^ *\| *| *\| *$/g, '')
 	          .split(/ *\| */);
 	      }
-
+	
 	      this.tokens.push(item);
-
+	
 	      continue;
 	    }
-
+	
 	    // top-level paragraph
 	    if (top && (cap = this.rules.paragraph.exec(src))) {
 	      src = src.substring(cap[0].length);
@@ -22207,7 +22920,7 @@ var SettingsPanel =
 	      });
 	      continue;
 	    }
-
+	
 	    // text
 	    if (cap = this.rules.text.exec(src)) {
 	      // Top-level should never reach here.
@@ -22218,20 +22931,20 @@ var SettingsPanel =
 	      });
 	      continue;
 	    }
-
+	
 	    if (src) {
 	      throw new
 	        Error('Infinite loop on byte: ' + src.charCodeAt(0));
 	    }
 	  }
-
+	
 	  return this.tokens;
 	};
-
+	
 	/**
 	 * Inline-Level Grammar
 	 */
-
+	
 	var inline = {
 	  escape: /^\\([\\`*{}\[\]()#+\-.!_>])/,
 	  autolink: /^<([^ >]+(@|:\/)[^ >]+)>/,
@@ -22247,38 +22960,38 @@ var SettingsPanel =
 	  del: noop,
 	  text: /^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/
 	};
-
+	
 	inline._inside = /(?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*/;
 	inline._href = /\s*<?([\s\S]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/;
-
+	
 	inline.link = replace(inline.link)
 	  ('inside', inline._inside)
 	  ('href', inline._href)
 	  ();
-
+	
 	inline.reflink = replace(inline.reflink)
 	  ('inside', inline._inside)
 	  ();
-
+	
 	/**
 	 * Normal Inline Grammar
 	 */
-
+	
 	inline.normal = merge({}, inline);
-
+	
 	/**
 	 * Pedantic Inline Grammar
 	 */
-
+	
 	inline.pedantic = merge({}, inline.normal, {
 	  strong: /^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,
 	  em: /^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/
 	});
-
+	
 	/**
 	 * GFM Inline Grammar
 	 */
-
+	
 	inline.gfm = merge({}, inline.normal, {
 	  escape: replace(inline.escape)('])', '~|])')(),
 	  url: /^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,
@@ -22288,32 +23001,32 @@ var SettingsPanel =
 	    ('|', '|https?://|')
 	    ()
 	});
-
+	
 	/**
 	 * GFM + Line Breaks Inline Grammar
 	 */
-
+	
 	inline.breaks = merge({}, inline.gfm, {
 	  br: replace(inline.br)('{2,}', '*')(),
 	  text: replace(inline.gfm.text)('{2,}', '*')()
 	});
-
+	
 	/**
 	 * Inline Lexer & Compiler
 	 */
-
+	
 	function InlineLexer(links, options) {
 	  this.options = options || marked.defaults;
 	  this.links = links;
 	  this.rules = inline.normal;
 	  this.renderer = this.options.renderer || new Renderer;
 	  this.renderer.options = this.options;
-
+	
 	  if (!this.links) {
 	    throw new
 	      Error('Tokens array requires a `links` property.');
 	  }
-
+	
 	  if (this.options.gfm) {
 	    if (this.options.breaks) {
 	      this.rules = inline.breaks;
@@ -22324,33 +23037,33 @@ var SettingsPanel =
 	    this.rules = inline.pedantic;
 	  }
 	}
-
+	
 	/**
 	 * Expose Inline Rules
 	 */
-
+	
 	InlineLexer.rules = inline;
-
+	
 	/**
 	 * Static Lexing/Compiling Method
 	 */
-
+	
 	InlineLexer.output = function(src, links, options) {
 	  var inline = new InlineLexer(links, options);
 	  return inline.output(src);
 	};
-
+	
 	/**
 	 * Lexing/Compiling
 	 */
-
+	
 	InlineLexer.prototype.output = function(src) {
 	  var out = ''
 	    , link
 	    , text
 	    , href
 	    , cap;
-
+	
 	  while (src) {
 	    // escape
 	    if (cap = this.rules.escape.exec(src)) {
@@ -22358,7 +23071,7 @@ var SettingsPanel =
 	      out += cap[1];
 	      continue;
 	    }
-
+	
 	    // autolink
 	    if (cap = this.rules.autolink.exec(src)) {
 	      src = src.substring(cap[0].length);
@@ -22374,7 +23087,7 @@ var SettingsPanel =
 	      out += this.renderer.link(href, null, text);
 	      continue;
 	    }
-
+	
 	    // url (gfm)
 	    if (!this.inLink && (cap = this.rules.url.exec(src))) {
 	      src = src.substring(cap[0].length);
@@ -22383,7 +23096,7 @@ var SettingsPanel =
 	      out += this.renderer.link(href, null, text);
 	      continue;
 	    }
-
+	
 	    // tag
 	    if (cap = this.rules.tag.exec(src)) {
 	      if (!this.inLink && /^<a /i.test(cap[0])) {
@@ -22399,7 +23112,7 @@ var SettingsPanel =
 	        : cap[0]
 	      continue;
 	    }
-
+	
 	    // link
 	    if (cap = this.rules.link.exec(src)) {
 	      src = src.substring(cap[0].length);
@@ -22411,7 +23124,7 @@ var SettingsPanel =
 	      this.inLink = false;
 	      continue;
 	    }
-
+	
 	    // reflink, nolink
 	    if ((cap = this.rules.reflink.exec(src))
 	        || (cap = this.rules.nolink.exec(src))) {
@@ -22428,75 +23141,75 @@ var SettingsPanel =
 	      this.inLink = false;
 	      continue;
 	    }
-
+	
 	    // strong
 	    if (cap = this.rules.strong.exec(src)) {
 	      src = src.substring(cap[0].length);
 	      out += this.renderer.strong(this.output(cap[2] || cap[1]));
 	      continue;
 	    }
-
+	
 	    // em
 	    if (cap = this.rules.em.exec(src)) {
 	      src = src.substring(cap[0].length);
 	      out += this.renderer.em(this.output(cap[2] || cap[1]));
 	      continue;
 	    }
-
+	
 	    // code
 	    if (cap = this.rules.code.exec(src)) {
 	      src = src.substring(cap[0].length);
 	      out += this.renderer.codespan(escape(cap[2], true));
 	      continue;
 	    }
-
+	
 	    // br
 	    if (cap = this.rules.br.exec(src)) {
 	      src = src.substring(cap[0].length);
 	      out += this.renderer.br();
 	      continue;
 	    }
-
+	
 	    // del (gfm)
 	    if (cap = this.rules.del.exec(src)) {
 	      src = src.substring(cap[0].length);
 	      out += this.renderer.del(this.output(cap[1]));
 	      continue;
 	    }
-
+	
 	    // text
 	    if (cap = this.rules.text.exec(src)) {
 	      src = src.substring(cap[0].length);
 	      out += this.renderer.text(escape(this.smartypants(cap[0])));
 	      continue;
 	    }
-
+	
 	    if (src) {
 	      throw new
 	        Error('Infinite loop on byte: ' + src.charCodeAt(0));
 	    }
 	  }
-
+	
 	  return out;
 	};
-
+	
 	/**
 	 * Compile Link
 	 */
-
+	
 	InlineLexer.prototype.outputLink = function(cap, link) {
 	  var href = escape(link.href)
 	    , title = link.title ? escape(link.title) : null;
-
+	
 	  return cap[0].charAt(0) !== '!'
 	    ? this.renderer.link(href, title, this.output(cap[1]))
 	    : this.renderer.image(href, title, escape(cap[1]));
 	};
-
+	
 	/**
 	 * Smartypants Transformations
 	 */
-
+	
 	InlineLexer.prototype.smartypants = function(text) {
 	  if (!this.options.smartypants) return text;
 	  return text
@@ -22515,18 +23228,18 @@ var SettingsPanel =
 	    // ellipses
 	    .replace(/\.{3}/g, '\u2026');
 	};
-
+	
 	/**
 	 * Mangle Links
 	 */
-
+	
 	InlineLexer.prototype.mangle = function(text) {
 	  if (!this.options.mangle) return text;
 	  var out = ''
 	    , l = text.length
 	    , i = 0
 	    , ch;
-
+	
 	  for (; i < l; i++) {
 	    ch = text.charCodeAt(i);
 	    if (Math.random() > 0.5) {
@@ -22534,18 +23247,18 @@ var SettingsPanel =
 	    }
 	    out += '&#' + ch + ';';
 	  }
-
+	
 	  return out;
 	};
-
+	
 	/**
 	 * Renderer
 	 */
-
+	
 	function Renderer(options) {
 	  this.options = options || {};
 	}
-
+	
 	Renderer.prototype.code = function(code, lang, escaped) {
 	  if (this.options.highlight) {
 	    var out = this.options.highlight(code, lang);
@@ -22554,13 +23267,13 @@ var SettingsPanel =
 	      code = out;
 	    }
 	  }
-
+	
 	  if (!lang) {
 	    return '<pre><code>'
 	      + (escaped ? code : escape(code, true))
 	      + '\n</code></pre>';
 	  }
-
+	
 	  return '<pre><code class="'
 	    + this.options.langPrefix
 	    + escape(lang, true)
@@ -22568,15 +23281,15 @@ var SettingsPanel =
 	    + (escaped ? code : escape(code, true))
 	    + '\n</code></pre>\n';
 	};
-
+	
 	Renderer.prototype.blockquote = function(quote) {
 	  return '<blockquote>\n' + quote + '</blockquote>\n';
 	};
-
+	
 	Renderer.prototype.html = function(html) {
 	  return html;
 	};
-
+	
 	Renderer.prototype.heading = function(text, level, raw) {
 	  return '<h'
 	    + level
@@ -22589,24 +23302,24 @@ var SettingsPanel =
 	    + level
 	    + '>\n';
 	};
-
+	
 	Renderer.prototype.hr = function() {
 	  return this.options.xhtml ? '<hr/>\n' : '<hr>\n';
 	};
-
+	
 	Renderer.prototype.list = function(body, ordered) {
 	  var type = ordered ? 'ol' : 'ul';
 	  return '<' + type + '>\n' + body + '</' + type + '>\n';
 	};
-
+	
 	Renderer.prototype.listitem = function(text) {
 	  return '<li>' + text + '</li>\n';
 	};
-
+	
 	Renderer.prototype.paragraph = function(text) {
 	  return '<p>' + text + '</p>\n';
 	};
-
+	
 	Renderer.prototype.table = function(header, body) {
 	  return '<table>\n'
 	    + '<thead>\n'
@@ -22617,11 +23330,11 @@ var SettingsPanel =
 	    + '</tbody>\n'
 	    + '</table>\n';
 	};
-
+	
 	Renderer.prototype.tablerow = function(content) {
 	  return '<tr>\n' + content + '</tr>\n';
 	};
-
+	
 	Renderer.prototype.tablecell = function(content, flags) {
 	  var type = flags.header ? 'th' : 'td';
 	  var tag = flags.align
@@ -22629,28 +23342,28 @@ var SettingsPanel =
 	    : '<' + type + '>';
 	  return tag + content + '</' + type + '>\n';
 	};
-
+	
 	// span level renderer
 	Renderer.prototype.strong = function(text) {
 	  return '<strong>' + text + '</strong>';
 	};
-
+	
 	Renderer.prototype.em = function(text) {
 	  return '<em>' + text + '</em>';
 	};
-
+	
 	Renderer.prototype.codespan = function(text) {
 	  return '<code>' + text + '</code>';
 	};
-
+	
 	Renderer.prototype.br = function() {
 	  return this.options.xhtml ? '<br/>' : '<br>';
 	};
-
+	
 	Renderer.prototype.del = function(text) {
 	  return '<del>' + text + '</del>';
 	};
-
+	
 	Renderer.prototype.link = function(href, title, text) {
 	  if (this.options.sanitize) {
 	    try {
@@ -22671,7 +23384,7 @@ var SettingsPanel =
 	  out += '>' + text + '</a>';
 	  return out;
 	};
-
+	
 	Renderer.prototype.image = function(href, title, text) {
 	  var out = '<img src="' + href + '" alt="' + text + '"';
 	  if (title) {
@@ -22680,15 +23393,15 @@ var SettingsPanel =
 	  out += this.options.xhtml ? '/>' : '>';
 	  return out;
 	};
-
+	
 	Renderer.prototype.text = function(text) {
 	  return text;
 	};
-
+	
 	/**
 	 * Parsing & Compiling
 	 */
-
+	
 	function Parser(options) {
 	  this.tokens = [];
 	  this.token = null;
@@ -22697,66 +23410,66 @@ var SettingsPanel =
 	  this.renderer = this.options.renderer;
 	  this.renderer.options = this.options;
 	}
-
+	
 	/**
 	 * Static Parse Method
 	 */
-
+	
 	Parser.parse = function(src, options, renderer) {
 	  var parser = new Parser(options, renderer);
 	  return parser.parse(src);
 	};
-
+	
 	/**
 	 * Parse Loop
 	 */
-
+	
 	Parser.prototype.parse = function(src) {
 	  this.inline = new InlineLexer(src.links, this.options, this.renderer);
 	  this.tokens = src.reverse();
-
+	
 	  var out = '';
 	  while (this.next()) {
 	    out += this.tok();
 	  }
-
+	
 	  return out;
 	};
-
+	
 	/**
 	 * Next Token
 	 */
-
+	
 	Parser.prototype.next = function() {
 	  return this.token = this.tokens.pop();
 	};
-
+	
 	/**
 	 * Preview Next Token
 	 */
-
+	
 	Parser.prototype.peek = function() {
 	  return this.tokens[this.tokens.length - 1] || 0;
 	};
-
+	
 	/**
 	 * Parse Text Tokens
 	 */
-
+	
 	Parser.prototype.parseText = function() {
 	  var body = this.token.text;
-
+	
 	  while (this.peek().type === 'text') {
 	    body += '\n' + this.next().text;
 	  }
-
+	
 	  return this.inline.output(body);
 	};
-
+	
 	/**
 	 * Parse Current Token
 	 */
-
+	
 	Parser.prototype.tok = function() {
 	  switch (this.token.type) {
 	    case 'space': {
@@ -22784,7 +23497,7 @@ var SettingsPanel =
 	        , cell
 	        , flags
 	        , j;
-
+	
 	      // header
 	      cell = '';
 	      for (i = 0; i < this.token.header.length; i++) {
@@ -22795,10 +23508,10 @@ var SettingsPanel =
 	        );
 	      }
 	      header += this.renderer.tablerow(cell);
-
+	
 	      for (i = 0; i < this.token.cells.length; i++) {
 	        row = this.token.cells[i];
-
+	
 	        cell = '';
 	        for (j = 0; j < row.length; j++) {
 	          cell += this.renderer.tablecell(
@@ -22806,48 +23519,48 @@ var SettingsPanel =
 	            { header: false, align: this.token.align[j] }
 	          );
 	        }
-
+	
 	        body += this.renderer.tablerow(cell);
 	      }
 	      return this.renderer.table(header, body);
 	    }
 	    case 'blockquote_start': {
 	      var body = '';
-
+	
 	      while (this.next().type !== 'blockquote_end') {
 	        body += this.tok();
 	      }
-
+	
 	      return this.renderer.blockquote(body);
 	    }
 	    case 'list_start': {
 	      var body = ''
 	        , ordered = this.token.ordered;
-
+	
 	      while (this.next().type !== 'list_end') {
 	        body += this.tok();
 	      }
-
+	
 	      return this.renderer.list(body, ordered);
 	    }
 	    case 'list_item_start': {
 	      var body = '';
-
+	
 	      while (this.next().type !== 'list_item_end') {
 	        body += this.token.type === 'text'
 	          ? this.parseText()
 	          : this.tok();
 	      }
-
+	
 	      return this.renderer.listitem(body);
 	    }
 	    case 'loose_item_start': {
 	      var body = '';
-
+	
 	      while (this.next().type !== 'list_item_end') {
 	        body += this.tok();
 	      }
-
+	
 	      return this.renderer.listitem(body);
 	    }
 	    case 'html': {
@@ -22864,11 +23577,11 @@ var SettingsPanel =
 	    }
 	  }
 	};
-
+	
 	/**
 	 * Helpers
 	 */
-
+	
 	function escape(html, encode) {
 	  return html
 	    .replace(!encode ? /&(?!#?\w+;)/g : /&/g, '&amp;')
@@ -22877,7 +23590,7 @@ var SettingsPanel =
 	    .replace(/"/g, '&quot;')
 	    .replace(/'/g, '&#39;');
 	}
-
+	
 	function unescape(html) {
 	  return html.replace(/&([#\w]+);/g, function(_, n) {
 	    n = n.toLowerCase();
@@ -22890,7 +23603,7 @@ var SettingsPanel =
 	    return '';
 	  });
 	}
-
+	
 	function replace(regex, opt) {
 	  regex = regex.source;
 	  opt = opt || '';
@@ -22902,15 +23615,15 @@ var SettingsPanel =
 	    return self;
 	  };
 	}
-
+	
 	function noop() {}
 	noop.exec = noop;
-
+	
 	function merge(obj) {
 	  var i = 1
 	    , target
 	    , key;
-
+	
 	  for (; i < arguments.length; i++) {
 	    target = arguments[i];
 	    for (key in target) {
@@ -22919,66 +23632,66 @@ var SettingsPanel =
 	      }
 	    }
 	  }
-
+	
 	  return obj;
 	}
-
-
+	
+	
 	/**
 	 * Marked
 	 */
-
+	
 	function marked(src, opt, callback) {
 	  if (callback || typeof opt === 'function') {
 	    if (!callback) {
 	      callback = opt;
 	      opt = null;
 	    }
-
+	
 	    opt = merge({}, marked.defaults, opt || {});
-
+	
 	    var highlight = opt.highlight
 	      , tokens
 	      , pending
 	      , i = 0;
-
+	
 	    try {
 	      tokens = Lexer.lex(src, opt)
 	    } catch (e) {
 	      return callback(e);
 	    }
-
+	
 	    pending = tokens.length;
-
+	
 	    var done = function(err) {
 	      if (err) {
 	        opt.highlight = highlight;
 	        return callback(err);
 	      }
-
+	
 	      var out;
-
+	
 	      try {
 	        out = Parser.parse(tokens, opt);
 	      } catch (e) {
 	        err = e;
 	      }
-
+	
 	      opt.highlight = highlight;
-
+	
 	      return err
 	        ? callback(err)
 	        : callback(null, out);
 	    };
-
+	
 	    if (!highlight || highlight.length < 3) {
 	      return done();
 	    }
-
+	
 	    delete opt.highlight;
-
+	
 	    if (!pending) return done();
-
+	
 	    for (; i < tokens.length; i++) {
 	      (function(token) {
 	        if (token.type !== 'code') {
@@ -22995,7 +23708,7 @@ var SettingsPanel =
 	        });
 	      })(tokens[i]);
 	    }
-
+	
 	    return;
 	  }
 	  try {
@@ -23011,17 +23724,17 @@ var SettingsPanel =
 	    throw e;
 	  }
 	}
-
+	
 	/**
 	 * Options
 	 */
-
+	
 	marked.options =
 	marked.setOptions = function(opt) {
 	  merge(marked.defaults, opt);
 	  return marked;
 	};
-
+	
 	marked.defaults = {
 	  gfm: true,
 	  tables: true,
@@ -23039,24 +23752,24 @@ var SettingsPanel =
 	  renderer: new Renderer,
 	  xhtml: false
 	};
-
+	
 	/**
 	 * Expose
 	 */
-
+	
 	marked.Parser = Parser;
 	marked.parser = Parser.parse;
-
+	
 	marked.Renderer = Renderer;
-
+	
 	marked.Lexer = Lexer;
 	marked.lexer = Lexer.lex;
-
+	
 	marked.InlineLexer = InlineLexer;
 	marked.inlineLexer = InlineLexer.output;
-
+	
 	marked.parse = marked;
-
+	
 	if (true) {
 	  module.exports = marked;
 	} else if (typeof define === 'function' && define.amd) {
@@ -23064,201 +23777,194 @@ var SettingsPanel =
 	} else {
 	  this.marked = marked;
 	}
-
+	
 	}).call(function() {
 	  return this || (typeof window !== 'undefined' ? window : global);
 	}());
-
+	
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 224 */
+/* 225 */
+/*!*************************************!*\
+  !*** ./src/assets/setting-true.png ***!
+  \*************************************/
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNvyMY98AAAClSURBVDhPnc9BCsIwEIXh3kcP0DIvdKs776LJSRRBBBG8mAfQG0jMC0STOLHo4i/NZD5oO+/9X6nDVuLMTpzM+K4uaMFhD2c8rLkO62GuLtWJNYeIUtY81MU8WBwrdA+f2+cLYw6YWJw0xLuEVrzgzycUzucWijChd9iKw6WYVSjCMFgWS3UKipAPbLD4BbHXi4JvLcSKQ4a/IvYxIJ5CTB1O57snILzolDNAijgAAAAASUVORK5CYII="
 
 /***/ },
-/* 225 */
+/* 226 */
+/*!**************************************!*\
+  !*** ./src/assets/setting-false.png ***!
+  \**************************************/
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNvyMY98AAAEKSURBVDhPnZKxSgNBEIbzBEbQEER8k8ixM+N5pYXByiJP4JNoGcE20extoeAj+AASsRAbRXwBSWG7zi6ZYyZRCSn+vZ3//m/2mL1WjHEtmeK+KLZ1/Z+ajT+Afk0QA+KJDtwVxWZN7sGTO9e+gUSB3GnyQ1V1uJ6K7wmGFuRu8lI0ITjj56fxEZ4DUbsB/4Kt3GsA2JV8A2YY3eWvEMJ76PU6OmvASVnueYTZIuiJBjqX1GxuALr8uR+LkMgDHC2BaeQMPZkgwpuus6fgvDD0ZUIIL6Oq2uCBjI3PkgFl8Jr/GIYf59D0FnFLOvPJVwo6Fj8vSakTX/z36HB/RzwRX/yFhpJMYHXF1g8ZjN8SnfZXWwAAAABJRU5ErkJggg=="
 
 /***/ },
-/* 226 */
+/* 227 */
+/*!******************************************************!*\
+  !*** ./src/components/Setting/SettingDescription.js ***!
+  \******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-
-	var _getPrototypeOf = __webpack_require__(1);
-
+	
+	var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ 2);
+	
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(13);
-
+	
+	var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ 14);
+	
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(40);
-
+	
+	var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ 41);
+	
 	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(14);
-
+	
+	var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ 15);
+	
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(43);
-
+	
+	var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ 44);
+	
 	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(50);
-
+	
+	var _react = __webpack_require__(/*! react */ 51);
+	
 	var _react2 = _interopRequireDefault(_react);
-
-	var _markedRenderer = __webpack_require__(221);
-
+	
+	var _markedRenderer = __webpack_require__(/*! ../../marked-renderer */ 222);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	var SettingDescription = (function (_Component) {
 	    (0, _inherits3.default)(SettingDescription, _Component);
-
+	
 	    function SettingDescription() {
 	        (0, _classCallCheck3.default)(this, SettingDescription);
 	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(SettingDescription).apply(this, arguments));
 	    }
-
+	
 	    (0, _createClass3.default)(SettingDescription, [{
 	        key: 'render',
 	        value: function render() {
 	            var setting = this.props.setting;
-
+	
 	            return _react2.default.createElement('span', { className: 'desc', dangerouslySetInnerHTML: { __html: (0, _markedRenderer.render)(setting.description) } });
 	        }
 	    }]);
 	    return SettingDescription;
 	})(_react.Component);
-
+	
 	// vim: ts=4 sw=4 et
-
+	
 	exports.default = SettingDescription;
 
 /***/ },
-/* 227 */
+/* 228 */
+/*!****************************************!*\
+  !*** ./src/components/Editor/index.js ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.EditorModal = undefined;
+	
+	var _EditorModal = __webpack_require__(/*! ./EditorModal */ 229);
+	
+	var _EditorModal2 = _interopRequireDefault(_EditorModal);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _EditorModal2.default;
+	exports.EditorModal = _EditorModal2.default;
 
+/***/ },
+/* 229 */
+/*!**********************************************!*\
+  !*** ./src/components/Editor/EditorModal.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-
-	var _keys = __webpack_require__(228);
-
+	
+	var _keys = __webpack_require__(/*! babel-runtime/core-js/object/keys */ 230);
+	
 	var _keys2 = _interopRequireDefault(_keys);
-
-	var _extends2 = __webpack_require__(211);
-
+	
+	var _extends2 = __webpack_require__(/*! babel-runtime/helpers/extends */ 212);
+	
 	var _extends3 = _interopRequireDefault(_extends2);
-
-	var _getPrototypeOf = __webpack_require__(1);
-
+	
+	var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ 2);
+	
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(13);
-
+	
+	var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ 14);
+	
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(40);
-
+	
+	var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ 41);
+	
 	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(14);
-
+	
+	var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ 15);
+	
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(43);
-
+	
+	var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ 44);
+	
 	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(50);
-
+	
+	var _react = __webpack_require__(/*! react */ 51);
+	
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactPortal = __webpack_require__(231);
-
+	
+	var _reactPortal = __webpack_require__(/*! react-portal */ 233);
+	
 	var _reactPortal2 = _interopRequireDefault(_reactPortal);
-
-	var _markedRenderer = __webpack_require__(221);
-
-	var _AutosizeTextArea = __webpack_require__(233);
-
+	
+	var _AutosizeTextArea = __webpack_require__(/*! ../AutosizeTextArea */ 235);
+	
 	var _AutosizeTextArea2 = _interopRequireDefault(_AutosizeTextArea);
-
-	var _settingTrue = __webpack_require__(224);
-
-	var _settingTrue2 = _interopRequireDefault(_settingTrue);
-
+	
+	var _markedRenderer = __webpack_require__(/*! ../../marked-renderer */ 222);
+	
+	var _Modal = __webpack_require__(/*! ./Modal */ 237);
+	
+	var _Modal2 = _interopRequireDefault(_Modal);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Modal = (function (_Component) {
-	    (0, _inherits3.default)(Modal, _Component);
-
-	    function Modal() {
-	        (0, _classCallCheck3.default)(this, Modal);
-	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Modal).apply(this, arguments));
-	    }
-
-	    (0, _createClass3.default)(Modal, [{
-	        key: 'onOverlayClick',
-	        value: function onOverlayClick(e) {
-	            var onRequestClose = this.props.onRequestClose;
-
-	            onRequestClose && onRequestClose();
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
-
-	            return _react2.default.createElement(
-	                'div',
-	                { className: this.props.className + '-modal', onClick: function onClick(e) {
-	                        return _this2.onOverlayClick(e);
-	                    } },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: this.props.className + '-dialog', onClick: function onClick(e) {
-	                            return e.stopPropagation();
-	                        } },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: this.props.className + '-content' },
-	                        this.props.children
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	    return Modal;
-	})(_react.Component);
-
-	var EditorModal = (function (_Component2) {
-	    (0, _inherits3.default)(EditorModal, _Component2);
-
+	
+	var EditorModal = (function (_Component) {
+	    (0, _inherits3.default)(EditorModal, _Component);
+	
 	    function EditorModal(props) {
 	        (0, _classCallCheck3.default)(this, EditorModal);
-
-	        var _this3 = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(EditorModal).call(this, props));
-
-	        _this3.state = {
+	
+	        var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(EditorModal).call(this, props));
+	
+	        _this.state = {
 	            selectedDataCenter: null,
 	            newOverrideValue: null
 	        };
-	        return _this3;
+	        return _this;
 	    }
-
+	
 	    (0, _createClass3.default)(EditorModal, [{
 	        key: 'handleClose',
 	        value: function handleClose() {
@@ -23280,13 +23986,13 @@ var SettingsPanel =
 	            var _props$setting = props.setting;
 	            var allOverrides = _props$setting.allOverrides;
 	            var activeOverride = _props$setting.activeOverride;
-
+	
 	            if (!allOverrides || allOverrides.length == 0) return false;
-
+	
 	            if (allOverrides.length > 1) return true;
-
+	
 	            if (!activeOverride) return true;
-
+	
 	            // single override, and an active, it's probably the active one
 	            return false;
 	        }
@@ -23297,9 +24003,9 @@ var SettingsPanel =
 	            var dataCenter = _state.selectedDataCenter;
 	            var showDetails = _state.showDetails;
 	            var settingName = this.props.setting.name;
-
+	
 	            if (showDetails === false) this.setState({ showDetails: null });
-
+	
 	            var data = { settingName: this.props.setting.name, dataCenter: dc };
 	            this.props.onClearOverride(data);
 	        }
@@ -23307,11 +24013,11 @@ var SettingsPanel =
 	        key: 'selectDataCenter',
 	        value: function selectDataCenter(e) {
 	            var selectedDataCenter = e.target ? e.target.value : e;
-
+	
 	            var override = this.props.setting.allOverrides.find(function (o) {
 	                return o.dataCenter === selectedDataCenter;
 	            });
-
+	
 	            this.setState({ selectedDataCenter: selectedDataCenter, newOverrideValue: override && override.value || '' });
 	        }
 	    }, {
@@ -23328,9 +24034,9 @@ var SettingsPanel =
 	            var dataCenter = _state2.selectedDataCenter;
 	            var showDetails = _state2.showDetails;
 	            var settingName = this.props.setting.name;
-
+	
 	            if (showDetails === false) this.setState({ showDetails: null });
-
+	
 	            this.props.onSetOverride({ settingName: settingName, dataCenter: dataCenter, value: value });
 	        }
 	    }, {
@@ -23349,8 +24055,8 @@ var SettingsPanel =
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this4 = this;
-
+	            var _this2 = this;
+	
 	            var _props = this.props;
 	            var setting = _props.setting;
 	            var dataCenters = _props.dataCenters;
@@ -23361,21 +24067,21 @@ var SettingsPanel =
 	            var isEnum = setting.isEnum;
 	            var allowsOverrides = setting.allowsOverrides;
 	            var selectedDataCenter = this.state.selectedDataCenter;
-
+	
 	            var enumNames = setting.enumNames || {};
 	            var SettingEditor = EditorFor(setting);
-
+	
 	            var showDetails = this.state.showDetails;
-
+	
 	            if (showDetails === undefined || showDetails === null) showDetails = this.shouldShowDetails(this.props);
-
+	
 	            return _react2.default.createElement(
 	                _reactPortal2.default,
 	                { isOpened: true },
 	                _react2.default.createElement(
-	                    Modal,
+	                    _Modal2.default,
 	                    { className: className, onRequestClose: function onRequestClose(_) {
-	                            return _this4.handleClose();
+	                            return _this2.handleClose();
 	                        } },
 	                    _react2.default.createElement(
 	                        'div',
@@ -23383,7 +24089,7 @@ var SettingsPanel =
 	                        _react2.default.createElement(
 	                            'button',
 	                            { type: 'button', className: 'close', onClick: function onClick() {
-	                                    return _this4.handleClose();
+	                                    return _this2.handleClose();
 	                                } },
 	                            _react2.default.createElement(
 	                                'span',
@@ -23431,7 +24137,7 @@ var SettingsPanel =
 	                                _react2.default.createElement(
 	                                    'button',
 	                                    { className: 'edit-override', onClick: function onClick() {
-	                                            return _this4.selectDataCenter(override.dataCenter);
+	                                            return _this2.selectDataCenter(override.dataCenter);
 	                                        } },
 	                                    'Edit'
 	                                ),
@@ -23443,7 +24149,7 @@ var SettingsPanel =
 	                                _react2.default.createElement(
 	                                    'button',
 	                                    { className: 'clear-override', onClick: function onClick() {
-	                                            return _this4.clearOverride(override.dataCenter);
+	                                            return _this2.clearOverride(override.dataCenter);
 	                                        } },
 	                                    'Clear'
 	                                )
@@ -23483,7 +24189,7 @@ var SettingsPanel =
 	                                _react2.default.createElement(DataCenterSelector, {
 	                                    selectedValue: this.state.selectedDataCenter,
 	                                    onChange: function onChange(e) {
-	                                        return _this4.selectDataCenter(e);
+	                                        return _this2.selectDataCenter(e);
 	                                    },
 	                                    dataCenters: dataCenters,
 	                                    allowsOverrides: allowsOverrides
@@ -23498,7 +24204,7 @@ var SettingsPanel =
 	                                    'Changes will not take effect until application is restarted.'
 	                                ) : null,
 	                                _react2.default.createElement(SettingEditor, (0, _extends3.default)({}, this.props, { value: this.state.newOverrideValue, onChange: function onChange(e) {
-	                                        return _this4.handleOverrideChange(e);
+	                                        return _this2.handleOverrideChange(e);
 	                                    } })),
 	                                _react2.default.createElement(
 	                                    'p',
@@ -23506,7 +24212,7 @@ var SettingsPanel =
 	                                    _react2.default.createElement(
 	                                        'button',
 	                                        { className: 'set-override', onClick: function onClick() {
-	                                                return _this4.setNewOverride();
+	                                                return _this2.setNewOverride();
 	                                            } },
 	                                        'Set Override'
 	                                    ),
@@ -23518,7 +24224,7 @@ var SettingsPanel =
 	                                    _react2.default.createElement(
 	                                        'button',
 	                                        { className: 'cancel-override', onClick: function onClick() {
-	                                                return _this4.cancelNewOverride();
+	                                                return _this2.cancelNewOverride();
 	                                            } },
 	                                        'Cancel'
 	                                    )
@@ -23537,14 +24243,14 @@ var SettingsPanel =
 	                        !showDetails ? _react2.default.createElement(
 	                            'a',
 	                            { className: 'toggle', style: { cursor: "pointer" }, onClick: function onClick() {
-	                                    return _this4.showDetails();
+	                                    return _this2.showDetails();
 	                                } },
 	                            'Show Details'
 	                        ) : null,
 	                        showDetails ? _react2.default.createElement(
 	                            'a',
 	                            { className: 'toggle', style: { cursor: "pointer" }, onClick: function onClick() {
-	                                    return _this4.hideDetails();
+	                                    return _this2.hideDetails();
 	                                } },
 	                            'Hide Details'
 	                        ) : null,
@@ -23560,7 +24266,7 @@ var SettingsPanel =
 	                                    'Overrides'
 	                                ),
 	                                _react2.default.createElement(ValueTable, (0, _extends3.default)({}, this.props, { propName: 'allOverrides', onClear: function onClear(dc) {
-	                                        return _this4.clearOverride(dc);
+	                                        return _this2.clearOverride(dc);
 	                                    } }))
 	                            ),
 	                            _react2.default.createElement(
@@ -23581,7 +24287,7 @@ var SettingsPanel =
 	    }]);
 	    return EditorModal;
 	})(_react.Component);
-
+	
 	EditorModal.propTypes = {
 	    onClose: _react.PropTypes.func.isRequired,
 	    onSetOverride: _react.PropTypes.func.isRequired,
@@ -23589,16 +24295,16 @@ var SettingsPanel =
 	    onClearError: _react.PropTypes.func.isRequired
 	};
 	exports.default = EditorModal;
-
+	
 	var ValueDisplay = function ValueDisplay(props) {
 	    var value = props.value;
 	    var isEnum = props.isEnum;
 	    var enumName = props.enumName;
-
+	
 	    if (isEnum) {
-
+	
 	        var desc = enumName.description ? _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: (0, _markedRenderer.render)(enumName.description) } }) : null;
-
+	
 	        return _react2.default.createElement(
 	            'div',
 	            null,
@@ -23614,22 +24320,22 @@ var SettingsPanel =
 	            )
 	        );
 	    }
-
+	
 	    return _react2.default.createElement(
 	        'pre',
 	        { className: 'setting-value' },
 	        value
 	    );
 	};
-
-	var DataCenterSelector = (function (_Component3) {
-	    (0, _inherits3.default)(DataCenterSelector, _Component3);
-
+	
+	var DataCenterSelector = (function (_Component2) {
+	    (0, _inherits3.default)(DataCenterSelector, _Component2);
+	
 	    function DataCenterSelector() {
 	        (0, _classCallCheck3.default)(this, DataCenterSelector);
 	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DataCenterSelector).apply(this, arguments));
 	    }
-
+	
 	    (0, _createClass3.default)(DataCenterSelector, [{
 	        key: 'render',
 	        value: function render() {
@@ -23638,7 +24344,7 @@ var SettingsPanel =
 	            var onChange = _props2.onChange;
 	            var dataCenters = _props2.dataCenters;
 	            var allowsOverrides = _props2.allowsOverrides;
-
+	
 	            return _react2.default.createElement(
 	                ButtonGroup,
 	                (0, _extends3.default)({}, this.props, {
@@ -23656,15 +24362,15 @@ var SettingsPanel =
 	    }]);
 	    return DataCenterSelector;
 	})(_react.Component);
-
-	var ValueTable = (function (_Component4) {
-	    (0, _inherits3.default)(ValueTable, _Component4);
-
+	
+	var ValueTable = (function (_Component3) {
+	    (0, _inherits3.default)(ValueTable, _Component3);
+	
 	    function ValueTable() {
 	        (0, _classCallCheck3.default)(this, ValueTable);
 	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ValueTable).apply(this, arguments));
 	    }
-
+	
 	    (0, _createClass3.default)(ValueTable, [{
 	        key: 'render',
 	        value: function render() {
@@ -23672,7 +24378,7 @@ var SettingsPanel =
 	            var setting = _props3.setting;
 	            var propName = _props3.propName;
 	            var onClear = _props3.onClear;
-
+	
 	            var values = setting[propName];
 	            return _react2.default.createElement(
 	                'table',
@@ -23754,23 +24460,23 @@ var SettingsPanel =
 	    }]);
 	    return ValueTable;
 	})(_react.Component);
-
+	
 	function EditorFor(setting) {
 	    if (setting.isEnum) return EnumEditor;
-
+	
 	    return ({
 	        'System.Boolean': BoolEditor
 	    })[setting.typeName] || TextEditor;
 	}
-
-	var BoolEditor = (function (_Component5) {
-	    (0, _inherits3.default)(BoolEditor, _Component5);
-
+	
+	var BoolEditor = (function (_Component4) {
+	    (0, _inherits3.default)(BoolEditor, _Component4);
+	
 	    function BoolEditor() {
 	        (0, _classCallCheck3.default)(this, BoolEditor);
 	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(BoolEditor).apply(this, arguments));
 	    }
-
+	
 	    (0, _createClass3.default)(BoolEditor, [{
 	        key: 'render',
 	        value: function render() {
@@ -23796,15 +24502,15 @@ var SettingsPanel =
 	    }]);
 	    return BoolEditor;
 	})(_react.Component);
-
-	var RadioButton = (function (_Component6) {
-	    (0, _inherits3.default)(RadioButton, _Component6);
-
+	
+	var RadioButton = (function (_Component5) {
+	    (0, _inherits3.default)(RadioButton, _Component5);
+	
 	    function RadioButton() {
 	        (0, _classCallCheck3.default)(this, RadioButton);
 	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(RadioButton).apply(this, arguments));
 	    }
-
+	
 	    (0, _createClass3.default)(RadioButton, [{
 	        key: 'render',
 	        value: function render() {
@@ -23816,14 +24522,14 @@ var SettingsPanel =
 	            var children = _props4.children;
 	            var active = _props4.active;
 	            var disabled = _props4.disabled;
-
+	
 	            var classNames = className && className.split(' ') || [];
 	            classNames.push('label-button');
 	            if (active) classNames.push('active');
-
+	
 	            var title = null;
 	            if (disabled) title = "Overrides not allowed for this data center and tier";
-
+	
 	            return _react2.default.createElement(
 	                'button',
 	                { className: classNames.join(' '), value: value, onClick: onChange, disabled: disabled, title: title },
@@ -23833,15 +24539,15 @@ var SettingsPanel =
 	    }]);
 	    return RadioButton;
 	})(_react.Component);
-
-	var ButtonGroup = (function (_Component7) {
-	    (0, _inherits3.default)(ButtonGroup, _Component7);
-
+	
+	var ButtonGroup = (function (_Component6) {
+	    (0, _inherits3.default)(ButtonGroup, _Component6);
+	
 	    function ButtonGroup() {
 	        (0, _classCallCheck3.default)(this, ButtonGroup);
 	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ButtonGroup).apply(this, arguments));
 	    }
-
+	
 	    (0, _createClass3.default)(ButtonGroup, [{
 	        key: 'render',
 	        value: function render() {
@@ -23850,13 +24556,13 @@ var SettingsPanel =
 	            var selectedValue = _props5.selectedValue;
 	            var onChange = _props5.onChange;
 	            var children = _props5.children;
-
+	
 	            var mapped = _react2.default.Children.map(children, function (child) {
 	                var value = child.props.value;
-
+	
 	                return _react2.default.cloneElement(child, { name: name, active: value === selectedValue, onChange: onChange });
 	            });
-
+	
 	            return _react2.default.createElement(
 	                'span',
 	                { className: 'radio-button-group' },
@@ -23866,7 +24572,7 @@ var SettingsPanel =
 	    }]);
 	    return ButtonGroup;
 	})(_react.Component);
-
+	
 	var TextEditor = function TextEditor(props) {
 	    return _react2.default.createElement(
 	        'pre',
@@ -23879,15 +24585,15 @@ var SettingsPanel =
 	        }))
 	    );
 	};
-
-	var EnumEditor = (function (_Component8) {
-	    (0, _inherits3.default)(EnumEditor, _Component8);
-
+	
+	var EnumEditor = (function (_Component7) {
+	    (0, _inherits3.default)(EnumEditor, _Component7);
+	
 	    function EnumEditor() {
 	        (0, _classCallCheck3.default)(this, EnumEditor);
 	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(EnumEditor).apply(this, arguments));
 	    }
-
+	
 	    (0, _createClass3.default)(EnumEditor, [{
 	        key: 'render',
 	        value: function render() {
@@ -23895,7 +24601,7 @@ var SettingsPanel =
 	            var enumNames = _props6.setting.enumNames;
 	            var value = _props6.value;
 	            var onChange = _props6.onChange;
-
+	
 	            return _react2.default.createElement(
 	                EnumSelector,
 	                { selectedValue: value, onChange: onChange },
@@ -23912,15 +24618,15 @@ var SettingsPanel =
 	    }]);
 	    return EnumEditor;
 	})(_react.Component);
-
-	var EnumSelector = (function (_Component9) {
-	    (0, _inherits3.default)(EnumSelector, _Component9);
-
+	
+	var EnumSelector = (function (_Component8) {
+	    (0, _inherits3.default)(EnumSelector, _Component8);
+	
 	    function EnumSelector() {
 	        (0, _classCallCheck3.default)(this, EnumSelector);
 	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(EnumSelector).apply(this, arguments));
 	    }
-
+	
 	    (0, _createClass3.default)(EnumSelector, [{
 	        key: 'render',
 	        value: function render() {
@@ -23928,11 +24634,11 @@ var SettingsPanel =
 	            var selectedValue = _props7.selectedValue;
 	            var onChange = _props7.onChange;
 	            var children = _props7.children;
-
+	
 	            var mapped = _react2.default.Children.map(children, function (child) {
 	                return _react2.default.cloneElement(child, (0, _extends3.default)({ active: child.props.value === selectedValue, onChange: onChange }, child.props));
 	            });
-
+	
 	            return _react2.default.createElement(
 	                'table',
 	                { className: 'enum-selector' },
@@ -23946,15 +24652,15 @@ var SettingsPanel =
 	    }]);
 	    return EnumSelector;
 	})(_react.Component);
-
-	var EnumSelectorItem = (function (_Component10) {
-	    (0, _inherits3.default)(EnumSelectorItem, _Component10);
-
+	
+	var EnumSelectorItem = (function (_Component9) {
+	    (0, _inherits3.default)(EnumSelectorItem, _Component9);
+	
 	    function EnumSelectorItem() {
 	        (0, _classCallCheck3.default)(this, EnumSelectorItem);
 	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(EnumSelectorItem).apply(this, arguments));
 	    }
-
+	
 	    (0, _createClass3.default)(EnumSelectorItem, [{
 	        key: 'render',
 	        value: function render() {
@@ -23964,7 +24670,7 @@ var SettingsPanel =
 	            var value = _props8.value;
 	            var description = _props8.description;
 	            var active = _props8.active;
-
+	
 	            return _react2.default.createElement(
 	                'tr',
 	                { className: (active ? 'active' : '') + ' selector-item', onClick: function onClick(e) {
@@ -23973,7 +24679,7 @@ var SettingsPanel =
 	                _react2.default.createElement(
 	                    'td',
 	                    { className: 'status' },
-	                    active ? _react2.default.createElement('img', { src: _settingTrue2.default, alt: 'selected' }) : null
+	                    active ? _react2.default.createElement('img', { src: checkImg, alt: 'selected' }) : null
 	                ),
 	                _react2.default.createElement(
 	                    'th',
@@ -23990,79 +24696,91 @@ var SettingsPanel =
 	    }]);
 	    return EnumSelectorItem;
 	})(_react.Component);
-
+	
 	// vim: sw=4 ts=4 et
 
 /***/ },
-/* 228 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(229), __esModule: true };
-
-/***/ },
-/* 229 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(230);
-	module.exports = __webpack_require__(9).Object.keys;
-
-/***/ },
 /* 230 */
+/*!************************************************!*\
+  !*** ./~/babel-runtime/core-js/object/keys.js ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/object/keys */ 231), __esModule: true };
+
+/***/ },
+/* 231 */
+/*!*********************************************!*\
+  !*** ./~/core-js/library/fn/object/keys.js ***!
+  \*********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(/*! ../../modules/es6.object.keys */ 232);
+	module.exports = __webpack_require__(/*! ../../modules/$.core */ 10).Object.keys;
+
+/***/ },
+/* 232 */
+/*!******************************************************!*\
+  !*** ./~/core-js/library/modules/es6.object.keys.js ***!
+  \******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(4);
-
-	__webpack_require__(6)('keys', function($keys){
+	var toObject = __webpack_require__(/*! ./$.to-object */ 5);
+	
+	__webpack_require__(/*! ./$.object-sap */ 7)('keys', function($keys){
 	  return function keys(it){
 	    return $keys(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 231 */
+/* 233 */
+/*!**********************************!*\
+  !*** ./~/react-portal/portal.js ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
-
+	
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
+	
 	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
+	
 	exports.isNodeInRoot = isNodeInRoot;
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
+	
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _react = __webpack_require__(50);
-
+	
+	var _react = __webpack_require__(/*! react */ 51);
+	
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(207);
-
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 208);
+	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _reactLibCSSPropertyOperations = __webpack_require__(145);
-
+	
+	var _reactLibCSSPropertyOperations = __webpack_require__(/*! react/lib/CSSPropertyOperations */ 146);
+	
 	var _reactLibCSSPropertyOperations2 = _interopRequireDefault(_reactLibCSSPropertyOperations);
-
-	var _reactLibShallowCompare = __webpack_require__(232);
-
+	
+	var _reactLibShallowCompare = __webpack_require__(/*! react/lib/shallowCompare */ 234);
+	
 	var _reactLibShallowCompare2 = _interopRequireDefault(_reactLibShallowCompare);
-
+	
 	var Portal = (function (_React$Component) {
 	  _inherits(Portal, _React$Component);
-
+	
 	  function Portal() {
 	    _classCallCheck(this, Portal);
-
+	
 	    _get(Object.getPrototypeOf(Portal.prototype), 'constructor', this).call(this);
 	    this.state = { active: false };
 	    this.openPortal = this.openPortal.bind(this);
@@ -24072,19 +24790,19 @@ var SettingsPanel =
 	    this.portal = null;
 	    this.node = null;
 	  }
-
+	
 	  _createClass(Portal, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      if (this.props.closeOnEsc) {
 	        document.addEventListener('keydown', this.handleKeydown);
 	      }
-
+	
 	      if (this.props.closeOnOutsideClick) {
 	        document.addEventListener('mousedown', this.handleOutsideMouseClick);
 	        document.addEventListener('touchstart', this.handleOutsideMouseClick);
 	      }
-
+	
 	      if (this.props.isOpened) {
 	        this.openPortal(this.props);
 	      }
@@ -24105,7 +24823,7 @@ var SettingsPanel =
 	          this.closePortal();
 	        }
 	      }
-
+	
 	      // portal handles its own 'is open' state
 	      if (typeof newProps.isOpened === 'undefined' && this.state.active) {
 	        this.renderPortal(newProps);
@@ -24117,12 +24835,12 @@ var SettingsPanel =
 	      if (this.props.closeOnEsc) {
 	        document.removeEventListener('keydown', this.handleKeydown);
 	      }
-
+	
 	      if (this.props.closeOnOutsideClick) {
 	        document.removeEventListener('mousedown', this.handleOutsideMouseClick);
 	        document.removeEventListener('touchstart', this.handleOutsideMouseClick);
 	      }
-
+	
 	      this.closePortal();
 	    }
 	  }, {
@@ -24175,7 +24893,7 @@ var SettingsPanel =
 	    key: 'closePortal',
 	    value: function closePortal() {
 	      var _this = this;
-
+	
 	      var resetPortalState = function resetPortalState() {
 	        if (_this.node) {
 	          _reactDom2['default'].unmountComponentAtNode(_this.node);
@@ -24185,13 +24903,13 @@ var SettingsPanel =
 	        _this.node = null;
 	        _this.setState({ active: false });
 	      };
-
+	
 	      if (this.props.beforeClose) {
 	        this.props.beforeClose(this.node, resetPortalState);
 	      } else {
 	        resetPortalState(this.node);
 	      }
-
+	
 	      if (this.props.onClose) {
 	        this.props.onClose();
 	      }
@@ -24217,12 +24935,12 @@ var SettingsPanel =
 	      }
 	    }
 	  }]);
-
+	
 	  return Portal;
 	})(_react2['default'].Component);
-
+	
 	exports['default'] = Portal;
-
+	
 	Portal.propTypes = {
 	  className: _react2['default'].PropTypes.string,
 	  style: _react2['default'].PropTypes.object,
@@ -24235,7 +24953,7 @@ var SettingsPanel =
 	  onClose: _react2['default'].PropTypes.func,
 	  beforeClose: _react2['default'].PropTypes.func
 	};
-
+	
 	function isNodeInRoot(node, root) {
 	  while (node) {
 	    if (node === root) {
@@ -24247,7 +24965,10 @@ var SettingsPanel =
 	}
 
 /***/ },
-/* 232 */
+/* 234 */
+/*!***************************************!*\
+  !*** ./~/react/lib/shallowCompare.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24260,11 +24981,11 @@ var SettingsPanel =
 	 *
 	* @providesModule shallowCompare
 	*/
-
+	
 	'use strict';
-
-	var shallowEqual = __webpack_require__(166);
-
+	
+	var shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ 167);
+	
 	/**
 	 * Does a shallow comparison for props and state.
 	 * See ReactComponentWithPureRenderMixin
@@ -24272,61 +24993,64 @@ var SettingsPanel =
 	function shallowCompare(instance, nextProps, nextState) {
 	  return !shallowEqual(instance.props, nextProps) || !shallowEqual(instance.state, nextState);
 	}
-
+	
 	module.exports = shallowCompare;
 
 /***/ },
-/* 233 */
+/* 235 */
+/*!********************************************!*\
+  !*** ./src/components/AutosizeTextArea.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
+	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-
-	var _extends2 = __webpack_require__(211);
-
+	
+	var _extends2 = __webpack_require__(/*! babel-runtime/helpers/extends */ 212);
+	
 	var _extends3 = _interopRequireDefault(_extends2);
-
-	var _getPrototypeOf = __webpack_require__(1);
-
+	
+	var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ 2);
+	
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(13);
-
+	
+	var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ 14);
+	
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(40);
-
+	
+	var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ 41);
+	
 	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(14);
-
+	
+	var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ 15);
+	
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(43);
-
+	
+	var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ 44);
+	
 	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(50);
-
+	
+	var _react = __webpack_require__(/*! react */ 51);
+	
 	var _react2 = _interopRequireDefault(_react);
-
-	var _autosize = __webpack_require__(234);
-
+	
+	var _autosize = __webpack_require__(/*! autosize */ 236);
+	
 	var _autosize2 = _interopRequireDefault(_autosize);
-
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	
 	var AutosizeTextArea = (function (_Component) {
 	    (0, _inherits3.default)(AutosizeTextArea, _Component);
-
+	
 	    function AutosizeTextArea() {
 	        (0, _classCallCheck3.default)(this, AutosizeTextArea);
 	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AutosizeTextArea).apply(this, arguments));
 	    }
-
+	
 	    (0, _createClass3.default)(AutosizeTextArea, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
@@ -24344,7 +25068,7 @@ var SettingsPanel =
 	        key: 'dispatchEvent',
 	        value: function dispatchEvent(TYPE, defer) {
 	            var _this2 = this;
-
+	
 	            var event = document.createEvent('Event');
 	            event.initEvent(TYPE, true, false);
 	            var dispatch = function dispatch() {
@@ -24370,14 +25094,17 @@ var SettingsPanel =
 	    }]);
 	    return AutosizeTextArea;
 	})(_react.Component);
-
+	
 	AutosizeTextArea.defaultProps = {
 	    rows: 1
 	};
 	exports.default = AutosizeTextArea;
 
 /***/ },
-/* 234 */
+/* 236 */
+/*!*************************************!*\
+  !*** ./~/autosize/dist/autosize.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -24399,10 +25126,10 @@ var SettingsPanel =
 		}
 	})(this, function (exports, module) {
 		'use strict';
-
+	
 		var set = typeof Set === 'function' ? new Set() : (function () {
 			var list = [];
-
+	
 			return {
 				has: function has(key) {
 					return Boolean(list.indexOf(key) > -1);
@@ -24414,32 +25141,32 @@ var SettingsPanel =
 					list.splice(list.indexOf(key), 1);
 				} };
 		})();
-
+	
 		function assign(ta) {
 			var _ref = arguments[1] === undefined ? {} : arguments[1];
-
+	
 			var _ref$setOverflowX = _ref.setOverflowX;
 			var setOverflowX = _ref$setOverflowX === undefined ? true : _ref$setOverflowX;
 			var _ref$setOverflowY = _ref.setOverflowY;
 			var setOverflowY = _ref$setOverflowY === undefined ? true : _ref$setOverflowY;
-
+	
 			if (!ta || !ta.nodeName || ta.nodeName !== 'TEXTAREA' || set.has(ta)) return;
-
+	
 			var heightOffset = null;
 			var overflowY = null;
 			var clientWidth = ta.clientWidth;
-
+	
 			function init() {
 				var style = window.getComputedStyle(ta, null);
-
+	
 				overflowY = style.overflowY;
-
+	
 				if (style.resize === 'vertical') {
 					ta.style.resize = 'none';
 				} else if (style.resize === 'both') {
 					ta.style.resize = 'horizontal';
 				}
-
+	
 				if (style.boxSizing === 'content-box') {
 					heightOffset = -(parseFloat(style.paddingTop) + parseFloat(style.paddingBottom));
 				} else {
@@ -24449,10 +25176,10 @@ var SettingsPanel =
 				if (isNaN(heightOffset)) {
 					heightOffset = 0;
 				}
-
+	
 				update();
 			}
-
+	
 			function changeOverflow(value) {
 				{
 					// Chrome/Safari-specific fix:
@@ -24466,48 +25193,48 @@ var SettingsPanel =
 					/* jshint ignore:end */
 					ta.style.width = width;
 				}
-
+	
 				overflowY = value;
-
+	
 				if (setOverflowY) {
 					ta.style.overflowY = value;
 				}
-
+	
 				resize();
 			}
-
+	
 			function resize() {
 				var htmlTop = window.pageYOffset;
 				var bodyTop = document.body.scrollTop;
 				var originalHeight = ta.style.height;
-
+	
 				ta.style.height = 'auto';
-
+	
 				var endHeight = ta.scrollHeight + heightOffset;
-
+	
 				if (ta.scrollHeight === 0) {
 					// If the scrollHeight is 0, then the element probably has display:none or is detached from the DOM.
 					ta.style.height = originalHeight;
 					return;
 				}
-
+	
 				ta.style.height = endHeight + 'px';
-
+	
 				// used to check if an update is actually necessary on window.resize
 				clientWidth = ta.clientWidth;
-
+	
 				// prevents scroll-position jumping
 				document.documentElement.scrollTop = htmlTop;
 				document.body.scrollTop = bodyTop;
 			}
-
+	
 			function update() {
 				var startHeight = ta.style.height;
-
+	
 				resize();
-
+	
 				var style = window.getComputedStyle(ta, null);
-
+	
 				if (style.height !== ta.style.height) {
 					if (overflowY !== 'visible') {
 						changeOverflow('visible');
@@ -24517,20 +25244,20 @@ var SettingsPanel =
 						changeOverflow('hidden');
 					}
 				}
-
+	
 				if (startHeight !== ta.style.height) {
 					var evt = document.createEvent('Event');
 					evt.initEvent('autosize:resized', true, false);
 					ta.dispatchEvent(evt);
 				}
 			}
-
+	
 			var pageResize = function pageResize() {
 				if (ta.clientWidth !== clientWidth) {
 					update();
 				}
 			};
-
+	
 			var destroy = (function (style) {
 				window.removeEventListener('resize', pageResize, false);
 				ta.removeEventListener('input', update, false);
@@ -24538,7 +25265,7 @@ var SettingsPanel =
 				ta.removeEventListener('autosize:destroy', destroy, false);
 				ta.removeEventListener('autosize:update', update, false);
 				set['delete'](ta);
-
+	
 				Object.keys(style).forEach(function (key) {
 					ta.style[key] = style[key];
 				});
@@ -24548,45 +25275,45 @@ var SettingsPanel =
 				overflowY: ta.style.overflowY,
 				overflowX: ta.style.overflowX,
 				wordWrap: ta.style.wordWrap });
-
+	
 			ta.addEventListener('autosize:destroy', destroy, false);
-
+	
 			// IE9 does not fire onpropertychange or oninput for deletions,
 			// so binding to onkeyup to catch most of those events.
 			// There is no way that I know of to detect something like 'cut' in IE9.
 			if ('onpropertychange' in ta && 'oninput' in ta) {
 				ta.addEventListener('keyup', update, false);
 			}
-
+	
 			window.addEventListener('resize', pageResize, false);
 			ta.addEventListener('input', update, false);
 			ta.addEventListener('autosize:update', update, false);
 			set.add(ta);
-
+	
 			if (setOverflowX) {
 				ta.style.overflowX = 'hidden';
 				ta.style.wordWrap = 'break-word';
 			}
-
+	
 			init();
 		}
-
+	
 		function destroy(ta) {
 			if (!(ta && ta.nodeName && ta.nodeName === 'TEXTAREA')) return;
 			var evt = document.createEvent('Event');
 			evt.initEvent('autosize:destroy', true, false);
 			ta.dispatchEvent(evt);
 		}
-
+	
 		function update(ta) {
 			if (!(ta && ta.nodeName && ta.nodeName === 'TEXTAREA')) return;
 			var evt = document.createEvent('Event');
 			evt.initEvent('autosize:update', true, false);
 			ta.dispatchEvent(evt);
 		}
-
+	
 		var autosize = null;
-
+	
 		// Do nothing in Node.js environment and IE8 (or lower)
 		if (typeof window === 'undefined' || typeof window.getComputedStyle !== 'function') {
 			autosize = function (el) {
@@ -24620,25 +25347,105 @@ var SettingsPanel =
 				return el;
 			};
 		}
-
+	
 		module.exports = autosize;
 	});
 
 /***/ },
-/* 235 */
+/* 237 */
+/*!****************************************!*\
+  !*** ./src/components/Editor/Modal.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ 2);
+	
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+	
+	var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ 14);
+	
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+	
+	var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ 41);
+	
+	var _createClass3 = _interopRequireDefault(_createClass2);
+	
+	var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ 15);
+	
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+	
+	var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ 44);
+	
+	var _inherits3 = _interopRequireDefault(_inherits2);
+	
+	var _react = __webpack_require__(/*! react */ 51);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Modal = (function (_Component) {
+	    (0, _inherits3.default)(Modal, _Component);
+	
+	    function Modal() {
+	        (0, _classCallCheck3.default)(this, Modal);
+	        return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Modal).apply(this, arguments));
+	    }
+	
+	    (0, _createClass3.default)(Modal, [{
+	        key: 'onOverlayClick',
+	        value: function onOverlayClick(e) {
+	            var onRequestClose = this.props.onRequestClose;
+	
+	            onRequestClose && onRequestClose();
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+	
+	            return _react2.default.createElement(
+	                'div',
+	                { className: this.props.className + '-modal', onClick: function onClick(e) {
+	                        return _this2.onOverlayClick(e);
+	                    } },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: this.props.className + '-dialog', onClick: function onClick(e) {
+	                            return e.stopPropagation();
+	                        } },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: this.props.className + '-content' },
+	                        this.props.children
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	    return Modal;
+	})(_react.Component);
+
+/***/ },
+/* 238 */
+/*!************************************!*\
+  !*** ./~/superagent/lib/client.js ***!
+  \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
-
-	var Emitter = __webpack_require__(236);
-	var reduce = __webpack_require__(237);
-
+	
+	var Emitter = __webpack_require__(/*! emitter */ 239);
+	var reduce = __webpack_require__(/*! reduce */ 240);
+	
 	/**
 	 * Root reference for iframes.
 	 */
-
+	
 	var root;
 	if (typeof window !== 'undefined') { // Browser window
 	  root = window;
@@ -24647,13 +25454,13 @@ var SettingsPanel =
 	} else { // Other environments
 	  root = this;
 	}
-
+	
 	/**
 	 * Noop.
 	 */
-
+	
 	function noop(){};
-
+	
 	/**
 	 * Check if `obj` is a host object,
 	 * we don't want to serialize these :)
@@ -24664,10 +25471,10 @@ var SettingsPanel =
 	 * @return {Boolean}
 	 * @api private
 	 */
-
+	
 	function isHost(obj) {
 	  var str = {}.toString.call(obj);
-
+	
 	  switch (str) {
 	    case '[object File]':
 	    case '[object Blob]':
@@ -24677,11 +25484,11 @@ var SettingsPanel =
 	      return false;
 	  }
 	}
-
+	
 	/**
 	 * Determine XHR.
 	 */
-
+	
 	request.getXHR = function () {
 	  if (root.XMLHttpRequest
 	      && (!root.location || 'file:' != root.location.protocol
@@ -24695,7 +25502,7 @@ var SettingsPanel =
 	  }
 	  return false;
 	};
-
+	
 	/**
 	 * Removes leading and trailing whitespace, added to support IE.
 	 *
@@ -24703,11 +25510,11 @@ var SettingsPanel =
 	 * @return {String}
 	 * @api private
 	 */
-
+	
 	var trim = ''.trim
 	  ? function(s) { return s.trim(); }
 	  : function(s) { return s.replace(/(^\s*|\s*$)/g, ''); };
-
+	
 	/**
 	 * Check if `obj` is an object.
 	 *
@@ -24715,11 +25522,11 @@ var SettingsPanel =
 	 * @return {Boolean}
 	 * @api private
 	 */
-
+	
 	function isObject(obj) {
 	  return obj === Object(obj);
 	}
-
+	
 	/**
 	 * Serialize the given `obj`.
 	 *
@@ -24727,7 +25534,7 @@ var SettingsPanel =
 	 * @return {String}
 	 * @api private
 	 */
-
+	
 	function serialize(obj) {
 	  if (!isObject(obj)) return obj;
 	  var pairs = [];
@@ -24738,7 +25545,7 @@ var SettingsPanel =
 	      }
 	  return pairs.join('&');
 	}
-
+	
 	/**
 	 * Helps 'serialize' with serializing arrays.
 	 * Mutates the pairs array.
@@ -24747,7 +25554,7 @@ var SettingsPanel =
 	 * @param {String} key
 	 * @param {Mixed} val
 	 */
-
+	
 	function pushEncodedKeyValuePair(pairs, key, val) {
 	  if (Array.isArray(val)) {
 	    return val.forEach(function(v) {
@@ -24757,13 +25564,13 @@ var SettingsPanel =
 	  pairs.push(encodeURIComponent(key)
 	    + '=' + encodeURIComponent(val));
 	}
-
+	
 	/**
 	 * Expose serialization method.
 	 */
-
+	
 	 request.serializeObject = serialize;
-
+	
 	 /**
 	  * Parse the given x-www-form-urlencoded `str`.
 	  *
@@ -24771,35 +25578,35 @@ var SettingsPanel =
 	  * @return {Object}
 	  * @api private
 	  */
-
+	
 	function parseString(str) {
 	  var obj = {};
 	  var pairs = str.split('&');
 	  var parts;
 	  var pair;
-
+	
 	  for (var i = 0, len = pairs.length; i < len; ++i) {
 	    pair = pairs[i];
 	    parts = pair.split('=');
 	    obj[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
 	  }
-
+	
 	  return obj;
 	}
-
+	
 	/**
 	 * Expose parser.
 	 */
-
+	
 	request.parseString = parseString;
-
+	
 	/**
 	 * Default MIME type map.
 	 *
 	 *     superagent.types.xml = 'application/xml';
 	 *
 	 */
-
+	
 	request.types = {
 	  html: 'text/html',
 	  json: 'application/json',
@@ -24808,7 +25615,7 @@ var SettingsPanel =
 	  'form': 'application/x-www-form-urlencoded',
 	  'form-data': 'application/x-www-form-urlencoded'
 	};
-
+	
 	/**
 	 * Default serialization map.
 	 *
@@ -24817,12 +25624,12 @@ var SettingsPanel =
 	 *     };
 	 *
 	 */
-
+	
 	 request.serialize = {
 	   'application/x-www-form-urlencoded': serialize,
 	   'application/json': JSON.stringify
 	 };
-
+	
 	 /**
 	  * Default parsers.
 	  *
@@ -24831,12 +25638,12 @@ var SettingsPanel =
 	  *     };
 	  *
 	  */
-
+	
 	request.parse = {
 	  'application/x-www-form-urlencoded': parseString,
 	  'application/json': JSON.parse
 	};
-
+	
 	/**
 	 * Parse the given header `str` into
 	 * an object containing the mapped fields.
@@ -24845,7 +25652,7 @@ var SettingsPanel =
 	 * @return {Object}
 	 * @api private
 	 */
-
+	
 	function parseHeader(str) {
 	  var lines = str.split(/\r?\n/);
 	  var fields = {};
@@ -24853,9 +25660,9 @@ var SettingsPanel =
 	  var line;
 	  var field;
 	  var val;
-
+	
 	  lines.pop(); // trailing CRLF
-
+	
 	  for (var i = 0, len = lines.length; i < len; ++i) {
 	    line = lines[i];
 	    index = line.indexOf(':');
@@ -24863,10 +25670,10 @@ var SettingsPanel =
 	    val = trim(line.slice(index + 1));
 	    fields[field] = val;
 	  }
-
+	
 	  return fields;
 	}
-
+	
 	/**
 	 * Check if `mime` is json or has +json structured syntax suffix.
 	 *
@@ -24874,11 +25681,11 @@ var SettingsPanel =
 	 * @return {Boolean}
 	 * @api private
 	 */
-
+	
 	function isJSON(mime) {
 	  return /[\/+]json\b/.test(mime);
 	}
-
+	
 	/**
 	 * Return the mime type for the given `str`.
 	 *
@@ -24886,11 +25693,11 @@ var SettingsPanel =
 	 * @return {String}
 	 * @api private
 	 */
-
+	
 	function type(str){
 	  return str.split(/ *; */).shift();
 	};
-
+	
 	/**
 	 * Return header field parameters.
 	 *
@@ -24898,18 +25705,18 @@ var SettingsPanel =
 	 * @return {Object}
 	 * @api private
 	 */
-
+	
 	function params(str){
 	  return reduce(str.split(/ *; */), function(obj, str){
 	    var parts = str.split(/ *= */)
 	      , key = parts.shift()
 	      , val = parts.shift();
-
+	
 	    if (key && val) obj[key] = val;
 	    return obj;
 	  }, {});
 	};
-
+	
 	/**
 	 * Initialize a new `Response` with the given `xhr`.
 	 *
@@ -24955,7 +25762,7 @@ var SettingsPanel =
 	 * @param {Object} options
 	 * @api private
 	 */
-
+	
 	function Response(req, options) {
 	  options = options || {};
 	  this.req = req;
@@ -24976,7 +25783,7 @@ var SettingsPanel =
 	    ? this.parseBody(this.text ? this.text : this.xhr.response)
 	    : null;
 	}
-
+	
 	/**
 	 * Get case-insensitive `field` value.
 	 *
@@ -24984,11 +25791,11 @@ var SettingsPanel =
 	 * @return {String}
 	 * @api public
 	 */
-
+	
 	Response.prototype.get = function(field){
 	  return this.header[field.toLowerCase()];
 	};
-
+	
 	/**
 	 * Set header related properties:
 	 *
@@ -25000,17 +25807,17 @@ var SettingsPanel =
 	 * @param {Object} header
 	 * @api private
 	 */
-
+	
 	Response.prototype.setHeaderProperties = function(header){
 	  // content-type
 	  var ct = this.header['content-type'] || '';
 	  this.type = type(ct);
-
+	
 	  // params
 	  var obj = params(ct);
 	  for (var key in obj) this[key] = obj[key];
 	};
-
+	
 	/**
 	 * Parse the given body `str`.
 	 *
@@ -25021,14 +25828,14 @@ var SettingsPanel =
 	 * @return {Mixed}
 	 * @api private
 	 */
-
+	
 	Response.prototype.parseBody = function(str){
 	  var parse = request.parse[this.type];
 	  return parse && str && (str.length || str instanceof Object)
 	    ? parse(str)
 	    : null;
 	};
-
+	
 	/**
 	 * Set flags such as `.ok` based on `status`.
 	 *
@@ -25049,19 +25856,19 @@ var SettingsPanel =
 	 * @param {Number} status
 	 * @api private
 	 */
-
+	
 	Response.prototype.setStatusProperties = function(status){
 	  // handle IE9 bug: http://stackoverflow.com/questions/10046972/msie-returns-status-code-of-1223-for-ajax-request
 	  if (status === 1223) {
 	    status = 204;
 	  }
-
+	
 	  var type = status / 100 | 0;
-
+	
 	  // status / class
 	  this.status = this.statusCode = status;
 	  this.statusType = type;
-
+	
 	  // basics
 	  this.info = 1 == type;
 	  this.ok = 2 == type;
@@ -25070,7 +25877,7 @@ var SettingsPanel =
 	  this.error = (4 == type || 5 == type)
 	    ? this.toError()
 	    : false;
-
+	
 	  // sugar
 	  this.accepted = 202 == status;
 	  this.noContent = 204 == status;
@@ -25080,34 +25887,34 @@ var SettingsPanel =
 	  this.notFound = 404 == status;
 	  this.forbidden = 403 == status;
 	};
-
+	
 	/**
 	 * Return an `Error` representative of this response.
 	 *
 	 * @return {Error}
 	 * @api public
 	 */
-
+	
 	Response.prototype.toError = function(){
 	  var req = this.req;
 	  var method = req.method;
 	  var url = req.url;
-
+	
 	  var msg = 'cannot ' + method + ' ' + url + ' (' + this.status + ')';
 	  var err = new Error(msg);
 	  err.status = this.status;
 	  err.method = method;
 	  err.url = url;
-
+	
 	  return err;
 	};
-
+	
 	/**
 	 * Expose `Response`.
 	 */
-
+	
 	request.Response = Response;
-
+	
 	/**
 	 * Initialize a new `Request` with the given `method` and `url`.
 	 *
@@ -25115,7 +25922,7 @@ var SettingsPanel =
 	 * @param {String} url
 	 * @api public
 	 */
-
+	
 	function Request(method, url) {
 	  var self = this;
 	  Emitter.call(this);
@@ -25127,7 +25934,7 @@ var SettingsPanel =
 	  this.on('end', function(){
 	    var err = null;
 	    var res = null;
-
+	
 	    try {
 	      res = new Response(self);
 	    } catch(e) {
@@ -25138,41 +25945,41 @@ var SettingsPanel =
 	      err.rawResponse = self.xhr && self.xhr.responseText ? self.xhr.responseText : null;
 	      return self.callback(err);
 	    }
-
+	
 	    self.emit('response', res);
-
+	
 	    if (err) {
 	      return self.callback(err, res);
 	    }
-
+	
 	    if (res.status >= 200 && res.status < 300) {
 	      return self.callback(err, res);
 	    }
-
+	
 	    var new_err = new Error(res.statusText || 'Unsuccessful HTTP response');
 	    new_err.original = err;
 	    new_err.response = res;
 	    new_err.status = res.status;
-
+	
 	    self.callback(new_err, res);
 	  });
 	}
-
+	
 	/**
 	 * Mixin `Emitter`.
 	 */
-
+	
 	Emitter(Request.prototype);
-
+	
 	/**
 	 * Allow for extension
 	 */
-
+	
 	Request.prototype.use = function(fn) {
 	  fn(this);
 	  return this;
 	}
-
+	
 	/**
 	 * Set timeout to `ms`.
 	 *
@@ -25180,32 +25987,32 @@ var SettingsPanel =
 	 * @return {Request} for chaining
 	 * @api public
 	 */
-
+	
 	Request.prototype.timeout = function(ms){
 	  this._timeout = ms;
 	  return this;
 	};
-
+	
 	/**
 	 * Clear previous timeout.
 	 *
 	 * @return {Request} for chaining
 	 * @api public
 	 */
-
+	
 	Request.prototype.clearTimeout = function(){
 	  this._timeout = 0;
 	  clearTimeout(this._timer);
 	  return this;
 	};
-
+	
 	/**
 	 * Abort the request, and clear potential timeout.
 	 *
 	 * @return {Request}
 	 * @api public
 	 */
-
+	
 	Request.prototype.abort = function(){
 	  if (this.aborted) return;
 	  this.aborted = true;
@@ -25214,7 +26021,7 @@ var SettingsPanel =
 	  this.emit('abort');
 	  return this;
 	};
-
+	
 	/**
 	 * Set header `field` to `val`, or multiple fields with one object.
 	 *
@@ -25234,7 +26041,7 @@ var SettingsPanel =
 	 * @return {Request} for chaining
 	 * @api public
 	 */
-
+	
 	Request.prototype.set = function(field, val){
 	  if (isObject(field)) {
 	    for (var key in field) {
@@ -25246,7 +26053,7 @@ var SettingsPanel =
 	  this.header[field] = val;
 	  return this;
 	};
-
+	
 	/**
 	 * Remove header `field`.
 	 *
@@ -25260,13 +26067,13 @@ var SettingsPanel =
 	 * @return {Request} for chaining
 	 * @api public
 	 */
-
+	
 	Request.prototype.unset = function(field){
 	  delete this._header[field.toLowerCase()];
 	  delete this.header[field];
 	  return this;
 	};
-
+	
 	/**
 	 * Get case-insensitive header `field` value.
 	 *
@@ -25274,11 +26081,11 @@ var SettingsPanel =
 	 * @return {String}
 	 * @api private
 	 */
-
+	
 	Request.prototype.getHeader = function(field){
 	  return this._header[field.toLowerCase()];
 	};
-
+	
 	/**
 	 * Set Content-Type to `type`, mapping values from `request.types`.
 	 *
@@ -25300,12 +26107,12 @@ var SettingsPanel =
 	 * @return {Request} for chaining
 	 * @api public
 	 */
-
+	
 	Request.prototype.type = function(type){
 	  this.set('Content-Type', request.types[type] || type);
 	  return this;
 	};
-
+	
 	/**
 	 * Force given parser
 	 *
@@ -25314,12 +26121,12 @@ var SettingsPanel =
 	 * @param {Function}
 	 * @api public
 	 */
-
+	
 	Request.prototype.parse = function(fn){
 	  this._parser = fn;
 	  return this;
 	};
-
+	
 	/**
 	 * Set Accept to `type`, mapping values from `request.types`.
 	 *
@@ -25339,12 +26146,12 @@ var SettingsPanel =
 	 * @return {Request} for chaining
 	 * @api public
 	 */
-
+	
 	Request.prototype.accept = function(type){
 	  this.set('Accept', request.types[type] || type);
 	  return this;
 	};
-
+	
 	/**
 	 * Set Authorization field value with `user` and `pass`.
 	 *
@@ -25353,13 +26160,13 @@ var SettingsPanel =
 	 * @return {Request} for chaining
 	 * @api public
 	 */
-
+	
 	Request.prototype.auth = function(user, pass){
 	  var str = btoa(user + ':' + pass);
 	  this.set('Authorization', 'Basic ' + str);
 	  return this;
 	};
-
+	
 	/**
 	* Add query-string `val`.
 	*
@@ -25373,13 +26180,13 @@ var SettingsPanel =
 	* @return {Request} for chaining
 	* @api public
 	*/
-
+	
 	Request.prototype.query = function(val){
 	  if ('string' != typeof val) val = serialize(val);
 	  if (val) this._query.push(val);
 	  return this;
 	};
-
+	
 	/**
 	 * Write the field `name` and `val` for "multipart/form-data"
 	 * request bodies.
@@ -25395,13 +26202,13 @@ var SettingsPanel =
 	 * @return {Request} for chaining
 	 * @api public
 	 */
-
+	
 	Request.prototype.field = function(name, val){
 	  if (!this._formData) this._formData = new root.FormData();
 	  this._formData.append(name, val);
 	  return this;
 	};
-
+	
 	/**
 	 * Queue the given `file` as an attachment to the specified `field`,
 	 * with optional `filename`.
@@ -25418,13 +26225,13 @@ var SettingsPanel =
 	 * @return {Request} for chaining
 	 * @api public
 	 */
-
+	
 	Request.prototype.attach = function(field, file, filename){
 	  if (!this._formData) this._formData = new root.FormData();
 	  this._formData.append(field, file, filename);
 	  return this;
 	};
-
+	
 	/**
 	 * Send `data`, defaulting the `.type()` to "json" when
 	 * an object is given.
@@ -25475,11 +26282,11 @@ var SettingsPanel =
 	 * @return {Request} for chaining
 	 * @api public
 	 */
-
+	
 	Request.prototype.send = function(data){
 	  var obj = isObject(data);
 	  var type = this.getHeader('Content-Type');
-
+	
 	  // merge
 	  if (obj && isObject(this._data)) {
 	    for (var key in data) {
@@ -25498,12 +26305,12 @@ var SettingsPanel =
 	  } else {
 	    this._data = data;
 	  }
-
+	
 	  if (!obj || isHost(data)) return this;
 	  if (!type) this.type('json');
 	  return this;
 	};
-
+	
 	/**
 	 * Invoke the callback with `err` and `res`
 	 * and handle arity check.
@@ -25512,43 +26319,43 @@ var SettingsPanel =
 	 * @param {Response} res
 	 * @api private
 	 */
-
+	
 	Request.prototype.callback = function(err, res){
 	  var fn = this._callback;
 	  this.clearTimeout();
 	  fn(err, res);
 	};
-
+	
 	/**
 	 * Invoke callback with x-domain error.
 	 *
 	 * @api private
 	 */
-
+	
 	Request.prototype.crossDomainError = function(){
 	  var err = new Error('Request has been terminated\nPossible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.');
 	  err.crossDomain = true;
-
+	
 	  err.status = this.status;
 	  err.method = this.method;
 	  err.url = this.url;
-
+	
 	  this.callback(err);
 	};
-
+	
 	/**
 	 * Invoke callback with timeout error.
 	 *
 	 * @api private
 	 */
-
+	
 	Request.prototype.timeoutError = function(){
 	  var timeout = this._timeout;
 	  var err = new Error('timeout of ' + timeout + 'ms exceeded');
 	  err.timeout = timeout;
 	  this.callback(err);
 	};
-
+	
 	/**
 	 * Enable transmission of cookies with x-domain requests.
 	 *
@@ -25559,12 +26366,12 @@ var SettingsPanel =
 	 *
 	 * @api public
 	 */
-
+	
 	Request.prototype.withCredentials = function(){
 	  this._withCredentials = true;
 	  return this;
 	};
-
+	
 	/**
 	 * Initiate request, invoking callback `fn(res)`
 	 * with an instanceof `Response`.
@@ -25573,26 +26380,26 @@ var SettingsPanel =
 	 * @return {Request} for chaining
 	 * @api public
 	 */
-
+	
 	Request.prototype.end = function(fn){
 	  var self = this;
 	  var xhr = this.xhr = request.getXHR();
 	  var query = this._query.join('&');
 	  var timeout = this._timeout;
 	  var data = this._formData || this._data;
-
+	
 	  // store callback
 	  this._callback = fn || noop;
-
+	
 	  // state change
 	  xhr.onreadystatechange = function(){
 	    if (4 != xhr.readyState) return;
-
+	
 	    // In IE9, reads to any property (e.g. status) off of an aborted XHR will
 	    // result in the error "Could not complete the operation due to error c00c023f"
 	    var status;
 	    try { status = xhr.status } catch(e) { status = 0; }
-
+	
 	    if (0 == status) {
 	      if (self.timedout) return self.timeoutError();
 	      if (self.aborted) return;
@@ -25600,7 +26407,7 @@ var SettingsPanel =
 	    }
 	    self.emit('end');
 	  };
-
+	
 	  // progress
 	  var handleProgress = function(e){
 	    if (e.total > 0) {
@@ -25620,7 +26427,7 @@ var SettingsPanel =
 	    // Reported here:
 	    // https://connect.microsoft.com/IE/feedback/details/837245/xmlhttprequest-upload-throws-invalid-argument-when-used-from-web-worker-context
 	  }
-
+	
 	  // timeout
 	  if (timeout && !this._timer) {
 	    this._timer = setTimeout(function(){
@@ -25628,7 +26435,7 @@ var SettingsPanel =
 	      self.abort();
 	    }, timeout);
 	  }
-
+	
 	  // querystring
 	  if (query) {
 	    query = request.serializeObject(query);
@@ -25636,13 +26443,13 @@ var SettingsPanel =
 	      ? '&' + query
 	      : '?' + query;
 	  }
-
+	
 	  // initiate request
 	  xhr.open(this.method, this.url, true);
-
+	
 	  // CORS
 	  if (this._withCredentials) xhr.withCredentials = true;
-
+	
 	  // body
 	  if ('GET' != this.method && 'HEAD' != this.method && 'string' != typeof data && !isHost(data)) {
 	    // serialize stuff
@@ -25651,22 +26458,22 @@ var SettingsPanel =
 	    if (!serialize && isJSON(contentType)) serialize = request.serialize['application/json'];
 	    if (serialize) data = serialize(data);
 	  }
-
+	
 	  // set header fields
 	  for (var field in this.header) {
 	    if (null == this.header[field]) continue;
 	    xhr.setRequestHeader(field, this.header[field]);
 	  }
-
+	
 	  // send stuff
 	  this.emit('request', this);
-
+	
 	  // IE11 xhr.send(undefined) sends 'undefined' string as POST payload (instead of nothing)
 	  // We need null here if data is undefined
 	  xhr.send(typeof data !== 'undefined' ? data : null);
 	  return this;
 	};
-
+	
 	/**
 	 * Faux promise support
 	 *
@@ -25674,19 +26481,19 @@ var SettingsPanel =
 	 * @param {Function} reject
 	 * @return {Request}
 	 */
-
+	
 	Request.prototype.then = function (fulfill, reject) {
 	  return this.end(function(err, res) {
 	    err ? reject(err) : fulfill(res);
 	  });
 	}
-
+	
 	/**
 	 * Expose `Request`.
 	 */
-
+	
 	request.Request = Request;
-
+	
 	/**
 	 * Issue a request:
 	 *
@@ -25701,21 +26508,21 @@ var SettingsPanel =
 	 * @return {Request}
 	 * @api public
 	 */
-
+	
 	function request(method, url) {
 	  // callback
 	  if ('function' == typeof url) {
 	    return new Request('GET', method).end(url);
 	  }
-
+	
 	  // url first
 	  if (1 == arguments.length) {
 	    return new Request('GET', method);
 	  }
-
+	
 	  return new Request(method, url);
 	}
-
+	
 	/**
 	 * GET `url` with optional callback `fn(res)`.
 	 *
@@ -25725,7 +26532,7 @@ var SettingsPanel =
 	 * @return {Request}
 	 * @api public
 	 */
-
+	
 	request.get = function(url, data, fn){
 	  var req = request('GET', url);
 	  if ('function' == typeof data) fn = data, data = null;
@@ -25733,7 +26540,7 @@ var SettingsPanel =
 	  if (fn) req.end(fn);
 	  return req;
 	};
-
+	
 	/**
 	 * HEAD `url` with optional callback `fn(res)`.
 	 *
@@ -25743,7 +26550,7 @@ var SettingsPanel =
 	 * @return {Request}
 	 * @api public
 	 */
-
+	
 	request.head = function(url, data, fn){
 	  var req = request('HEAD', url);
 	  if ('function' == typeof data) fn = data, data = null;
@@ -25751,7 +26558,7 @@ var SettingsPanel =
 	  if (fn) req.end(fn);
 	  return req;
 	};
-
+	
 	/**
 	 * DELETE `url` with optional callback `fn(res)`.
 	 *
@@ -25760,16 +26567,16 @@ var SettingsPanel =
 	 * @return {Request}
 	 * @api public
 	 */
-
+	
 	function del(url, fn){
 	  var req = request('DELETE', url);
 	  if (fn) req.end(fn);
 	  return req;
 	};
-
+	
 	request.del = del;
 	request.delete = del;
-
+	
 	/**
 	 * PATCH `url` with optional `data` and callback `fn(res)`.
 	 *
@@ -25779,7 +26586,7 @@ var SettingsPanel =
 	 * @return {Request}
 	 * @api public
 	 */
-
+	
 	request.patch = function(url, data, fn){
 	  var req = request('PATCH', url);
 	  if ('function' == typeof data) fn = data, data = null;
@@ -25787,7 +26594,7 @@ var SettingsPanel =
 	  if (fn) req.end(fn);
 	  return req;
 	};
-
+	
 	/**
 	 * POST `url` with optional `data` and callback `fn(res)`.
 	 *
@@ -25797,7 +26604,7 @@ var SettingsPanel =
 	 * @return {Request}
 	 * @api public
 	 */
-
+	
 	request.post = function(url, data, fn){
 	  var req = request('POST', url);
 	  if ('function' == typeof data) fn = data, data = null;
@@ -25805,7 +26612,7 @@ var SettingsPanel =
 	  if (fn) req.end(fn);
 	  return req;
 	};
-
+	
 	/**
 	 * PUT `url` with optional `data` and callback `fn(res)`.
 	 *
@@ -25815,7 +26622,7 @@ var SettingsPanel =
 	 * @return {Request}
 	 * @api public
 	 */
-
+	
 	request.put = function(url, data, fn){
 	  var req = request('PUT', url);
 	  if ('function' == typeof data) fn = data, data = null;
@@ -25823,35 +26630,38 @@ var SettingsPanel =
 	  if (fn) req.end(fn);
 	  return req;
 	};
-
+	
 	/**
 	 * Expose `request`.
 	 */
-
+	
 	module.exports = request;
 
 
 /***/ },
-/* 236 */
+/* 239 */
+/*!**************************************!*\
+  !*** ./~/component-emitter/index.js ***!
+  \**************************************/
 /***/ function(module, exports) {
 
 	
 	/**
 	 * Expose `Emitter`.
 	 */
-
+	
 	module.exports = Emitter;
-
+	
 	/**
 	 * Initialize a new `Emitter`.
 	 *
 	 * @api public
 	 */
-
+	
 	function Emitter(obj) {
 	  if (obj) return mixin(obj);
 	};
-
+	
 	/**
 	 * Mixin the emitter properties.
 	 *
@@ -25859,14 +26669,14 @@ var SettingsPanel =
 	 * @return {Object}
 	 * @api private
 	 */
-
+	
 	function mixin(obj) {
 	  for (var key in Emitter.prototype) {
 	    obj[key] = Emitter.prototype[key];
 	  }
 	  return obj;
 	}
-
+	
 	/**
 	 * Listen on the given `event` with `fn`.
 	 *
@@ -25875,7 +26685,7 @@ var SettingsPanel =
 	 * @return {Emitter}
 	 * @api public
 	 */
-
+	
 	Emitter.prototype.on =
 	Emitter.prototype.addEventListener = function(event, fn){
 	  this._callbacks = this._callbacks || {};
@@ -25883,7 +26693,7 @@ var SettingsPanel =
 	    .push(fn);
 	  return this;
 	};
-
+	
 	/**
 	 * Adds an `event` listener that will be invoked a single
 	 * time then automatically removed.
@@ -25893,21 +26703,21 @@ var SettingsPanel =
 	 * @return {Emitter}
 	 * @api public
 	 */
-
+	
 	Emitter.prototype.once = function(event, fn){
 	  var self = this;
 	  this._callbacks = this._callbacks || {};
-
+	
 	  function on() {
 	    self.off(event, on);
 	    fn.apply(this, arguments);
 	  }
-
+	
 	  on.fn = fn;
 	  this.on(event, on);
 	  return this;
 	};
-
+	
 	/**
 	 * Remove the given callback for `event` or all
 	 * registered callbacks.
@@ -25917,29 +26727,29 @@ var SettingsPanel =
 	 * @return {Emitter}
 	 * @api public
 	 */
-
+	
 	Emitter.prototype.off =
 	Emitter.prototype.removeListener =
 	Emitter.prototype.removeAllListeners =
 	Emitter.prototype.removeEventListener = function(event, fn){
 	  this._callbacks = this._callbacks || {};
-
+	
 	  // all
 	  if (0 == arguments.length) {
 	    this._callbacks = {};
 	    return this;
 	  }
-
+	
 	  // specific event
 	  var callbacks = this._callbacks[event];
 	  if (!callbacks) return this;
-
+	
 	  // remove all handlers
 	  if (1 == arguments.length) {
 	    delete this._callbacks[event];
 	    return this;
 	  }
-
+	
 	  // remove specific handler
 	  var cb;
 	  for (var i = 0; i < callbacks.length; i++) {
@@ -25951,7 +26761,7 @@ var SettingsPanel =
 	  }
 	  return this;
 	};
-
+	
 	/**
 	 * Emit `event` with the given args.
 	 *
@@ -25959,22 +26769,22 @@ var SettingsPanel =
 	 * @param {Mixed} ...
 	 * @return {Emitter}
 	 */
-
+	
 	Emitter.prototype.emit = function(event){
 	  this._callbacks = this._callbacks || {};
 	  var args = [].slice.call(arguments, 1)
 	    , callbacks = this._callbacks[event];
-
+	
 	  if (callbacks) {
 	    callbacks = callbacks.slice(0);
 	    for (var i = 0, len = callbacks.length; i < len; ++i) {
 	      callbacks[i].apply(this, args);
 	    }
 	  }
-
+	
 	  return this;
 	};
-
+	
 	/**
 	 * Return array of callbacks for `event`.
 	 *
@@ -25982,12 +26792,12 @@ var SettingsPanel =
 	 * @return {Array}
 	 * @api public
 	 */
-
+	
 	Emitter.prototype.listeners = function(event){
 	  this._callbacks = this._callbacks || {};
 	  return this._callbacks[event] || [];
 	};
-
+	
 	/**
 	 * Check if this emitter has `event` handlers.
 	 *
@@ -25995,14 +26805,17 @@ var SettingsPanel =
 	 * @return {Boolean}
 	 * @api public
 	 */
-
+	
 	Emitter.prototype.hasListeners = function(event){
 	  return !! this.listeners(event).length;
 	};
 
 
 /***/ },
-/* 237 */
+/* 240 */
+/*!*************************************!*\
+  !*** ./~/reduce-component/index.js ***!
+  \*************************************/
 /***/ function(module, exports) {
 
 	
@@ -26015,14 +26828,14 @@ var SettingsPanel =
 	 *
 	 * TODO: combatible error handling?
 	 */
-
+	
 	module.exports = function(arr, fn, initial){  
 	  var idx = 0;
 	  var len = arr.length;
 	  var curr = arguments.length == 3
 	    ? initial
 	    : arr[idx++];
-
+	
 	  while (idx < len) {
 	    curr = fn.call(null, curr, arr[idx], ++idx, arr);
 	  }
@@ -26031,35 +26844,38 @@ var SettingsPanel =
 	};
 
 /***/ },
-/* 238 */
+/* 241 */
+/*!************************************!*\
+  !*** ./~/underscore/underscore.js ***!
+  \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscore.js 1.8.3
 	//     http://underscorejs.org
 	//     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	//     Underscore may be freely distributed under the MIT license.
-
+	
 	(function() {
-
+	
 	  // Baseline setup
 	  // --------------
-
+	
 	  // Establish the root object, `window` in the browser, or `exports` on the server.
 	  var root = this;
-
+	
 	  // Save the previous value of the `_` variable.
 	  var previousUnderscore = root._;
-
+	
 	  // Save bytes in the minified (but not gzipped) version:
 	  var ArrayProto = Array.prototype, ObjProto = Object.prototype, FuncProto = Function.prototype;
-
+	
 	  // Create quick reference variables for speed access to core prototypes.
 	  var
 	    push             = ArrayProto.push,
 	    slice            = ArrayProto.slice,
 	    toString         = ObjProto.toString,
 	    hasOwnProperty   = ObjProto.hasOwnProperty;
-
+	
 	  // All **ECMAScript 5** native function implementations that we hope to use
 	  // are declared here.
 	  var
@@ -26067,17 +26883,17 @@ var SettingsPanel =
 	    nativeKeys         = Object.keys,
 	    nativeBind         = FuncProto.bind,
 	    nativeCreate       = Object.create;
-
+	
 	  // Naked function reference for surrogate-prototype-swapping.
 	  var Ctor = function(){};
-
+	
 	  // Create a safe reference to the Underscore object for use below.
 	  var _ = function(obj) {
 	    if (obj instanceof _) return obj;
 	    if (!(this instanceof _)) return new _(obj);
 	    this._wrapped = obj;
 	  };
-
+	
 	  // Export the Underscore object for **Node.js**, with
 	  // backwards-compatibility for the old `require()` API. If we're in
 	  // the browser, add `_` as a global object.
@@ -26089,10 +26905,10 @@ var SettingsPanel =
 	  } else {
 	    root._ = _;
 	  }
-
+	
 	  // Current version.
 	  _.VERSION = '1.8.3';
-
+	
 	  // Internal function that returns an efficient (for current engines) version
 	  // of the passed-in callback, to be repeatedly applied in other Underscore
 	  // functions.
@@ -26116,7 +26932,7 @@ var SettingsPanel =
 	      return func.apply(context, arguments);
 	    };
 	  };
-
+	
 	  // A mostly-internal function to generate callbacks that can be applied
 	  // to each element in a collection, returning the desired result — either
 	  // identity, an arbitrary callback, a property matcher, or a property accessor.
@@ -26129,7 +26945,7 @@ var SettingsPanel =
 	  _.iteratee = function(value, context) {
 	    return cb(value, context, Infinity);
 	  };
-
+	
 	  // An internal function for creating assigner functions.
 	  var createAssigner = function(keysFunc, undefinedOnly) {
 	    return function(obj) {
@@ -26147,7 +26963,7 @@ var SettingsPanel =
 	      return obj;
 	    };
 	  };
-
+	
 	  // An internal function for creating a new object that inherits from another.
 	  var baseCreate = function(prototype) {
 	    if (!_.isObject(prototype)) return {};
@@ -26157,13 +26973,13 @@ var SettingsPanel =
 	    Ctor.prototype = null;
 	    return result;
 	  };
-
+	
 	  var property = function(key) {
 	    return function(obj) {
 	      return obj == null ? void 0 : obj[key];
 	    };
 	  };
-
+	
 	  // Helper for collection methods to determine whether a collection
 	  // should be iterated as an array or as an object
 	  // Related: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength
@@ -26174,10 +26990,10 @@ var SettingsPanel =
 	    var length = getLength(collection);
 	    return typeof length == 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;
 	  };
-
+	
 	  // Collection Functions
 	  // --------------------
-
+	
 	  // The cornerstone, an `each` implementation, aka `forEach`.
 	  // Handles raw objects in addition to array-likes. Treats all
 	  // sparse array-likes as if they were dense.
@@ -26196,7 +27012,7 @@ var SettingsPanel =
 	    }
 	    return obj;
 	  };
-
+	
 	  // Return the results of applying the iteratee to each element.
 	  _.map = _.collect = function(obj, iteratee, context) {
 	    iteratee = cb(iteratee, context);
@@ -26209,7 +27025,7 @@ var SettingsPanel =
 	    }
 	    return results;
 	  };
-
+	
 	  // Create a reducing function iterating left or right.
 	  function createReduce(dir) {
 	    // Optimized iterator function as using arguments.length
@@ -26221,7 +27037,7 @@ var SettingsPanel =
 	      }
 	      return memo;
 	    }
-
+	
 	    return function(obj, iteratee, memo, context) {
 	      iteratee = optimizeCb(iteratee, context, 4);
 	      var keys = !isArrayLike(obj) && _.keys(obj),
@@ -26235,14 +27051,14 @@ var SettingsPanel =
 	      return iterator(obj, iteratee, memo, keys, index, length);
 	    };
 	  }
-
+	
 	  // **Reduce** builds up a single result from a list of values, aka `inject`,
 	  // or `foldl`.
 	  _.reduce = _.foldl = _.inject = createReduce(1);
-
+	
 	  // The right-associative version of reduce, also known as `foldr`.
 	  _.reduceRight = _.foldr = createReduce(-1);
-
+	
 	  // Return the first value which passes a truth test. Aliased as `detect`.
 	  _.find = _.detect = function(obj, predicate, context) {
 	    var key;
@@ -26253,7 +27069,7 @@ var SettingsPanel =
 	    }
 	    if (key !== void 0 && key !== -1) return obj[key];
 	  };
-
+	
 	  // Return all the elements that pass a truth test.
 	  // Aliased as `select`.
 	  _.filter = _.select = function(obj, predicate, context) {
@@ -26264,12 +27080,12 @@ var SettingsPanel =
 	    });
 	    return results;
 	  };
-
+	
 	  // Return all the elements for which a truth test fails.
 	  _.reject = function(obj, predicate, context) {
 	    return _.filter(obj, _.negate(cb(predicate)), context);
 	  };
-
+	
 	  // Determine whether all of the elements match a truth test.
 	  // Aliased as `all`.
 	  _.every = _.all = function(obj, predicate, context) {
@@ -26282,7 +27098,7 @@ var SettingsPanel =
 	    }
 	    return true;
 	  };
-
+	
 	  // Determine if at least one element in the object matches a truth test.
 	  // Aliased as `any`.
 	  _.some = _.any = function(obj, predicate, context) {
@@ -26295,7 +27111,7 @@ var SettingsPanel =
 	    }
 	    return false;
 	  };
-
+	
 	  // Determine if the array or object contains a given item (using `===`).
 	  // Aliased as `includes` and `include`.
 	  _.contains = _.includes = _.include = function(obj, item, fromIndex, guard) {
@@ -26303,7 +27119,7 @@ var SettingsPanel =
 	    if (typeof fromIndex != 'number' || guard) fromIndex = 0;
 	    return _.indexOf(obj, item, fromIndex) >= 0;
 	  };
-
+	
 	  // Invoke a method (with arguments) on every item in a collection.
 	  _.invoke = function(obj, method) {
 	    var args = slice.call(arguments, 2);
@@ -26313,24 +27129,24 @@ var SettingsPanel =
 	      return func == null ? func : func.apply(value, args);
 	    });
 	  };
-
+	
 	  // Convenience version of a common use case of `map`: fetching a property.
 	  _.pluck = function(obj, key) {
 	    return _.map(obj, _.property(key));
 	  };
-
+	
 	  // Convenience version of a common use case of `filter`: selecting only objects
 	  // containing specific `key:value` pairs.
 	  _.where = function(obj, attrs) {
 	    return _.filter(obj, _.matcher(attrs));
 	  };
-
+	
 	  // Convenience version of a common use case of `find`: getting the first object
 	  // containing specific `key:value` pairs.
 	  _.findWhere = function(obj, attrs) {
 	    return _.find(obj, _.matcher(attrs));
 	  };
-
+	
 	  // Return the maximum element (or element-based computation).
 	  _.max = function(obj, iteratee, context) {
 	    var result = -Infinity, lastComputed = -Infinity,
@@ -26355,7 +27171,7 @@ var SettingsPanel =
 	    }
 	    return result;
 	  };
-
+	
 	  // Return the minimum element (or element-based computation).
 	  _.min = function(obj, iteratee, context) {
 	    var result = Infinity, lastComputed = Infinity,
@@ -26380,7 +27196,7 @@ var SettingsPanel =
 	    }
 	    return result;
 	  };
-
+	
 	  // Shuffle a collection, using the modern version of the
 	  // [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher–Yates_shuffle).
 	  _.shuffle = function(obj) {
@@ -26394,7 +27210,7 @@ var SettingsPanel =
 	    }
 	    return shuffled;
 	  };
-
+	
 	  // Sample **n** random values from a collection.
 	  // If **n** is not specified, returns a single random element.
 	  // The internal `guard` argument allows it to work with `map`.
@@ -26405,7 +27221,7 @@ var SettingsPanel =
 	    }
 	    return _.shuffle(obj).slice(0, Math.max(0, n));
 	  };
-
+	
 	  // Sort the object's values by a criterion produced by an iteratee.
 	  _.sortBy = function(obj, iteratee, context) {
 	    iteratee = cb(iteratee, context);
@@ -26425,7 +27241,7 @@ var SettingsPanel =
 	      return left.index - right.index;
 	    }), 'value');
 	  };
-
+	
 	  // An internal function used for aggregate "group by" operations.
 	  var group = function(behavior) {
 	    return function(obj, iteratee, context) {
@@ -26438,26 +27254,26 @@ var SettingsPanel =
 	      return result;
 	    };
 	  };
-
+	
 	  // Groups the object's values by a criterion. Pass either a string attribute
 	  // to group by, or a function that returns the criterion.
 	  _.groupBy = group(function(result, value, key) {
 	    if (_.has(result, key)) result[key].push(value); else result[key] = [value];
 	  });
-
+	
 	  // Indexes the object's values by a criterion, similar to `groupBy`, but for
 	  // when you know that your index values will be unique.
 	  _.indexBy = group(function(result, value, key) {
 	    result[key] = value;
 	  });
-
+	
 	  // Counts instances of an object that group by a certain criterion. Pass
 	  // either a string attribute to count by, or a function that returns the
 	  // criterion.
 	  _.countBy = group(function(result, value, key) {
 	    if (_.has(result, key)) result[key]++; else result[key] = 1;
 	  });
-
+	
 	  // Safely create a real, live array from anything iterable.
 	  _.toArray = function(obj) {
 	    if (!obj) return [];
@@ -26465,13 +27281,13 @@ var SettingsPanel =
 	    if (isArrayLike(obj)) return _.map(obj, _.identity);
 	    return _.values(obj);
 	  };
-
+	
 	  // Return the number of elements in an object.
 	  _.size = function(obj) {
 	    if (obj == null) return 0;
 	    return isArrayLike(obj) ? obj.length : _.keys(obj).length;
 	  };
-
+	
 	  // Split a collection into two arrays: one whose elements all satisfy the given
 	  // predicate, and one whose elements all do not satisfy the predicate.
 	  _.partition = function(obj, predicate, context) {
@@ -26482,10 +27298,10 @@ var SettingsPanel =
 	    });
 	    return [pass, fail];
 	  };
-
+	
 	  // Array Functions
 	  // ---------------
-
+	
 	  // Get the first element of an array. Passing **n** will return the first N
 	  // values in the array. Aliased as `head` and `take`. The **guard** check
 	  // allows it to work with `_.map`.
@@ -26494,14 +27310,14 @@ var SettingsPanel =
 	    if (n == null || guard) return array[0];
 	    return _.initial(array, array.length - n);
 	  };
-
+	
 	  // Returns everything but the last entry of the array. Especially useful on
 	  // the arguments object. Passing **n** will return all the values in
 	  // the array, excluding the last N.
 	  _.initial = function(array, n, guard) {
 	    return slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
 	  };
-
+	
 	  // Get the last element of an array. Passing **n** will return the last N
 	  // values in the array.
 	  _.last = function(array, n, guard) {
@@ -26509,19 +27325,19 @@ var SettingsPanel =
 	    if (n == null || guard) return array[array.length - 1];
 	    return _.rest(array, Math.max(0, array.length - n));
 	  };
-
+	
 	  // Returns everything but the first entry of the array. Aliased as `tail` and `drop`.
 	  // Especially useful on the arguments object. Passing an **n** will return
 	  // the rest N values in the array.
 	  _.rest = _.tail = _.drop = function(array, n, guard) {
 	    return slice.call(array, n == null || guard ? 1 : n);
 	  };
-
+	
 	  // Trim out all falsy values from an array.
 	  _.compact = function(array) {
 	    return _.filter(array, _.identity);
 	  };
-
+	
 	  // Internal implementation of a recursive `flatten` function.
 	  var flatten = function(input, shallow, strict, startIndex) {
 	    var output = [], idx = 0;
@@ -26541,17 +27357,17 @@ var SettingsPanel =
 	    }
 	    return output;
 	  };
-
+	
 	  // Flatten out an array, either recursively (by default), or just one level.
 	  _.flatten = function(array, shallow) {
 	    return flatten(array, shallow, false);
 	  };
-
+	
 	  // Return a version of the array that does not contain the specified value(s).
 	  _.without = function(array) {
 	    return _.difference(array, slice.call(arguments, 1));
 	  };
-
+	
 	  // Produce a duplicate-free version of the array. If the array has already
 	  // been sorted, you have the option of using a faster algorithm.
 	  // Aliased as `unique`.
@@ -26581,13 +27397,13 @@ var SettingsPanel =
 	    }
 	    return result;
 	  };
-
+	
 	  // Produce an array that contains the union: each distinct element from all of
 	  // the passed-in arrays.
 	  _.union = function() {
 	    return _.uniq(flatten(arguments, true, true));
 	  };
-
+	
 	  // Produce an array that contains every item shared between all the
 	  // passed-in arrays.
 	  _.intersection = function(array) {
@@ -26603,7 +27419,7 @@ var SettingsPanel =
 	    }
 	    return result;
 	  };
-
+	
 	  // Take the difference between one array and a number of other arrays.
 	  // Only the elements present in just the first array will remain.
 	  _.difference = function(array) {
@@ -26612,25 +27428,25 @@ var SettingsPanel =
 	      return !_.contains(rest, value);
 	    });
 	  };
-
+	
 	  // Zip together multiple lists into a single array -- elements that share
 	  // an index go together.
 	  _.zip = function() {
 	    return _.unzip(arguments);
 	  };
-
+	
 	  // Complement of _.zip. Unzip accepts an array of arrays and groups
 	  // each array's elements on shared indices
 	  _.unzip = function(array) {
 	    var length = array && _.max(array, getLength).length || 0;
 	    var result = Array(length);
-
+	
 	    for (var index = 0; index < length; index++) {
 	      result[index] = _.pluck(array, index);
 	    }
 	    return result;
 	  };
-
+	
 	  // Converts lists into objects. Pass either a single array of `[key, value]`
 	  // pairs, or two parallel arrays of the same length -- one of keys, and one of
 	  // the corresponding values.
@@ -26645,7 +27461,7 @@ var SettingsPanel =
 	    }
 	    return result;
 	  };
-
+	
 	  // Generator function to create the findIndex and findLastIndex functions
 	  function createPredicateIndexFinder(dir) {
 	    return function(array, predicate, context) {
@@ -26658,11 +27474,11 @@ var SettingsPanel =
 	      return -1;
 	    };
 	  }
-
+	
 	  // Returns the first index on an array-like that passes a predicate test
 	  _.findIndex = createPredicateIndexFinder(1);
 	  _.findLastIndex = createPredicateIndexFinder(-1);
-
+	
 	  // Use a comparator function to figure out the smallest index at which
 	  // an object should be inserted so as to maintain order. Uses binary search.
 	  _.sortedIndex = function(array, obj, iteratee, context) {
@@ -26675,7 +27491,7 @@ var SettingsPanel =
 	    }
 	    return low;
 	  };
-
+	
 	  // Generator function to create the indexOf and lastIndexOf functions
 	  function createIndexFinder(dir, predicateFind, sortedIndex) {
 	    return function(array, item, idx) {
@@ -26700,14 +27516,14 @@ var SettingsPanel =
 	      return -1;
 	    };
 	  }
-
+	
 	  // Return the position of the first occurrence of an item in an array,
 	  // or -1 if the item is not included in the array.
 	  // If the array is large and already in sort order, pass `true`
 	  // for **isSorted** to use binary search.
 	  _.indexOf = createIndexFinder(1, _.findIndex, _.sortedIndex);
 	  _.lastIndexOf = createIndexFinder(-1, _.findLastIndex);
-
+	
 	  // Generate an integer Array containing an arithmetic progression. A port of
 	  // the native Python `range()` function. See
 	  // [the Python documentation](http://docs.python.org/library/functions.html#range).
@@ -26717,20 +27533,20 @@ var SettingsPanel =
 	      start = 0;
 	    }
 	    step = step || 1;
-
+	
 	    var length = Math.max(Math.ceil((stop - start) / step), 0);
 	    var range = Array(length);
-
+	
 	    for (var idx = 0; idx < length; idx++, start += step) {
 	      range[idx] = start;
 	    }
-
+	
 	    return range;
 	  };
-
+	
 	  // Function (ahem) Functions
 	  // ------------------
-
+	
 	  // Determines whether to execute a function as a constructor
 	  // or a normal function with the provided arguments
 	  var executeBound = function(sourceFunc, boundFunc, context, callingContext, args) {
@@ -26740,7 +27556,7 @@ var SettingsPanel =
 	    if (_.isObject(result)) return result;
 	    return self;
 	  };
-
+	
 	  // Create a function bound to a given object (assigning `this`, and arguments,
 	  // optionally). Delegates to **ECMAScript 5**'s native `Function.bind` if
 	  // available.
@@ -26753,7 +27569,7 @@ var SettingsPanel =
 	    };
 	    return bound;
 	  };
-
+	
 	  // Partially apply a function by creating a version that has had some of its
 	  // arguments pre-filled, without changing its dynamic `this` context. _ acts
 	  // as a placeholder, allowing any combination of arguments to be pre-filled.
@@ -26770,7 +27586,7 @@ var SettingsPanel =
 	    };
 	    return bound;
 	  };
-
+	
 	  // Bind a number of an object's methods to that object. Remaining arguments
 	  // are the method names to be bound. Useful for ensuring that all callbacks
 	  // defined on an object belong to it.
@@ -26783,7 +27599,7 @@ var SettingsPanel =
 	    }
 	    return obj;
 	  };
-
+	
 	  // Memoize an expensive function by storing its results.
 	  _.memoize = function(func, hasher) {
 	    var memoize = function(key) {
@@ -26795,7 +27611,7 @@ var SettingsPanel =
 	    memoize.cache = {};
 	    return memoize;
 	  };
-
+	
 	  // Delays a function for the given number of milliseconds, and then calls
 	  // it with the arguments supplied.
 	  _.delay = function(func, wait) {
@@ -26804,11 +27620,11 @@ var SettingsPanel =
 	      return func.apply(null, args);
 	    }, wait);
 	  };
-
+	
 	  // Defers a function, scheduling it to run after the current call stack has
 	  // cleared.
 	  _.defer = _.partial(_.delay, _, 1);
-
+	
 	  // Returns a function, that, when invoked, will only be triggered at most once
 	  // during a given window of time. Normally, the throttled function will run
 	  // as much as it can, without ever going more than once per `wait` duration;
@@ -26845,17 +27661,17 @@ var SettingsPanel =
 	      return result;
 	    };
 	  };
-
+	
 	  // Returns a function, that, as long as it continues to be invoked, will not
 	  // be triggered. The function will be called after it stops being called for
 	  // N milliseconds. If `immediate` is passed, trigger the function on the
 	  // leading edge, instead of the trailing.
 	  _.debounce = function(func, wait, immediate) {
 	    var timeout, args, context, timestamp, result;
-
+	
 	    var later = function() {
 	      var last = _.now() - timestamp;
-
+	
 	      if (last < wait && last >= 0) {
 	        timeout = setTimeout(later, wait - last);
 	      } else {
@@ -26866,7 +27682,7 @@ var SettingsPanel =
 	        }
 	      }
 	    };
-
+	
 	    return function() {
 	      context = this;
 	      args = arguments;
@@ -26877,25 +27693,25 @@ var SettingsPanel =
 	        result = func.apply(context, args);
 	        context = args = null;
 	      }
-
+	
 	      return result;
 	    };
 	  };
-
+	
 	  // Returns the first function passed as an argument to the second,
 	  // allowing you to adjust arguments, run code before and after, and
 	  // conditionally execute the original function.
 	  _.wrap = function(func, wrapper) {
 	    return _.partial(wrapper, func);
 	  };
-
+	
 	  // Returns a negated version of the passed-in predicate.
 	  _.negate = function(predicate) {
 	    return function() {
 	      return !predicate.apply(this, arguments);
 	    };
 	  };
-
+	
 	  // Returns a function that is the composition of a list of functions, each
 	  // consuming the return value of the function that follows.
 	  _.compose = function() {
@@ -26908,7 +27724,7 @@ var SettingsPanel =
 	      return result;
 	    };
 	  };
-
+	
 	  // Returns a function that will only be executed on and after the Nth call.
 	  _.after = function(times, func) {
 	    return function() {
@@ -26917,7 +27733,7 @@ var SettingsPanel =
 	      }
 	    };
 	  };
-
+	
 	  // Returns a function that will only be executed up to (but not including) the Nth call.
 	  _.before = function(times, func) {
 	    var memo;
@@ -26929,28 +27745,28 @@ var SettingsPanel =
 	      return memo;
 	    };
 	  };
-
+	
 	  // Returns a function that will be executed at most one time, no matter how
 	  // often you call it. Useful for lazy initialization.
 	  _.once = _.partial(_.before, 2);
-
+	
 	  // Object Functions
 	  // ----------------
-
+	
 	  // Keys in IE < 9 that won't be iterated by `for key in ...` and thus missed.
 	  var hasEnumBug = !{toString: null}.propertyIsEnumerable('toString');
 	  var nonEnumerableProps = ['valueOf', 'isPrototypeOf', 'toString',
 	                      'propertyIsEnumerable', 'hasOwnProperty', 'toLocaleString'];
-
+	
 	  function collectNonEnumProps(obj, keys) {
 	    var nonEnumIdx = nonEnumerableProps.length;
 	    var constructor = obj.constructor;
 	    var proto = (_.isFunction(constructor) && constructor.prototype) || ObjProto;
-
+	
 	    // Constructor is a special case.
 	    var prop = 'constructor';
 	    if (_.has(obj, prop) && !_.contains(keys, prop)) keys.push(prop);
-
+	
 	    while (nonEnumIdx--) {
 	      prop = nonEnumerableProps[nonEnumIdx];
 	      if (prop in obj && obj[prop] !== proto[prop] && !_.contains(keys, prop)) {
@@ -26958,7 +27774,7 @@ var SettingsPanel =
 	      }
 	    }
 	  }
-
+	
 	  // Retrieve the names of an object's own properties.
 	  // Delegates to **ECMAScript 5**'s native `Object.keys`
 	  _.keys = function(obj) {
@@ -26970,7 +27786,7 @@ var SettingsPanel =
 	    if (hasEnumBug) collectNonEnumProps(obj, keys);
 	    return keys;
 	  };
-
+	
 	  // Retrieve all the property names of an object.
 	  _.allKeys = function(obj) {
 	    if (!_.isObject(obj)) return [];
@@ -26980,7 +27796,7 @@ var SettingsPanel =
 	    if (hasEnumBug) collectNonEnumProps(obj, keys);
 	    return keys;
 	  };
-
+	
 	  // Retrieve the values of an object's properties.
 	  _.values = function(obj) {
 	    var keys = _.keys(obj);
@@ -26991,7 +27807,7 @@ var SettingsPanel =
 	    }
 	    return values;
 	  };
-
+	
 	  // Returns the results of applying the iteratee to each element of the object
 	  // In contrast to _.map it returns an object
 	  _.mapObject = function(obj, iteratee, context) {
@@ -27006,7 +27822,7 @@ var SettingsPanel =
 	      }
 	      return results;
 	  };
-
+	
 	  // Convert an object into a list of `[key, value]` pairs.
 	  _.pairs = function(obj) {
 	    var keys = _.keys(obj);
@@ -27017,7 +27833,7 @@ var SettingsPanel =
 	    }
 	    return pairs;
 	  };
-
+	
 	  // Invert the keys and values of an object. The values must be serializable.
 	  _.invert = function(obj) {
 	    var result = {};
@@ -27027,7 +27843,7 @@ var SettingsPanel =
 	    }
 	    return result;
 	  };
-
+	
 	  // Return a sorted list of the function names available on the object.
 	  // Aliased as `methods`
 	  _.functions = _.methods = function(obj) {
@@ -27037,14 +27853,14 @@ var SettingsPanel =
 	    }
 	    return names.sort();
 	  };
-
+	
 	  // Extend a given object with all the properties in passed-in object(s).
 	  _.extend = createAssigner(_.allKeys);
-
+	
 	  // Assigns a given object with all the own properties in the passed-in object(s)
 	  // (https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
 	  _.extendOwn = _.assign = createAssigner(_.keys);
-
+	
 	  // Returns the first key on an object that passes a predicate test
 	  _.findKey = function(obj, predicate, context) {
 	    predicate = cb(predicate, context);
@@ -27054,7 +27870,7 @@ var SettingsPanel =
 	      if (predicate(obj[key], key, obj)) return key;
 	    }
 	  };
-
+	
 	  // Return a copy of the object only containing the whitelisted properties.
 	  _.pick = function(object, oiteratee, context) {
 	    var result = {}, obj = object, iteratee, keys;
@@ -27074,7 +27890,7 @@ var SettingsPanel =
 	    }
 	    return result;
 	  };
-
+	
 	   // Return a copy of the object without the blacklisted properties.
 	  _.omit = function(obj, iteratee, context) {
 	    if (_.isFunction(iteratee)) {
@@ -27087,10 +27903,10 @@ var SettingsPanel =
 	    }
 	    return _.pick(obj, iteratee, context);
 	  };
-
+	
 	  // Fill in a given object with default properties.
 	  _.defaults = createAssigner(_.allKeys, true);
-
+	
 	  // Creates an object that inherits from the given prototype object.
 	  // If additional properties are provided then they will be added to the
 	  // created object.
@@ -27099,13 +27915,13 @@ var SettingsPanel =
 	    if (props) _.extendOwn(result, props);
 	    return result;
 	  };
-
+	
 	  // Create a (shallow-cloned) duplicate of an object.
 	  _.clone = function(obj) {
 	    if (!_.isObject(obj)) return obj;
 	    return _.isArray(obj) ? obj.slice() : _.extend({}, obj);
 	  };
-
+	
 	  // Invokes interceptor with the obj, and then returns obj.
 	  // The primary purpose of this method is to "tap into" a method chain, in
 	  // order to perform operations on intermediate results within the chain.
@@ -27113,7 +27929,7 @@ var SettingsPanel =
 	    interceptor(obj);
 	    return obj;
 	  };
-
+	
 	  // Returns whether an object has a given set of `key:value` pairs.
 	  _.isMatch = function(object, attrs) {
 	    var keys = _.keys(attrs), length = keys.length;
@@ -27125,8 +27941,8 @@ var SettingsPanel =
 	    }
 	    return true;
 	  };
-
-
+	
+	
 	  // Internal recursive comparison function for `isEqual`.
 	  var eq = function(a, b, aStack, bStack) {
 	    // Identical objects are equal. `0 === -0`, but they aren't identical.
@@ -27161,11 +27977,11 @@ var SettingsPanel =
 	        // of `NaN` are not equivalent.
 	        return +a === +b;
 	    }
-
+	
 	    var areArrays = className === '[object Array]';
 	    if (!areArrays) {
 	      if (typeof a != 'object' || typeof b != 'object') return false;
-
+	
 	      // Objects with different constructors are not equivalent, but `Object`s or `Array`s
 	      // from different frames are.
 	      var aCtor = a.constructor, bCtor = b.constructor;
@@ -27177,7 +27993,7 @@ var SettingsPanel =
 	    }
 	    // Assume equality for cyclic structures. The algorithm for detecting cyclic
 	    // structures is adapted from ES 5.1 section 15.12.3, abstract operation `JO`.
-
+	
 	    // Initializing stack of traversed objects.
 	    // It's done here since we only need them for objects and arrays comparison.
 	    aStack = aStack || [];
@@ -27188,11 +28004,11 @@ var SettingsPanel =
 	      // unique nested structures.
 	      if (aStack[length] === a) return bStack[length] === b;
 	    }
-
+	
 	    // Add the first object to the stack of traversed objects.
 	    aStack.push(a);
 	    bStack.push(b);
-
+	
 	    // Recursively compare objects and arrays.
 	    if (areArrays) {
 	      // Compare array lengths to determine if a deep comparison is necessary.
@@ -27219,12 +28035,12 @@ var SettingsPanel =
 	    bStack.pop();
 	    return true;
 	  };
-
+	
 	  // Perform a deep comparison to check if two objects are equal.
 	  _.isEqual = function(a, b) {
 	    return eq(a, b);
 	  };
-
+	
 	  // Is a given array, string, or object empty?
 	  // An "empty" object has no enumerable own-properties.
 	  _.isEmpty = function(obj) {
@@ -27232,31 +28048,31 @@ var SettingsPanel =
 	    if (isArrayLike(obj) && (_.isArray(obj) || _.isString(obj) || _.isArguments(obj))) return obj.length === 0;
 	    return _.keys(obj).length === 0;
 	  };
-
+	
 	  // Is a given value a DOM element?
 	  _.isElement = function(obj) {
 	    return !!(obj && obj.nodeType === 1);
 	  };
-
+	
 	  // Is a given value an array?
 	  // Delegates to ECMA5's native Array.isArray
 	  _.isArray = nativeIsArray || function(obj) {
 	    return toString.call(obj) === '[object Array]';
 	  };
-
+	
 	  // Is a given variable an object?
 	  _.isObject = function(obj) {
 	    var type = typeof obj;
 	    return type === 'function' || type === 'object' && !!obj;
 	  };
-
+	
 	  // Add some isType methods: isArguments, isFunction, isString, isNumber, isDate, isRegExp, isError.
 	  _.each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp', 'Error'], function(name) {
 	    _['is' + name] = function(obj) {
 	      return toString.call(obj) === '[object ' + name + ']';
 	    };
 	  });
-
+	
 	  // Define a fallback version of the method in browsers (ahem, IE < 9), where
 	  // there isn't any inspectable "Arguments" type.
 	  if (!_.isArguments(arguments)) {
@@ -27264,7 +28080,7 @@ var SettingsPanel =
 	      return _.has(obj, 'callee');
 	    };
 	  }
-
+	
 	  // Optimize `isFunction` if appropriate. Work around some typeof bugs in old v8,
 	  // IE 11 (#1621), and in Safari 8 (#1929).
 	  if (typeof /./ != 'function' && typeof Int8Array != 'object') {
@@ -27272,71 +28088,71 @@ var SettingsPanel =
 	      return typeof obj == 'function' || false;
 	    };
 	  }
-
+	
 	  // Is a given object a finite number?
 	  _.isFinite = function(obj) {
 	    return isFinite(obj) && !isNaN(parseFloat(obj));
 	  };
-
+	
 	  // Is the given value `NaN`? (NaN is the only number which does not equal itself).
 	  _.isNaN = function(obj) {
 	    return _.isNumber(obj) && obj !== +obj;
 	  };
-
+	
 	  // Is a given value a boolean?
 	  _.isBoolean = function(obj) {
 	    return obj === true || obj === false || toString.call(obj) === '[object Boolean]';
 	  };
-
+	
 	  // Is a given value equal to null?
 	  _.isNull = function(obj) {
 	    return obj === null;
 	  };
-
+	
 	  // Is a given variable undefined?
 	  _.isUndefined = function(obj) {
 	    return obj === void 0;
 	  };
-
+	
 	  // Shortcut function for checking if an object has a given property directly
 	  // on itself (in other words, not on a prototype).
 	  _.has = function(obj, key) {
 	    return obj != null && hasOwnProperty.call(obj, key);
 	  };
-
+	
 	  // Utility Functions
 	  // -----------------
-
+	
 	  // Run Underscore.js in *noConflict* mode, returning the `_` variable to its
 	  // previous owner. Returns a reference to the Underscore object.
 	  _.noConflict = function() {
 	    root._ = previousUnderscore;
 	    return this;
 	  };
-
+	
 	  // Keep the identity function around for default iteratees.
 	  _.identity = function(value) {
 	    return value;
 	  };
-
+	
 	  // Predicate-generating functions. Often useful outside of Underscore.
 	  _.constant = function(value) {
 	    return function() {
 	      return value;
 	    };
 	  };
-
+	
 	  _.noop = function(){};
-
+	
 	  _.property = property;
-
+	
 	  // Generates a function for a given object that returns a given property.
 	  _.propertyOf = function(obj) {
 	    return obj == null ? function(){} : function(key) {
 	      return obj[key];
 	    };
 	  };
-
+	
 	  // Returns a predicate for checking whether an object has a given set of
 	  // `key:value` pairs.
 	  _.matcher = _.matches = function(attrs) {
@@ -27345,7 +28161,7 @@ var SettingsPanel =
 	      return _.isMatch(obj, attrs);
 	    };
 	  };
-
+	
 	  // Run a function **n** times.
 	  _.times = function(n, iteratee, context) {
 	    var accum = Array(Math.max(0, n));
@@ -27353,7 +28169,7 @@ var SettingsPanel =
 	    for (var i = 0; i < n; i++) accum[i] = iteratee(i);
 	    return accum;
 	  };
-
+	
 	  // Return a random integer between min and max (inclusive).
 	  _.random = function(min, max) {
 	    if (max == null) {
@@ -27362,12 +28178,12 @@ var SettingsPanel =
 	    }
 	    return min + Math.floor(Math.random() * (max - min + 1));
 	  };
-
+	
 	  // A (possibly faster) way to get the current timestamp as an integer.
 	  _.now = Date.now || function() {
 	    return new Date().getTime();
 	  };
-
+	
 	   // List of HTML entities for escaping.
 	  var escapeMap = {
 	    '&': '&amp;',
@@ -27378,7 +28194,7 @@ var SettingsPanel =
 	    '`': '&#x60;'
 	  };
 	  var unescapeMap = _.invert(escapeMap);
-
+	
 	  // Functions for escaping and unescaping strings to/from HTML interpolation.
 	  var createEscaper = function(map) {
 	    var escaper = function(match) {
@@ -27395,7 +28211,7 @@ var SettingsPanel =
 	  };
 	  _.escape = createEscaper(escapeMap);
 	  _.unescape = createEscaper(unescapeMap);
-
+	
 	  // If the value of the named `property` is a function then invoke it with the
 	  // `object` as context; otherwise, return it.
 	  _.result = function(object, property, fallback) {
@@ -27405,7 +28221,7 @@ var SettingsPanel =
 	    }
 	    return _.isFunction(value) ? value.call(object) : value;
 	  };
-
+	
 	  // Generate a unique integer id (unique within the entire client session).
 	  // Useful for temporary DOM ids.
 	  var idCounter = 0;
@@ -27413,7 +28229,7 @@ var SettingsPanel =
 	    var id = ++idCounter + '';
 	    return prefix ? prefix + id : id;
 	  };
-
+	
 	  // By default, Underscore uses ERB-style template delimiters, change the
 	  // following template settings to use alternative delimiters.
 	  _.templateSettings = {
@@ -27421,12 +28237,12 @@ var SettingsPanel =
 	    interpolate : /<%=([\s\S]+?)%>/g,
 	    escape      : /<%-([\s\S]+?)%>/g
 	  };
-
+	
 	  // When customizing `templateSettings`, if you don't want to define an
 	  // interpolation, evaluation or escaping regex, we need one that is
 	  // guaranteed not to match.
 	  var noMatch = /(.)^/;
-
+	
 	  // Certain characters need to be escaped so that they can be put into a
 	  // string literal.
 	  var escapes = {
@@ -27437,13 +28253,13 @@ var SettingsPanel =
 	    '\u2028': 'u2028',
 	    '\u2029': 'u2029'
 	  };
-
+	
 	  var escaper = /\\|'|\r|\n|\u2028|\u2029/g;
-
+	
 	  var escapeChar = function(match) {
 	    return '\\' + escapes[match];
 	  };
-
+	
 	  // JavaScript micro-templating, similar to John Resig's implementation.
 	  // Underscore templating handles arbitrary delimiters, preserves whitespace,
 	  // and correctly escapes quotes within interpolated code.
@@ -27451,21 +28267,21 @@ var SettingsPanel =
 	  _.template = function(text, settings, oldSettings) {
 	    if (!settings && oldSettings) settings = oldSettings;
 	    settings = _.defaults({}, settings, _.templateSettings);
-
+	
 	    // Combine delimiters into one regular expression via alternation.
 	    var matcher = RegExp([
 	      (settings.escape || noMatch).source,
 	      (settings.interpolate || noMatch).source,
 	      (settings.evaluate || noMatch).source
 	    ].join('|') + '|$', 'g');
-
+	
 	    // Compile the template source, escaping string literals appropriately.
 	    var index = 0;
 	    var source = "__p+='";
 	    text.replace(matcher, function(match, escape, interpolate, evaluate, offset) {
 	      source += text.slice(index, offset).replace(escaper, escapeChar);
 	      index = offset + match.length;
-
+	
 	      if (escape) {
 	        source += "'+\n((__t=(" + escape + "))==null?'':_.escape(__t))+\n'";
 	      } else if (interpolate) {
@@ -27473,55 +28289,55 @@ var SettingsPanel =
 	      } else if (evaluate) {
 	        source += "';\n" + evaluate + "\n__p+='";
 	      }
-
+	
 	      // Adobe VMs need the match returned to produce the correct offest.
 	      return match;
 	    });
 	    source += "';\n";
-
+	
 	    // If a variable is not specified, place data values in local scope.
 	    if (!settings.variable) source = 'with(obj||{}){\n' + source + '}\n';
-
+	
 	    source = "var __t,__p='',__j=Array.prototype.join," +
 	      "print=function(){__p+=__j.call(arguments,'');};\n" +
 	      source + 'return __p;\n';
-
+	
 	    try {
 	      var render = new Function(settings.variable || 'obj', '_', source);
 	    } catch (e) {
 	      e.source = source;
 	      throw e;
 	    }
-
+	
 	    var template = function(data) {
 	      return render.call(this, data, _);
 	    };
-
+	
 	    // Provide the compiled source as a convenience for precompilation.
 	    var argument = settings.variable || 'obj';
 	    template.source = 'function(' + argument + '){\n' + source + '}';
-
+	
 	    return template;
 	  };
-
+	
 	  // Add a "chain" function. Start chaining a wrapped Underscore object.
 	  _.chain = function(obj) {
 	    var instance = _(obj);
 	    instance._chain = true;
 	    return instance;
 	  };
-
+	
 	  // OOP
 	  // ---------------
 	  // If Underscore is called as a function, it returns a wrapped object that
 	  // can be used OO-style. This wrapper holds altered versions of all the
 	  // underscore functions. Wrapped objects may be chained.
-
+	
 	  // Helper function to continue chaining intermediate results.
 	  var result = function(instance, obj) {
 	    return instance._chain ? _(obj).chain() : obj;
 	  };
-
+	
 	  // Add your own custom functions to the Underscore object.
 	  _.mixin = function(obj) {
 	    _.each(_.functions(obj), function(name) {
@@ -27533,10 +28349,10 @@ var SettingsPanel =
 	      };
 	    });
 	  };
-
+	
 	  // Add all of the Underscore functions to the wrapper object.
 	  _.mixin(_);
-
+	
 	  // Add all mutator Array functions to the wrapper.
 	  _.each(['pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift'], function(name) {
 	    var method = ArrayProto[name];
@@ -27547,7 +28363,7 @@ var SettingsPanel =
 	      return result(this, obj);
 	    };
 	  });
-
+	
 	  // Add all accessor Array functions to the wrapper.
 	  _.each(['concat', 'join', 'slice'], function(name) {
 	    var method = ArrayProto[name];
@@ -27555,20 +28371,20 @@ var SettingsPanel =
 	      return result(this, method.apply(this._wrapped, arguments));
 	    };
 	  });
-
+	
 	  // Extracts the result from a wrapped and chained object.
 	  _.prototype.value = function() {
 	    return this._wrapped;
 	  };
-
+	
 	  // Provide unwrapping proxy for some methods used in engine operations
 	  // such as arithmetic and JSON stringification.
 	  _.prototype.valueOf = _.prototype.toJSON = _.prototype.value;
-
+	
 	  _.prototype.toString = function() {
 	    return '' + this._wrapped;
 	  };
-
+	
 	  // AMD registration happens at the end for compatibility with AMD loaders
 	  // that may not enforce next-turn semantics on modules. Even though general
 	  // practice for AMD registration is to be anonymous, underscore registers
@@ -27585,16 +28401,19 @@ var SettingsPanel =
 
 
 /***/ },
-/* 239 */
+/* 242 */
+/*!********************************!*\
+  !*** ./src/assets/styles.less ***!
+  \********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
-
+	
 	// load the styles
-	var content = __webpack_require__(240);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/less-loader!./styles.less */ 243);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(242)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 245)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27611,21 +28430,27 @@ var SettingsPanel =
 	}
 
 /***/ },
-/* 240 */
+/* 243 */
+/*!***************************************************************!*\
+  !*** ./~/css-loader!./~/less-loader!./src/assets/styles.less ***!
+  \***************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(241)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 244)();
 	// imports
-
-
+	
+	
 	// module
 	exports.push([module.id, ".settings-panel *,.settings-panel-editor-modal *,.settings-panel>.search-box .search-icon{box-sizing:border-box}.settings-panel-editor-modal .settings-panel-editor-content .label-button input[type=radio],.settings-panel-editor-modal .settings-panel-editor-content .newoverride label.btn input[type=radio]{clip:rect(0,0,0,0);pointer-events:none;position:absolute}.settings-panel a,.settings-panel-editor-modal a{cursor:pointer;color:#337ab7;text-decoration:none}.settings-panel a:hover,.settings-panel-editor-modal a:hover{color:#23527c;text-decoration:underline}.settings-panel-editor-error,.settings-panel-error{background-color:#f2dede;border-radius:4px;border:1px solid #ebccd1;color:#a94442;padding:15px}.settings-panel>.search-box{margin-bottom:10px;display:flex}.settings-panel>.search-box .search-icon{background-color:#eee;border:1px solid #ddd;border-right:none;border-bottom-left-radius:5px;border-top-left-radius:5px;color:#888;font-size:11px;height:22px;padding:0;position:relative;text-align:center;top:0;vertical-align:middle;width:22px}.settings-panel>.search-box .search-icon img{margin:4px 0}.settings-panel>.search-box input[type=text]{flex-grow:1;border-width:1px;border-style:solid;border-color:#ddd;padding:0 5px;height:22px;box-sizing:border-box;vertical-align:middle;border-bottom-right-radius:5px;border-top-right-radius:5px}.settings-panel .setting-groups{border:1px solid #ddd;border-top:none}.settings-panel .setting-group h4{font-weight:700;padding:5px 8px;background-color:#eee;border-top:1px solid #ddd;margin:0}.settings-panel .setting{padding-top:0;padding-bottom:0;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;align-items:stretch;border-top:1px solid #ddd;cursor:default}.settings-panel .setting.focused{box-shadow:0 0 5px #56b0eb;z-index:10;position:relative}.settings-panel .setting p{color:#777;font-size:11.9px}.settings-panel .setting .name{margin:0;padding:5px 8px;width:50%;word-break:break-word}.settings-panel .setting .name>strong>a{display:block;font-size:14px}.settings-panel .setting .name .desc{font-size:11px}.settings-panel .setting .name p{line-height:18px;margin:0}.settings-panel .setting .name .default-value{white-space:pre}.settings-panel .setting div.value{width:50%;background-color:#fafafa;display:block;border-left:1px solid #ddd;text-align:left;padding:5px 8px;position:relative}.settings-panel .setting div.value a.reset,.settings-panel .setting div.value.quick-bool:hover,.settings-panel .setting div.value.quick-edit:hover{cursor:pointer}.settings-panel .setting div.value span.bool-val-false,.settings-panel .setting div.value span.bool-val-true{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:400;line-height:1;-webkit-font-smoothing:antialiased}.settings-panel .setting div.value pre{margin:0;padding:0;border-radius:0;border:none;background-color:transparent;overflow:initial}.settings-panel .setting div.value.editable{font-size:12px}.settings-panel .setting div.value.editable:hover pre{text-decoration:underline;color:#23527c}.settings-panel pre.setting-value{margin:0;padding:5px 8px;border-radius:0;background-color:#fafafa;border:none}.settings-panel pre.setting-value.active{background-color:#edf2f9}.settings-panel textarea.setting-edit{font-family:monospace}.settings-panel .setting.active-override{background-color:#d9edf7}.settings-panel .setting.overrides div.value{background-color:transparent;position:relative;padding-bottom:23px}.settings-panel .setting.overrides div.value p.overrides{border-top:1px solid rgba(128,128,128,.1);font-size:11px;opacity:.8;position:absolute;bottom:3px;margin:0}.settings-panel .setting-separator{margin-top:5px;margin-bottom:5px}.settings-panel .settings-search{margin-bottom:10px;display:flex}.settings-panel .settings-search input[type=text]{flex-grow:1;display:flex}.settings-panel button:focus,.settings-panel input:focus,.settings-panel input[type=text]:focus{box-shadow:0 0 2px 0 #94B6ED inset,0 0 2px 0 #99D1EA;border-color:#94B6Ed!important;outline:0}.settings-panel button.error,.settings-panel button.error:focus,.settings-panel input.error,.settings-panel input.error:focus,.settings-panel input[type=text].error,.settings-panel input[type=text].error:focus{box-shadow:0 0 3px red!important;border-color:red!important;outline:0}.settings-panel-editor-modal{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1050;-webkit-overflow-scrolling:touch;outline:0;background-color:rgba(0,0,0,.3);overflow-y:auto}.settings-panel-editor-modal .settings-panel-editor-dialog{width:900px;position:relative;margin-top:100px;margin-left:auto;margin-right:auto}.settings-panel-editor-modal .settings-panel-editor-content{position:relative;background-color:#fff;background-clip:padding-box;border:1px solid #999;border:1px solid rgba(0,0,0,.2);border-radius:6px;outline:0;box-shadow:0 3px 9px rgba(0,0,0,.5)}.settings-panel-editor-modal .settings-panel-editor-content .close{-webkit-appearance:none;background:0 0;border:0;color:#000;cursor:pointer;filter:alpha(opacity=20);float:right;font-size:21px;font-weight:700;line-height:1;margin-top:-4px;opacity:.2;padding:0;text-shadow:0 1px 0 #fff}.settings-panel-editor-modal .settings-panel-editor-content .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}.settings-panel-editor-modal .settings-panel-editor-content>.settings-panel-editor-header{min-height:16.43px;padding:15px;border-bottom:1px solid #e5e5e5}.settings-panel-editor-modal .settings-panel-editor-content>.settings-panel-editor-header>h3{border-bottom:1px solid #ddd;margin:0}.settings-panel-editor-modal .settings-panel-editor-content>.settings-panel-editor-body{position:relative;padding:15px}.settings-panel-editor-modal .settings-panel-editor-content>.settings-panel-editor-body .setting-value{display:block;padding:9.5px;margin:0 0 10px;font-size:13px;line-height:1.42857143;color:#333;word-break:break-all;word-wrap:break-word;background-color:#f5f5f5;border:1px solid #ccc;border-radius:4px}.settings-panel-editor-modal .settings-panel-editor-content>.settings-panel-editor-body .raw{font-size:11px}.settings-panel-editor-modal .settings-panel-editor-content .newoverride p,.settings-panel-editor-modal .settings-panel-editor-content .values p{font-size:.8em;color:#666}.settings-panel-editor-modal .settings-panel-editor-content .values{display:flex;margin-bottom:1em}.settings-panel-editor-modal .settings-panel-editor-content .values h5{font-size:14px;margin:10px 0;font-family:inherit;font-weight:500;line-height:1.1;color:inherit}.settings-panel-editor-modal .settings-panel-editor-content .values p{font-size:11px}.settings-panel-editor-modal .settings-panel-editor-content .values .override,.settings-panel-editor-modal .settings-panel-editor-content .values .override+.default{padding:10px}.settings-panel-editor-modal .settings-panel-editor-content .values .override .edit-override{color:#337ab7;text-decoration:none;border-radius:3px;border-color:transparent;background-color:transparent;-webkit-box-shadow:none;box-shadow:none;cursor:pointer;padding:1px 5px;font-size:12px;line-height:1.5}.settings-panel-editor-modal .settings-panel-editor-content .values .override .edit-override:hover{color:#23527c;text-decoration:underline}.settings-panel-editor-modal .settings-panel-editor-content .values .override .clear-override{-moz-user-select:none;-ms-user-select:none;-webkit-user-select:none;-ms-touch-action:manipulation;user-select:none;background-color:#d9534f;background-image:none;border:1px solid #d43f3a;border-radius:3px;color:#fff;cursor:pointer;display:inline-block;font-size:12px;font-weight:400;line-height:18px;margin-bottom:0;padding:1px 5px;text-align:center;text-decoration:none;touch-action:manipulation;vertical-align:middle;white-space:nowrap}.settings-panel-editor-modal .settings-panel-editor-content .values .default,.settings-panel-editor-modal .settings-panel-editor-content .values .override{width:50%;flex-grow:1}.settings-panel-editor-modal .settings-panel-editor-content .values .active{background-color:#d9edf7}.settings-panel-editor-modal .settings-panel-editor-content .newoverride p{font-size:11px;color:#337ab7}.settings-panel-editor-modal .settings-panel-editor-content .newoverride .spaced label.btn{margin:0 2px}.settings-panel-editor-modal .settings-panel-editor-content .newoverride .requires-restart{color:#8a6d3b;background-color:#fcf8e3;padding:15px;border:1px solid #faebcc;border-radius:4px;font-size:12px;font-weight:700}.settings-panel-editor-modal .settings-panel-editor-content .newoverride textarea{display:block;line-height:1.4;width:100%;margin-bottom:5px;resize:none;overflow:hidden;padding:5px 3px;border:1px solid #ddd;outline:0}.settings-panel-editor-modal .settings-panel-editor-content .newoverride textarea:focus{box-shadow:0 0 3px #56b0eb}.settings-panel-editor-modal .settings-panel-editor-content .newoverride .cancel-override,.settings-panel-editor-modal .settings-panel-editor-content .newoverride .set-override{display:inline-block;padding:6px 12px;margin-bottom:0;font-size:14px;font-weight:400;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;border:1px solid transparent;border-radius:4px}.settings-panel-editor-modal .settings-panel-editor-content .newoverride .set-override{color:#fff;background-color:#5cb85c;border-color:#4cae4c}.settings-panel-editor-modal .settings-panel-editor-content .newoverride .cancel-override{color:#fff;background-color:#d9534f;border-color:#d43f3a}.settings-panel-editor-modal .settings-panel-editor-content .newoverride .enum-selector .selector-item.active,.settings-panel-editor-modal .settings-panel-editor-content .newoverride .enum-selector .selector-item:hover{background-color:#d9edf7}.settings-panel-editor-modal .settings-panel-editor-content .newoverride .enum-selector{margin-bottom:10px;width:100%}.settings-panel-editor-modal .settings-panel-editor-content .newoverride .enum-selector .selector-item{cursor:pointer;border:1px solid transparent;height:23px}.settings-panel-editor-modal .settings-panel-editor-content .newoverride .enum-selector .selector-item .status{height:23px;width:30px}.settings-panel-editor-modal .settings-panel-editor-content .newoverride .enum-selector .selector-item th{text-align:right}.settings-panel-editor-modal .settings-panel-editor-content .newoverride .enum-selector .selector-item td,.settings-panel-editor-modal .settings-panel-editor-content .newoverride .enum-selector .selector-item th{padding:7px 5px;vertical-align:middle}.settings-panel-editor-modal .settings-panel-editor-content .newoverride .enum-selector .selector-item td p,.settings-panel-editor-modal .settings-panel-editor-content .newoverride .enum-selector .selector-item th p{margin:0}.settings-panel-editor-modal .settings-panel-editor-content .show-details{font-size:80%;border-top:1px solid #eee}.settings-panel-editor-modal .settings-panel-editor-content .show-details a.toggle{font-size:12px;font-weight:700}.settings-panel-editor-modal .settings-panel-editor-content .show-details .details{display:flex}.settings-panel-editor-modal .settings-panel-editor-content .show-details .details h5{font-size:14px;font-weight:700;text-decoration:underline;margin:10px 0}.settings-panel-editor-modal .settings-panel-editor-content .show-details .details .defaults,.settings-panel-editor-modal .settings-panel-editor-content .show-details .details .overrides{flex-grow:1;width:50%;padding:5px}.settings-panel-editor-modal .settings-panel-editor-content .show-details .details table.value-list{width:100%;border-spacing:0;border-collapse:collapse}.settings-panel-editor-modal .settings-panel-editor-content .show-details .details table.value-list thead{border-bottom:1px solid #eee}.settings-panel-editor-modal .settings-panel-editor-content .show-details .details table.value-list td,.settings-panel-editor-modal .settings-panel-editor-content .show-details .details table.value-list th{text-align:left;height:24px;padding:0 3px;white-space:nowrap;vertical-align:middle;font-size:11px}.settings-panel-editor-modal .settings-panel-editor-content .show-details .details table.value-list td{line-height:1}.settings-panel-editor-modal .settings-panel-editor-content .show-details .details table.value-list td.value{font-family:monospace;white-space:pre}.settings-panel-editor-modal .settings-panel-editor-content .show-details .details table.value-list tbody>tr:nth-of-type(odd){background-color:#f9f9f9}.settings-panel-editor-modal .settings-panel-editor-content .show-details .details table.value-list button.clear-override{color:#800;cursor:pointer;background:0 0;border:0;-webkit-appearance:none;font-weight:700;font-size:21px;line-height:1}.settings-panel-editor-modal .settings-panel-editor-content .label-button{display:inline-block;padding:5px 10px;font-size:12px;font-weight:400;line-height:1.5;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;border:1px solid #ccc;border-radius:3px;color:#333;background-color:#fff;margin:0 2px}.settings-panel-editor-modal .settings-panel-editor-content .label-button:hover{color:#333;background-color:#e6e6e6;border-color:#adadad}.settings-panel-editor-modal .settings-panel-editor-content .label-button.active{color:#333;background-color:#e6e6e6;border-color:#adadad;box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}.settings-panel-editor-modal .settings-panel-editor-content .label-button[disabled]{cursor:not-allowed;opacity:.75;background-color:#efefef;border-color:#ddd;color:#aaa;border-style:dotted}@media screen and (max-width:991px){.settings-panel-editor-modal .settings-panel-editor-dialog{width:600px;margin-left:auto;margin-right:auto}}@media screen and (max-width:767px){.settings-panel .setting-groups{border:none}.settings-panel .setting-group{border:none;margin-bottom:20px}.settings-panel .setting-group .setting{display:block;border:1px solid #ddd;margin-top:5px}.settings-panel .setting-group .setting .name{width:auto}.settings-panel .setting-group .setting div.value{display:block;width:auto;border-top:1px solid #ddd;border-left-width:4px;cursor:pointer}.settings-panel-editor-modal .settings-panel-editor-dialog{width:auto;margin-left:10px;margin-right:10px}.settings-panel-editor-modal .settings-panel-editor-dialog button span,.settings-panel-editor-modal .settings-panel-editor-dialog h3{word-break:break-all}.settings-panel-editor-modal .settings-panel-editor-dialog .values{display:block}.settings-panel-editor-modal .settings-panel-editor-dialog .values .default,.settings-panel-editor-modal .settings-panel-editor-dialog .values .override{width:auto}.settings-panel-editor-modal .settings-panel-editor-dialog .show-details .details{display:block}.settings-panel-editor-modal .settings-panel-editor-dialog .show-details .details .defaults,.settings-panel-editor-modal .settings-panel-editor-dialog .show-details .details .overrides{width:auto}.settings-panel-editor-modal .settings-panel-editor-dialog .show-details .details table.value-list td.value{word-break:break-all;white-space:pre-wrap}}@media screen and (max-height:799px){.settings-panel-editor-modal .settings-panel-editor-dialog{margin-top:50px;margin-bottom:50px}}", ""]);
-
+	
 	// exports
 
 
 /***/ },
-/* 241 */
+/* 244 */
+/*!**************************************!*\
+  !*** ./~/css-loader/lib/css-base.js ***!
+  \**************************************/
 /***/ function(module, exports) {
 
 	/*
@@ -27635,7 +28460,7 @@ var SettingsPanel =
 	// css base code, injected by the css-loader
 	module.exports = function() {
 		var list = [];
-
+	
 		// return the list of modules as css string
 		list.toString = function toString() {
 			var result = [];
@@ -27649,7 +28474,7 @@ var SettingsPanel =
 			}
 			return result.join("");
 		};
-
+	
 		// import a list of modules into the list
 		list.i = function(modules, mediaQuery) {
 			if(typeof modules === "string")
@@ -27681,7 +28506,10 @@ var SettingsPanel =
 
 
 /***/ },
-/* 242 */
+/* 245 */
+/*!*************************************!*\
+  !*** ./~/style-loader/addStyles.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -27705,23 +28533,23 @@ var SettingsPanel =
 		singletonElement = null,
 		singletonCounter = 0,
 		styleElementsInsertedAtTop = [];
-
+	
 	module.exports = function(list, options) {
-		if(false) {
+		if(true) {
 			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
 		}
-
+	
 		options = options || {};
 		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
 		// tags it will allow on a page
 		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
-
+	
 		// By default, add <style> tags to the bottom of <head>.
 		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
-
+	
 		var styles = listToStyles(list);
 		addStylesToDom(styles, options);
-
+	
 		return function update(newList) {
 			var mayRemove = [];
 			for(var i = 0; i < styles.length; i++) {
@@ -27744,7 +28572,7 @@ var SettingsPanel =
 			}
 		};
 	}
-
+	
 	function addStylesToDom(styles, options) {
 		for(var i = 0; i < styles.length; i++) {
 			var item = styles[i];
@@ -27766,7 +28594,7 @@ var SettingsPanel =
 			}
 		}
 	}
-
+	
 	function listToStyles(list) {
 		var styles = [];
 		var newStyles = {};
@@ -27784,7 +28612,7 @@ var SettingsPanel =
 		}
 		return styles;
 	}
-
+	
 	function insertStyleElement(options, styleElement) {
 		var head = getHeadElement();
 		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
@@ -27803,7 +28631,7 @@ var SettingsPanel =
 			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
 		}
 	}
-
+	
 	function removeStyleElement(styleElement) {
 		styleElement.parentNode.removeChild(styleElement);
 		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
@@ -27811,24 +28639,24 @@ var SettingsPanel =
 			styleElementsInsertedAtTop.splice(idx, 1);
 		}
 	}
-
+	
 	function createStyleElement(options) {
 		var styleElement = document.createElement("style");
 		styleElement.type = "text/css";
 		insertStyleElement(options, styleElement);
 		return styleElement;
 	}
-
+	
 	function createLinkElement(options) {
 		var linkElement = document.createElement("link");
 		linkElement.rel = "stylesheet";
 		insertStyleElement(options, linkElement);
 		return linkElement;
 	}
-
+	
 	function addStyle(obj, options) {
 		var styleElement, update, remove;
-
+	
 		if (options.singleton) {
 			var styleIndex = singletonCounter++;
 			styleElement = singletonElement || (singletonElement = createStyleElement(options));
@@ -27854,9 +28682,9 @@ var SettingsPanel =
 				removeStyleElement(styleElement);
 			};
 		}
-
+	
 		update(obj);
-
+	
 		return function updateStyle(newObj) {
 			if(newObj) {
 				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
@@ -27867,19 +28695,19 @@ var SettingsPanel =
 			}
 		};
 	}
-
+	
 	var replaceText = (function () {
 		var textStore = [];
-
+	
 		return function (index, replacement) {
 			textStore[index] = replacement;
 			return textStore.filter(Boolean).join('\n');
 		};
 	})();
-
+	
 	function applyToSingletonTag(styleElement, index, remove, obj) {
 		var css = remove ? "" : obj.css;
-
+	
 		if (styleElement.styleSheet) {
 			styleElement.styleSheet.cssText = replaceText(index, css);
 		} else {
@@ -27893,16 +28721,16 @@ var SettingsPanel =
 			}
 		}
 	}
-
+	
 	function applyToTag(styleElement, obj) {
 		var css = obj.css;
 		var media = obj.media;
 		var sourceMap = obj.sourceMap;
-
+	
 		if(media) {
 			styleElement.setAttribute("media", media)
 		}
-
+	
 		if(styleElement.styleSheet) {
 			styleElement.styleSheet.cssText = css;
 		} else {
@@ -27912,27 +28740,37 @@ var SettingsPanel =
 			styleElement.appendChild(document.createTextNode(css));
 		}
 	}
-
+	
 	function updateLink(linkElement, obj) {
 		var css = obj.css;
 		var media = obj.media;
 		var sourceMap = obj.sourceMap;
-
+	
 		if(sourceMap) {
 			// http://stackoverflow.com/a/26603875
 			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
 		}
-
+	
 		var blob = new Blob([css], { type: "text/css" });
-
+	
 		var oldSrc = linkElement.href;
-
+	
 		linkElement.href = URL.createObjectURL(blob);
-
+	
 		if(oldSrc)
 			URL.revokeObjectURL(oldSrc);
 	}
 
 
+/***/ },
+/* 246 */
+/*!*******************************!*\
+  !*** ./src/assets/search.png ***!
+  \*******************************/
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNvyMY98AAAD9SURBVDhPnZIrC8JgFIYNglHwD1hE7BZB0F9h1CQWQTCZZGHsBpuwVTGqf8BsWrJYrAarRQRBBOHzPeP7xpnbQBw87Jz3sgtbQQjxFylB1/WqZVlD27YDx3H6nudVvjNEYkFhjMITCMYV+oDniHhAoEVBhPagSZphGG3MR/A2TbOmskQ8wNygePd9v8QDKNTlnRdcjwcYZ5S33FRAp6cIucbNEOUDNxXQL2DHNW7SQe/Y4wHsI6lPuR4PBMwThcAKBGAtd2LOs4kizDJY4gIPGX7JcwT0WWaR47puQ834EbooRt9XlVOFPFDogBvKE9ozQ3lomlZUc8r8DVH4ANQDF8+Q4TB/AAAAAElFTkSuQmCC"
+
 /***/ }
 /******/ ]);
+//# sourceMappingURL=settings-panel.js.map

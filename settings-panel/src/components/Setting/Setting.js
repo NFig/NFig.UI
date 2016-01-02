@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import SettingValue from './SettingValue';
-import { render } from './marked-renderer';
 
+import SettingValue from './SettingValue';
 import SettingDescription from './SettingDescription';
+
+import { render } from '../../marked-renderer';
 
 
 const matches = Element.prototype.matches 

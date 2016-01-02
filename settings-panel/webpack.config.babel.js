@@ -1,12 +1,16 @@
 import webpack from 'webpack';
 import LessPluginCleanCSS from 'less-plugin-clean-css';
 
+import path from 'path';
+
 import { readFileSync } from 'fs';
 
 const babelOpts = JSON.parse(readFileSync(`${__dirname}/.babelrc`));
 
+const rootModules = path.resolve('node_modules');
+
 export default {
-  entry: './src/SettingsPanel.js',
+  entry: './src',
   output: {
     libraryTarget: 'var',
     library: 'SettingsPanel',

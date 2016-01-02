@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { render } from './marked-renderer';
+import { render } from '../../marked-renderer';
 
 export default class SettingDescription extends Component {
 

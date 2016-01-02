@@ -1,27 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import Portal from 'react-portal';
-import { render } from './marked-renderer';
-import AutosizeTextArea from './AutosizeTextArea';
+import AutosizeTextArea from '../AutosizeTextArea';
 
-import checkImg from './assets/setting-true.png';
 
-class Modal extends Component {
+import { render } from '../../marked-renderer';
 
-    onOverlayClick(e) {
-        const { onRequestClose } = this.props;
-        onRequestClose && onRequestClose();
-    }
 
-    render() {
-        return (
-            <div className={`${this.props.className}-modal`} onClick={e => this.onOverlayClick(e)}>
-                <div className={`${this.props.className}-dialog`} onClick={e => e.stopPropagation()}>
-                    <div className={`${this.props.className}-content`}>{this.props.children}</div>
-                </div>
-            </div>
-        );
-    }
-}
+import Modal from './Modal';
 
 export default class EditorModal extends Component {
 

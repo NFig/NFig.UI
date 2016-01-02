@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Keys from './keys';
 
-import searchIcon from './assets/search.png';
+import searchIcon from '../assets/search.png';
+import Keys from '../keys';
 
 export default class SettingsSearchBox extends Component {
 

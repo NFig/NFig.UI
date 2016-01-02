@@ -11,7 +11,7 @@ import reactUpdate from 'react-addons-update';
  */
 import SettingsSearchBox from './SettingsSearchBox';
 import SettingsGroup from './SettingsGroup';
-import EditorModal from './EditorModal';
+import EditorModal from './Editor';
 
 /**
  * Included libs
@@ -21,8 +21,9 @@ import request from 'superagent';
 /**
  * Other libs
  */
+import Keys from '../keys';
 import _ from 'underscore';
-import Keys from './keys'
+
 
 const containsText = (string, search) => string.toLowerCase().indexOf(search.toLowerCase()) !== -1;
 
@@ -77,7 +78,7 @@ class SettingsPanel extends Component {
         } = this.props;
 
         if (!className) {
-            require('./assets/styles.less');
+            require('../assets/styles.less');
         }
 
         if (customStyleSheet) {
