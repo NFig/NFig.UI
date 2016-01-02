@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from './marked-renderer';
 
-import imgTrue from './setting-true.png';
-import imgFalse from './setting-false.png';
+import imgTrue from './assets/setting-true.png';
+import imgFalse from './assets/setting-false.png';
 
 // String.join helper for elements / dom nodes
 function intersperse (arr, sep) {

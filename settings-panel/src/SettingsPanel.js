@@ -77,7 +77,7 @@ class SettingsPanel extends Component {
         } = this.props;
 
         if (!className) {
-            require('./styles.less');
+            require('./assets/styles.less');
         }
 
         if (customStyleSheet) {

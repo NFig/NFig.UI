@@ -3,7 +3,7 @@ import Portal from 'react-portal';
 import { render } from './marked-renderer';
 import AutosizeTextArea from './AutosizeTextArea';
 
-import checkImg from './setting-true.png';
+import checkImg from './assets/setting-true.png';
 
 class Modal extends Component {
 
