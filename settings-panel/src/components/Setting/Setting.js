@@ -38,23 +38,23 @@ class Setting extends Component {
         e.stopPropagation();
 
         const { target } = e;
-        const { dispatch, setting, getIndex } = this.props;
+        const { dispatch, setting, index } = this.props;
 
         if (!matches(target, 'span.desc a')) {
             dispatch(actions.setEditing(setting));
-            dispatch(actions.setFocused(getIndex()));
+            dispatch(actions.setFocused(index));
         }
     }
 
     render() {
-        const { setting, focused } = this.props;
+        const { setting, index, focused } = this.props;
 
         let className = setting.activeOverride ? 'active-override ' : "";
 
         if (setting.allOverrides.length > 0)
           className += 'overrides ';
 
-        if (setting.focused)
+        if (focused === index)
           className += 'focused ';
 
         return (
@@ -72,8 +72,4 @@ class Setting extends Component {
     }
 }
 
-export default connect(
-    ({search, settings}, {setting}) => ({
-        getIndex: () => getVisibleSettings(settings, search).findIndex(s => s.name === setting.name)
-    })
-)(Setting);
+export default connect(({focused})=>({focused}))(Setting);

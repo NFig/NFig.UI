@@ -394,7 +394,8 @@ const modal = {
 
 const middlewares = [];
 middlewares.push(thunkMiddleware);
-// middlewares.push(createLogger());
+if (process.env.NODE_ENV === 'development')
+    middlewares.push(createLogger());
 
 const createStoreWithMiddleware = applyMiddleware.apply(
     undefined,
@@ -440,9 +441,15 @@ export const actions = {
 
 const containsText = (string, search) => string.toLowerCase().indexOf(search.toLowerCase()) !== -1;
 const settingMatches = (setting, search) => [setting.name, setting.description].some(s => containsText(s, search));
-export const getVisibleSettings = (settings, search) => settings.filter(setting => settingMatches(setting, search));
+export const getVisibleSettings = (settings, search) => {
+    return settings
+    .filter(setting => settingMatches(setting, search))
+    .map((setting, index) => ({setting, index}))
+    ;
+};
 const getGroupName = (setting) => setting.name.replace(/^([^\.]+)\..+$/, '$1');
 export const getGroups = (settings) => _.chain(settings)
-    .groupBy(s => getGroupName(s))
-    .map((settings, name) => ({ name, settings}))
-    .value();
+.groupBy(s => getGroupName(s.setting))
+.map((settings, name) => ({ name, settings}))
+.value();
+;

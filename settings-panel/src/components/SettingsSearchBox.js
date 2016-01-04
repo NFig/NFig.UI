@@ -45,11 +45,15 @@ class SettingsSearchBox extends Component {
         const { searchText, dispatch, settings } = this.props;
         switch (e.which) {
           case Keys.ENTER:
-            dispatch(actions.setEditing(settings[0]));
-            dispatch(actions.setFocused(0));
+            if (settings.length === 1) {
+                e.stopPropagation();
+                dispatch(actions.setEditing(settings[0].setting));
+                dispatch(actions.setFocused(0));
+            }
             break;
           case Keys.ESCAPE:
             if (searchText.replace(/^\s+|\s+$/g, '') !== '') {
+                e.stopPropagation();
                 this.textbox.value = '';
                 this.setSearchText('');
             }

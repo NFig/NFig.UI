@@ -25,15 +25,15 @@ import _ from 'underscore';
 
 class SettingsPanel extends Component {
     componentDidMount() {
-        const { 
+        const {
             className,
             customStyleSheet
         } = this.props;
 
-        if (!className) 
+        if (!className)
             require('../assets/styles.less');
 
-        if (customStyleSheet) 
+        if (customStyleSheet)
             this.loadCustomStyleSheet(customStyleSheet);
 
         document.addEventListener('keydown', e => this.handleKeyDown(e));
@@ -43,10 +43,10 @@ class SettingsPanel extends Component {
         const { which } = e;
         const {
             groups,
-            settings, 
-            editing, 
-            focused, 
-            dispatch        
+            visible,
+            editing,
+            focused,
+            dispatch
         } = this.props;
 
         switch (which) {
@@ -66,15 +66,15 @@ class SettingsPanel extends Component {
             }
             break;
           case Keys.DOWN_ARROW:
-            if (focused < settings.length - 1) {
+            if (focused < visible.length - 1) {
                 e.preventDefault();
                 dispatch(actions.setFocused(focused + 1));
             }
             break;
           case Keys.ENTER:
-            if (!editing && focused >= 0 && focused < settings.length - 1) {
+            if (!editing && focused >= 0 && focused < visible.length) {
                 e.preventDefault();
-                const setting = settings[focused];
+                const setting = visible[focused].setting;
                 dispatch(actions.setEditing(setting));
             }
             break;
@@ -109,21 +109,21 @@ class SettingsPanel extends Component {
 
 
     render() {
-        let { 
-            editing, 
-            className, 
+        let {
+            editing,
+            className,
             groups,
-            settings
-        } = this.props; 
+            visible
+        } = this.props;
 
         className = className || 'settings-panel';
 
         return (
             <div className={className}>
-                <SettingsSearchBox className={className} ref={n => this.searchBox = n} settings={settings} />
+                <SettingsSearchBox className={className} ref={n => this.searchBox = n} settings={visible} />
                 <ErrorMessage className={className} />
-                <SettingsGroups groups={groups} className={className} visible={settings} />
-                <EditorModal 
+                <SettingsGroups groups={groups} className={className} />
+                <EditorModal
                     display-if={editing}
                     className={`${className}-editor`}
                 />
@@ -135,11 +135,11 @@ class SettingsPanel extends Component {
 
 
 export default connect(
-    ({settings, focused, editing, search}) => { 
+    ({settings, focused, editing, search}) => {
         const visible = getVisibleSettings(settings, search);
         return {
             groups: getGroups(visible),
-            settings: visible,
+            visible,
             focused,
             editing
         };

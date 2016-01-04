@@ -7,7 +7,7 @@ export default class SettingsGroup extends Component {
         return (
             <div className="setting-group" ref={node => {this.node = node;}}>
                 <h4>{group.name}</h4>
-                {group.settings.map(setting => <Setting key={setting.name} setting={setting} />)}
+                {group.settings.map(({setting, index}) => <Setting key={setting.name} setting={setting} index={index} />)}
             </div>
         );
     }
