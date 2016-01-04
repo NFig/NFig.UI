@@ -12,6 +12,7 @@ class SettingsSearchBox extends Component {
     focus() { 
         this.textbox.selectionStart = this.textbox.value.length;
         this.textbox.focus(); 
+        window.scrollTo(0, 0);
     }
 
     blur() { 
@@ -27,7 +28,6 @@ class SettingsSearchBox extends Component {
         const { focused } = this.props;
         if (focused === -1 && document.activeElement !== this.textbox) {
             this.focus();
-            window.scrollTo(0, 0);
             return;
         }
 

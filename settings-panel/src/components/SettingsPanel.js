@@ -55,6 +55,7 @@ class SettingsPanel extends Component {
                 dispatch(actions.setEditing(null));
             } else if (focused !== -1) {
                 dispatch(actions.setFocused(-1));
+                this.searchBox.getWrappedInstance().focus();
             } else if (focused === -1) {
                 this.searchBox.getWrappedInstance().focus();
             }
