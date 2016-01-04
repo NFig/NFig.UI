@@ -17,6 +17,14 @@ const matches = Element.prototype.matches
     
 class Setting extends Component {
 
+    componentDidUpdate() {
+        const { focused, index } = this.props;
+
+        if (focused === index) {
+            this.scrollIntoView();
+        }
+    }
+
     scrollIntoView() {
         const node = ReactDOM.findDOMNode(this);
 

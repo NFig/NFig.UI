@@ -27,6 +27,7 @@ class SettingsSearchBox extends Component {
         const { focused } = this.props;
         if (focused === -1 && document.activeElement !== this.textbox) {
             this.focus();
+            window.scrollTo(0, 0);
             return;
         }
 
