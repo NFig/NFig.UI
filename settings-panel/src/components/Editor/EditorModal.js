@@ -2,38 +2,21 @@ import React, { Component, PropTypes } from 'react';
 import Portal from 'react-portal';
 import AutosizeTextArea from '../AutosizeTextArea';
 
-
+import { connect } from 'react-redux';
 import { render } from '../../marked-renderer';
-
+import { actions } from '../../store';
 
 import Modal from './Modal';
+import _ from 'underscore';
 
-export default class EditorModal extends Component {
-
-    static propTypes = {
-        onClose: PropTypes.func.isRequired,
-        onSetOverride: PropTypes.func.isRequired,
-        onClearOverride: PropTypes.func.isRequired,
-        onClearError: PropTypes.func.isRequired
-    };
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedDataCenter: null,
-            newOverrideValue: null
-        };
-    }
+class EditorModal extends Component {
 
     handleClose() {
-        this.props.onClose();
+        const { dispatch } = this.props;
+        dispatch(actions.setEditing(null));
     }
 
-    showDetails() { this.setState({showDetails: true}); }
-    hideDetails() { this.setState({showDetails: false}); }
-
-    shouldShowDetails(props) {
-        const { setting: { allOverrides, activeOverride } } = props;
+    shouldShowDetails({ allOverrides, activeOverride }) {
 
         if (!allOverrides || allOverrides.length == 0) 
             return false;
@@ -48,73 +31,66 @@ export default class EditorModal extends Component {
         return false;
     }
 
-    clearOverride(dc) {
-        const {
-            state: { selectedDataCenter: dataCenter, showDetails },
-            props: { setting: { name: settingName } }
-        } = this;
-
-        if (showDetails === false) 
-            this.setState({showDetails: null});
-
-        const data = {settingName:this.props.setting.name, dataCenter:dc};
-        this.props.onClearOverride(data);
-    }
-
     selectDataCenter(e) {
+        const { editing: setting, dispatch } = this.props;
+
         const selectedDataCenter = e.target ? e.target.value : e;
+        dispatch(actions.setModalDataCenter(selectedDataCenter));
 
-        const override = this.props.setting.allOverrides.find(o => o.dataCenter === selectedDataCenter);
-
-        this.setState({selectedDataCenter, newOverrideValue: override && override.value || ''});
+        const override = setting.allOverrides.find(o => o.dataCenter === selectedDataCenter);
+        dispatch(actions.setModalOverrideValue((override && override.value) || ''));
     }
-
+    
     handleOverrideChange(e) {
         const val = e.target ? e.target.value : e;
-        this.setState({newOverrideValue: val});
-    }
-
-
-    setNewOverride() {
-
-        const {
-            state: { newOverrideValue: value, selectedDataCenter: dataCenter, showDetails },
-            props: { setting: { name: settingName } }
-        } = this;
-
-        if (showDetails === false) 
-            this.setState({showDetails: null});
-        
-        this.props.onSetOverride({ settingName, dataCenter, value });
+        this.props.dispatch(actions.setModalOverrideValue(val));
     }
 
     cancelNewOverride() {
-        this.setState({selectedDataCenter: null});
-        this.props.onClearError();
+        this.props.dispatch(actions.cancelNewOverride());
     }
 
-    componentWillReceiveProps(newProps) {
-        if (!newProps.error) {
-            this.setState({selectedDataCenter: null, newOverrideValue: null});
-        }
+    showDetails(show) {
+        this.props.dispatch(actions.showModalDetails(show));
+    }
+
+    setNewOverride() {
+        this.props.dispatch(actions.setNewOverride());
+    }
+
+    clearOverride(dataCenter) {
+        this.props.dispatch(actions.clearOverride(dataCenter));
     }
 
     render() {
-        const {setting, dataCenters, className, error} = this.props;
-        const {activeOverride: override, defaultValue: defval, isEnum, allowsOverrides} = setting;
-        const {selectedDataCenter} = this.state;
-        const enumNames = setting.enumNames || {};
-        const SettingEditor = EditorFor(setting);
 
-        let {showDetails} = this.state;
+        const className = "settings-panel-editor";
+
+        const { error, editing:setting, dataCenters, modal } = this.props;
+
+        if (!setting)
+            return null;
+
+        const { 
+            activeOverride: override,
+            defaultValue: defval,
+            isEnum,
+            allowsOverrides
+        } = setting;
+
+        const enumNames = setting.enumNames || {};
+
+
+        let { dataCenter: selectedDataCenter, overrideValue, showDetails } = modal;
 
         if (showDetails === undefined || showDetails === null)
-            showDetails = this.shouldShowDetails(this.props);
+            showDetails = this.shouldShowDetails(setting);
 
-
+        const SettingEditor = EditorFor(setting);
+ 
         return (
             <Portal isOpened={true} >
-                <Modal  className={className} onRequestClose={_ => this.handleClose()}>
+                <Modal  className={className} onRequestClose={() => this.handleClose()}>
                     <div className={`${className}-header`}>
                         <button type="button" className="close" onClick={() => this.handleClose()}>
                             <span aria-hidden="true">&times;</span>
@@ -144,7 +120,7 @@ export default class EditorModal extends Component {
                             <p>
                                 <span>Set new override for&nbsp;</span>
                                 <DataCenterSelector
-                                    selectedValue={this.state.selectedDataCenter}
+                                    selectedValue={selectedDataCenter}
                                     onChange={e => this.selectDataCenter(e)}
                                     dataCenters={dataCenters}
                                     allowsOverrides={allowsOverrides}
@@ -153,7 +129,7 @@ export default class EditorModal extends Component {
                             {selectedDataCenter ?
                             <div>
                                 <p display-if={setting.requiresRestart} className="requires-restart">Changes will not take effect until application is restarted.</p>
-                                <SettingEditor {...this.props} value={this.state.newOverrideValue} onChange={e => this.handleOverrideChange(e)}/>
+                                <SettingEditor {...this.props} value={overrideValue} onChange={e => this.handleOverrideChange(e)}/>
                                 <p>
                                     <button className="set-override" onClick={() => this.setNewOverride()}>Set Override</button>
                                     <span>&nbsp;</span>
@@ -162,13 +138,11 @@ export default class EditorModal extends Component {
                             </div>
                             : null}
                         </div>
-                        {error ?
-                            <p className={`${className}-error`}>{error}</p>
-                        : null}
+                        <p display-if={error} className={`${className}-error`}>{error}</p>
                     </div>
                     <div className={`${className}-body show-details`}>
-                        <a display-if={!showDetails} className="toggle" style={{cursor:"pointer"}} onClick={() => this.showDetails()}>Show Details</a>
-                        <a display-if={showDetails} className="toggle" style={{cursor:"pointer"}} onClick={() => this.hideDetails()}>Hide Details</a>
+                        <a display-if={!showDetails} className="toggle" style={{cursor:"pointer"}} onClick={() => this.showDetails(true)}>Show Details</a>
+                        <a display-if={showDetails} className="toggle" style={{cursor:"pointer"}} onClick={() => this.showDetails(false)}>Hide Details</a>
                         <div display-if={showDetails} className="details">
                             <div className="overrides">
                                 <h5>Overrides</h5>
@@ -185,6 +159,12 @@ export default class EditorModal extends Component {
         );
     }
 }
+
+export default connect(
+    state => _.pick(state, 'error', 'editing', 'dataCenters', 'modal')
+)(EditorModal);
+
+
 
 const ValueDisplay = props => {
     const { value, isEnum, enumName } = props;
@@ -228,7 +208,7 @@ class DataCenterSelector extends Component {
 class ValueTable extends Component {
 
     render() {
-        const {setting, propName, onClear} = this.props;
+        const {editing:setting, propName, onClear} = this.props;
         const values = setting[propName];
         return (
             <table className="value-list table-striped">

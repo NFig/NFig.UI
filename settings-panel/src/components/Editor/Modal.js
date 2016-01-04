@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Modal extends Component {
+export default class Modal extends Component {
 
     onOverlayClick(e) {
         const { onRequestClose } = this.props;
@@ -17,3 +17,4 @@ class Modal extends Component {
         );
     }
 }
+

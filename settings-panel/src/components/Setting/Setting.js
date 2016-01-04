@@ -4,16 +4,18 @@ import ReactDOM from 'react-dom';
 import SettingValue from './SettingValue';
 import SettingDescription from './SettingDescription';
 
+import { connect } from 'react-redux';
+
 import { render } from '../../marked-renderer';
+import { actions, getVisibleSettings } from '../../store';
 
 
 const matches = Element.prototype.matches 
     ? (element, selector) => element.matches(selector)
-    : (element, selector) => element.matchesSelector(selector);
+    : (element, selector) => element.matchesSelector(selector)
+    ;
     
-
-
-export default class Setting extends Component {
+class Setting extends Component {
 
     scrollIntoView() {
         const node = ReactDOM.findDOMNode(this);
@@ -36,27 +38,27 @@ export default class Setting extends Component {
         e.stopPropagation();
 
         const { target } = e;
+        const { dispatch, setting, getIndex } = this.props;
 
         if (!matches(target, 'span.desc a')) {
-            this.props.onSettingClick(this.props.setting);
+            dispatch(actions.setEditing(setting));
+            dispatch(actions.setFocused(getIndex()));
         }
     }
 
     render() {
-        const setting = this.props.setting;
+        const { setting, focused } = this.props;
 
         let className = setting.activeOverride ? 'active-override ' : "";
 
         if (setting.allOverrides.length > 0)
           className += 'overrides ';
 
-        if (setting.isFocused)
+        if (setting.focused)
           className += 'focused ';
 
-
-
         return (
-            <div className={className + 'setting' } onClick={e => this.handleClick(e)}>
+            <div className={className + 'setting' } onClick={e => this.handleClick(e)} ref={setting.name}>
                 <div className="name">
                     <strong>
                         <a>{setting.name}</a>
@@ -64,8 +66,14 @@ export default class Setting extends Component {
                     <SettingDescription setting={setting} />
                 </div>
 
-                <SettingValue {...this.props} />
+                <SettingValue setting={setting} />
             </div>
         );
     }
 }
+
+export default connect(
+    ({search, settings}, {setting}) => ({
+        getIndex: () => getVisibleSettings(settings, search).findIndex(s => s.name === setting.name)
+    })
+)(Setting);

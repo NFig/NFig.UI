@@ -5,11 +5,9 @@ import imgTrue from '../../assets/setting-true.png';
 import imgFalse from '../../assets/setting-false.png';
 
 // String.join helper for elements / dom nodes
-function intersperse (arr, sep) {
-  return arr && arr.slice(1).reduce((xs, x, i) => xs.concat([sep,x]), [arr[0]]) || [];
-}
+const intersperse = (arr, sep) => arr && arr.slice(1).reduce((xs, x, i) => xs.concat([sep,x]), [arr[0]]) || [];
 
-function ValueFor(setting) {
+const ValueFor = setting => {
   if (setting.isEnum)
     return EnumValue;
 
@@ -21,18 +19,23 @@ function ValueFor(setting) {
 const SettingValue = props => {
     const { setting } = props;
 
-    let overrideInfo = null;
-    if (setting.activeOverride) {
+    const { 
+        activeOverride,
+        allOverrides
+    } = setting;
 
-        const dcOverride = props.setting.activeOverride.dataCenter;
+
+    let overrideInfo = null;
+    if (activeOverride) {
+        const { dataCenter: dcOverride } = activeOverride;
 
         overrideInfo = (
             <p className="overrides">
                 Overridden by Data Center: <strong>{dcOverride}</strong>
             </p>
         );
-    } else if (setting.allOverrides.length > 0) {
-        const children = setting.allOverrides.map((o, i) => <strong key={i}>{`${o.tier}-${o.dataCenter}`}</strong>);
+    } else if (allOverrides.length > 0) {
+        const children = allOverrides.map((o, i) => <strong key={o.dataCenter}>{`${o.tier}-${o.dataCenter}`}</strong>);
         overrideInfo = (
             <p className="overrides">
                 Has overrides for&nbsp;
@@ -63,21 +66,16 @@ const EnumValue = props => {
     );
 };
 
-const BoolValue = props => {
-    const setting = props.setting;
-    const value = (setting.activeOverride || setting.defaultValue).value;
-
+const BoolValue = ({setting: {activeOverride, defaultValue}}) => {
+    const value = (activeOverride || defaultValue).value;
     const boolVal = typeof value === 'string'
         ? value.toLowerCase() === 'true'
         : !!value;
 
-    return (
-      <img src={boolVal ? imgTrue : imgFalse} alt={value} />
-    );
+    return (<img src={boolVal ? imgTrue : imgFalse} alt={value} />);
 };
 
-const TextValue = props => {
-    const { setting: { activeOverride, defaultValue } } = props;
+const TextValue = ({ setting: { activeOverride, defaultValue } }) => {
     const value = (activeOverride || defaultValue).value;
     return (<pre className="value">{value}</pre>);
 };
