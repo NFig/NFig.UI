@@ -57,9 +57,11 @@ class SettingsPanel extends Component {
           case Keys.ESCAPE:
             if (editing) {
                 dispatch(setEditing(null));
-            } else if (focused !== -1) {
-                dispatch(setFocusedIndex(-1));
+            } else {
+                if (focused !== -1)
+                    dispatch(setFocusedIndex(-1));
                 window.scrollTo(0, 0);
+                this.refs.topbar.focusSearch();
             }
             break;
           case Keys.UP_ARROW:
@@ -128,6 +130,7 @@ class SettingsPanel extends Component {
                     className={className} 
                     showCopyButton={showCopyButton}
                     visible={visible}
+                    ref="topbar"
                 />
                 <ErrorMessage className={className} />
                 <SettingsGroups groups={groups} className={className} />

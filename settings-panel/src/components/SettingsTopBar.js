@@ -12,6 +12,10 @@ class SettingsTopBar extends Component {
         visible        : PropTypes.array.isRequired
     };
 
+    focusSearch() {
+        this.refs.searchBox.getWrappedInstance().focus();
+    }
+
     render() {
         const { className, showCopyButton, visible } = this.props;
         return (
@@ -19,7 +23,7 @@ class SettingsTopBar extends Component {
                 <span className="search-icon">
                     <img src={searchIcon} alt="Search" />
                 </span>
-                <SettingsSearchBox visible={visible} />
+                <SettingsSearchBox visible={visible} ref="searchBox" />
                 <CopySettingsButton display-if={showCopyButton} className={className} />
             </div>
         );
