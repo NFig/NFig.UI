@@ -17,7 +17,7 @@ import { createStore, actions, handlePopState } from './store';
 /**
  * Other libs
  */
-import _ from 'underscore';
+import pick from 'lodash/pick';
 import Keys from './keys';
 
 /**
@@ -25,31 +25,28 @@ import Keys from './keys';
  */
 import SettingsPanel from './components/SettingsPanel';
 
-
-
-
-
 module.exports = {
   init(element, props) {
 
     const store = createStore(
-      _.pick(props, 'settingsUrl', 'setUrl', 'clearUrl'), 
+      pick(props, 'settingsUrl', 'setUrl', 'clearUrl', 'copySettingsUrl'), 
       {
         settings: props.settings || [],
-        dataCenters: props.availableDataCenters || props.dataCenters || []
+        dataCenters: props.availableDataCenters || props.dataCenters || [],
+        copySettings: {
+            currentRedisConnection: props.currentRedisConnection
+        }
       }
     );
 
-    if (!props.settings && props.settingsUrl) {
-      store.dispatch(actions.fetchSettings(props.settingsUrl));
-    } else {
+    if (!props.settings && props.settingsUrl) 
+        store.dispatch(actions.fetchSettings());
+    else 
         store.dispatch(handlePopState);
-    }
-
 
     return ReactDOM.render(
       <Provider store={store}>
-        <SettingsPanel {..._.pick(props, 'customStyleSheet')} />
+        <SettingsPanel {...pick(props, 'customStyleSheet')} />
       </Provider>
     , element);
   }

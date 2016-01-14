@@ -1,5 +1,6 @@
 import assign from 'object-assign';
 import marked from 'marked';
+import intersperse from './intersperse';
 
 const create = (overrides = {}) => {
   const renderer = new marked.Renderer();
@@ -12,5 +13,7 @@ const create = (overrides = {}) => {
   return assign(renderer, overrides);
 };
 
-export const render = (text, overrides = {}) => 
-  marked(text, {renderer: create(overrides)});
+export function render(text, overrides = {}) {
+    return marked(text, {renderer: create(overrides)});
+}
+

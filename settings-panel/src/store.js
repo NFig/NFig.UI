@@ -14,7 +14,11 @@ import createLogger from 'redux-logger';
 /**
  * Libs
  */
-import _ from 'underscore';
+import debounce from 'lodash/debounce';
+import omit from 'lodash/omit';
+import groupBy from 'lodash/groupBy';
+import map from 'lodash/map';
+
 import request from 'superagent';
 import qs from 'qs';
 
@@ -33,7 +37,7 @@ const setQueryString = query => {
     history.pushState(null, null, `${location.pathname}${queryString}`);
 };
 
-const setQueryStringDebounced = _.debounce(setQueryString, 300);
+const setQueryStringDebounced = debounce(setQueryString, 300);
 export const handlePopState = (dispatch, getState) => {
     const query = getQueryString();
 
@@ -90,10 +94,10 @@ const settings = {
             };
         },
 
-        fetch(url) {
-            return dispatch => {
+        fetch() {
+            return (dispatch, getState) => {
                 request
-                .get(url)
+                .get(getState().urls.settingsUrl)
                 .end((err, res) => {
                     if (err || !res.ok) {
                         dispatch(error.actions.setError(err.message || err.toString() || res.body));
@@ -274,7 +278,7 @@ const queryString = {
             if (action.value) 
                 return {...state, [action.key]: action.value };
             else
-                return _.omit(state, action.key);
+                return omit(state, action.key);
           default:
             return state;
         }
@@ -284,25 +288,25 @@ const queryString = {
 
 
 // =================================================================
-// Modal
+// Override Modal
 // =================================================================
-const modal = {
+const override = {
     actions: {
-        dataCenter(dc) {
+        setDataCenter(dc) {
             return {
                 type: 'SET_NEW_OVERRIDE_DATACENTER',
                 dataCenter: dc
             };
         },
 
-        overrideValue(value) {
+        setValue(value) {
             return { 
                 type: 'SET_NEW_OVERRIDE_VALUE',
                 value
             };
         },
 
-        cancelNewOverride() {
+        cancel() {
             return {
                 type: 'CANCEL_NEW_OVERRIDE'
             };
@@ -321,7 +325,7 @@ const modal = {
                 const { 
                     error: currentError,
                     editing: { name: settingName }, 
-                    modal: {
+                    override: {
                         dataCenter,
                         overrideValue: value,
                     },
@@ -338,7 +342,7 @@ const modal = {
                         } else {
                             dispatch(settings.actions.update(res.body));
                             dispatch(editing.actions.set(res.body));
-                            dispatch(modal.actions.cancelNewOverride());
+                            dispatch(override.actions.cancelOverride());
                             if (currentError)
                                 dispatch(error.actions.set(null));
                         }
@@ -377,13 +381,82 @@ const modal = {
           case 'SET_EDITING':
             return (action.setting === null) ? {} : state;
           case 'CANCEL_NEW_OVERRIDE':
-            return _.omit(state, 'dataCenter', 'overrideValue');
+            return omit(state, 'dataCenter', 'overrideValue');
           case 'SET_NEW_OVERRIDE_DATACENTER':
             return {...state, dataCenter: action.dataCenter};
           case 'SET_NEW_OVERRIDE_VALUE':
             return {...state, overrideValue: action.value};
           case 'MODAL_SHOW_DETAILS':
             return {...state, showDetails: action.show};
+          default:
+            return state;
+        }
+    }
+};
+// =================================================================
+
+// =================================================================
+// Copy Settinsg Modal
+// =================================================================
+const copySettings = {
+    actions: {
+        host(value) {
+            return {
+                type: 'SET_COPY_HOST',
+                host: value
+            };
+        },
+
+        direction(copyFrom) {
+            return {
+                type: 'SET_COPY_DIRECTION',
+                copyFrom
+            };
+        },
+
+        setMessage(message) {
+            return { type: 'SET_COPY_MESSAGE', message };
+        },
+
+        clearMessage: () => ({ type: 'SET_COPY_MESSAGE', message: null }),
+
+        setError(error) {
+            return { type: 'SET_COPY_MESSAGE', error };
+        },
+
+        confirm() {
+            return (dispatch, getState) => {
+                const state = getState();
+                const { host: redisHost, copyFrom = false } = state.copySettings;
+                const { copySettingsUrl } = state.urls;
+
+                // console.log({copySettingsUrl, redisHost, copyFrom});
+                request
+                    .post(copySettingsUrl)
+                    .type('form')
+                    .send({redisHost, copyFrom})
+                    .end((err, res) => {
+                        if (err || !res.ok) {
+                            dispatch(copySettings.actions.setError(res.body.error));
+                        } else {
+                            dispatch(copySettings.actions.setMessage('Settings copied successfully.'));
+                            dispatch(settings.actions.set(res.body));
+                        }
+                    });
+            };
+        }
+    },
+
+    reducer (state = {}, action) {
+        switch(action.type) {
+          case 'SET_COPY_HOST':
+            return { ...state, host: action.host };
+          case 'SET_COPY_DIRECTION':
+            return { ...state, copyFrom: action.copyFrom };
+          case 'SET_COPY_MESSAGE':
+            if (action.error) 
+                return { ...state, error: action.error };
+            return { ...state, message: action.message };
           default:
             return state;
         }
@@ -403,15 +476,16 @@ const createStoreWithMiddleware = applyMiddleware.apply(
 )(createReduxStore);
 
 const finalReducer = combineReducers({
-    error       : error.reducer,
-    settings    : settings.reducer,
-    dataCenters : dataCenters.reducer,
-    editing     : editing.reducer,
-    focused     : focused.reducer,
-    search      : search.reducer,
-    queryString : queryString.reducer,
-    modal       : modal.reducer,
-    urls        : (state = {}) => state // ZOMG HAAAAAAACK wtf
+    error        : error.reducer,
+    settings     : settings.reducer,
+    dataCenters  : dataCenters.reducer,
+    editing      : editing.reducer,
+    focused      : focused.reducer,
+    search       : search.reducer,
+    queryString  : queryString.reducer,
+    override     : override.reducer,
+    copySettings : copySettings.reducer,
+    urls         : (state = {}) => state // ZOMG HAAAAAAACK wtf
 });
 
 export function createStore(urls, state) {
@@ -422,34 +496,50 @@ export function createStore(urls, state) {
 };
 
 export const actions = {
-    setError: error.actions.set,
+    setError              : error.actions.set,
 
-    fetchSettings: settings.actions.fetch,
-    setSearchText: search.actions.set,
-    setFocused: focused.actions.set,
-    setEditing: editing.actions.set,
+    setSettings           : settings.actions.set,
+    fetchSettings         : settings.actions.fetch,
+    setSearchText         : search.actions.set,
+    setFocused            : focused.actions.set,
+    setEditing            : editing.actions.set,
 
-    setModalDataCenter: modal.actions.dataCenter,
-    setModalOverrideValue: modal.actions.overrideValue,
-    cancelNewOverride: modal.actions.cancelNewOverride,
-    showModalDetails: modal.actions.showDetails,
+    // Overrides
+    setOverrideDataCenter : override.actions.setDataCenter,
+    setOverrideValue      : override.actions.setValue,
+    cancelOverride        : override.actions.cancel,
+    showOverrideDetails   : override.actions.showDetails,
+    setNewOverride        : override.actions.setNewOverride,
+    clearOverride         : override.actions.clearOverride,
 
-    setNewOverride: modal.actions.setNewOverride,
-    clearOverride: modal.actions.clearOverride
+    // Copy Settings
+    setCopyHost           : copySettings.actions.host,
+    setCopyDirection      : copySettings.actions.direction,
+    clearMessage          : copySettings.actions.clearMessage,
+    confirmCopy           : copySettings.actions.confirm
 };
 
 
-const containsText = (string, search) => string.toLowerCase().indexOf(search.toLowerCase()) !== -1;
-const settingMatches = (setting, search) => [setting.name, setting.description].some(s => containsText(s, search));
-export const getVisibleSettings = (settings, search) => {
+function containsText(string, search) {
+    return string.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+}
+
+function settingMatches(setting, search) {
+    return [setting.name, setting.description].some(s => containsText(s, search));
+}
+
+export function getVisibleSettings(settings, search) {
     return settings
     .filter(setting => settingMatches(setting, search))
     .map((setting, index) => ({setting, index}))
     ;
 };
-const getGroupName = (setting) => setting.name.replace(/^([^\.]+)\..+$/, '$1');
-export const getGroups = (settings) => _.chain(settings)
-.groupBy(s => getGroupName(s.setting))
-.map((settings, name) => ({ name, settings}))
-.value();
-;
+
+function getGroupName(setting) {
+    return setting.name.replace(/^([^\.]+)\..+$/, '$1');
+}
+
+export function getGroups (settings) { 
+    const groups = groupBy(settings, s => getGroupName(s.setting));
+    return map(groups, (settings, name) => ({ name, settings}));
+};

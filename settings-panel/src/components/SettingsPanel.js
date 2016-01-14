@@ -7,16 +7,16 @@ import { connect } from 'react-redux';
 /**
  * Components
  */
-import SettingsSearchBox from './SettingsSearchBox';
+import SettingsTopBar from './SettingsTopBar';
 import SettingsGroups from './SettingsGroups';
 import EditorModal from './Editor';
 import ErrorMessage from './ErrorMessage';
+import CopySettingsButton from './CopySettingsButton';
 
 
 import Keys from '../keys';
 import { actions, getGroups, getVisibleSettings } from '../store';
 
-import _ from 'underscore';
 
 
 /**
@@ -55,9 +55,8 @@ class SettingsPanel extends Component {
                 dispatch(actions.setEditing(null));
             } else if (focused !== -1) {
                 dispatch(actions.setFocused(-1));
-                this.searchBox.getWrappedInstance().focus();
+                window.scrollTo(0, 0);
             } else if (focused === -1) {
-                this.searchBox.getWrappedInstance().focus();
             }
             break;
           case Keys.UP_ARROW:
@@ -114,20 +113,21 @@ class SettingsPanel extends Component {
             editing,
             className,
             groups,
-            visible
+            visible,
+            showCopyButton
         } = this.props;
 
         className = className || 'settings-panel';
 
         return (
             <div className={className}>
-                <SettingsSearchBox className={className} ref={n => this.searchBox = n} settings={visible} />
+                <SettingsTopBar 
+                    className={className} 
+                    showCopyButton={showCopyButton} 
+                />
                 <ErrorMessage className={className} />
                 <SettingsGroups groups={groups} className={className} />
-                <EditorModal
-                    display-if={editing}
-                    className={`${className}-editor`}
-                />
+                <EditorModal className={className} />
             </div>
         );
     }
@@ -136,13 +136,14 @@ class SettingsPanel extends Component {
 
 
 export default connect(
-    ({settings, focused, editing, search}) => {
+    ({settings, focused, editing, search, urls}) => {
         const visible = getVisibleSettings(settings, search);
         return {
             groups: getGroups(visible),
             visible,
             focused,
-            editing
+            editing,
+            showCopyButton: !!urls.copySettingsUrl
         };
     }
 )(SettingsPanel);

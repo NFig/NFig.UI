@@ -6,11 +6,7 @@ import path from 'path';
 import { readFileSync } from 'fs';
 
 const babelOpts = JSON.parse(readFileSync(`${__dirname}/.babelrc`));
-
-const rootModules = path.resolve('node_modules');
-
 const args = process.argv.slice(2);
-
 const defines = {
     'process.env.NODE_ENV': args.indexOf('-p') !== -1 ? '"production"' : '"development"'
 };
@@ -20,8 +16,9 @@ export default {
     output: {
         libraryTarget: 'var',
         library: 'SettingsPanel',
-        path: './dist',
-        filename: 'settings-panel.js'
+        path: path.join(__dirname, 'dist'),
+        filename: 'settings-panel.js',
+        publicPath: '/'
     },
     externals: {
     },

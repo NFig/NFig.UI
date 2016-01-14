@@ -1,7 +1,15 @@
 import express from 'express';
+import webpack from 'webpack';
 import { urlencoded } from 'body-parser';
 import { readFileSync } from 'fs';
 
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackConfig from './webpack.config.babel';
+
+// Set up for -d switch
+webpackConfig.devtool = 'cheap-module-eval-source-map';
+webpackConfig.debug = true;
+webpackConfig.output.pathinfo = true;
 
 const debug = require('debug')('test-server');
 
@@ -9,6 +17,9 @@ const app = express();
 
 app.set('views', './views');
 app.set('view engine', 'jade');
+
+const compiler = webpack(webpackConfig);
+app.use(webpackDevMiddleware(compiler, { publicPath: webpackConfig.output.publicPath }));
 
 const config = {
   dataCenter: "Local",
@@ -92,7 +103,7 @@ app.post('/clear', (req, res) => {
 });
 
 app.use(express.static('public'));
-app.use(express.static('dist'));
+// app.use(express.static('dist'));
 
 
 const server = app.listen(3000, () => {

@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import _ from 'underscore';
 
-import searchIcon from '../assets/search.png';
 import Keys from '../keys';
 import { actions } from '../store';
 
 class SettingsSearchBox extends Component {
+
+    static propTypes = {
+        searchText: PropTypes.string,
+        dispatch: PropTypes.func.isRequired
+    };
 
     focus() { 
         this.textbox.selectionStart = this.textbox.value.length;
@@ -26,15 +29,16 @@ class SettingsSearchBox extends Component {
 
     componentDidUpdate() {
         const { focused } = this.props;
-        if (focused === -1 && document.activeElement !== this.textbox) {
+        if (focused === -1) {
             this.focus();
             return;
         }
 
-        if (focused !== -1 && document.activeElement === this.textbox) {
+        if (focused !== -1) {
             this.blur();
             return;
         }
+
     }
 
     handleFocus(e) {
@@ -68,22 +72,17 @@ class SettingsSearchBox extends Component {
 
     render() {
         return (
-            <div className="search-box">
-                <span className="search-icon">
-                    <img src={searchIcon} alt="Search" />
-                </span>
-                <input
-                    placeholder="Filter"
-                    aria-describedby="sizing-addon3"
-                    tabIndex="0"
-                    value={this.props.searchText}
-                    type="text"
-                    onKeyDown={e => this.handleKeyDown(e)}
-                    onChange={e => this.setSearchText(e.target.value)}
-                    ref={node => {this.textbox = node;}} 
-                    onFocus={e => this.handleFocus(e)}
-                />
-            </div>
+            <input
+                placeholder="Filter"
+                aria-describedby="sizing-addon3"
+                tabIndex="0"
+                value={this.props.searchText}
+                type="text"
+                onKeyDown={e => this.handleKeyDown(e)}
+                onChange={e => this.setSearchText(e.target.value)}
+                ref={node => {this.textbox = node;}} 
+                onFocus={e => this.handleFocus(e)}
+            />
         );
     }
 }

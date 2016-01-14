@@ -4,8 +4,6 @@ import { render } from '../../marked-renderer';
 import imgTrue from '../../assets/setting-true.png';
 import imgFalse from '../../assets/setting-false.png';
 
-// String.join helper for elements / dom nodes
-const intersperse = (arr, sep) => arr && arr.slice(1).reduce((xs, x, i) => xs.concat([sep,x]), [arr[0]]) || [];
 
 const ValueFor = setting => {
   if (setting.isEnum)
