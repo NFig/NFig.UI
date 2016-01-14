@@ -7,7 +7,9 @@ import SettingDescription from './SettingDescription';
 import { connect } from 'react-redux';
 
 import { render } from '../../marked-renderer';
-import { actions, getVisibleSettings } from '../../store';
+import { getVisibleSettings } from '../../store';
+
+import { setEditing, setFocusedIndex } from '../../store-actions';
 
 
 const matches = Element.prototype.matches 
@@ -49,8 +51,8 @@ class Setting extends Component {
         const { dispatch, setting, index } = this.props;
 
         if (!matches(target, 'span.desc a')) {
-            dispatch(actions.setEditing(setting));
-            dispatch(actions.setFocused(index));
+            dispatch(setEditing(setting));
+            dispatch(setFocusedIndex(index));
         }
     }
 

@@ -1,18 +1,22 @@
 import React, { Component, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import Portal from 'react-portal';
 import Modal from './Modal';
 import ButtonGroup from './ButtonGroup';
 import RadioButton from './RadioButton';
 import pick from 'lodash/pick';
-
 import { connect } from 'react-redux';
-import { actions } from '../store';
-
 import request from 'superagent';
-
 import arrowPng from '../assets/arrow.png';
-
 import { render as markdown } from '../marked-renderer';
+import {
+    showCopyModal,
+    setCopyHost,
+    setCopyDirection,
+    clearCopyMessage,
+    confirmCopy
+} from '../store-actions';
+import keys from '../keys';
 
 function md(str) {
     return markdown(str, {
@@ -26,6 +30,7 @@ class CopySettingsButton extends Component {
     static propTypes = {
         className              : PropTypes.string.isRequired,
 
+        show                   : PropTypes.bool.isRequired,
         host                   : PropTypes.string,
         copyFrom               : PropTypes.bool,
         showConfirm            : PropTypes.bool,
@@ -35,7 +40,7 @@ class CopySettingsButton extends Component {
     };
 
     static defaultState = {
-        showModal: false
+        showConfirm: false
     };
 
     constructor(props) {
@@ -44,18 +49,21 @@ class CopySettingsButton extends Component {
     }
 
     handleClose() {
+        const { dispatch } = this.props;
         this.setState(CopySettingsButton.defaultState);
-        this.props.dispatch(actions.setCopyHost(''));
-        this.props.dispatch(actions.setCopyDirection(false));
-        this.props.dispatch(actions.clearMessage());
+        dispatch(showCopyModal(false));
     }
 
     handleHostChange(host) {
-        this.props.dispatch(actions.setCopyHost(host));
+        this.props.dispatch(setCopyHost(host));
     }
 
     handleDirectionChange(copyFrom) {
-        this.props.dispatch(actions.setCopyDirection(copyFrom));
+        this.props.dispatch(setCopyDirection(copyFrom));
+    }
+
+    showModal(show) {
+        this.props.dispatch(showCopyModal(show));
     }
 
     showConfirm(show) {
@@ -63,18 +71,19 @@ class CopySettingsButton extends Component {
     }
 
     handleCopySettings() {
-        this.props.dispatch(actions.confirmCopy());
-        this.props.dispatch(actions.setCopyHost(''));
+        const { dispatch } = this.props;
+        dispatch(confirmCopy());
+        dispatch(setCopyHost(''));
         this.showConfirm(false);
     }
 
     render() {
         const {
-            showModal,
             showConfirm
         } = this.state;
 
         const {
+            show: showModal,
             className,
             currentRedisConnection,
             host: redisHost = '',
@@ -85,9 +94,9 @@ class CopySettingsButton extends Component {
 
         return (
             <span className="copy-settings">
-                <button onClick={() => this.setState({showModal: true})}>Copy Settings</button>
+                <button onClick={(e) => this.showModal(true)}>Copy Settings</button>
 
-                <Portal isOpened={showModal} className="copy-settings-modal">
+                <Portal display-if={showModal} isOpened={true} className="copy-settings-modal">
                     <CopySettingsModal {...{ className, currentRedisConnection, redisHost, copyFrom, message, error }}
                         onRequestClose={() => this.handleClose()}
                         onHostChange={e => this.handleHostChange(e.target.value)}
@@ -96,7 +105,7 @@ class CopySettingsButton extends Component {
                     />
                 </Portal>
 
-                <Portal isOpened={showConfirm} className="copy-settings-modal confirm">
+                <Portal display-if={showConfirm} isOpened={true} className="copy-settings-modal confirm">
                     <CopySettingsConfirm {...{ className, currentRedisConnection, redisHost, copyFrom }}
                         onRequestClose={() => this.setState({showConfirm: false})}
                         onConfirm={() => this.handleCopySettings()}
@@ -122,7 +131,6 @@ class CopySettingsConfirm extends Component {
     };
 
     areSamePorts(redis1, redis2) {
-
         return extractPort(redis1) === extractPort(redis2);
     }
 
@@ -204,6 +212,30 @@ class CopySettingsModal extends Component {
         error                  : PropTypes.string
     };
 
+    componentDidMount() {
+        const node = findDOMNode(this);
+        node.addEventListener('keydown', e => this.handleKeyDown(e));
+
+        // this runs during the click handler of the show button,
+        // so break the syncronicity
+        setTimeout(() => {
+            this.refs.hostInput.focus();
+        }, 1);
+    }
+
+    componentWillUnmount() {
+        const node = findDOMNode(this);
+        node.removeEventListener('keydown', e => this.handleKeyDown(e));
+    }
+
+
+    handleKeyDown(e) {
+        e.stopPropagation();
+        if (e.which === keys.ESCAPE) {
+            this.props.onRequestClose();
+        }
+    }
+
     canConfirm() {
         const { redisHost, currentRedisConnection } = this.props;
 
@@ -268,6 +300,7 @@ class CopySettingsModal extends Component {
                     </p>
                     <p>
                         <input
+                            ref="hostInput"
                             type="text"
                             placeholder="Enter a redis instance (host:port)"
                             value={redisHost}

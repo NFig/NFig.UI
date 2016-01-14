@@ -12,7 +12,8 @@ import { connect, Provider } from 'react-redux';
 /**
  * Redux store
  */
-import { createStore, actions, handlePopState } from './store';
+import { createStore } from './store';
+import { fetchSettings, handlePopState } from './store-actions';
 
 /**
  * Other libs
@@ -40,7 +41,7 @@ module.exports = {
     );
 
     if (!props.settings && props.settingsUrl) 
-        store.dispatch(actions.fetchSettings());
+        store.dispatch(fetchSettings());
     else 
         store.dispatch(handlePopState);
 

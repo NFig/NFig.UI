@@ -15,9 +15,13 @@ import CopySettingsButton from './CopySettingsButton';
 
 
 import Keys from '../keys';
-import { actions, getGroups, getVisibleSettings } from '../store';
+import { getGroups, getVisibleSettings } from '../store';
 
-
+import { 
+    setFocusedIndex,
+    setEditing,
+    showCopyModal
+} from '../store-actions';
 
 /**
  * Some handy-dandy functions
@@ -52,30 +56,29 @@ class SettingsPanel extends Component {
         switch (which) {
           case Keys.ESCAPE:
             if (editing) {
-                dispatch(actions.setEditing(null));
+                dispatch(setEditing(null));
             } else if (focused !== -1) {
-                dispatch(actions.setFocused(-1));
+                dispatch(setFocusedIndex(-1));
                 window.scrollTo(0, 0);
-            } else if (focused === -1) {
             }
             break;
           case Keys.UP_ARROW:
-            if (focused >= 0) {
+            if (focused >= 0 && !editing) {
                 e.preventDefault();
-                dispatch(actions.setFocused(focused - 1));
+                dispatch(setFocusedIndex(focused - 1));
             }
             break;
           case Keys.DOWN_ARROW:
-            if (focused < visible.length - 1) {
+            if (focused < visible.length - 1 && !editing) {
                 e.preventDefault();
-                dispatch(actions.setFocused(focused + 1));
+                dispatch(setFocusedIndex(focused + 1));
             }
             break;
           case Keys.ENTER:
             if (!editing && focused >= 0 && focused < visible.length) {
                 e.preventDefault();
                 const setting = visible[focused].setting;
-                dispatch(actions.setEditing(setting));
+                dispatch(setEditing(setting));
             }
             break;
         }
@@ -123,7 +126,8 @@ class SettingsPanel extends Component {
             <div className={className}>
                 <SettingsTopBar 
                     className={className} 
-                    showCopyButton={showCopyButton} 
+                    showCopyButton={showCopyButton}
+                    visible={visible}
                 />
                 <ErrorMessage className={className} />
                 <SettingsGroups groups={groups} className={className} />
@@ -136,7 +140,7 @@ class SettingsPanel extends Component {
 
 
 export default connect(
-    ({settings, focused, editing, search, urls}) => {
+    ({settings, focused, editing, search, urls, copySettings}) => {
         const visible = getVisibleSettings(settings, search);
         return {
             groups: getGroups(visible),

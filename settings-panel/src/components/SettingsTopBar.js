@@ -7,18 +7,19 @@ import CopySettingsButton from './CopySettingsButton';
 
 class SettingsTopBar extends Component {
     static propTypes = {
-        className: PropTypes.string.isRequired,
-        showCopyButton: PropTypes.bool
+        className      : PropTypes.string.isRequired,
+        showCopyButton : PropTypes.bool,
+        visible        : PropTypes.array.isRequired
     };
 
     render() {
-        const { className, showCopyButton } = this.props;
+        const { className, showCopyButton, visible } = this.props;
         return (
             <div className="top-bar">
                 <span className="search-icon">
                     <img src={searchIcon} alt="Search" />
                 </span>
-                <SettingsSearchBox />
+                <SettingsSearchBox visible={visible} />
                 <CopySettingsButton display-if={showCopyButton} className={className} />
             </div>
         );

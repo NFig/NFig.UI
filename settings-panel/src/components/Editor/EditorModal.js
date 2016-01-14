@@ -4,7 +4,16 @@ import AutosizeTextArea from '../AutosizeTextArea';
 
 import { connect } from 'react-redux';
 import { render } from '../../marked-renderer';
-import { actions } from '../../store';
+import { 
+    setEditing,
+
+    setOverrideValue,
+    setOverrideDataCenter,
+    showOverrideDetails,
+    setNewOverride,
+    clearOverride,
+    cancelOverride
+} from '../../store-actions';
 
 import Modal from '../Modal';
 import ButtonGroup from '../ButtonGroup';
@@ -24,7 +33,7 @@ class EditorModal extends Component {
 
     handleClose() {
         const { dispatch } = this.props;
-        dispatch(actions.setEditing(null));
+        dispatch(setEditing(null));
     }
 
     shouldShowDetails({ allOverrides, activeOverride }) {
@@ -43,35 +52,34 @@ class EditorModal extends Component {
     }
 
     selectDataCenter(e) {
-        console.log(actions);
         const { editing: setting, dispatch } = this.props;
 
         const selectedDataCenter = e.target ? e.target.value : e;
-        dispatch(actions.setOverrideDataCenter(selectedDataCenter));
+        dispatch(setOverrideDataCenter(selectedDataCenter));
 
         const override = setting.allOverrides.find(o => o.dataCenter === selectedDataCenter);
-        dispatch(actions.setOverrideValue((override && override.value) || '')); 
+        dispatch(setOverrideValue((override && override.value) || '')); 
     }
     
     handleOverrideChange(e) {
         const val = e.target ? e.target.value : e;
-        this.props.dispatch(actions.setOverrideValue(val));
+        this.props.dispatch(setOverrideValue(val));
     }
 
     cancelNewOverride() {
-        this.props.dispatch(actions.cancelOverride());
+        this.props.dispatch(cancelOverride());
     }
 
     showDetails(show) {
-        this.props.dispatch(actions.showOverrideDetails(show));
+        this.props.dispatch(showOverrideDetails(show));
     }
 
     setNewOverride() {
-        this.props.dispatch(actions.setNewOverride());
+        this.props.dispatch(setNewOverride());
     }
 
     clearOverride(dataCenter) {
-        this.props.dispatch(actions.clearOverride(dataCenter));
+        this.props.dispatch(clearOverride(dataCenter));
     }
 
     render() {

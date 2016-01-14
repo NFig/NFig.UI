@@ -1,19 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-
 import Keys from '../keys';
-import { actions } from '../store';
+
+import {
+    setFocusedIndex,
+    setEditing,
+    setSearchText
+} from '../store-actions';
 
 class SettingsSearchBox extends Component {
 
     static propTypes = {
         searchText: PropTypes.string,
-        dispatch: PropTypes.func.isRequired
+        dispatch: PropTypes.func.isRequired,
+        visible: PropTypes.array.isRequired
     };
 
     focus() { 
         this.textbox.selectionStart = this.textbox.value.length;
+        // console.trace();
         this.textbox.focus(); 
         window.scrollTo(0, 0);
     }
@@ -27,8 +33,25 @@ class SettingsSearchBox extends Component {
             this.focus();
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.focused !== this.props.focused) { 
+            return true; 
+        }
+
+        if (nextProps.searchText !== this.props.searchText) { 
+            return true; 
+        }
+
+        return false;
+    }
+
     componentDidUpdate() {
-        const { focused } = this.props;
+
+        const { focused, copySettings, editing } = this.props;
+
+        if (copySettings.show || editing)
+            return; // bail if the copy settings dialog is showing
+
         if (focused === -1) {
             this.focus();
             return;
@@ -43,23 +66,22 @@ class SettingsSearchBox extends Component {
 
     handleFocus(e) {
         if (this.props.focused !== -1)
-            this.props.dispatch(actions.setFocused(-1));
+            this.props.dispatch(setFocusedIndex(-1));
     }
 
     handleKeyDown(e) {
-        const { searchText, dispatch, settings } = this.props;
+        const { searchText, dispatch, visible } = this.props;
         switch (e.which) {
           case Keys.ENTER:
-            if (settings.length === 1) {
+            if (visible.length === 1) {
                 e.stopPropagation();
-                dispatch(actions.setEditing(settings[0].setting));
-                dispatch(actions.setFocused(0));
+                dispatch(setEditing(visible[0].setting));
+                dispatch(setFocusedIndex(0));
             }
             break;
           case Keys.ESCAPE:
             if (searchText.replace(/^\s+|\s+$/g, '') !== '') {
                 e.stopPropagation();
-                this.textbox.value = '';
                 this.setSearchText('');
             }
             break;
@@ -67,7 +89,7 @@ class SettingsSearchBox extends Component {
     }
 
     setSearchText(text) {
-        this.props.dispatch(actions.setSearchText(text))
+        this.props.dispatch(setSearchText(text))
     }
 
     render() {
@@ -89,9 +111,11 @@ class SettingsSearchBox extends Component {
 
 
 export default connect(
-    ({search, focused}) => ({
+    ({search, focused, copySettings, editing}) => ({
         searchText: search,
-        focused
+        focused,
+        copySettings,
+        editing
     }),
     undefined,
     undefined, 
