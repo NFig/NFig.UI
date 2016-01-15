@@ -3,6 +3,7 @@ import React from 'react';
 import { render } from '../../marked-renderer';
 import imgTrue from '../../assets/setting-true.png';
 import imgFalse from '../../assets/setting-false.png';
+import intersperse from '../../intersperse';
 
 
 const ValueFor = setting => {
