@@ -16,7 +16,7 @@ export default class CopySettingsModal extends Component {
         currentRedisConnection : PropTypes.string.isRequired,
 
         redisHost              : PropTypes.string.isRequired,
-        copyFrom               : PropTypes.bool.isRequired,
+        copyFrom               : PropTypes.bool,
 
         onRequestClose         : PropTypes.func.isRequired,
         onHostChange           : PropTypes.func.isRequired,
@@ -52,12 +52,15 @@ export default class CopySettingsModal extends Component {
     }
 
     canConfirm() {
-        const { redisHost, currentRedisConnection } = this.props;
+        const { redisHost, copyFrom, currentRedisConnection } = this.props;
 
         if (redisHost.trim() === '')
             return false;
 
         if (redisHost.trim() === currentRedisConnection.trim())
+            return false;
+
+        if (copyFrom === null)
             return false;
 
         if (redisHost.indexOf(':') !== -1) {

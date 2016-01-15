@@ -149,12 +149,12 @@ export const copySettings = (function () {
         }
     }
 
-    function copyFrom(state = false, action) {
+    function copyFrom(state = null, action) {
         switch (action.type) {
           case SHOW_COPY_MODAL:
-            return false;
+            return null;
           case SET_COPY_DIRECTION:
-            return action.copyFrom;
+            return !!action.copyFrom;
           default:
             return state;
         }
