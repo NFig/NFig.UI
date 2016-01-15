@@ -383,6 +383,26 @@
             padding: 15px;
             border-top: 1px solid #e5e5e5;
             display: flex;
+
+            &.diag {
+                display: flex;
+                justify-content: center;
+
+                span, img {
+                    margin: 0 10px;
+                }
+                span {
+                    width: 40%;
+                    word-break: break-all;
+                    word-wrap: break-work;
+                    display: inline-block;
+                    text-align: center;
+                    font-weight: bold;
+                    color: #a94442;
+                    font-size: 1.3em;
+                    font-family: monospace;
+                }
+            }
         }
 
         .values, .newoverride {
