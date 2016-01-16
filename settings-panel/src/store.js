@@ -19,7 +19,7 @@ import map from 'lodash/map';
 
 
 import * as reducers from './store-reducers';
-import * as actions from './store-actions';
+import { handlePopState } from './store-actions';
 
 
 const middlewares = [];
