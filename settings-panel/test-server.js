@@ -7,7 +7,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackConfig from './webpack.config.babel';
 
 // Set up for -d switch
-webpackConfig.devtool = 'cheap-module-eval-source-map';
+webpackConfig.devtool = 'source-map';
 webpackConfig.debug = true;
 webpackConfig.output.pathinfo = true;
 
