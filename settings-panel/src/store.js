@@ -18,8 +18,9 @@ import groupBy from 'lodash/groupBy';
 import map from 'lodash/map';
 
 
-import * as reducers from './store-reducers';
-import { handlePopState } from './store-actions';
+import * as reducers from './reducers';
+import { handlePopState } from './actions';
+
 
 
 const middlewares = [];
@@ -34,8 +35,8 @@ const createStoreWithMiddleware = applyMiddleware.apply(
 
 const finalReducer = combineReducers(reducers);
 
-export function createStore(urls, state) {
-    const store = createStoreWithMiddleware(finalReducer, {...state, urls})
+export function createStore(urls) {
+    const store = createStoreWithMiddleware(finalReducer, {urls})
     window.addEventListener('popstate', () => handlePopState(store.dispatch, store.getState));
     return store;
 };

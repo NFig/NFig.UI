@@ -13,7 +13,11 @@ import { connect, Provider } from 'react-redux';
  * Redux store
  */
 import { createStore } from './store';
-import { fetchSettings, handlePopState } from './store-actions';
+import { 
+    fetchSettings, 
+    handlePopState,  
+    setCurrentRedisConnection
+} from './actions';
 
 /**
  * Other libs
@@ -31,14 +35,10 @@ module.exports = {
 
     const store = createStore(
       pick(props, 'settingsUrl', 'setUrl', 'clearUrl', 'copySettingsUrl'), 
-      {
-        settings: props.settings || [],
-        dataCenters: props.availableDataCenters || props.dataCenters || [],
-        copySettings: {
-            currentRedisConnection: props.currentRedisConnection
-        }
-      }
     );
+
+    if (props.currentRedisConnection)
+        store.dispatch(setCurrentRedisConnection(props.currentRedisConnection));
 
     if (!props.settings && props.settingsUrl) 
         store.dispatch(fetchSettings());
@@ -49,6 +49,6 @@ module.exports = {
       <Provider store={store}>
         <SettingsPanel {...pick(props, 'customStyleSheet')} />
       </Provider>
-    , element);
+    , element); 
   }
 };

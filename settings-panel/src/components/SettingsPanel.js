@@ -2,6 +2,7 @@
  * Bring in React and ReactDOM
  */
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 /**
@@ -21,13 +22,64 @@ import {
     setFocusedIndex,
     setEditing,
     showCopyModal
-} from '../store-actions';
+} from '../actions';
+
+
+import { createSelector } from 'reselect';
+import property from 'lodash/property';
+import negate from 'lodash/negate';
 
 /**
- * Some handy-dandy functions
+ * Use reselect to memoize things
  */
 
-class SettingsPanel extends Component {
+const visibleSettingsSelector = createSelector(
+    property('settings'),
+    property('search'),
+    (settings, search) => {
+        const visible = getVisibleSettings(settings, search);
+        const groups = getGroups(visible);
+        return { visible, groups };
+    }
+);
+
+
+
+const mapStateToProps = createSelector(
+    visibleSettingsSelector,
+    property('focused'),
+    property('editing'),
+    ({urls}) => !!urls.copySettingsUrl,
+    (settings, focused, editing, showCopyButton) => {
+        return {
+            ...settings,
+            focused,
+            editing,
+            showCopyButton
+        };
+    }
+);
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        setFocusedIndex,
+        setEditing,
+        showCopyModal
+    }, dispatch);
+}
+
+
+@connect(mapStateToProps, mapDispatchToProps)
+export default class SettingsPanel extends Component {
+
+    static propTypes = {
+        groups         : PropTypes.array.isRequired,
+        visible        : PropTypes.array.isRequired,
+        focused        : PropTypes.number.isRequired,
+        editing        : PropTypes.object,
+        showCopyButton : PropTypes.bool.isRequired
+    };
+
     componentDidMount() {
         const {
             className,
@@ -50,16 +102,17 @@ class SettingsPanel extends Component {
             visible,
             editing,
             focused,
-            dispatch
+            setFocusedIndex,
+            setEditing,
         } = this.props;
 
         switch (which) {
           case Keys.ESCAPE:
             if (editing) {
-                dispatch(setEditing(null));
+                setEditing(null);
             } else {
                 if (focused !== -1)
-                    dispatch(setFocusedIndex(-1));
+                    setFocusedIndex(-1);
                 window.scrollTo(0, 0);
                 this.refs.topbar.focusSearch();
             }
@@ -67,20 +120,20 @@ class SettingsPanel extends Component {
           case Keys.UP_ARROW:
             if (focused >= 0 && !editing) {
                 e.preventDefault();
-                dispatch(setFocusedIndex(focused - 1));
+                setFocusedIndex(focused - 1);
             }
             break;
           case Keys.DOWN_ARROW:
             if (focused < visible.length - 1 && !editing) {
                 e.preventDefault();
-                dispatch(setFocusedIndex(focused + 1));
+                setFocusedIndex(focused + 1);
             }
             break;
           case Keys.ENTER:
             if (!editing && focused >= 0 && focused < visible.length) {
                 e.preventDefault();
                 const setting = visible[focused].setting;
-                dispatch(setEditing(setting));
+                setEditing(setting);
             }
             break;
         }
@@ -142,16 +195,4 @@ class SettingsPanel extends Component {
 
 
 
-export default connect(
-    ({settings, focused, editing, search, urls, copySettings}) => {
-        const visible = getVisibleSettings(settings, search);
-        return {
-            groups: getGroups(visible),
-            visible,
-            focused,
-            editing,
-            showCopyButton: !!urls.copySettingsUrl
-        };
-    }
-)(SettingsPanel);
 

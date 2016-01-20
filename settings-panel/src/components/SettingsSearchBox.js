@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import Keys from '../keys';
 
@@ -7,19 +8,44 @@ import {
     setFocusedIndex,
     setEditing,
     setSearchText
-} from '../store-actions';
+} from '../actions';
 
-class SettingsSearchBox extends Component {
+import autobind from 'autobind-decorator';
+import { createSelector } from 'reselect';
+import property from 'lodash/property';
+
+const mapStateToProps = createSelector(
+    property('search'),
+    property('focused'),
+    property('copySettings'),
+    property('editing'),
+    (searchText, focused, copySettings, editing) => ({
+        searchText, focused, copySettings, editing
+    })
+);
+
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        setFocusedIndex,
+        setEditing,
+        setSearchText
+    }, dispatch);
+}
+
+@connect(mapStateToProps, mapDispatchToProps, undefined, { withRef: true })
+export default class SettingsSearchBox extends Component {
 
     static propTypes = {
-        searchText: PropTypes.string,
-        dispatch: PropTypes.func.isRequired,
-        visible: PropTypes.array.isRequired
+        searchText      : PropTypes.string,
+        visible         : PropTypes.array.isRequired,
+        setFocusedIndex : PropTypes.func.isRequired,
+        setEditing      : PropTypes.func.isRequired,
+        setSearchText   : PropTypes.func.isRequired,
     };
 
     focus() { 
         this.textbox.selectionStart = this.textbox.value.length;
-        // console.trace();
         this.textbox.focus(); 
         window.scrollTo(0, 0);
     }
@@ -64,19 +90,21 @@ class SettingsSearchBox extends Component {
 
     }
 
+    @autobind
     handleFocus(e) {
         if (this.props.focused !== -1)
-            this.props.dispatch(setFocusedIndex(-1));
+            this.props.setFocusedIndex(-1);
     }
 
+    @autobind
     handleKeyDown(e) {
-        const { searchText, dispatch, visible } = this.props;
+        const { searchText, visible, setEditing, setFocusedIndex } = this.props;
         switch (e.which) {
           case Keys.ENTER:
             if (visible.length === 1) {
                 e.stopPropagation();
-                dispatch(setEditing(visible[0].setting));
-                dispatch(setFocusedIndex(0));
+                setEditing(visible[0].setting);
+                setFocusedIndex(0);
             }
             break;
           case Keys.ESCAPE:
@@ -88,8 +116,9 @@ class SettingsSearchBox extends Component {
         }
     }
 
-    setSearchText(text) {
-        this.props.dispatch(setSearchText(text))
+    @autobind
+    setSearchText(e) {
+        this.props.setSearchText(e.target.value);
     }
 
     render() {
@@ -100,26 +129,13 @@ class SettingsSearchBox extends Component {
                 tabIndex="0"
                 value={this.props.searchText}
                 type="text"
-                onKeyDown={e => this.handleKeyDown(e)}
-                onChange={e => this.setSearchText(e.target.value)}
+                onKeyDown={this.handleKeyDown}
+                onChange={this.setSearchText}
                 ref={node => {this.textbox = node;}} 
-                onFocus={e => this.handleFocus(e)}
+                onFocus={this.handleFocus}
             />
         );
     }
 }
 
 
-export default connect(
-    ({search, focused, copySettings, editing}) => ({
-        searchText: search,
-        focused,
-        copySettings,
-        editing
-    }),
-    undefined,
-    undefined, 
-    {
-        withRef: true
-    }
-)(SettingsSearchBox);

@@ -10,7 +10,7 @@ import {
     setCopyDirection,
     clearCopyMessage,
     confirmCopy
-} from '../store-actions';
+} from '../actions';
 import keys from '../keys';
 
 import CopySettingsModal from './CopySettingsModal';

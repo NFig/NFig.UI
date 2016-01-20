@@ -1,7 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Setting } from './Setting';
 
 export default class SettingsGroup extends Component {
+    static propTypes = {
+        group: PropTypes.object.isRequired
+    };
+
+    shouldComponentUpdate(nextProps) {
+        if (nextProps.group !== this.props.group) {
+            return true;
+        }
+
+        return false;
+    }
+
     render() {
         const { group } = this.props;
         return (

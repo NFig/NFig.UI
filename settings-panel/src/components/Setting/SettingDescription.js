@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { render } from '../../marked-renderer';
 
 export default class SettingDescription extends Component {
+    static propTypes = {
+        setting : PropTypes.object.isRequired
+    };
 
     render() {
         const { setting } = this.props;

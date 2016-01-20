@@ -7,9 +7,10 @@ import {
     CANCEL_NEW_OVERRIDE,
     CLEAR_COPY_MESSAGE,
     SET_COPY_DIRECTION,
+    SET_COPY_ERROR,
     SET_COPY_HOST,
     SET_COPY_MESSAGE,
-    SET_COPY_ERROR,
+    SET_CURRENT_REDIS_CONNECTION,
     SET_EDITING,
     SET_ERROR,
     SET_FOCUSED_INDEX,
@@ -21,19 +22,11 @@ import {
     SHOW_OVERRIDE_DETAILS,
     UPDATE_QUERYSTRING,
     UPDATE_SETTING,
-} from './action-types';
+} from '../action-types';
 
 
 
-function act(type, ...argNames) {
-    return function(...args) {
-        const action = { type };
-        argNames.forEach((arg, i) => {
-            action[argNames[i]] = args[i];
-        });
-        return action;
-    }
-}
+import act from './makeAction';
 
 // =================================================================
 // Location changes
@@ -223,12 +216,13 @@ export function clearOverride(dataCenter) {
 // Copy Settings
 // =================================================================
 
-export const showCopyModal    = act(SHOW_COPY_MODAL, 'show');
-export const setCopyDirection = act(SET_COPY_DIRECTION, 'copyFrom');
-export const setCopyError     = act(SET_COPY_MESSAGE, 'error');
-export const setCopyHost      = act(SET_COPY_HOST, 'host');
-export const setCopyMessage   = act(SET_COPY_MESSAGE, 'message');
-export const clearCopyMessage = act(CLEAR_COPY_MESSAGE);
+export const showCopyModal             = act(SHOW_COPY_MODAL, 'show');
+export const setCopyDirection          = act(SET_COPY_DIRECTION, 'copyFrom');
+export const setCopyError              = act(SET_COPY_MESSAGE, 'error');
+export const setCopyHost               = act(SET_COPY_HOST, 'host');
+export const setCopyMessage            = act(SET_COPY_MESSAGE, 'message');
+export const clearCopyMessage          = act(CLEAR_COPY_MESSAGE);
+export const setCurrentRedisConnection = act(SET_CURRENT_REDIS_CONNECTION, 'currentRedisConnection');
 
 export function confirmCopy() {
     return (dispatch, getState) => {

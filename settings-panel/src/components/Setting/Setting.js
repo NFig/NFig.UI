@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import { bindActionCreators } from 'redux';
 
 import SettingValue from './SettingValue';
 import SettingDescription from './SettingDescription';
@@ -9,15 +10,51 @@ import { connect } from 'react-redux';
 import { render } from '../../marked-renderer';
 import { getVisibleSettings } from '../../store';
 
-import { setEditing, setFocusedIndex } from '../../store-actions';
+import { setEditing, setFocusedIndex } from '../../actions';
 
+import { createSelector } from 'reselect';
+import property from 'lodash/pick';
+import identity from 'lodash/identity';
+import autobind from 'autobind-decorator';
+
+
+const mapStateToProps = createSelector(
+    state => state.focused,
+    focused => ({focused})
+);
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        setEditing,
+        setFocusedIndex
+    }, dispatch);
+}
 
 const matches = Element.prototype.matches 
     ? (element, selector) => element.matches(selector)
     : (element, selector) => element.matchesSelector(selector)
     ;
     
-class Setting extends Component {
+@connect(mapStateToProps, mapDispatchToProps)
+export default class Setting extends Component {
+
+    static propTypes = {
+        setting : PropTypes.object.isRequired,
+        focused : PropTypes.number.isRequired,
+        index   : PropTypes.number.isRequired
+    };
+
+    shouldComponentUpdate(nextProps) {
+        if (nextProps.setting !== this.props.setting) {
+            return true;
+        }
+        
+        if (nextProps.focused !== this.props.focused) {
+            return true;
+        }
+
+        return false;
+    }
 
     componentDidUpdate() {
         const { focused, index } = this.props;
@@ -44,15 +81,16 @@ class Setting extends Component {
        }
     }
 
+    @autobind
     handleClick(e) {
         e.stopPropagation();
 
         const { target } = e;
-        const { dispatch, setting, index } = this.props;
+        const { setting, index, setEditing, setFocusedIndex } = this.props;
 
         if (!matches(target, 'span.desc a')) {
-            dispatch(setEditing(setting));
-            dispatch(setFocusedIndex(index));
+            setEditing(setting);
+            setFocusedIndex(index);
         }
     }
 
@@ -68,7 +106,7 @@ class Setting extends Component {
           className += 'focused ';
 
         return (
-            <div className={className + 'setting' } onClick={e => this.handleClick(e)} ref={setting.name}>
+            <div className={className + 'setting' } onClick={this.handleClick} ref={setting.name}>
                 <div className="name">
                     <strong>
                         <a>{setting.name}</a>

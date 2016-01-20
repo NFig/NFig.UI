@@ -5,7 +5,7 @@ import searchIcon from '../assets/search.png';
 import CopySettingsButton from './CopySettingsButton';
 
 
-class SettingsTopBar extends Component {
+export default class SettingsTopBar extends Component {
     static propTypes = {
         className      : PropTypes.string.isRequired,
         showCopyButton : PropTypes.bool,
@@ -30,4 +30,3 @@ class SettingsTopBar extends Component {
     }
 }
 
-export default SettingsTopBar;

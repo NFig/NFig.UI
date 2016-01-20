@@ -18,8 +18,7 @@ style.
         window.settingsPanel = SettingsPanel.init(
         document.getElementById('settings-panel'),
         {
-            settings: !{JSON.stringify(settings)},
-            availableDataCenters: !{JSON.stringify(availableDataCenters)},
+            settingsUrl: '/settings.json',
             clearUrl: '/clear',
             setUrl: '/set',
             customStyleSheet: '/settings.css'
