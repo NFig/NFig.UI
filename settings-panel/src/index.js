@@ -1,54 +1,40 @@
-/**
- * React
- */
 import React from 'react';
-import ReactDOM from 'react-dom';
-
-/**
- * Redux <-> React
- */
-import { connect, Provider } from 'react-redux';
-
-/**
- * Redux store
- */
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 import { createStore } from './store';
-import { 
-    fetchSettings, 
-    handlePopState,  
-    setCurrentRedisConnection
-} from './actions';
+import SettingsPanel from './SettingsPanel';
+import * as actions from './actions';
+import * as thunks from './thunks';
+import values from 'lodash/values';
+import { getQueryString } from './utils';
 
-/**
- * Other libs
- */
-import pick from 'lodash/pick';
-import Keys from './keys';
+export function init(element, props) {
+    const initialState = {
+        urls: {
+            settings : props.settingsUrl,
+            set      : props.setUrl,
+            clear    : props.clearUrl,
+            copy     : props.copySettingsUrl
+        },
+        copySettings: {
+            currentRedisConnection: props.currentRedisConnection
+        }
+    };
 
-/**
- * Components
- */
-import SettingsPanel from './components/SettingsPanel';
+    const store = createStore(initialState);
 
-module.exports = {
-  init(element, props) {
-
-    const store = createStore(
-      pick(props, 'settingsUrl', 'setUrl', 'clearUrl', 'copySettingsUrl'), 
+    const instance = render(
+        <Provider store={store}>
+            <SettingsPanel {...props} />
+        </Provider>,
+        element
     );
 
-    if (props.currentRedisConnection)
-        store.dispatch(setCurrentRedisConnection(props.currentRedisConnection));
+    return { store, instance };
+}
 
-    if (!props.settings && props.settingsUrl) 
-        store.dispatch(fetchSettings());
-    else 
-        store.dispatch(handlePopState);
 
-    return ReactDOM.render(
-      <Provider store={store}>
-        <SettingsPanel {...pick(props, 'customStyleSheet')} />
-      </Provider>
-    , element); 
-  }
-};
+if (process.env.NODE_ENV === 'development' && module.hot) {
+    module.hot.accept();
+}
+

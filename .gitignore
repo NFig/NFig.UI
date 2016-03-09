@@ -163,3 +163,5 @@ node_modules
 NFig.Ui/packages
 
 *.nupkg
+
+settings-panel/dist/

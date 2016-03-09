@@ -5,16 +5,22 @@
     color: #337ab7;
     text-decoration: none;
 
+}
+
+.hoverLink() {
     &:hover {
         color: #23527c;
         text-decoration: underline;
     }
 }
 
-.settings-panel, .settings-panel-modal {
-    a {
-        .link();
-    }
+.settings-panel a {
+    .link();
+}
+
+.settings-panel-modal a {
+    .link();
+    .hoverLink();
 }
 
 .settings-panel-error {
@@ -38,43 +44,48 @@
         box-sizing: border-box;
     }
 
-    > .top-bar {
+    .top-bar {
         margin-bottom: 10px;
         display: flex;
 
-        .search-icon {
-            background-color: #eee;
-            border: 1px solid #ddd;
-            border-right: none;
-            border-bottom-left-radius: 5px;
-            border-top-left-radius: 5px;
-            box-sizing: border-box;
-            color: #888;
-            font-size: 11px;
-            height: 22px;
-            padding: 0;
-            position: relative;
-            text-align: center;
-            top: 0;
-            vertical-align: middle;
-            width: 22px;
-
-            img {
-                margin: 4px 0;
-            }
-        }
-
-        input[type=text] {
+        .search-box {
+            display: flex;
             flex-grow: 1;
-            border-width: 1px;
-            border-style: solid;
-            border-color: #dddddd;
-            padding: 0 5px;
-            height: 22px;
-            box-sizing: border-box;
-            vertical-align: middle;
-            border-bottom-right-radius: 5px;
-            border-top-right-radius: 5px;
+
+            .search-icon {
+                background-color: #eee;
+                border: 1px solid #ddd;
+                border-right: none;
+                border-bottom-left-radius: 5px;
+                border-top-left-radius: 5px;
+                box-sizing: border-box;
+                color: #888;
+                font-size: 11px;
+                height: 22px;
+                padding: 0;
+                position: relative;
+                text-align: center;
+                top: 0;
+                vertical-align: middle;
+                width: 22px;
+
+                img {
+                    margin: 4px 0;
+                }
+            }
+
+            input[type=text] {
+                flex-grow: 1;
+                border-width: 1px;
+                border-style: solid;
+                border-color: #dddddd;
+                padding: 0 5px;
+                height: 22px;
+                box-sizing: border-box;
+                vertical-align: middle;
+                border-bottom-right-radius: 5px;
+                border-top-right-radius: 5px;
+            }
         }
 
         .copy-settings button {
@@ -127,6 +138,15 @@
         border-top: 1px solid @setting-border-color;
         cursor: default;
 
+        &:hover {
+            background-color: rgba(51, 122, 200, 0.05);
+            cursor: pointer;
+
+            div.value {
+                background-color: transparent;
+            }
+        }
+
         &.focused {
             box-shadow: 0 0 5px #56b0eb;
             z-index: 10;
@@ -150,6 +170,10 @@
             }
             .desc {
                 font-size: 11px;
+
+                a:hover {
+                    text-decoration: underline;
+                }
             }
 
             p {
@@ -164,6 +188,7 @@
         }
 
         div.value {
+            font-size: 12px;
             width: 50%;
             background-color: #fafafa;
             display: block;
@@ -171,6 +196,7 @@
             text-align: left;
             padding: 5px 8px;
             position: relative;
+            color: #333;
 
             a.reset {
                 cursor: pointer;
@@ -199,17 +225,6 @@
                 border: none;
                 background-color: transparent;
                 overflow: initial;
-            }
-
-            &.editable {
-
-                font-size: 12px;
-                &:hover {
-                    pre {
-                        text-decoration: underline;
-                        color: #23527c;
-                    }
-                }
             }
         }
     }
@@ -344,7 +359,7 @@
             border: 0;
         }
 
-        > .settings-panel-header {
+        .settings-panel-header {
             min-height: 16.43px;
             padding: 15px;
             border-bottom: 1px solid #e5e5e5;
@@ -356,7 +371,7 @@
             }
         }
 
-        > .settings-panel-body {
+        .settings-panel-body {
             position: relative;
             padding: 15px;
 
@@ -379,7 +394,7 @@
             }
         }
 
-        > .settings-panel-footer {
+        .settings-panel-footer {
             padding: 15px;
             border-top: 1px solid #e5e5e5;
             display: flex;
@@ -446,7 +461,6 @@
 
                     border-color: transparent;
                     background-color: transparent;
-                    -webkit-box-shadow: none;
                     box-shadow: none;
 
                     cursor: pointer;
@@ -735,7 +749,7 @@
 
 .copy-settings-modal {
     .settings-panel-body {
-        p { 
+        p {
             margin: 0 2px 10px;
 
             input[type=text] {
@@ -752,8 +766,7 @@
     .settings-panel-footer {
 
 
-        .dlg-cta {
-            flex-grow: 1;
+        .dlg-cta { flex-grow: 1;
             text-align: right;
         }
     }

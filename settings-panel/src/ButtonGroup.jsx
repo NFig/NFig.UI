@@ -8,11 +8,23 @@ export default class ButtonGroup extends Component {
     };
 
     render() {
-        const {name, selectedValue, onChange, children} = this.props;
+        const {
+            name,
+            selectedValue,
+            onChange,
+            children
+        } = this.props;
 
         const mapped = React.Children.map(children, child => {
-            const {value} = child.props;
-            return React.cloneElement(child, {...child.props, name, active: value === selectedValue, onChange});
+
+            const { value } = child.props;
+
+            return React.cloneElement(child, {
+                ...child.props,
+                name,
+                active: value === selectedValue,
+                onChange
+            });
         })
 
         return (

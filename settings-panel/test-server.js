@@ -3,13 +3,14 @@ import webpack from 'webpack';
 import { urlencoded } from 'body-parser';
 import { readFileSync } from 'fs';
 
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackConfig from './webpack.config.babel';
+import devMiddleware from 'webpack-dev-middleware';
+import hotMiddleware from 'webpack-hot-middleware';
+import wpConfig from './webpack.config.babel';
 
 // Set up for -d switch
-webpackConfig.devtool = 'source-map';
-webpackConfig.debug = true;
-webpackConfig.output.pathinfo = true;
+wpConfig.devtool = 'source-map';
+wpConfig.debug = true;
+wpConfig.output.pathinfo = true;
 
 const debug = require('debug')('test-server');
 
@@ -17,9 +18,14 @@ const app = express();
 
 app.set('views', './views');
 app.set('view engine', 'jade');
+app.locals.pretty = true;
 
-const compiler = webpack(webpackConfig);
-app.use(webpackDevMiddleware(compiler, { publicPath: webpackConfig.output.publicPath }));
+const compiler = webpack(wpConfig);
+app.use(devMiddleware(compiler, {
+    publicPath: wpConfig.output.publicPath
+}));
+
+app.use(hotMiddleware(compiler));
 
 const config = {
   dataCenter: "Local",

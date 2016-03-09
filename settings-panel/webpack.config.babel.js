@@ -1,18 +1,14 @@
 import webpack from 'webpack';
 import LessPluginCleanCSS from 'less-plugin-clean-css';
-
 import path from 'path';
 
-import { readFileSync } from 'fs';
+const env = process.env.NODE_ENV || 'development';
 
-const babelOpts = JSON.parse(readFileSync(`${__dirname}/.babelrc`));
-const args = process.argv.slice(2);
-const defines = {
-    'process.env.NODE_ENV': args.indexOf('-p') !== -1 ? '"production"' : '"development"'
-};
-
-export default {
-    entry: './src',
+const config = {
+    entry: [
+        'webpack-hot-middleware/client',
+        './src'
+    ],
     output: {
         libraryTarget: 'var',
         library: 'SettingsPanel',
@@ -20,29 +16,33 @@ export default {
         filename: 'settings-panel.js',
         publicPath: '/'
     },
-    externals: {
-    },
     plugins: [
-        new webpack.DefinePlugin(defines),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(env)
+        }),
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin()
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
     ],
     module: {
         loaders: [
             { test: /\.less$/, loader: 'style!css!less' },
-            { test: /\.png$/, loader: 'url-loader?mimetype=image/png' },
-            { 
-                test: /\.js$/, 
-                exclude: /node_modules/, 
-                loader: 'babel',
-                query: babelOpts
+            { test: /\.png$/, loader: 'url?mimetype=image/png' },
+            { test: /\.gif/, loader: 'url?mimetype=image/gif' },
+            {
+                test: /\.jsx?$/,
+                include: path.join(__dirname, 'src'),
+                loader: 'babel'
             },
             {
                 test: /node_modules(\/|\\)qs\1.*\.js$/,
-                loader: 'babel',
-                query: babelOpts
+                loader: 'babel'
             }
         ]
+    },
+    resolve: {
+        extensions: ['', '.js', '.jsx']
     },
     lessLoader: {
         lessPlugins: [
@@ -50,3 +50,16 @@ export default {
         ]
     }
 };
+
+if (env === 'production'){
+    config.plugins.push(
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
+    );
+}
+
+export default config;
+
