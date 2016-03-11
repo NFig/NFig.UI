@@ -12,6 +12,8 @@ wpConfig.devtool = 'source-map';
 wpConfig.debug = true;
 wpConfig.output.pathinfo = true;
 
+const env = process.env.NODE_ENV;
+
 const debug = require('debug')('test-server');
 
 const app = express();
@@ -21,11 +23,20 @@ app.set('view engine', 'jade');
 app.locals.pretty = true;
 
 const compiler = webpack(wpConfig);
+
+if (env !== 'production') {
+    wpConfig.entry = ['webpack-hot-middleware/client', wpConfig.entry];
+    wpConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+    wpConfig.plugins.push(new webpack.NoErrorsPlugin());
+}
+
 app.use(devMiddleware(compiler, {
     publicPath: wpConfig.output.publicPath
 }));
 
-app.use(hotMiddleware(compiler));
+if (env !== 'production') {
+    app.use(hotMiddleware(compiler));
+}
 
 const config = {
   dataCenter: "Local",

@@ -5,10 +5,7 @@ import path from 'path';
 const env = process.env.NODE_ENV || 'development';
 
 const config = {
-    entry: [
-        'webpack-hot-middleware/client',
-        './src'
-    ],
+    entry: './src',
     output: {
         libraryTarget: 'var',
         library: 'SettingsPanel',
@@ -22,8 +19,6 @@ const config = {
         }),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
     ],
     module: {
         loaders: [
