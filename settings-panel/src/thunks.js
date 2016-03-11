@@ -35,6 +35,9 @@ export function fetchSettings (dispatch, getState) {
         .then(res => {
             dispatch(actions.settingsReceived(res.body));
             dispatch(loadQueryString);
+        })
+        .catch(e => {
+            console.error(e);
         });
 }
 
