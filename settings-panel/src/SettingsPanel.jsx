@@ -211,7 +211,7 @@ class Groups extends Component {
                         return null;
 
                     return (
-                        <div className="setting-group" ref={name} key={name}>
+                        <div className="setting-group" key={name}>
                             <h4>{name}</h4>
                             {settings.valueSeq().map(([index, setting]) => (
                                 <Setting
