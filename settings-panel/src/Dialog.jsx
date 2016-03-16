@@ -71,6 +71,11 @@ export class Modal extends Component {
 
     onKeyDown = e => {
 
+        if (e.target.tagName.toUpperCase() === 'TEXTAREA') {
+            e.stopPropagation();
+            return;
+        }
+
         switch (e.which) {
             case keys.UP:
             case keys.DOWN:
