@@ -357,8 +357,18 @@ class DataCenterSelector extends Component {
                     name="newOverrideValue">
                     {dataCenters.map(dc => {
                         const disabled = !allowsOverrides.get(dc);
-                        const title = disabled ? 'Overrides not allowed for this data center and tier' : null;
-                        return (<RadioButton key={dc} value={dc} disabled={disabled} title={title}>{dc}</RadioButton>);
+
+                        if (disabled) {
+                            return (
+                                <span
+                                    className="label-button"
+                                    disabled
+                                    title="Overrides not allowed for this data center and tier"
+                                >{dc}</span>
+                            );
+                        }
+
+                        return (<RadioButton key={dc} value={dc}>{dc}</RadioButton>);
                     })}
                 </ButtonGroup>
             </p>
