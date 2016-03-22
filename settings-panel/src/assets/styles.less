@@ -374,6 +374,39 @@
         .settings-panel-body {
             position: relative;
             padding: 15px;
+            border-bottom: 1px solid #e5e5e5;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &.tier-banner {
+                padding: 10px;
+                text-align: center;
+                font-size: 110%;
+
+                &.tier-local {
+                    color: #3c763d;
+                    background-color: #dff0d8;
+                    border-color: #d6e9c6;
+                }
+
+                &.tier-development,
+                &.tier-dev,
+                &.tier-live {
+                    color: #31708f;
+                    background-color: #d9edf7;
+                    border-color: #bce8f1;
+                }
+
+                &.tier-production,
+                &.tier-prod,
+                &.tier-live {
+                    color: #a94442;
+                    background-color: #f2dede;
+                    border-color: #ebccd1;
+                }
+            }
 
             .setting-value {
                 display: block;
@@ -396,7 +429,6 @@
 
         .settings-panel-footer {
             padding: 15px;
-            border-top: 1px solid #e5e5e5;
             display: flex;
 
             &.diag {
@@ -621,7 +653,6 @@
 
         .show-details {
             font-size: 80%;
-            border-top: 1px solid #eee;
 
             a.toggle {
                 font-size: 12px;

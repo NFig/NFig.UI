@@ -32,15 +32,18 @@ function shouldShowDetails(setting) {
     return false;
 }
 
-@connect()
+function mapState(state) {
+    return {
+        currentTier: state.currentTier
+    };
+}
+
+@connect(mapState)
 export default class OverrideEditor extends Component {
     static propTypes = {
         setting     : PropTypes.instanceOf(Map),
-        dataCenters : PropTypes.instanceOf(List)
-    };
-
-    static contextTypes = {
-        className: PropTypes.string
+        dataCenters : PropTypes.instanceOf(List),
+        currentTier : PropTypes.string
     };
 
     onEditActive = () => {
@@ -62,8 +65,7 @@ export default class OverrideEditor extends Component {
             thunks.clearOverride(
                 this.props.setting.get('name'),
                 dataCenter,
-                () => {
-                }
+                () => {}
             )
         );
     };
@@ -83,7 +85,7 @@ export default class OverrideEditor extends Component {
 
     render() {
 
-        const { setting, dataCenters } = this.props;
+        const { setting, dataCenters, currentTier } = this.props;
         const { className } = this.context;
 
         const activeOverride = setting.get('activeOverride');
@@ -106,6 +108,12 @@ export default class OverrideEditor extends Component {
                     }} />
 
                 </div>
+
+                {currentTier ?
+                    <div className={`${className}-body tier-banner tier-${currentTier.toLowerCase()} alert-success`}>
+                        <strong>{currentTier}</strong>
+                    </div>
+                : null}
 
                 <div className={`${className}-body`}>
                     <div className="values">

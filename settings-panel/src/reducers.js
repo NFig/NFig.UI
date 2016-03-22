@@ -25,11 +25,15 @@ export const settings = handleActions({
 
 }, Immutable.List());
 
+
 export const dataCenters = handleActions({
-
     [types.SETTINGS_RECEIVED] : (state, {payload}) => Immutable.fromJS(payload.availableDataCenters)
-
 }, Immutable.List());
+
+
+export const currentTier = handleActions({
+    [types.SETTINGS_RECEIVED] : (state, {payload}) => payload.currentTier
+}, null);
 
 
 /**

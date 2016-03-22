@@ -86,7 +86,7 @@ export default class SettingsPanel extends Component {
 
     getChildContext() {
         return {
-            className: this.getClassName()
+            className   : this.getClassName(),
         };
     }
 
