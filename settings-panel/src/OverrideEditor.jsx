@@ -46,6 +46,10 @@ export default class OverrideEditor extends Component {
         currentTier : PropTypes.string
     };
 
+    static contextTypes = {
+        className : PropTypes.string
+    };
+
     onEditActive = () => {
         const { setting } = this.props;
         const active = setting.get('activeOverride');
@@ -110,7 +114,7 @@ export default class OverrideEditor extends Component {
                 </div>
 
                 {currentTier ?
-                    <div className={`${className}-body tier-banner tier-${currentTier.toLowerCase()} alert-success`}>
+                    <div className={`${className}-body tier-banner tier-${currentTier.toLowerCase()}`}>
                         <strong>{currentTier}</strong>
                     </div>
                 : null}
