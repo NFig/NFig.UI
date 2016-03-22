@@ -19,6 +19,7 @@ namespace NFig.UI
 
         public List<Setting> Settings { get; private set; }
         public IList<TDataCenter> AvailableDataCenters { get; private set; }
+        public TTier CurrentTier { get; private set; }
 
 
         [SuppressMessage("ReSharper", "UnusedMember.Local", Justification ="Used only for Jil serialization ")]
@@ -36,6 +37,7 @@ namespace NFig.UI
                             .ToList();
 
             AvailableDataCenters = availableDataCenters;
+            CurrentTier = tier;
         }
 
 
