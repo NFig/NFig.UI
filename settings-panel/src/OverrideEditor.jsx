@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Portal from 'react-portal';
-import { markdown } from './utils';
+import { markdown, trim } from './utils';
 import * as selectors from './selectors';
 import * as thunks from './thunks';
 import * as actions from './actions';
@@ -523,7 +523,7 @@ class ValueTable extends Component {
                         <tr key={`${v.get('tier')}|${v.get('dataCenter')}`}>
                             <td>{v.get('tier')}</td>
                             <td>{v.get('dataCenter')}</td>
-                            <td className="value">{v.get('value').trim()}</td>
+                            <td className="value">{trim(v.get('value'))}</td>
                             {onClearOverride ?
                             <td>
                                 <button type="button"

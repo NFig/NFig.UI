@@ -178,3 +178,15 @@ export function getGroupName(s) {
     return s.replace(/^([^\.]+)\..+$/, '$1');
 }
 
+/**
+ * Trims a string if it's passed, otherwise returns
+ */
+export function trim(s) {
+    if (typeof s === 'undefined' || s === null)
+        return '';
+
+    if (typeof s === 'string')
+        return s.trim();
+
+    return s.toString().trim();
+}
