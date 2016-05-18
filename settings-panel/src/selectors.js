@@ -5,11 +5,26 @@ import { getGroupName, contains } from './utils';
  * determines if a setting matches
  * the given search text
  */
-function matchesSearch (setting, search) {
-    return contains(setting.get('name'), search) ||
-        contains(setting.get('description'), search);
+function matchesSearch (setting, search, _hasOverride) {
+
+    // has:override is special
+    let matched = false;
+
+    // Check if text matches
+    matched = contains(setting.get('name'), search)
+        || contains(setting.get('description'), search);
+
+    if (_hasOverride)
+        matched = matched && hasOverride(setting);
+
+    return matched;
 }
 
+export function hasOverride(setting) {
+    const activeOverride = setting.get('activeOverride');
+    const allOverrides = setting.get('allOverrides');
+    return activeOverride || allOverrides.size > 0;
+}
 
 /**
  * Raw selectors
@@ -42,10 +57,22 @@ export const sortedSettingsSelector = createSelector(
 /**
  * Apply the search text to the sorted settings
  */
+
+const overrideKeyword = /\bhas:override\b/i;
+
 export const filteredSettingsSelector = createSelector(
     sortedSettingsSelector,
     searchSelector,
-    (settings, search) => settings.filter(s => matchesSearch(s, search)).entrySeq()
+    (settings, search) => {
+        let overrides;
+
+        if (overrideKeyword.test(search)) {
+            overrides = true;
+            search = search.replace(overrideKeyword, '').trim();
+        }
+
+        return settings.filter(s => matchesSearch(s, search, overrides)).entrySeq();
+    }
 );
 
 /**

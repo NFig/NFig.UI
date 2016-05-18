@@ -20,6 +20,8 @@ import {
     dataCentersSelector,
     editingSelector,
     copySettingsSelector,
+
+    hasOverride,
 } from './selectors';
 
 import * as actions from './actions';
@@ -229,11 +231,6 @@ class Groups extends Component {
 }
 
 
-function hasOverride(setting) {
-    const activeOverride = setting.get('activeOverride');
-    const allOverrides = setting.get('allOverrides');
-    return activeOverride || allOverrides.size > 0;
-}
 
 /**
  * Child components don't need the @immutableRender
