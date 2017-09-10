@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>/Users/bryan/code/NFig.UI</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://unpkg.com/react@15.6.1/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.6.1/dist/react-dom.js"></script>
+  </head>
+
+  <body>
+    <div style="max-width: 900px; margin: auto;">
+      <div id="app"></div>
+    </div>
+    <script>
+      var instance = NFigUI.mount(
+        'app', {
+          settingsJsonUrl: 'http://localhost:3000/settings.json',
+          setOverrideUrl: 'http://localhost:3000/set',
+          clearOverrideUrl: 'http://localhost:3000/clear',
+          tierColors: {
+            Prod: 'red',
+            Dev: 'steelblue',
+            Local: 'forestgreen'
+          }
+        });
+    </script>
+  </body>
+
+</html>

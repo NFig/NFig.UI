@@ -165,3 +165,4 @@ NFig.Ui/packages
 *.nupkg
 
 settings-panel/dist/
+.vs/ 

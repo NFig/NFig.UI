@@ -1,0 +1,26 @@
+<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="$(ProjectDir)\bin\$(Configuration)\NFig.dll" #>
+<#@ assembly name="$(ProjectDir)\bin\$(Configuration)\NFig.UI.dll" #>
+<#@ output extension=".ts" #>
+<#
+
+var types = new Dictionary<Type, string> {
+  [typeof(NFig.UI.SettingsJsonModel<,>)] = "ISettingsModel",
+  [typeof(NFig.UI.SettingsJsonModel<,>.Setting)] = "ISetting",
+  [typeof(NFig.UI.SettingsJsonModel<,>.Setting.SettingEnumName)] = "IEnumName",
+  [typeof(NFig.SettingValue<,>)] = "ISettingValue",
+};
+
+#>
+declare module NFig {
+<#
+foreach (var pair in types) {
+#>
+
+<#
+  RenderType(pair.Key, pair.Value, types);
+}
+#>
+
+}
+<#@ include file="$(ProjectDir)\ts-tools.t4" #>

@@ -1,0 +1,226 @@
+<#@ assembly name="System.Runtime.Serialization" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Runtime.Serialization" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#+
+    void RenderType(Type type, string name, Dictionary<Type, string> definedTypes, bool camelCase = true) {
+        if (!type.IsEnum)
+            RenderInterfaceForType(type, name, definedTypes, camelCase);
+    }
+
+
+    void RenderInterfaceForType(Type type, string name, Dictionary<Type, string> definedTypes, bool camelCase = true) {
+#>
+interface <#= NormalizedName(type, name) #> {
+<#+ foreach (var prop in Properties(type)) {
+#>    <#= MemberName(prop, camelCase) #>: <#= MemberType(prop.PropertyType, definedTypes) #>;
+<#+ } #>}
+<#+
+    }
+
+
+    void RenderEnum(Type type, string name = null) {
+#>enum <#= (name != null ? name : type.Name) #> {
+<#+
+    var values = Enum.GetValues(type);
+    foreach (var value in values) {
+#>    <#= Enum.GetName(type, value) #> = <#= Convert.ChangeType(value, Enum.GetUnderlyingType(type)) #>,
+<#+
+    }
+#>}
+<#+
+    }
+
+    void RenderEnums(string module, params Type[] types) {
+#>declare module <#= module #> {
+<#+ foreach (var type in types) { #>
+const <#+ RenderEnum(type); #><#+ } #>
+}
+<#+
+    }
+
+
+    IEnumerable<PropertyInfo> Properties(Type type)
+    {
+        return type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                   .Where(prop => !Attribute.IsDefined(prop, typeof(IgnoreDataMemberAttribute)));
+    }
+
+    string MemberName(PropertyInfo property, bool camelCase)
+    {
+        var propType = property.PropertyType;
+
+        var optionalMark = !propType.IsValueType ? "?" : "";
+
+        var stringTypes = new [] { typeof(DateTime), typeof(DateTimeOffset), typeof(TimeSpan) };
+
+        Type baseType;
+        if (
+            stringTypes.Contains(propType) ||
+            IsNullable(propType, out baseType)
+        )
+            optionalMark = "?";
+
+        string name;
+
+        var dataMemberAttr = property.GetCustomAttribute<DataMemberAttribute>();
+        if (dataMemberAttr != null)
+            name = dataMemberAttr.Name;
+        else
+            name = property.Name;
+
+        if (string.IsNullOrEmpty(name))
+            throw new Exception("Invalid name: " + name);
+
+        if (camelCase && name.Length > 1 && !char.IsLower(name[0]))
+            name = char.ToLower(name[0]) + name.Substring(1);
+
+        if (name[0] == '@')
+            name = "'" + name + "'";
+
+        return name + optionalMark;
+    }
+
+    string MemberType(Type propType, Dictionary<Type, string> defined)
+    {
+        if (propType.IsEnum)
+            return propType.Name;
+
+        if (propType == typeof(string))
+            return "string";
+
+        if (IsNumericType(propType))
+            return "number";
+
+        Type keyType;
+        Type valueType;
+        if (IsDictType(propType, out keyType, out valueType))
+            return $"{{ [k: {IndexableType(keyType)}]: {MemberType(valueType, defined)} }}";
+
+        Type elementType;
+        if (IsCollectionType(propType, out elementType))
+            return MemberType(elementType, defined) + "[]";
+
+        if (propType.IsGenericParameter)
+            return propType.Name;
+
+        if (propType.IsConstructedGenericType)
+            propType = propType.GetGenericTypeDefinition();
+
+        if (defined.ContainsKey(propType))
+            return NormalizedName(propType, defined[propType]);
+
+        Type baseType;
+        if (IsNullable(propType, out baseType))
+            return MemberType(baseType, defined);
+
+        if (propType == typeof(bool))
+            return "boolean";
+
+        var stringTypes = new [] { typeof(DateTime), typeof(DateTimeOffset), typeof(TimeSpan) };
+        if (stringTypes.Contains(propType))
+            return "string";
+
+        return "any";
+    }
+
+    string NormalizedName(Type type, string name = null)
+    {
+        var typeName = name ?? Regex.Replace(type.Name, @"`\d+$", "");
+
+        if (!type.IsGenericTypeDefinition)
+            return typeName;
+
+        return $"{typeName}<{string.Join(", ", type.GetGenericArguments().Select(a => a.Name))}>";
+    }
+
+    string IndexableType(Type type) {
+        if (type.IsEnum || type.IsPrimitive)
+            return "number";
+
+        return "string";
+    }
+
+    bool IsNullable(Type type, out Type baseType)
+    {
+        baseType = null;
+
+        if (!type.IsGenericType)
+            return false;
+
+        var def = type.GetGenericTypeDefinition();
+        if (def != typeof(Nullable<>))
+            return false;
+
+        baseType = type.GetGenericArguments()[0];
+        return true;
+    }
+
+    bool IsDictType(Type type, out Type keyType, out Type valueType)
+    {
+        foreach (var i in new[]{type}.Concat(type.GetInterfaces()))
+        {
+            if (
+                i.IsGenericType && (
+                    i.GetGenericTypeDefinition() == typeof(IDictionary<,>) ||
+                    i.GetGenericTypeDefinition() == typeof(IReadOnlyDictionary<,>)
+                )
+            )
+            {
+                var types = i.GetGenericArguments();
+                keyType = types[0];
+                valueType = types[1];
+                return true;
+            }
+        }
+
+        keyType = null;
+        valueType = null;
+        return false;
+    }
+
+    bool IsCollectionType(Type type, out Type elementType)
+    {
+        if (type.IsArray)
+        {
+            elementType = type.GetElementType();
+            return true;
+        }
+
+        foreach (var i in type.GetInterfaces())
+        {
+            if (i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+            {
+                elementType = i.GetGenericArguments()[0];
+                return true;
+            }
+        }
+
+        elementType = null;
+        return false;
+    }
+
+    static bool IsNumericType(Type type)
+    {
+        switch (Type.GetTypeCode(type))
+        {
+            case TypeCode.Byte:
+            case TypeCode.SByte:
+            case TypeCode.UInt16:
+            case TypeCode.UInt32:
+            case TypeCode.UInt64:
+            case TypeCode.Int16:
+            case TypeCode.Int32:
+            case TypeCode.Int64:
+            case TypeCode.Decimal:
+            case TypeCode.Double:
+            case TypeCode.Single:
+                return true;
+            default:
+                return false;
+        }
+    }
+#>
