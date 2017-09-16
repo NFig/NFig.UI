@@ -1,6 +1,7 @@
 import node from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
+import replace from 'rollup-plugin-replace';
 import minify from 'rollup-plugin-babel-minify';
 
 const input = 'dist/index.js';
@@ -24,10 +25,13 @@ const plugins = [
       'mobx-utils': ['asyncAction'],
     },
   }),
+
   babel({
-    plugins: ['transform-inline-environment-variables', 'emotion'],
+    plugins: ['emotion'],
   }),
 ];
+
+const replaceEnv = env => replace({ 'process.env.NODE_ENV': `'${env}'` });
 
 export default [
   {
@@ -39,7 +43,7 @@ export default [
       format,
       globals,
     },
-    plugins,
+    plugins: [replaceEnv('development'), ...plugins],
   },
   {
     input,
@@ -50,6 +54,10 @@ export default [
       format,
       globals,
     },
-    plugins: [...plugins, minify({ comments: false })],
+    plugins: [
+      replaceEnv('production'),
+      ...plugins,
+      minify({ comments: false }),
+    ],
   },
 ];

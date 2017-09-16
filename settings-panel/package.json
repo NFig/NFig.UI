@@ -16,7 +16,6 @@
     "babel-loader": "^7.1.2",
     "babel-minify-webpack-plugin": "^0.2.0",
     "babel-plugin-emotion": "^7.2.2",
-    "babel-plugin-transform-inline-environment-variables": "^0.2.0",
     "color": "^2.0.0",
     "concurrently": "^3.5.0",
     "css-loader": "^0.28.7",
