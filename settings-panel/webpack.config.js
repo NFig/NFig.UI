@@ -6,6 +6,8 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const BabelMinifyPlugin = require('babel-minify-webpack-plugin');
 
+const isDevServer = process.argv.some(v => v.includes('webpack-dev-server'));
+
 module.exports = env => {
   const plugins =
     env === 'prod'
@@ -19,8 +21,12 @@ module.exports = env => {
   return {
     entry: './src',
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path:
+        env === isDevServer
+          ? path.resolve(__dirname)
+          : path.resolve(__dirname, 'dist'),
       filename: env === 'prod' ? 'settings-panel.min.js' : 'settings-panel.js',
+      libraryTarget: 'var',
       library: 'NFigUI',
     },
     devServer: {
@@ -41,18 +47,29 @@ module.exports = env => {
       react: 'React',
       'react-dom': 'ReactDOM',
     },
-    plugins: [
-      // new webpack.optimize.ModuleConcatenationPlugin(),
-      new webpack.NamedModulesPlugin(),
-      new HtmlWebpackPlugin({
-        minify: false,
-        template: 'src/index.html',
-        inject: 'head',
-      }),
+    plugins: (env === 'prod'
+      ? [new webpack.optimize.ModuleConcatenationPlugin()]
+      : [
+          new webpack.NamedModulesPlugin(),
+          isDevServer
+            ? new HtmlWebpackPlugin({
+                minify: false,
+                template: 'src/index.html',
+                inject: 'head',
+              })
+            : null,
+        ])
+      .concat([
+        new webpack.DefinePlugin({
+          'process.env.NODE_ENV': JSON.stringify(
+            process.env.NODE_ENV || 'development',
+          ),
+        }),
 
-      // new BundleAnalyzerPlugin(),
-      // new DashboardPlugin(),
-      ...plugins,
-    ],
+        // new BundleAnalyzerPlugin(),
+        // new DashboardPlugin(),
+        ...plugins,
+      ])
+      .filter(p => !!p),
   };
 };
