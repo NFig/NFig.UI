@@ -15,6 +15,7 @@ import TierBanner from './TierBanner';
 import ValueDisplay from './ValueDisplay';
 import ValueEditor from './ValueEditor';
 import ValuesList from './ValuesList';
+import ErrorMessage from '../common/ErrorMessage';
 
 import { UploadIcon, CloseIcon } from './Icons';
 import { Attributes } from '../common/Attributes';
@@ -158,6 +159,10 @@ export default class OverrideEditor extends React.Component<
     }));
   };
 
+  clearError = () => {
+    this.props.store.clearError();
+  };
+
   render() {
     const { store, setting } = this.props;
     const { selectedDataCenter, newOverrideValue, showDetails } = this.state;
@@ -245,7 +250,22 @@ export default class OverrideEditor extends React.Component<
                 </Section>,
               ]
             ) : null}
-
+            {!!store.error ? (
+              <Section>
+                <ErrorMessage>
+                  <div
+                    className={css`
+                      float: right;
+                      cursor: pointer;
+                    `}
+                    onClick={this.clearError}
+                  >
+                    <CloseIcon />
+                  </div>
+                  {store.error}
+                </ErrorMessage>
+              </Section>
+            ) : null}
             <DetailsSection>
               <header
                 className={css`

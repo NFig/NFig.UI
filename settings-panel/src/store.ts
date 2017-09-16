@@ -17,8 +17,16 @@ import { ISettingsModel, ISetting, INewOverride } from './interfaces';
 
 useStrict(true);
 
-const fetchJson = (url: string, init?: RequestInit) =>
-  fetch(url, init).then(r => r.json());
+async function fetchJson(url: string, init?: RequestInit) {
+  const response = await fetch(url, init);
+  if (response.ok) {
+    return await response.json();
+  } else {
+    throw new Error(
+      `Request returned ${response.status} ${response.statusText}`,
+    );
+  }
+}
 
 const fetchWithMinimumDelay = (
   url: string,
@@ -134,13 +142,23 @@ export class Store {
       value: newOverride.newOverrideValue,
     };
 
-    const updatedSetting: ISetting = await postWithMinimumDelay(
-      this._setUrl,
-      500,
-      reqBody,
-    );
+    try {
+      const updatedSetting: ISetting = await postWithMinimumDelay(
+        this._setUrl,
+        500,
+        reqBody,
+      );
 
-    this.updateSetting(updatedSetting);
+      this.updateSetting(updatedSetting);
+    } catch (e) {
+      runInAction(() => {
+        this.error = e.toString();
+      });
+    } finally {
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
   }
 
   @action
@@ -151,13 +169,23 @@ export class Store {
       dataCenter,
     };
 
-    const updatedSetting: ISetting = await postWithMinimumDelay(
-      this._clearUrl,
-      500,
-      reqBody,
-    );
+    try {
+      const updatedSetting: ISetting = await postWithMinimumDelay(
+        this._clearUrl,
+        500,
+        reqBody,
+      );
 
-    this.updateSetting(updatedSetting);
+      this.updateSetting(updatedSetting);
+    } catch (e) {
+      runInAction(() => {
+        this.error = e.toString();
+      });
+    } finally {
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
   }
 
   @action
@@ -168,7 +196,7 @@ export class Store {
     );
 
     this._model.settings[index] = observable(updatedSetting);
-    this.loading = false;
+    this.error = null;
   }
 
   @observable private _model: ISettingsModel;
@@ -246,6 +274,11 @@ export class Store {
     if (!this._editing) {
       this._selected = -1;
     }
+  }
+
+  @action
+  clearError() {
+    this.error = null;
   }
 
   isVisible(setting: ISetting): boolean {

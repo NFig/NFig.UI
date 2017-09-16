@@ -30,7 +30,7 @@ module.exports = env => {
       library: 'NFigUI',
     },
     devServer: {
-      https: true,
+      // https: true,
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
