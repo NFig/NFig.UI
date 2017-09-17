@@ -154,6 +154,7 @@ export default class ToggleSwitch extends React.Component<
             toggleSize={size}
             borderRadiusScale={borderRadiusScale}
             widthScale={widthScale}
+            title={checked ? 'True' : 'False'}
           />
           <span
             className={css`
