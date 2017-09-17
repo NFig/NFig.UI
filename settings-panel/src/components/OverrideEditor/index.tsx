@@ -324,7 +324,7 @@ const Dialog: React.StatelessComponent<DialogProps> = styled.div`
   left: 0;
   right: 0;
   top: 0;
-  z-index: 1000;
+  z-index: 99999;
   cursor: ${p => (p.loading ? 'wait' : 'default')};
   overflow: auto;
 `;
