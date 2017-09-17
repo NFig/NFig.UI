@@ -290,7 +290,7 @@ const ListItemContainer: React.StatelessComponent<
   box-shadow: ${p =>
     p.selected ? '0px 0px 2px 1px hsla(194, 60%, 60%, 1)' : 'none'};
   position: ${p => (p.selected ? 'relative' : 'static')};
-  z-index: ${p => (p.selected ? 1 : 0)};
+  z-index: ${p => (p.selected ? 50 : 0)};
 
   > :first-child {
     background-color: ${p =>

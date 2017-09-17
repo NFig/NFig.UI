@@ -125,6 +125,12 @@ export class Store {
     try {
       const results: ISettingsModel = yield fetchWithMinimumDelay(url, 1000);
       this._model = observable.object(results);
+
+      // If we're currently editing (loaded from has)
+      // then let's rock
+      if (!!this._editing) {
+        this._selected = this.settings.findIndex(s => s.name === this._editing);
+      }
     } catch (e) {
       this.error = e.toString();
     } finally {
@@ -250,6 +256,10 @@ export class Store {
   @action
   edit(setting: ISetting | null) {
     this._editing = setting ? setting.name : null;
+    this.select(setting);
+  }
+
+  private select(setting: ISetting | null) {
     if (setting !== null) {
       this._selected = this._model.settings.indexOf(setting);
     }
