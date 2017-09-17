@@ -11,11 +11,6 @@ import OverrideEditor from './components/OverrideEditor';
 
 import { SettingsPanelConfig } from './interfaces';
 
-let DevTools = null;
-if (process.env.NODE_ENV !== 'production') {
-  DevTools = require('mobx-react-devtools').default;
-}
-
 const Wrapper = styled.div`
   font-family: sans-serif;
   font-size: 14px;
@@ -74,11 +69,19 @@ class SettingsPanel extends React.Component<SettingsPanelConfig> {
             <OverrideEditor setting={this.store.editing} />
           )}
 
-          {DevTools && <DevTools />}
+          {process.env.NODE_ENV !== 'production' && <DevTools />}
         </Wrapper>
       </Provider>
     );
   }
+}
+
+let DevTools;
+if (
+  process.env.NODE_ENV !== 'production' &&
+  !!localStorage.getItem('nfig-devtools')
+) {
+  DevTools = require('mobx-react-devtools');
 }
 
 function mount(target: string, props: SettingsPanelConfig) {

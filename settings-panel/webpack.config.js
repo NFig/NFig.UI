@@ -11,11 +11,7 @@ const isDevServer = process.argv.some(v => v.includes('webpack-dev-server'));
 module.exports = env => {
   const plugins =
     env === 'prod'
-      ? [
-          new BabelMinifyPlugin(undefined, {
-            comments: false,
-          }),
-        ]
+      ? [new BabelMinifyPlugin(undefined, { comments: false })]
       : [];
 
   return {
