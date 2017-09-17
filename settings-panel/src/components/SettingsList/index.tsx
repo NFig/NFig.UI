@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expr, untracked } from 'mobx';
 import { inject, observer } from 'mobx-react';
-import { ISetting, ISettingValue } from '../../interfaces';
+import { ISetting, ISettingValue, Dictionary } from '../../interfaces';
 import { Store } from '../../store';
 
 import { css } from 'emotion';
@@ -165,6 +165,7 @@ export default class SettingsList extends React.Component<{ store?: Store }> {
     if (store.settings === null) {
       return store.loading ? <LoadingBar /> : null;
     }
+    const groups = toPairs(groupBy(store.settings, s => groupName(s.name)));
 
     return (
       <SettingsListContainer
@@ -172,76 +173,50 @@ export default class SettingsList extends React.Component<{ store?: Store }> {
           this.node = e;
         }}
       >
-        {this.getGroupedListItems()}
+        {groups.map(([name, settings]) => {
+          const showGroup = settings.some(s => store.isVisible(s));
+          return (
+            <div
+              key={name}
+              className={css`
+                position: relative;
+                display: ${showGroup ? 'block' : 'none'};
+              `}
+            >
+              <SettingGroup className="nfig-group-header">{name}</SettingGroup>
+              {settings.map(setting => (
+                <SettingListItem
+                  key={setting.name}
+                  setting={setting}
+                  display={store.isVisible(setting)}
+                />
+              ))}
+            </div>
+          );
+        })}
       </SettingsListContainer>
     );
   }
+}
 
-  // Doing it this way to avoid overly nested data structures,
-  // which make things like tracking selected items much more complicated
-  getGroupedListItems() {
-    const children: React.ReactNode[] = [];
-    const { store } = this.props;
-    const { settings } = store;
+function groupBy<T>(arr: T[], selector: (item: T) => string): Dictionary<T[]> {
+  return arr.reduce(
+    (dict, item) => {
+      const key = selector(item);
+      const group = key in dict ? dict[key] : (dict[key] = []);
+      group.push(item);
+      return dict;
+    },
+    {} as Dictionary<T[]>,
+  );
+}
 
-    let groupIndex: number = 0;
-    let showGroup: boolean = false;
-    let groupCount: number = 0;
-
-    for (let i = 0; i < settings.length; i++) {
-      const setting = settings[i];
-      const displaySetting = store.isVisible(setting);
-
-      children.push(
-        <SettingListItem
-          key={setting.name}
-          setting={setting}
-          display={displaySetting}
-        />,
-      );
-
-      const thisGroup = groupName(setting.name);
-      const prevGroup = i > 0 ? groupName(settings[i - 1].name) : null;
-
-      if (thisGroup !== prevGroup && i > 0) {
-        // Add the group header at the beginning of the current group set
-        children.splice(
-          groupIndex + groupCount,
-          0,
-          <SettingGroup
-            key={prevGroup}
-            style={{ display: showGroup ? 'block' : 'none' }}
-            className="nfig-group-header"
-          >
-            {prevGroup}
-          </SettingGroup>,
-        );
-
-        groupCount++;
-        groupIndex = i;
-        showGroup = false;
-      }
-
-      showGroup = showGroup || displaySetting;
-    }
-
-    // Add the last group
-    if (settings.length > 0) {
-      const lastGroupName = groupName(settings[settings.length - 1].name);
-      children.splice(
-        groupIndex + groupCount,
-        0,
-        <SettingGroup
-          key={lastGroupName}
-          style={{ display: showGroup ? 'block' : 'none' }}
-        >
-          {lastGroupName}
-        </SettingGroup>,
-      );
-    }
-
-    return children;
-  }
+function toPairs<T, TKey extends keyof T>(obj: T): [TKey, T[TKey]][] {
+  const results: [TKey, T[TKey]][] = [];
+  return Object.keys(obj).reduce((r, key) => {
+    r.push([key as TKey, obj[key]]);
+    return r;
+  }, results);
 }
 
 const SettingsListContainer = styled.div`
