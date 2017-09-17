@@ -232,7 +232,7 @@ export class Store {
   get editing(): ISetting {
     if (!this._model) return null;
     if (!this._model.settings) return null;
-    return this._model.settings.find(s => s.name === this._editing);
+    return this._model.settings.find(s => s.name === this._editing) || null;
   }
 
   @computed

@@ -60,9 +60,9 @@ export default class FilterBox extends React.Component<{ store?: Store }> {
   }
 
   handleUnfocusedEscape = (e: KeyboardEvent) => {
+    const { store } = this.props;
     if (
-      (e.key === 'Escape' ||
-        (e.key === 'ArrowUp' && this.props.store.selected === 0)) &&
+      (e.key === 'Escape' || (e.key === 'ArrowUp' && store.selected === 0)) &&
       document.activeElement !== this.node
     ) {
       this.node.focus();
@@ -70,7 +70,7 @@ export default class FilterBox extends React.Component<{ store?: Store }> {
     } else if (
       e.key === 'Escape' &&
       document.activeElement === this.node &&
-      this.props.store.filter === ''
+      store.filter === ''
     ) {
       this.node.blur();
     }

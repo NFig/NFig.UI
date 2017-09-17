@@ -66,7 +66,7 @@ export default class OverrideEditor extends React.Component<
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.onKeyDown);
+    document.body.removeEventListener('keydown', this.onKeyDown);
   }
 
   onBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -81,6 +81,7 @@ export default class OverrideEditor extends React.Component<
     switch (e.key) {
       case 'Escape':
         this.closeIfNotLoading();
+        e.stopPropagation();
         break;
     }
   };

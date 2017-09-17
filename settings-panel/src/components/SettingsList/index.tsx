@@ -133,20 +133,26 @@ export default class SettingsList extends React.Component<{ store?: Store }> {
   };
 
   onKeyDown = (e: KeyboardEvent) => {
-    if (!!this.props.store.editing) {
+    const { store } = this.props;
+    if (!!store.editing) {
       return;
     }
 
     let prevent = true;
     switch (e.key) {
+      case 'Enter':
+        if (!!store.selectedSetting) {
+          store.edit(store.selectedSetting);
+        }
+        break;
       case 'Escape':
-        this.props.store.selectNone();
+        store.selectNone();
         break;
       case 'ArrowUp':
-        this.props.store.selectPrev();
+        store.selectPrev();
         break;
       case 'ArrowDown':
-        this.props.store.selectNext();
+        store.selectNext();
         break;
       default:
         prevent = false;
