@@ -25,6 +25,7 @@ const IconSvg: IconType = ({
       position: relative;
       top: ${offsetTop};
       margin-right: 0.2em;
+      fill: ${fill} !important;
     `}
     fill={fill}
     height={iconSize}
