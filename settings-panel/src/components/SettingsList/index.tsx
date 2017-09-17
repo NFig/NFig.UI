@@ -331,6 +331,7 @@ const SettingInfo = styled.div`
     font-weight: bold;
     color: #07c;
     cursor: pointer;
+    margin: 0;
 
     span {
     }

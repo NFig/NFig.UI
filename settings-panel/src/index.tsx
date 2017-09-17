@@ -69,19 +69,19 @@ class SettingsPanel extends React.Component<SettingsPanelConfig> {
             <OverrideEditor setting={this.store.editing} />
           )}
 
-          {process.env.NODE_ENV !== 'production' && <DevTools />}
+          {process.env.NODE_ENV !== 'production' && DevTools && <DevTools />}
         </Wrapper>
       </Provider>
     );
   }
 }
 
-let DevTools;
+let DevTools = null;
 if (
   process.env.NODE_ENV !== 'production' &&
   !!localStorage.getItem('nfig-devtools')
 ) {
-  DevTools = require('mobx-react-devtools');
+  DevTools = require('mobx-react-devtools').default;
 }
 
 function mount(target: string, props: SettingsPanelConfig) {
