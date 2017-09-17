@@ -60,6 +60,15 @@ export const Button: ButtonType = styled.button`
     border-color: #b3dfff !important;
   }
 
+  &:disabled,
+  &:disabled:hover {
+    cursor: not-allowed;
+    box-shadow: none !important;
+    opacity: 0.75;
+    border-color: ${p =>
+      darken(p.bgcolor, p.selected ? 0.25 : 0.15)} !important;
+  }
+
   &:active {
     transform: ${p => (p.selected ? 'none' : 'translateY(1px)')};
     box-shadow: ${p =>

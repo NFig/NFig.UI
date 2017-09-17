@@ -210,7 +210,10 @@ export default class OverrideEditor extends React.Component<
                     buttonSize="md"
                     selected={selectedDataCenter === dc}
                     data-dc={dc}
-                    onClick={this.selectDataCenter}
+                    onClick={
+                      setting.allowsOverrides[dc] && this.selectDataCenter
+                    }
+                    disabled={!setting.allowsOverrides[dc]}
                   >
                     {dc}
                   </Button>
