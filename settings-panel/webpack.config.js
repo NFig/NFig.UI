@@ -23,8 +23,8 @@ module.exports = env => {
     output: {
       path:
         env === isDevServer
-          ? path.resolve(__dirname)
-          : path.resolve(__dirname, 'dist'),
+          ? path.resolve(__dirname, 'dist')
+          : path.resolve(__dirname),
       filename: env === 'prod' ? 'settings-panel.min.js' : 'settings-panel.js',
       libraryTarget: 'var',
       library: 'NFigUI',
