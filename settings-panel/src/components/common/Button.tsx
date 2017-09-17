@@ -31,9 +31,12 @@ const fontSizes = {
 
 export const Button: ButtonType = styled.button`
   font-size: ${p => fontSizes[p.buttonSize]} !important;
-  background-color: ${p =>
-    p.selected ? darken(p.bgcolor, 0.05) : p.bgcolor} !important;
-  color: ${p => p.color || '#444'} !important;
+  &,
+  &:hover {
+    background-color: ${p =>
+      p.selected ? darken(p.bgcolor, 0.05) : p.bgcolor} !important;
+    color: ${p => p.color || '#444'} !important;
+  }
   border-radius: 2px;
   border: 1px solid ${p =>
       darken(p.bgcolor, p.selected ? 0.25 : 0.15)} !important;
@@ -62,16 +65,6 @@ export const Button: ButtonType = styled.button`
     box-shadow: ${p =>
       p.selected ? undefined : '0 -1px 2px rgba(0, 0, 0, 0.2)'} !important;
   }
-
-  /*   &.selected {
-    background-color: #eee;
-    box-shadow: inset 0 3px 10px -5px rgba(0, 0, 0, 0.5);
-    border-color: #79a6d2;
-
-    &:active {
-      transform: none;
-    }
-  } */
 
   &:first-child {
     margin-left: 0;
