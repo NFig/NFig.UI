@@ -33,8 +33,12 @@ export default class FilterBox extends React.Component<{ store?: Store }> {
   onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     switch (e.key) {
       case 'Escape':
-        if (this.props.store.filter !== '') {
-          this.props.store.setFilter('');
+        const { store } = this.props;
+        if (store.editing !== null) {
+          return;
+        }
+        if (store.filter !== '') {
+          store.setFilter('');
         }
         e.stopPropagation();
         break;
