@@ -33,7 +33,11 @@ export default class ValueEditor extends React.Component<
 
     let CustomEditor: ValueEditorType;
     if (!!editorSelector) {
-      CustomEditor = editorSelector(setting) || defaultEditorFor(setting);
+      CustomEditor = editorSelector(setting);
+    }
+
+    if (!CustomEditor) {
+      CustomEditor = defaultEditorFor(setting);
     }
 
     if (!editRawValue && CustomEditor !== RawEditor) {
