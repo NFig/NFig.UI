@@ -183,7 +183,6 @@ export default class OverrideEditor extends React.Component<
       editRawValue,
     } = this.state;
     const { defaultValue, activeOverride } = setting;
-    const canOverride = setting.allowsOverrides[store.tier];
 
     return (
       <Dialog onClick={this.onBackdropClick} loading={store.loading}>
@@ -215,27 +214,30 @@ export default class OverrideEditor extends React.Component<
               />
             </ValueSection>
 
-            <Attributes currentTier={store.tier} setting={setting} />
+            <Attributes setting={setting} />
 
-            {canOverride ? (
-              <Section>
-                <span>Set new override for:</span>
-                {store.dataCenters.map(dc => (
-                  <Button
-                    key={dc}
-                    buttonSize="md"
-                    selected={selectedDataCenter === dc}
-                    data-dc={dc}
-                    onClick={
-                      setting.allowsOverrides[dc] && this.selectDataCenter
-                    }
-                    disabled={!setting.allowsOverrides[dc]}
-                  >
-                    {dc}
-                  </Button>
-                ))}
-              </Section>
-            ) : null}
+            <Section>
+              <span>Set new override for:</span>
+              {store.dataCenters.map(dc => (
+                <Button
+                  key={dc}
+                  buttonSize="md"
+                  selected={selectedDataCenter === dc}
+                  data-dc={dc}
+                  onClick={setting.allowsOverrides[dc] && this.selectDataCenter}
+                  disabled={!setting.allowsOverrides[dc]}
+                  title={
+                    setting.allowsOverrides[dc] ? (
+                      undefined
+                    ) : (
+                      `Overrides not allowed for Data Center '${dc}'`
+                    )
+                  }
+                >
+                  {dc}
+                </Button>
+              ))}
+            </Section>
 
             {selectedDataCenter ? (
               [

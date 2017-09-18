@@ -88,7 +88,7 @@ class SettingListItem extends React.Component<{
         <SettingInfo>
           <label>{name}</label>
           <Markdown src={description} />
-          <Attributes setting={setting} currentTier={store.tier} />
+          <Attributes setting={setting} />
         </SettingInfo>
 
         <SettingValue>

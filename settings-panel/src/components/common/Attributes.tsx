@@ -24,24 +24,21 @@ export const Tag: React.StatelessComponent<
 
 export type AttributesProps = {
   setting: ISetting;
-  currentTier: string;
 };
 
 export const Attributes: React.StatelessComponent<AttributesProps> = ({
   setting,
-  currentTier,
 }: AttributesProps) => (
   <div className={css`margin: 0.5em 0;`}>
     {setting.requiresRestart ? (
       <Tag color="#248f6b">Requires Restart</Tag>
     ) : null}
-    {setting.allowsOverrides[currentTier] ? null : (
-      <Tag
-        color="#931515"
-        title={`Overrides are not allowed on tier ${currentTier}`}
-      >
+    {Object.keys(setting.allowsOverrides).every(
+      dc => !setting.allowsOverrides[dc],
+    ) ? (
+      <Tag color="#931515" title={`Overrides are not allowed`}>
         Not Overridable
       </Tag>
-    )}
+    ) : null}
   </div>
 );
