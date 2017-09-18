@@ -123,7 +123,7 @@ export class Store {
   public *load(url: string) {
     this.loading = true;
     try {
-      const results: ISettingsModel = yield fetchWithMinimumDelay(url, 1000);
+      const results: ISettingsModel = yield fetchWithMinimumDelay(url, 500);
       this._model = observable.object(results);
 
       // If we're currently editing (loaded from has)
