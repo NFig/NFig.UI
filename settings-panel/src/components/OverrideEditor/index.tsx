@@ -50,7 +50,7 @@ function shouldShowDetails({ allOverrides, activeOverride }: ISetting) {
 @observer
 export default class OverrideEditor extends React.Component<
   OverrideEditorProps,
-  INewOverride & { showDetails: boolean }
+  INewOverride & { showDetails: boolean; editRawValue: boolean }
 > {
   constructor(props: OverrideEditorProps) {
     super(props);
@@ -58,6 +58,7 @@ export default class OverrideEditor extends React.Component<
       selectedDataCenter: null,
       newOverrideValue: '',
       showDetails: shouldShowDetails(props.setting),
+      editRawValue: false,
     };
   }
 
@@ -115,7 +116,11 @@ export default class OverrideEditor extends React.Component<
   };
 
   onCancelEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    this.setState(() => ({ selectedDataCenter: null, newOverrideValue: '' }));
+    this.setState(() => ({
+      selectedDataCenter: null,
+      newOverrideValue: '',
+      editRawValue: false,
+    }));
   };
 
   onNewOverrideValueChange = (newOverrideValue: string) => {
@@ -128,6 +133,7 @@ export default class OverrideEditor extends React.Component<
     this.setState(() => ({
       selectedDataCenter: null,
       newOverrideValue: '',
+      editRawValue: false,
     }));
   };
 
@@ -164,9 +170,18 @@ export default class OverrideEditor extends React.Component<
     this.props.store.clearError();
   };
 
+  onEditRawValueChange = () => {
+    this.setState(({ editRawValue }) => ({ editRawValue: !editRawValue }));
+  };
+
   render() {
     const { store, setting } = this.props;
-    const { selectedDataCenter, newOverrideValue, showDetails } = this.state;
+    const {
+      selectedDataCenter,
+      newOverrideValue,
+      showDetails,
+      editRawValue,
+    } = this.state;
     const { defaultValue, activeOverride } = setting;
     const canOverride = setting.allowsOverrides[store.tier];
 
@@ -240,6 +255,8 @@ export default class OverrideEditor extends React.Component<
                     setting={setting}
                     value={newOverrideValue}
                     onChange={this.onNewOverrideValueChange}
+                    editRawValue={editRawValue}
+                    onEditRawValueChange={this.onEditRawValueChange}
                   />
                 </Section>,
                 <Section key="controls">
