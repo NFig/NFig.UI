@@ -262,6 +262,8 @@ export class Store {
   private select(setting: ISetting | null) {
     if (setting !== null) {
       this._selected = this._model.settings.indexOf(setting);
+    } else {
+      this.clearError();
     }
   }
 
