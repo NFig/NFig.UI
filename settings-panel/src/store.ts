@@ -59,12 +59,15 @@ function parseHash() {
 }
 
 const updateHash = (values: any) => {
-  const newHash = qs.stringify({ ...parseHash(), ...values });
-  history.pushState(
-    null,
-    null,
-    location.pathname + location.search + (newHash ? `#${newHash}` : ''),
-  );
+  let newHash = qs.stringify({ ...parseHash(), ...values });
+  newHash = newHash ? `#${newHash}` : '';
+  if (newHash !== location.hash) {
+    history.pushState(
+      null,
+      null,
+      location.pathname + location.search + newHash,
+    );
+  }
 };
 
 export class Store {
@@ -85,13 +88,13 @@ export class Store {
         filter: this.filter || undefined,
         editing: this._editing ? this._editing : undefined,
       }),
-      v => {
+      debounce(v => {
         if (!this._isPoppingState) {
           updateHash(v);
         } else {
           this._isPoppingState = false;
         }
-      },
+      }, 500),
       { compareStructural: true },
     );
   }
