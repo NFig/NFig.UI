@@ -36,9 +36,9 @@
     "ts-node": "^3.3.0",
     "tslib": "^1.8.0",
     "typescript": "^2.5.3",
-    "webpack": "^3.5.6",
+    "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-dev-server": "^2.7.1",
+    "webpack-dev-server": "^2.9.2",
     "yarn-or-npm": "^2.0.4"
   },
   "scripts": {
