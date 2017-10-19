@@ -308,3 +308,9 @@ export class Store {
     );
   }
 }
+
+export function allowsAnyOverrides(setting: ISetting): boolean {
+  return Object.keys(setting.allowsOverrides).some(
+    k => setting.allowsOverrides[k],
+  );
+}

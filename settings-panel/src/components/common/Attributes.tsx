@@ -4,6 +4,7 @@ import styled from 'react-emotion';
 import { darken } from '../../color-manip';
 import Color from 'color';
 import { ISetting } from '../../interfaces';
+import { allowsAnyOverrides } from '../../store';
 
 export const Tag: React.StatelessComponent<
   {
@@ -33,9 +34,7 @@ export const Attributes: React.StatelessComponent<AttributesProps> = ({
     {setting.requiresRestart ? (
       <Tag color="#dbe4f0">Requires Restart</Tag>
     ) : null}
-    {Object.keys(setting.allowsOverrides).every(
-      dc => !setting.allowsOverrides[dc],
-    ) ? (
+    {!allowsAnyOverrides(setting) ? (
       <Tag color="#f9f2f4" title={`Overrides are not allowed`}>
         Not Overridable
       </Tag>

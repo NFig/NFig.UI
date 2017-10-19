@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 import { ISetting, ISettingValue, INewOverride } from '../../interfaces';
-import { Store } from '../../store';
+import { Store, allowsAnyOverrides } from '../../store';
 import { css, keyframes } from 'emotion';
 import styled from 'react-emotion';
 import * as Color from 'color';
@@ -28,7 +28,12 @@ export interface OverrideEditorProps {
   tierColors?: Dictionary<string>;
 }
 
-function shouldShowDetails({ allOverrides, activeOverride }: ISetting) {
+function shouldShowDetails(setting: ISetting) {
+  const { allOverrides, activeOverride } = setting;
+  if (!allowsAnyOverrides(setting)) {
+    return true;
+  }
+
   if (!allOverrides || allOverrides.length === 0) {
     return false;
   }
@@ -216,63 +221,65 @@ export default class OverrideEditor extends React.Component<
 
             <Attributes setting={setting} />
 
-            <Section>
-              <span>Set new override for:</span>
-              {store.dataCenters.map(dc => (
-                <Button
-                  key={dc}
-                  buttonSize="md"
-                  selected={selectedDataCenter === dc}
-                  data-dc={dc}
-                  onClick={setting.allowsOverrides[dc] && this.selectDataCenter}
-                  disabled={!setting.allowsOverrides[dc]}
-                  title={
-                    setting.allowsOverrides[dc] ? (
-                      undefined
-                    ) : (
-                      `Overrides not allowed for Data Center '${dc}'`
-                    )
-                  }
-                >
-                  {dc}
-                </Button>
-              ))}
-            </Section>
-
-            {selectedDataCenter ? (
-              [
-                <Section key="edit">
-                  <header
-                    className={css`
-                      margin-bottom: 1em;
-                      padding-bottom: 0.2em;
-                      font-weight: bold;
-                      color: #07c;
-                      border-bottom: 1px solid #ddd;
-                    `}
+            {allowsAnyOverrides(setting) ? (
+              <Section>
+                <span>Set new override for:</span>
+                {store.dataCenters.map(dc => (
+                  <Button
+                    key={dc}
+                    buttonSize="md"
+                    selected={selectedDataCenter === dc}
+                    data-dc={dc}
+                    onClick={
+                      setting.allowsOverrides[dc] && this.selectDataCenter
+                    }
+                    disabled={!setting.allowsOverrides[dc]}
+                    title={
+                      setting.allowsOverrides[dc]
+                        ? undefined
+                        : `Overrides not allowed for Data Center '${dc}'`
+                    }
                   >
-                    New Value:
-                  </header>
-                  <ValueEditor
-                    setting={setting}
-                    value={newOverrideValue}
-                    onChange={this.onNewOverrideValueChange}
-                    editRawValue={editRawValue}
-                    onEditRawValueChange={this.onEditRawValueChange}
-                  />
-                </Section>,
-                <Section key="controls">
-                  <Button buttonSize="lg" onClick={this.onSetNewOverride}>
-                    <UploadIcon />
-                    Set Override
+                    {dc}
                   </Button>
-                  <Button buttonSize="lg" onClick={this.onCancelEdit}>
-                    <CloseIcon />
-                    Cancel
-                  </Button>
-                </Section>,
-              ]
+                ))}
+              </Section>
             ) : null}
+
+            {selectedDataCenter
+              ? [
+                  <Section key="edit">
+                    <header
+                      className={css`
+                        margin-bottom: 1em;
+                        padding-bottom: 0.2em;
+                        font-weight: bold;
+                        color: #07c;
+                        border-bottom: 1px solid #ddd;
+                      `}
+                    >
+                      New Value:
+                    </header>
+                    <ValueEditor
+                      setting={setting}
+                      value={newOverrideValue}
+                      onChange={this.onNewOverrideValueChange}
+                      editRawValue={editRawValue}
+                      onEditRawValueChange={this.onEditRawValueChange}
+                    />
+                  </Section>,
+                  <Section key="controls">
+                    <Button buttonSize="lg" onClick={this.onSetNewOverride}>
+                      <UploadIcon />
+                      Set Override
+                    </Button>
+                    <Button buttonSize="lg" onClick={this.onCancelEdit}>
+                      <CloseIcon />
+                      Cancel
+                    </Button>
+                  </Section>,
+                ]
+              : null}
             {!!store.error ? (
               <Section>
                 <ErrorMessage>
@@ -308,23 +315,23 @@ export default class OverrideEditor extends React.Component<
                   }
                 `}
               >
-                {showDetails ? (
-                  [
-                    <ValuesList
-                      key="overrides"
-                      label="Overrides:"
-                      setting={setting}
-                      values={setting.allOverrides}
-                      onClear={this.onClearOverride}
-                    />,
-                    <ValuesList
-                      key="defaults"
-                      label="Defaults:"
-                      setting={setting}
-                      values={setting.allDefaults}
-                    />,
-                  ]
-                ) : null}
+                {showDetails
+                  ? [
+                      <ValuesList
+                        key="overrides"
+                        label="Overrides:"
+                        setting={setting}
+                        values={setting.allOverrides}
+                        onClear={this.onClearOverride}
+                      />,
+                      <ValuesList
+                        key="defaults"
+                        label="Defaults:"
+                        setting={setting}
+                        values={setting.allDefaults}
+                      />,
+                    ]
+                  : null}
               </div>
             </DetailsSection>
           </EditorSection>
