@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const BabelMinifyPlugin = require('babel-minify-webpack-plugin');
@@ -63,8 +62,6 @@ module.exports = env => {
           ),
         }),
 
-        // new BundleAnalyzerPlugin(),
-        // new DashboardPlugin(),
         ...plugins,
       ])
       .filter(p => !!p),
