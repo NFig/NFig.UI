@@ -16,6 +16,7 @@ const IconSvg: IconType = ({
   iconSize = '1em',
   offsetTop = '2px',
   className,
+  ...rest
 }: IIconProps) => (
   <svg
     className={css`
@@ -32,6 +33,7 @@ const IconSvg: IconType = ({
     width={iconSize}
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
+    {...rest}
   >
     {children}
   </svg>
@@ -62,5 +64,26 @@ export const LabelIcon: IconType = (props: IIconProps) => (
   <IconSvg fill="#07c" {...props}>
     <path d="M0 0h24v24H0z" fill="none" />
     <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z" />
+  </IconSvg>
+);
+
+export const CheckIcon: IconType = (props: IIconProps) => (
+  <IconSvg fill="#0a0" {...props}>
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+  </IconSvg>
+);
+
+export const CheckCircleIcon: IconType = (props: IIconProps) => (
+  <IconSvg fill="#0a0" {...props}>
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+  </IconSvg>
+);
+
+export const XIcon: IconType = (props: IIconProps) => (
+  <IconSvg fill="#a00" {...props}>
+    <path d="M5.8 2.25L3.24 4.82l6.55 6.55-6.57 6.55L5.8 20.5l6.55-6.56 6.55 6.55 2.58-2.6-6.55-6.55 6.55-6.55-2.58-2.56-6.55 6.55z"/>
+    <path d="M0 0h24v24H0z" fill="none"/>
   </IconSvg>
 );

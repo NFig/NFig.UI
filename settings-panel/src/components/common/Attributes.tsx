@@ -13,7 +13,7 @@ export const Tag: React.StatelessComponent<
   font-weight: normal;
   margin-right: 0.2em;
   padding: 0.2em 0.5em 0.2em;
-  color: ${p => (Color(p.color).light() ? '#333' : '#fff')};
+  color: ${p => (Color(p.color).light() ? darken(p.color, 0.5) : '#fff')};
   font-size: 85%;
   text-transform: lowercase;
   background-color: ${p => p.color};
@@ -31,12 +31,12 @@ export const Attributes: React.StatelessComponent<AttributesProps> = ({
 }: AttributesProps) => (
   <div className={css`margin: 0.5em 0;`}>
     {setting.requiresRestart ? (
-      <Tag color="#248f6b">Requires Restart</Tag>
+      <Tag color="#dbe4f0">Requires Restart</Tag>
     ) : null}
     {Object.keys(setting.allowsOverrides).every(
       dc => !setting.allowsOverrides[dc],
     ) ? (
-      <Tag color="#931515" title={`Overrides are not allowed`}>
+      <Tag color="#f9f2f4" title={`Overrides are not allowed`}>
         Not Overridable
       </Tag>
     ) : null}
