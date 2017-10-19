@@ -125,8 +125,11 @@ export default class SettingsList extends React.Component<{ store?: Store }> {
       if (el === this.node) {
         return;
       }
-
       el = el.parentElement;
+      if (el === null) {
+        // Detached element (dialog?)
+        return;
+      }
     }
 
     this.props.store.selectNone();
@@ -175,7 +178,7 @@ export default class SettingsList extends React.Component<{ store?: Store }> {
 
     return (
       <SettingsListContainer
-        ref={e => {
+        innerRef={e => {
           this.node = e;
         }}
       >
@@ -225,7 +228,11 @@ function toPairs<T, TKey extends keyof T>(obj: T): [TKey, T[TKey]][] {
   }, results);
 }
 
-const SettingsListContainer = styled.div`
+const SettingsListContainer:
+React.ComponentType<{
+  innerRef?(e: HTMLDivElement);
+} & React.HTMLAttributes<HTMLDivElement>>
+= styled.div`
   margin-top: 0.5em;
   position: relative;
   @media (min-width: ${smallWidth + 1}px) {

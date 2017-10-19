@@ -10,7 +10,11 @@ import SearchIcon from './SearchIcon';
 
 const Wrapper = styled.div`position: relative;`;
 
-const SearchInput = styled.input`
+const SearchInput:
+React.ComponentType<{
+  innerRef?(el: HTMLInputElement);
+} & React.InputHTMLAttributes<HTMLInputElement>>
+= styled.input`
   padding-left: 1.4em;
   display: block;
   box-sizing: border-box;
@@ -85,7 +89,7 @@ export default class FilterBox extends React.Component<{ store?: Store }> {
       <Wrapper>
         <SearchIcon />
         <SearchInput
-          ref={node => {
+          innerRef={node => {
             this.node = node;
           }}
           value={this.props.store.filter}
