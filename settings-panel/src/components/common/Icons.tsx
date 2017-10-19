@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from 'emotion';
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 
 export type IIconProps = {
   fill?: string;
@@ -20,7 +20,7 @@ const IconSvg: IconType = ({
 }: IIconProps) => (
   <svg
     className={css`
-      composes: ${className};
+      ${className};
       display: inline;
       vertical-align: baseline;
       position: relative;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ValueEditorProps } from '../../interfaces';
 
 import { css } from 'emotion';
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 import { LabelIcon } from '../common/Icons';
 
 const Wrapper = styled.ol`
@@ -11,7 +11,7 @@ const Wrapper = styled.ol`
   padding: 0;
 `;
 
-const EnumItem = styled.li`
+const EnumItem: React.ComponentType<{isSelected:boolean} & React.HTMLProps<HTMLDivElement>> = styled.li`
   display: flex;
   background-color: ${p => (p.isSelected ? '#ecf6fb' : 'none')};
   padding: 0.2em 0.5em;
@@ -29,7 +29,7 @@ const Description = styled.div`
 `;
 
 class EnumEditor extends React.Component<ValueEditorProps> {
-  onSelect = (e: React.MouseEvent<HTMLLIElement>) => {
+  onSelect = (e: React.MouseEvent<HTMLDivElement>) => {
     this.props.onChange(e.currentTarget.dataset.value);
   };
 

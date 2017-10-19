@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from 'emotion';
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 import { darken } from '../../color-manip';
 import Color from 'color';
 import { ISetting } from '../../interfaces';

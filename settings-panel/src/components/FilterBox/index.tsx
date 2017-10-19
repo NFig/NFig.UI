@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from 'emotion';
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 
 import { autorun, IReactionDisposer } from 'mobx';
 import { inject, observer } from 'mobx-react';
@@ -85,7 +85,7 @@ export default class FilterBox extends React.Component<{ store?: Store }> {
       <Wrapper>
         <SearchIcon />
         <SearchInput
-          innerRef={node => {
+          ref={node => {
             this.node = node;
           }}
           value={this.props.store.filter}

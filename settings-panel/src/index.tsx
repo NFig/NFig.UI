@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 import { observer, Provider } from 'mobx-react';
 import { Store } from './store';
 import { Dictionary } from './interfaces';

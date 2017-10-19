@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from 'emotion';
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 import { ISetting, ISettingValue } from '../../interfaces';
 import { CloseIcon } from '../common/Icons';
 import ValueViewer from '../common/ValueViewer';

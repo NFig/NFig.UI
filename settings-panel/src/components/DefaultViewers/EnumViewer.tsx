@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ValueViewerType } from '../../interfaces';
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 
 const Wrapper = styled.span`
   font-size: 12px;

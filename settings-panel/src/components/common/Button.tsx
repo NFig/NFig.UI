@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 import { darken } from '../../color-manip';
 
 export type ButtonSize = 'sm' | 'md' | 'lg';

@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react';
 import { ISetting, ISettingValue, INewOverride } from '../../interfaces';
 import { Store } from '../../store';
 import { css, keyframes } from 'emotion';
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 import * as Color from 'color';
 
 import { Dictionary } from '../../interfaces';
@@ -401,17 +401,17 @@ const SectionStyles = css`
   }
 `;
 
-const Section = styled.section`composes: ${SectionStyles};`;
+const Section = styled.section`${SectionStyles};`;
 
 const ValueSection = styled.section`
-  composes: ${SectionStyles};
+  ${SectionStyles};
   @media (min-width: ${smallWidth + 1}px) {
     display: flex;
   }
 `;
 
 const DetailsSection = styled.section`
-  composes: ${SectionStyles};
+  ${SectionStyles};
   border-top: 1px solid #ddd;
   padding-top: 1em;
 `;

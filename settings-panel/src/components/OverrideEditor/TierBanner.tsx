@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { keyframes } from 'emotion';
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 import { Dictionary } from '../../interfaces';
 import { Store } from '../../store';
 import { inject, observer } from 'mobx-react';

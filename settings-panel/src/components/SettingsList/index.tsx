@@ -5,7 +5,7 @@ import { ISetting, ISettingValue, Dictionary } from '../../interfaces';
 import { Store } from '../../store';
 
 import { css } from 'emotion';
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 import { smallWidth } from '../../responsive';
 
 import OverridesSummary from './OverridesSummary';
@@ -241,7 +241,7 @@ const ListItem = css`
 `;
 
 const SettingGroup = styled.p`
-  composes: ${ListItem};
+  ${ListItem};
   font-size: 16px;
   font-weight: bold;
   background-color: #eee;
@@ -321,7 +321,7 @@ const ListItemContainer: React.StatelessComponent<
 `;
 
 const SettingInfo = styled.div`
-  composes: ${ListItem};
+  ${ListItem};
   @media (min-width: ${smallWidth + 1}px) {
     width: 50%;
   }
@@ -345,7 +345,7 @@ const SettingInfo = styled.div`
 `;
 
 const SettingValue = styled.div`
-  composes: ${ListItem};
+  ${ListItem};
   @media (min-width: ${smallWidth + 1}px) {
     width: 50%;
   }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css, keyframes } from 'emotion';
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 import { smallWidth } from '../../responsive';
 
 const shimmer = keyframes`
