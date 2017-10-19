@@ -17,7 +17,7 @@ import ValueEditor from './ValueEditor';
 import ValuesList from './ValuesList';
 import ErrorMessage from '../common/ErrorMessage';
 
-import { UploadIcon, CloseIcon } from './Icons';
+import { UploadIcon, CloseIcon } from '../common/Icons';
 import { Attributes } from '../common/Attributes';
 
 import { smallWidth } from '../../responsive';

@@ -3,7 +3,7 @@ import { ValueEditorProps } from '../../interfaces';
 
 import { css } from 'emotion';
 import styled from 'emotion/react';
-import { LabelIcon } from '../OverrideEditor/Icons';
+import { LabelIcon } from '../common/Icons';
 
 const Wrapper = styled.ol`
   list-style: none;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { css } from 'emotion';
 import styled from 'emotion/react';
 import { ISetting, ISettingValue } from '../../interfaces';
-import { CloseIcon } from './Icons';
+import { CloseIcon } from '../common/Icons';
 import ValueViewer from '../common/ValueViewer';
 import { smallWidth } from '../../responsive';
 

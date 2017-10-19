@@ -7,7 +7,7 @@ import { ISetting, ISettingValue } from '../../interfaces';
 import ValueViewer from '../common/ValueViewer';
 import { Button } from '../common/Button';
 
-import { EditIcon, CloseIcon } from './Icons';
+import { EditIcon, CloseIcon } from '../common/Icons';
 import { smallWidth } from '../../responsive';
 
 export type ValueDisplayProps = {
