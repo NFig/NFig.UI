@@ -166,3 +166,4 @@ NFig.Ui/packages
 
 settings-panel/dist/
 .vs/ 
+test-api 
