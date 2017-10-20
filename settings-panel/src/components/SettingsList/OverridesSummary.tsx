@@ -34,7 +34,7 @@ export default function OverridesSummary({ setting }: { setting: ISetting }) {
         </div>
       ) : null}
 
-      {setting.allOverrides.length > 1 ? (
+      {(setting.allOverrides.length > 0 && !setting.activeOverride) ? (
         <div>
           Has overrides for:&nbsp;
           {intersperse(
