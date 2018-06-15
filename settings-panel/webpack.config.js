@@ -25,6 +25,7 @@ module.exports = env => {
       library: 'NFigUI',
     },
     devtool: env === 'prod' ? undefined : 'source-map',
+    mode: env === 'prod' ? 'production' : 'development',
     devServer: {
       https: true,
     },
