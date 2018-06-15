@@ -48,7 +48,7 @@ deploy:
     server: https://www.myget.org/F/nfig/api/v2/package
     symbol_server: https://www.myget.org/F/nfig/symbols/api/v2/package
     api_key:
-      secure: 4OhfGM3pJQHTs5OYskc448dwXt8DqPec7vdyK+G+AS5v0m8pSxyP30UoZyTanDcz
+      secure: 75kfQhijF72yzBF6A52uS7bdmHkTSwhUjbbQDBRfp2p41ALHa694NrodnIglIHPL
     artifact: /artifacts/.*\.nupkg/
     skip_symbols: false
     on:
