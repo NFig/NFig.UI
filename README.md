@@ -1,3 +1,6 @@
+[![NuGet version](https://badge.fury.io/nu/NFig.UI.svg)](http://badge.fury.io/nu/NFig.UI)
+[![Build status](https://ci.appveyor.com/api/projects/status/inffvgvj9p3lhk69/branch/master?svg=true)](https://ci.appveyor.com/project/rossipedia/nfig-ui/branch/master)
+
 # Settings Panel Component
 
 This is the settings panel front end component that we use in the admin section of Stack Overflow's Ad Server, backed by [NFig][2] and [NFig.Redis][3]. 
