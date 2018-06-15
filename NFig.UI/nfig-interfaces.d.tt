@@ -1,6 +1,6 @@
 <#@ template debug="false" hostspecific="false" language="C#" #>
-<#@ assembly name="$(ProjectDir)\bin\$(Configuration)\NFig.dll" #>
-<#@ assembly name="$(ProjectDir)\bin\$(Configuration)\NFig.UI.dll" #>
+<#@ assembly name="$(ProjectDir)\bin\$(Configuration)\net462\NFig.dll" #>
+<#@ assembly name="$(ProjectDir)\bin\$(Configuration)\net462\NFig.UI.dll" #>
 <#@ output extension=".ts" #>
 <#
 
