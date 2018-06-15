@@ -26,7 +26,7 @@ module.exports = env => {
     },
     devtool: env === 'prod' ? undefined : 'source-map',
     devServer: {
-      // https: true,
+      https: true,
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],

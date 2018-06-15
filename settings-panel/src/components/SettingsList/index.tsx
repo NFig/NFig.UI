@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expr, untracked } from 'mobx';
 import { inject, observer } from 'mobx-react';
-import { ISetting, ISettingValue, Dictionary } from '../../interfaces';
+import { ISetting, Dictionary } from '../../interfaces';
 import { Store } from '../../store';
 
 import { css } from 'emotion';
@@ -14,7 +14,7 @@ import Markdown from '../common/Markdown';
 import ValueViewer from '../common/ValueViewer';
 import ErrorMessage from '../common/ErrorMessage';
 import { Attributes } from '../common/Attributes';
-import { darken, lighten } from '../../color-manip';
+import { darken } from '../../color-manip';
 
 const groupName = (name: string) => {
   const idx = name.lastIndexOf('.');
@@ -71,8 +71,8 @@ class SettingListItem extends React.Component<{
   private element: HTMLElement;
 
   render() {
-    const { setting, store, display } = this.props;
-    const { name, description, typeName } = setting;
+    const { setting, display } = this.props;
+    const { name, description } = setting;
     const value = setting.activeOverride || setting.defaultValue;
 
     return (
@@ -81,7 +81,7 @@ class SettingListItem extends React.Component<{
         onClick={this.onClick}
         hasOverride={!!setting.activeOverride}
         selected={expr(() => this.currentlySelected)}
-        innerRef={e => {
+        ref={e => {
           this.element = e;
         }}
       >
@@ -228,11 +228,11 @@ function toPairs<T, TKey extends keyof T>(obj: T): [TKey, T[TKey]][] {
   }, results);
 }
 
-const SettingsListContainer:
-React.ComponentType<{
-  innerRef?(e: HTMLDivElement);
-} & React.HTMLAttributes<HTMLDivElement>>
-= styled.div`
+const SettingsListContainer: React.ComponentType<
+  {
+    innerRef?(e: HTMLDivElement);
+  } & React.HTMLAttributes<HTMLDivElement>
+> = styled.div`
   margin-top: 0.5em;
   position: relative;
   @media (min-width: ${smallWidth + 1}px) {
@@ -275,14 +275,20 @@ const valueColors = Object.keys(listItemColors).reduce(
   {} as typeof listItemColors,
 );
 
-const ListItemContainer: React.StatelessComponent<
-  {
-    display: boolean;
-    hasOverride: boolean;
-    selected: boolean;
-    innerRef?(el: HTMLElement);
-  } & React.HTMLProps<HTMLDivElement>
-> = styled.div`
+type ListItemContainerProps = {
+  display: boolean;
+  hasOverride: boolean;
+  selected: boolean;
+} & React.HTMLProps<HTMLDivElement>;
+
+const ListItemContainerDiv = ({
+  display,
+  hasOverride,
+  selected,
+  ...divProps
+}: ListItemContainerProps) => <div {...divProps} />;
+
+const ListItemContainer = styled(ListItemContainerDiv)`
   @media (min-width: ${smallWidth + 1}px) {
     display: ${p => (p.display ? 'flex' : 'none')};
     border-top: 1px solid #eee;
@@ -305,14 +311,22 @@ const ListItemContainer: React.StatelessComponent<
   > :first-child {
     background-color: ${p =>
       p.selected
-        ? p.hasOverride ? listItemColors.overrideHover : listItemColors.hover
-        : p.hasOverride ? listItemColors.override : listItemColors.normal};
+        ? p.hasOverride
+          ? listItemColors.overrideHover
+          : listItemColors.hover
+        : p.hasOverride
+          ? listItemColors.override
+          : listItemColors.normal};
   }
   > :last-child {
     background-color: ${p =>
       p.selected
-        ? p.hasOverride ? listItemColors.overrideHover : listItemColors.hover
-        : p.hasOverride ? valueColors.override : valueColors.normal};
+        ? p.hasOverride
+          ? listItemColors.overrideHover
+          : listItemColors.hover
+        : p.hasOverride
+          ? valueColors.override
+          : valueColors.normal};
   }
 
   &:hover {

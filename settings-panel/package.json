@@ -5,7 +5,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/autosize": "^3.0.5",
-    "@types/color": "^2.0.0",
+    "@types/color": "^3.0.0",
     "@types/html-webpack-plugin": "^2.28.0",
     "@types/marked": "^0.3.0",
     "@types/react": "^16.0.5",
@@ -16,7 +16,7 @@
     "babel-loader": "^7.1.2",
     "babel-minify-webpack-plugin": "^0.2.0",
     "babel-plugin-emotion": "^8.0.6",
-    "color": "^2.0.0",
+    "color": "^3.0.0",
     "concurrently": "^3.5.0",
     "cross-env": "^5.1.0",
     "emotion": "^8.0.8",

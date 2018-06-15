@@ -14,7 +14,7 @@ export const Tag: React.StatelessComponent<
   font-weight: normal;
   margin-right: 0.2em;
   padding: 0.2em 0.5em 0.2em;
-  color: ${p => (Color(p.color).light() ? darken(p.color, 0.5) : '#fff')};
+  color: ${p => (Color(p.color).isLight() ? darken(p.color, 0.5) : '#fff')};
   font-size: 85%;
   text-transform: lowercase;
   background-color: ${p => p.color};
