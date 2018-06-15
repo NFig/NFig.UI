@@ -5,7 +5,7 @@ export type IIconProps = {
   fill?: string;
   iconSize?: string;
   offsetTop?: string;
-} & React.HTMLProps<SVGElement>;
+} & React.HTMLProps<SVGSVGElement>;
 
 export type IconType = React.StatelessComponent<IIconProps>;
 

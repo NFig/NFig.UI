@@ -13,7 +13,7 @@ type TierProps = {
   store?: Store;
 };
 
-const TierBanner = inject<TierProps>('tierColors', 'store')(
+const TierBanner = inject('tierColors', 'store')(
   observer(({ tier, tierColors, store }: TierProps) => {
     if (!tierColors) {
       throw new Error(

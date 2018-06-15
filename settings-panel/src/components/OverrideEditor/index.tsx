@@ -153,7 +153,7 @@ export default class OverrideEditor extends React.Component<
     const { setting, store } = this.props;
     await store.clearOverride(setting, setting.activeOverride.dataCenter);
     this.setState(() => ({
-      selectDataCenter: null,
+      selectedDataCenter: null,
       newOverrideValue: '',
     }));
   };
