@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { expr, untracked } from 'mobx';
+import { untracked } from 'mobx';
+import { expr } from 'mobx-utils';
 import { inject, observer } from 'mobx-react';
 import { ISetting, Dictionary } from '../../interfaces';
 import { Store } from '../../store';
 
 import { css } from 'emotion';
-import styled, { StyledComponent } from 'react-emotion';
+import styled  from 'react-emotion';
+import { StyledOtherComponent } from 'create-emotion-styled';
 import { smallWidth } from '../../responsive';
 
 import OverridesSummary from './OverridesSummary';
@@ -48,9 +50,6 @@ class SettingListItem extends React.Component<{
     }
   };
 
-  private get currentlyEditing() {
-    return this.props.store.editing === this.props.setting;
-  }
 
   private get currentlySelected() {
     return this.props.store.selectedSetting === this.props.setting;
@@ -77,11 +76,11 @@ class SettingListItem extends React.Component<{
 
     return (
       <ListItemContainer
-        display={display ? "true" : undefined}
+        display={display ? 'true' : undefined}
         onClick={this.onClick}
         hasOverride={!!setting.activeOverride}
         selected={expr(() => this.currentlySelected)}
-        ref={e => {
+        innerRef={e => {
           this.element = e;
         }}
       >
@@ -281,7 +280,7 @@ type ListItemContainerProps = {
   selected: boolean;
 };
 
-const ListItemContainer: StyledComponent<
+const ListItemContainer: StyledOtherComponent<
   ListItemContainerProps,
   React.HTMLProps<HTMLDivElement>,
   any

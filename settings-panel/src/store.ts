@@ -3,17 +3,18 @@ import qs from 'qs';
 import {
   observable,
   action,
-  useStrict,
+  configure,
   runInAction,
   reaction,
   computed,
   IReactionDisposer,
+  comparer,
 } from 'mobx';
 import { asyncAction } from 'mobx-utils';
 import debounce from './debounce';
 import { ISettingsModel, ISetting, INewOverride } from './interfaces';
 
-useStrict(true);
+configure({ enforceActions: true });
 
 async function fetchJson(url: string, init?: RequestInit) {
   const response = await fetch(url, init);
@@ -93,7 +94,7 @@ export class Store {
           this._isPoppingState = false;
         }
       }, 500),
-      { compareStructural: true },
+      {  equals: comparer.structural },
     );
   }
 
