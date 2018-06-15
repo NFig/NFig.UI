@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from 'emotion';
-import styled from 'react-emotion';
+import styled, { StyledComponent } from 'react-emotion';
 import { ISetting, ISettingValue } from '../../interfaces';
 
 import ValueViewer from '../common/ValueViewer';
@@ -37,7 +37,11 @@ export default function ValueDisplay({
         <ValueViewer setting={setting} value={value} showExtraInfo={true} />
       </div>
       {value.isOverride ? (
-        <div className={css`margin-top: 1em;`}>
+        <div
+          className={css`
+            margin-top: 1em;
+          `}
+        >
           <Button buttonSize="sm" onClick={onEdit}>
             <EditIcon /> edit
           </Button>
@@ -73,9 +77,13 @@ const DataCenterIndicator = styled.dl`
 
 type WrapperProps = {
   isOverride: boolean;
-} & React.HTMLProps<HTMLDivElement>;
+};
 
-const Wrapper: React.StatelessComponent<WrapperProps> = styled.div`
+const Wrapper: StyledComponent<
+  WrapperProps,
+  React.HTMLProps<HTMLDivElement>,
+  any
+> = styled.div`
   @media (min-width: ${smallWidth + 1}px) {
     flex-grow: 1;
     width: 50%;

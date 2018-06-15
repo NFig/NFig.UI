@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { keyframes } from 'emotion';
-import styled from 'react-emotion';
+import styled, { StyledComponent } from 'react-emotion';
 import { Dictionary } from '../../interfaces';
 import { Store } from '../../store';
 import { inject, observer } from 'mobx-react';
@@ -62,12 +62,12 @@ const LoadingShimmer = keyframes`
   }
 `;
 
-const TierSection: React.StatelessComponent<{
+const TierSection: StyledComponent<{
   color: string;
   backgroundColor: string;
   borderColor: string;
   loading: boolean;
-}> = styled.section`
+}, React.HTMLProps<HTMLElement>, any> = styled.section`
   color: ${p => p.color};
   background-color: ${p => p.backgroundColor};
   border: 1px solid ${p => p.borderColor};

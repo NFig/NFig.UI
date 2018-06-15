@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react';
 import { ISetting, INewOverride } from '../../interfaces';
 import { Store, allowsAnyOverrides } from '../../store';
 import { css } from 'emotion';
-import styled from 'react-emotion';
+import styled, { StyledComponent } from 'react-emotion';
 
 import { Dictionary } from '../../interfaces';
 
@@ -342,10 +342,13 @@ export default class OverrideEditor extends React.Component<
 
 type DialogProps = {
   loading: boolean;
-  innerRef?(el: HTMLElement): void;
-} & React.HTMLProps<HTMLDivElement>;
+};
 
-const Dialog: React.StatelessComponent<DialogProps> = styled.div`
+const Dialog: StyledComponent<
+  DialogProps,
+  React.HTMLProps<HTMLDivElement>,
+  any
+> = styled.div`
   background-color: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(2px);
   position: fixed;
@@ -390,10 +393,12 @@ const SettingHeader = styled.div`
 
 type EditorSectionProps = {
   loading: boolean;
-} & React.HTMLProps<HTMLElement>;
+};
 
-const EditorSection: React.StatelessComponent<
-  EditorSectionProps
+const EditorSection: StyledComponent<
+  EditorSectionProps,
+  React.HTMLProps<HTMLElement>,
+  any
 > = styled.section`
   opacity: ${p => (p.loading ? '0.5' : '1')};
   pointer-events: ${p => (p.loading ? 'none' : 'auto')};
@@ -407,7 +412,9 @@ const SectionStyles = css`
   }
 `;
 
-const Section = styled.section`${SectionStyles};`;
+const Section = styled.section`
+  ${SectionStyles};
+`;
 
 const ValueSection = styled.section`
   ${SectionStyles};

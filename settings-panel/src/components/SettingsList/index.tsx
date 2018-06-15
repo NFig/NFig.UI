@@ -5,7 +5,7 @@ import { ISetting, Dictionary } from '../../interfaces';
 import { Store } from '../../store';
 
 import { css } from 'emotion';
-import styled from 'react-emotion';
+import styled, { StyledComponent } from 'react-emotion';
 import { smallWidth } from '../../responsive';
 
 import OverridesSummary from './OverridesSummary';
@@ -77,7 +77,7 @@ class SettingListItem extends React.Component<{
 
     return (
       <ListItemContainer
-        display={display}
+        display={display ? "true" : undefined}
         onClick={this.onClick}
         hasOverride={!!setting.activeOverride}
         selected={expr(() => this.currentlySelected)}
@@ -276,19 +276,16 @@ const valueColors = Object.keys(listItemColors).reduce(
 );
 
 type ListItemContainerProps = {
-  display: boolean;
+  display: string;
   hasOverride: boolean;
   selected: boolean;
-} & React.HTMLProps<HTMLDivElement>;
+};
 
-const ListItemContainerDiv = ({
-  display,
-  hasOverride,
-  selected,
-  ...divProps
-}: ListItemContainerProps) => <div {...divProps} />;
-
-const ListItemContainer = styled(ListItemContainerDiv)`
+const ListItemContainer: StyledComponent<
+  ListItemContainerProps,
+  React.HTMLProps<HTMLDivElement>,
+  any
+> = styled.div`
   @media (min-width: ${smallWidth + 1}px) {
     display: ${p => (p.display ? 'flex' : 'none')};
     border-top: 1px solid #eee;

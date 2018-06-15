@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { css } from 'emotion';
-import styled from 'react-emotion';
+import styled, { StyledComponent } from 'react-emotion';
 import { darken } from '../../color-manip';
 import Color from 'color';
 import { ISetting } from '../../interfaces';
 import { allowsAnyOverrides } from '../../store';
 
-export const Tag: React.StatelessComponent<
+export const Tag: StyledComponent<
   {
     color: string;
-  } & React.HTMLProps<HTMLSpanElement>
+  },
+  React.HTMLProps<HTMLSpanElement>,
+  any
 > = styled.span`
   font-weight: normal;
   margin-right: 0.2em;
@@ -30,7 +32,11 @@ export type AttributesProps = {
 export const Attributes: React.StatelessComponent<AttributesProps> = ({
   setting,
 }: AttributesProps) => (
-  <div className={css`margin: 0.5em 0;`}>
+  <div
+    className={css`
+      margin: 0.5em 0;
+    `}
+  >
     {setting.requiresRestart ? (
       <Tag color="#dbe4f0">Requires Restart</Tag>
     ) : null}

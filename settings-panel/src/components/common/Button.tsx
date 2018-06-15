@@ -1,21 +1,23 @@
 import * as React from 'react';
-import styled from 'react-emotion';
+import styled, { StyledComponent } from 'react-emotion';
 import { darken } from '../../color-manip';
 
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 export type ButtonProps = {
-  // emotion innerRef
-  innerRef?(el: HTMLButtonElement);
-
+  selected?: boolean;
   color?: string;
   bgcolor?: string;
   bordercolor?: string;
 
   buttonSize?: ButtonSize;
-} & React.HTMLProps<HTMLButtonElement>;
+};
 
-export type ButtonType = React.StatelessComponent<ButtonProps>;
+export type ButtonType = StyledComponent<
+  ButtonProps,
+  React.HTMLProps<HTMLButtonElement>,
+  any
+>;
 
 const paddings = {
   sm: '0.3em 0.8em',
@@ -38,8 +40,7 @@ export const Button: ButtonType = styled.button`
     color: ${p => p.color || '#444'} !important;
   }
   border-radius: 2px;
-  border: 1px solid ${p =>
-      darken(p.bgcolor, p.selected ? 0.25 : 0.15)} !important;
+  border: 1px solid ${p => darken(p.bgcolor, p.selected ? 0.25 : 0.15)} !important;
   margin: 0 0.3em;
   padding: 0.3em 0.8em;
 
