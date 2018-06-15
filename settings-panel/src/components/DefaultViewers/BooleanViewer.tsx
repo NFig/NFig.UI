@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ValueViewerType } from '../../interfaces';
 import styled from 'react-emotion';
 
 import {

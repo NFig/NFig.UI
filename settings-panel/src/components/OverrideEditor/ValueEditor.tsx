@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { untracked } from 'mobx';
 import { inject } from 'mobx-react';
 import {
   ISetting,

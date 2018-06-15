@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import styled from 'react-emotion';
 import { observer, Provider } from 'mobx-react';
 import { Store } from './store';
-import { Dictionary } from './interfaces';
 
 import FilterBox from './components/FilterBox';
 import SettingsList from './components/SettingsList';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import marked from 'marked';
-import styled, { StyledComponent } from 'react-emotion';
+import styled from 'react-emotion';
 
 const md = (() => {
   const renderer = new marked.Renderer();

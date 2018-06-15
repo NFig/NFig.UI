@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { css } from 'emotion';
 import styled from 'react-emotion';
-import { observer, inject } from 'mobx-react';
 import { ISetting, ISettingValue } from '../../interfaces';
 
 import ValueViewer from '../common/ValueViewer';

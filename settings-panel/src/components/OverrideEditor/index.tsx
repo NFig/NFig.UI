@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { observer, inject } from 'mobx-react';
-import { ISetting, ISettingValue, INewOverride } from '../../interfaces';
+import { ISetting, INewOverride } from '../../interfaces';
 import { Store, allowsAnyOverrides } from '../../store';
-import { css, keyframes } from 'emotion';
+import { css } from 'emotion';
 import styled from 'react-emotion';
-import * as Color from 'color';
 
 import { Dictionary } from '../../interfaces';
 

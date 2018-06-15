@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { css } from 'emotion';
 import styled from 'react-emotion';
 
 import { autorun, IReactionDisposer } from 'mobx';

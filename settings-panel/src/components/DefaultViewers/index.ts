@@ -1,4 +1,4 @@
-import { ISetting, ISettingValue, ValueViewerType } from '../../interfaces';
+import { ISetting, ValueViewerType } from '../../interfaces';
 
 import BooleanViewer from './BooleanViewer';
 import RawViewer from './RawViewer';

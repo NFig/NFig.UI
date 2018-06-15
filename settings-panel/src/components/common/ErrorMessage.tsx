@@ -1,5 +1,4 @@
-import * as React from 'react';
-import styled, { StyledComponent } from 'react-emotion';
+import styled  from 'react-emotion';
 
 export default styled.div`
   color: darkred;

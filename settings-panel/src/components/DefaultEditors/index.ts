@@ -1,4 +1,4 @@
-import { IEditorSelector, ISetting, ValueEditorType } from '../../interfaces';
+import { ISetting, ValueEditorType } from '../../interfaces';
 
 import BooleanEditor from './BooleanEditor';
 import RawEditor from './RawEditor';
