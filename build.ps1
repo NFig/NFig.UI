@@ -39,8 +39,8 @@ function Main()
 
     # Ok let's do this
     Push-Location .\settings-panel
-    & npm ci
-    & npm run build
+    npm ci
+    npm run build
     Pop-Location
 
     $version = GetVersion $nugetProject $BuildNum $Stable
