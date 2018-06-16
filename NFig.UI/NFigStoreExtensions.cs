@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -33,6 +34,17 @@ namespace NFig.UI
             }
         };
 
+        static readonly JsonSerializer s_jsonSerializer = JsonSerializer.Create(s_jsonSettings);
+
+        static string ToJson<TObj>(TObj model)
+        {
+             using (var writer = new StringWriter())
+            {
+                s_jsonSerializer.Serialize(writer, model);
+                return writer.ToString();
+            }
+        }
+
         public static string GetSettingsJson<TSettings, TTier, TDataCenter>(
           this NFigStore<TSettings, TTier, TDataCenter> store,
           string applicationName,
@@ -53,7 +65,7 @@ namespace NFig.UI
                 availableDataCenters
             );
 
-            return JsonConvert.SerializeObject(model, s_jsonSettings);
+           return ToJson(model);
         }
 
 
@@ -78,7 +90,7 @@ namespace NFig.UI
                 availableDataCenters
             );
 
-            return JsonConvert.SerializeObject(model, s_jsonSettings);
+            return ToJson(model);
         }
 
 
@@ -93,13 +105,14 @@ namespace NFig.UI
           where TDataCenter : struct
           where TSettings : class, INFigSettings<TTier, TDataCenter>, new()
         {
+            var infos = store.GetSettingInfo(applicationName, settingName);
             var model = new SettingsJsonModel<TTier, TDataCenter>.Setting(
                 tier,
                 dataCenter,
-                store.GetSettingInfo(applicationName, settingName),
+                infos,
                 availableDataCenters
             );
-            return JsonConvert.SerializeObject(model, s_jsonSettings);
+            return ToJson(model);
         }
 
 
@@ -115,14 +128,15 @@ namespace NFig.UI
           where TDataCenter : struct
           where TSettings : class, INFigSettings<TTier, TDataCenter>, new()
         {
+            var infos = await store.GetSettingInfoAsync(applicationName, settingName);
             var model = new SettingsJsonModel<TTier, TDataCenter>.Setting(
                 tier,
                 dataCenter,
-                await store.GetSettingInfoAsync(applicationName, settingName),
+                infos,
                 availableDataCenters
             );
 
-            return JsonConvert.SerializeObject(model, s_jsonSettings);
+            return ToJson(model);
         }
     }
 }
