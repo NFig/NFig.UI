@@ -1,4 +1,4 @@
-[![NuGet version](https://badge.fury.io/nu/NFig.UI.svg)](http://badge.fury.io/nu/NFig.UI)
+[![NuGet version](https://badge.fury.io/nu/NFig.UI.svg)](https://badge.fury.io/nu/NFig.UI)
 [![Build status](https://ci.appveyor.com/api/projects/status/q9s2k2md9m5tfyhh/branch/master?svg=true)](https://ci.appveyor.com/project/rossipedia/nfig-ui/branch/master)
 
 
