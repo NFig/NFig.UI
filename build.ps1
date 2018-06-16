@@ -37,6 +37,11 @@ function Main()
         $Stable = [bool]::Parse("$env:APPVEYOR_REPO_TAG")
     }
 
+    # Ok let's do this
+    Push-Location .\settings-panel
+    & npm ci
+    & npm run build
+    Pop-Location
 
     $version = GetVersion $nugetProject $BuildNum $Stable
 
