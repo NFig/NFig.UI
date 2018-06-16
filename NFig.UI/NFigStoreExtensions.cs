@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
 namespace NFig.UI
@@ -14,6 +15,10 @@ namespace NFig.UI
             NullValueHandling = NullValueHandling.Ignore,
             DateTimeZoneHandling = DateTimeZoneHandling.Utc,
             ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            Converters =
+            {
+                new StringEnumConverter()
+            }
         };
 
         public static string GetSettingsJson<TSettings, TTier, TDataCenter>(
