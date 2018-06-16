@@ -9,8 +9,13 @@
         <PackageTags>Config Settings Tier</PackageTags>
     </PropertyGroup>
     <ItemGroup>
+      <EmbeddedResource Include="..\settings-panel\settings-panel.js" Link="settings-panel.js" />
+      <EmbeddedResource Include="..\settings-panel\settings-panel.js.map" Link="settings-panel.js.map" />
+      <EmbeddedResource Include="..\settings-panel\settings-panel.min.js" Link="settings-panel.min.js" />
+    </ItemGroup>
+    <ItemGroup>
       <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-      <PackageReference Include="NFig" Version="2.1.0" />
+      <PackageReference Include="NFig" Version="2.2.0" />
     </ItemGroup>
     <ItemGroup>
       <None Update="nfig-interfaces.d.ts">
