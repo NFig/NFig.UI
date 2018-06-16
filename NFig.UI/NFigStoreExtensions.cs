@@ -9,12 +9,24 @@ namespace NFig.UI
 {
     public static class NFigStoreExtensions
     {
+        // Thank you Mr. Rogers
+        // https://stackoverflow.com/questions/24143149/keep-casing-when-serializing-dictionaries/24226442#24226442
+        class CamelCaseExceptDictionaryKeysResolver : CamelCasePropertyNamesContractResolver
+        {
+            protected override JsonDictionaryContract CreateDictionaryContract(Type objectType)
+            {
+                var contract = base.CreateDictionaryContract(objectType);
+                contract.DictionaryKeyResolver = propertyName => propertyName;
+                return contract;
+            }
+        }
+
         static readonly JsonSerializerSettings s_jsonSettings = new JsonSerializerSettings
         {
             DateFormatHandling = DateFormatHandling.IsoDateFormat,
             NullValueHandling = NullValueHandling.Ignore,
             DateTimeZoneHandling = DateTimeZoneHandling.Utc,
-            ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            ContractResolver = new CamelCaseExceptDictionaryKeysResolver(),
             Converters =
             {
                 new StringEnumConverter()
